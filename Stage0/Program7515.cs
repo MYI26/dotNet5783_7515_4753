@@ -12,7 +12,7 @@ namespace Stage0
             Console.ReadKey();
         }
 
-        static partial void Welcome4753();
+        static partial void Welcome4753();  
         private static void Welcome9715()
         {
             Console.WriteLine("Enter your name: ");
