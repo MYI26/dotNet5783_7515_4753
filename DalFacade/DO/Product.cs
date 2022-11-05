@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DO;
+﻿namespace DO;
 
 /// <summary>
 /// Structure for Product on sale resource
@@ -48,5 +41,11 @@ public struct Product
 
     public int InStock { get; set; }
 
+    public override string ToString() => $@"
+        Product ID={ID}: {Name}, 
+        category - {Category}
+    	Price: {Price}
+    	Amount in stock: {InStock}
+";
 }
 

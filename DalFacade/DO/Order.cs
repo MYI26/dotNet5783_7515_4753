@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace DO;
 
@@ -16,5 +13,11 @@ public struct Order
     public DateTime? ShipDate { get; set; }
     public DateTime? DeliveryDate { get; set; }
 
+    public override string ToString() => $@"
+        Product ID={ID}: {Name}, 
+        category - {Category}
+    	Price: {Price}
+    	Amount in stock: {InStock}
+";
 
 }
