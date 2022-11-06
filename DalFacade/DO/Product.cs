@@ -43,7 +43,7 @@ public struct Product
 
 
     /// <summary>
-    /// Category of product in the store product list
+    /// Number of product instock in the store 
     /// </summary>
 
     public int InStock { get; set; }
