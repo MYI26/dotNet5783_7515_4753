@@ -1,5 +1,4 @@
-﻿
-namespace DO;
+﻿namespace DO;
 
 /// <summary>
 /// Structure for Product on sale resource
@@ -55,4 +54,3 @@ public struct Product
 ";
 
 }
-
