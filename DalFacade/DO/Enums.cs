@@ -12,9 +12,20 @@ public struct Enums
     public enum Category { guitar, violin, flute, piano, musicBrochures }
     public enum Names
     {
-        Eliaou_Madar, Nethanel_Assouline, Jeremy_Torjdman, Elie_Goetta,
-        Nahoum_Perez, Joana_Perez, David_Cohen, Salomon_Hamelekh,
-        Ouriel_Gourion, Dan_Meimoun, Samuel_Marciano
+        YamahaF310, CordobaC3M, TanglewoodCrossroads,
+        VilacAcousitic, IbanezICLS6NT, GrandSonata,
+        StanzaStrauss600, NorvegianFiddle, MaestroResonant,
+        MastaElectric_Acoustic
+    }
+    public enum CustomerName 
+    {
+        Eliaou, Ouriel, Netanel, ELie, Yossef, Salomon, David, Jeremy, Inoun, BarYohai,
+        Raphael, Haim, Daniel, Mickael, Avi, Ruben, Arie, Isaac, Jonas, Dorone
+    }
+    public enum CustomerAdress
+    {
+         Jerusalem, Efrat, Raanana, KarneiShomron, Hertslia, BatYam, Ashdod, BneBrak, Haifa, GuivatZeev, Rishonle_Zion, Lod, NeveIlan, RamatGan, Tel_Aviv, Givataim,
+            Holon, Ariel, Ashkelon
     }
 }
 
