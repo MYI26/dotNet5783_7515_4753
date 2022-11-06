@@ -11,7 +11,7 @@ public class DalOrder
 
         for (int i = 0; i < 40; i++)
         {
-            if (DataSource.tabOrderItem[i].ProductID == p1.ID)
+            if (DataSource.tabOrder[i].ID == p1.ID)
             {
                 throw new Execution("the OrderItem already exist")
                 return 0;
@@ -23,11 +23,11 @@ public class DalOrder
         {
 
             int i = 40;
-            DataSource.tabOrderItem[i] = p1;
+            DataSource.tabOrder[i] = p1;
             i++;
 
 
-            return p1.ProductID;
+            return p1.ID;
         }
     }
 
@@ -36,10 +36,10 @@ public class DalOrder
 
         for (int i = 0; i < 40; i++)
         {
-            if (DataSource.tabOrderItem[i].ProcuctID == id)
+            if (DataSource.tabOrder[i].ID == id)
             {
 
-                DataSource.tabOrderItem[i] = null;
+                DataSource.tabOrder[i] = null;
 
             }
         }
@@ -52,10 +52,10 @@ public class DalOrder
 
         for (int i = 0; i < 40; i++)
         {
-            if (DataSource.tabOrderItem[i].ProductID == P1.ID)
+            if (DataSource.tabOrder[i].ID == P1.ID)
             {
 
-                DataSource.tabOrderItem[i] = P1;
+                DataSource.tabOrder[i] = P1;
 
             }
         }
@@ -66,10 +66,10 @@ public class DalOrder
     {
         for (int i = 0; i < 40; i++)
         {
-            if (DataSource.tabOrderItem[i].ProductID == id)
+            if (DataSource.tabOrder[i].ID == id)
             {
 
-                return DataSource.tabOrderItem[i];
+                return DataSource.tabOrder[i];
 
             }
         }
@@ -86,9 +86,13 @@ public class DalOrder
 
 
               public override string ToString() => $@"
-        Product ID={DataSource.tabOrderItem[i].ProductID}: {DataSource.tabOrderItem[i].OrderID}, 
-    	Price: {DataSource.tabProduct[i].Price}
-    	Amount in stock: {DataSource.tabProduct[i].InStock} ";
-
+        Customer ID: {DataSource.tabOrder[i].ID}
+        Customer Name: {DataSource.tabOrder[i].CustomerName}
+        Customer Email: {DataSource.tabOrder[i].CustomerEmail}
+        Customer Address: {DataSource.tabOrder[i].CustomerAddress}
+        OrderDate: {DataSource.tabOrder[i].OrderDate}
+    	ShipDate: {DataSource.tabOrder[i].ShipDate}
+    	DeliveryDate: {DataSource.tabOrder[i].DeliveryDate} ";
+          }
 
 }
