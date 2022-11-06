@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace DO;
 
 /// <summary>
@@ -24,7 +18,7 @@ public struct Product
     /// <summary>
     /// Descriptivename of product
     /// </summary>
-
+ 
     public string Name { get; set; }
 
 
@@ -38,15 +32,27 @@ public struct Product
     /// <summary>
     /// Category of product in the store product list
     /// </summary>
-
+  
     public Category Category { get; set; }
 
 
     /// <summary>
     /// Number of product instock in the store 
     /// </summary>
-
+ 
     public int InStock { get; set; }
+
+
+    /// <summary>
+    /// Category of product in the store product list
+    /// </summary>
+   
+    public override string ToString() => $@"
+        Product ID={ID}: {Name}, 
+        category - {Category}
+    	Price: {Price}
+    	Amount in stock: {InStock}
+";
 
 }
 

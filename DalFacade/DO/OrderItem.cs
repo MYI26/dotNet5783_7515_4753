@@ -1,12 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace DO;
 
-namespace DO
+/// <summary>
+/// Structure for Product on sale resource
+/// </summary>
+
+public struct OrderItem
 {
-    internal class Class1
-    {
-    }
+    /// <summary>
+    /// Structure for Product on sale resource
+    /// </summary>
+
+    public int ProductId { get; set; }
+
+
+    /// <summary>
+    /// Structure for Product on sale resource
+    /// </summary>
+   
+    public int OrderID { get; set; }
+
+
+    /// <summary>
+    /// Structure for Product on sale resource
+    /// </summary>
+
+    public double Price { get; set; }
+
+
+    /// <summary>
+    /// Structure for Product on sale resource
+    /// </summary>
+  
+    public int Amount { get; set; }
+
+
+    /// <summary>
+    /// Structure for Product on sale resource
+    /// </summary>
+  
+    public override string ToString() => $@"
+        Product ID={ID}: {Name}, 
+        category - {Category}
+    	Price: {Price}
+    	Amount in stock: {InStock}
+";
 }
