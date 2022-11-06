@@ -56,7 +56,7 @@ public struct Order
     public DateTime? DeliveryDate { get; set; }
 
 
-    /// <summary>
+    /// <https://moodle.jct.ac.il/summary>
     /// Structure for Product on sale resource
     /// </summary>
    
