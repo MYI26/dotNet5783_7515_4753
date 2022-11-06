@@ -11,7 +11,7 @@ public struct OrderItem
     /// Structure for Product on sale resource
     /// </summary>
 
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
 
     /// <summary>
@@ -39,10 +39,10 @@ public struct OrderItem
     /// Structure for Product on sale resource
     /// </summary>
   
-    public override string ToString() => $@"
-        Product ID={ID}: {Name}, 
-        category - {Category}
-    	Price: {Price}
-    	Amount in stock: {InStock}
+    //public override string ToString() => $@"
+    //    Product ID={ID}: {Name}, 
+    //    category - {Category}
+    //	Price: {Price}
+    //	Amount in stock: {InStock}
 ";
 }
