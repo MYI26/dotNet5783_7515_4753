@@ -1,5 +1,5 @@
 ﻿namespace DO;
-
+using static DO.Enums;
 /// <summary>
 /// Structure for Product on sale resource
 /// </summary>
@@ -32,7 +32,7 @@ public struct Product
     /// Category of product in the store product list
     /// </summary>
   
-    public Category Category { get; set; }
+    public Category MyCategory { get; set; }
 
 
     /// <summary>

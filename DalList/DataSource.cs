@@ -13,7 +13,10 @@ namespace Dal;
     }
 
 
-    //static readonly variable;
+    /// <summary>
+    /// static readonly variable
+    /// </summary>
+    /// 
     static readonly Random random = new Random();
 
 
@@ -50,7 +53,7 @@ namespace Dal;
             tabProduct[i].ID = random.Next(1000, 10000);
             tabProduct[i].Name = ((Names)i).ToString();
             tabProduct[i].Price = random.Next(60,100);
-            tabProduct[i].Category = ((Category)1).ToString();
+            tabProduct[i].MyCategory = ((Category)1).ToString();
             tabProduct[i].InStock = random.Next(3,6);
         }
     }
