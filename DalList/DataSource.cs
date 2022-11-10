@@ -84,7 +84,7 @@ namespace Dal;
             tabOrder[i].CustomerAddress = Convert.ToString((CustomerAdress)i);
             tabOrder[i].OrderDate = DateTime.Now.AddMinutes(-random.Next(455, 500));
             tabOrder[i].ShipDate = DateTime.Now.AddMinutes(-random.Next(455, 600));
-            tabOrder[i].DeliveryDate = DateTime.Now.AddMinutes(-random.Next(400, 700);
+            tabOrder[i].DeliveryDate = DateTime.Now.AddMinutes(-random.Next(400, 700));
         }
     }
 
