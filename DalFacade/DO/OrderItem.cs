@@ -44,5 +44,5 @@ public struct OrderItem
     //    category - {Category}
     //	Price: {Price}
     //	Amount in stock: {InStock}
-";
+    //";
 }
