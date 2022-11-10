@@ -3,78 +3,80 @@ using static DO.Enums;
 
 namespace Dal;
 
- internal static  class DataSource
+ internal static class DataSource
 {
 
-    //constructor of DataSource
+    /// <summary>
+    /// initialisation of all arry
+    /// </summary>
+    internal static Product[] tabProduct = new Product[50];// array of Products
+    internal static OrderItem[] tabOrderItem = new OrderItem[100];// array of OrderItem
+    internal static Order[] tabOrder = new Order[200];// array of Order
+    /// <summary>
+    /// static readonly variable
+    /// </summary>
+    /// 
+    static readonly Random random = new Random();
+    /// <summary>
+    /// constructor of DataSource
+    /// </summary>
     static DataSource() 
     {
         s_Initialize();
     }
 
+    private static void s_Initialize()
+    {
+        InitializeProduct();
+        InitializeOrderItem();
+        InitializeOrder();    
+    }
 
-    //static readonly variable;
-    static readonly Random random = new Random();
-
-
-    //class Config
+    /// <summary>
+    /// class Config
+    /// </summary>
     internal static class Config
     {
         internal const int startSerialNumber = 1000;
         private static int NextSerialNumber = startSerialNumber;
         internal static int NextSerialNum { get => NextSerialNumber++; }
     }
-
-
-    //array of Products
-    internal static Product[] tabProduct = new Product[10];
-
-    //fonction that add Product in the array of Product
+    /// <summary>
+    /// fonction that add Product in the array of Product
+    /// </summary>
     private static void InitializeProduct()
     {
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 10; i++)
         {
-            tabProduct[i].ID = random.Next(1000, 10000);
+            tabProduct[i].ID = random.Next(1000, 10000);// je comprend paspk ya pas ecrit (100000, 10000000) vue que le ID prend 6 chifre
             tabProduct[i].Name = Convert.ToString((Names)i);
             tabProduct[i].Price = random.Next(50,100);
-            tabProduct[i].Category = (Category)0;
+            tabProduct[i].MyCategory = (Category)0;  // quest ce que ca veut dire ?
             tabProduct[i].InStock = random.Next(5,10);
         }
         
-        for(int i = 5; i < 10; i++)
-        {
-            tabProduct[i].ID = random.Next(1000, 10000);
-            tabProduct[i].Name = Convert.ToString((Names)i);
-            tabProduct[i].Price = random.Next(60,100);
-            tabProduct[i].Category = (Category)1;
-            tabProduct[i].InStock = random.Next(3,6);
-        }
     }
+    /// <summary>
+    /// fonction that add OrderItem in the array of OrderItem
+    /// </summary>
 
-
-    //array of OrderItem
-    internal static OrderItem[] tabOrderItem = new OrderItem[40];
-
-    //fonction that add OrderItem in the array of OrderItem
-    private static void InitializeOrderItem(OrderItem orderItem)
+    private static void InitializeOrderItem()
     {
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 20; i++)
         {
             tabOrderItem[i].ProductID = random.Next(1000,10000);
+            tabOrderItem[i].OrderItemID = random.Next(1000, 10000);
             tabOrderItem[i].OrderID = random.Next(1000,1000);
             tabOrderItem[i].Price = random.Next(50,100);
             tabOrderItem[i].Amount = random.Next(3,10);
         }
     }
-
-
-    //array of Order
-    internal static Order[] tabOrder = new Order[20];
-
-    //fonction that add Order in the array of Order
+    /// <summary>
+    /// fonction that add Order in the array of Order
+    /// </summary>
     private static void InitializeOrder()
     {
-        for(int i = 0; i < 20; i++)
+        for(int i = 0; i < 40; i++)
         {
             tabOrder[i].ID = Config.NextSerialNum;
             tabOrder[i].CustomerName = Convert.ToString((CustomerName)i);
@@ -85,17 +87,5 @@ namespace Dal;
             tabOrder[i].DeliveryDate = DateTime.Now.AddMinutes(-random.Next(400, 700);
         }
     }
-
-
-    private static void s_Initialize()
-    {
-        InitializeProduct();
-        InitializeOrderItem();
-        InitializeOrder();    
-    }
-
-
-
-
 
 }

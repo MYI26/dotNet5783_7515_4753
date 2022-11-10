@@ -1,58 +1,56 @@
 ﻿using DO;
 using System;
+using System.Diagnostics;
 
 namespace Dal;
 
 public class DalOrderItem
 {
 
-    public int add(OrderItem p1)
+    public int AddOrderItem(OrderItem p1)
     {
 
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 100; i++)
         {
-            if (DataSource.tabOrderItem[i].ProductID == p1.ID)
+            if (DataSource.tabOrderItem[i].ProductID == p1.OrderItemID)
             {
-                throw new Execution("the OrderItem already exist")
-                return 0;
+                throw new Exception("the OrderItem already exist");
+
+
 
             }
         }
 
-        else
-        {
-
-            int i = 40;
-            DataSource.tabOrderItem[i] = p1;
-            i++;
-
-
-            return p1.ProductID;
-        }
+                int b = 100;
+                DataSource.tabOrderItem[b] = p1;
+                b++;
+                return p1.ProductID;
+            
+        
     }
 
-    public void delet(int id)
+    public void DeletOrderItem(int id)
     {
 
         for (int i = 0; i < 40; i++)
         {
-            if (DataSource.tabOrderItem[i].ProcuctID == id)
+            if (DataSource.tabOrderItem[i].OrderItemID == id)
             {
 
                 DataSource.tabOrderItem[i] = null;
+           
 
             }
         }
 
-
     }
 
-    public void update(OrderItem P1)
+    public void UpdateOrderItem(OrderItem P1)
     {
 
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 100; i++)
         {
-            if (DataSource.tabOrderItem[i].ProductID == P1.ID)
+            if (DataSource.tabOrderItem[i].ProductID == P1.OrderItemID)
             {
 
                 DataSource.tabOrderItem[i] = P1;
@@ -62,30 +60,32 @@ public class DalOrderItem
 
     }
 
-    public Order get(int id)
+    public Order GetOrderItem(int id)
     {
-        for (int i = 0; i < 40; i++)
+        int temps = 0;
+        for (int i = 0; i < 100; i++)
         {
-            if (DataSource.tabOrderItem[i].ProductID == id)
+            if (DataSource.tabOrderItem[i].OrderItemID == id)
             {
 
-                return DataSource.tabOrderItem[i];
+                temps = i;
 
             }
         }
-
+      return DataSource.tabOrderItem[temps];
     }
 
-    public void get() {
+    public void GetOrderItem() {
 
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 100; i++)
 
-              public override string ToString() => $@"
-        Product ID={DataSource.tabOrderItem[i].ProductID}: {DataSource.tabOrderItem[i].OrderID}, 
+            Console.WriteLine($@"
+        Order Item ID={DataSource.tabOrderItem[i].OrderItemID} 
+        Product ID={DataSource.tabOrderItem[i].ProductID}
+        Order ID= {DataSource.tabOrderItem[i].OrderID}
     	Price: {DataSource.tabOrderItem[i].Price}
-    	Amount in stock: {DataSource.tabOrderItem[i].InStock} ";
-           }
-
-
+    	Amount: {DataSource.tabOrderItem[i].Amount}
+          ");
+    }
 
 }

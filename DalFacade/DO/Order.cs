@@ -2,69 +2,73 @@
 namespace DO;
 
 /// <summary>
-/// Structure for Product on sale resource
+/// Structure for Order information
 /// </summary>
 
 public struct Order
 {
     /// <summary>
-    /// Structure for Product on sale resource
+    /// ID of the Order
     /// </summary>
   
     public int ID { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Custoler Name
     /// </summary>
    
     public string? CustomerName { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Customer Email
     /// </summary>
-    
+
     public string? CustomerEmail { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Customer Address
     /// </summary>
-  
+
     public string? CustomerAddress { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Order Date
     /// </summary>
-    
+
     public DateTime? OrderDate { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Ship Date
     /// </summary>
-   
+
     public DateTime? ShipDate { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Delivery Date
     /// </summary>
-    
+
     public DateTime? DeliveryDate { get; set; }
 
 
-    /// <https://moodle.jct.ac.il/summary>
-    /// Structure for Product on sale resource
+    /// <summary>
+    /// Order ToString
     /// </summary>
+    /// <returns></returns>
    
     public override string ToString() => $@"
-        Product ID={ID}: {Name}, 
-        category - {Category}
-    	Price: {Price}
-    	Amount in stock: {InStock}
-";
+        Customer ID: {ID}
+        Customer Name: {CustomerName}
+        Customer Email: {CustomerEmail}
+        Customer Address: {CustomerAddress}
+        OrderDate: {OrderDate}
+    	ShipDate: {ShipDate}
+    	DeliveryDate: {DeliveryDate}
+       ";
 
 }
