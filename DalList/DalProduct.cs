@@ -27,17 +27,23 @@ public class DalProduct
 
     public void DeletProduct(int id)
     {
-
+        
         for (int i = 0; i < 50; i++)
         {
             if (DataSource.tabProduct[i].ID == id)
             {
+               
+                
+                for ( int j =i; j < 50; j++) {
 
-                DataSource.tabProduct[i] = 
+
+                    DataSource.tabProduct[j].ID = DataSource.tabProduct[j + 1].ID;
+
+                }
 
             }
-        }
 
+        }
 
     }
 
@@ -52,6 +58,11 @@ public class DalProduct
                 DataSource.tabProduct[i] = P1;
 
             }
+
+            //else
+           // {
+            //    throw new Exception("the product dont exist");
+            //}
         }
 
     }
@@ -65,8 +76,6 @@ public class DalProduct
             {
 
                 temps = i;
-                
-
             }
         }
 
