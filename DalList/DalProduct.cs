@@ -20,10 +20,9 @@ public class DalProduct
 
 
         }
-
-              int  b = 10;
-                DataSource.tabProduct[b] = p1;
-                b++;
+                int index = DataSource.tabProduct.Length;
+                DataSource.tabProduct[index] = p1;
+                
                 return p1.ID;
             
         
@@ -37,7 +36,7 @@ public class DalProduct
             if (DataSource.tabProduct[i].ID == id)
             {
 
-                DataSource.tabProduct[i] = null;
+                DataSource.tabProduct[i] = 
 
             }
         }
