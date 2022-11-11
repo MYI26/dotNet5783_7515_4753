@@ -1,4 +1,5 @@
 ﻿using DO;
+using System;
 using static DO.Enums;
 
 namespace Dal;
@@ -7,11 +8,11 @@ namespace Dal;
 {
 
     /// <summary>
-    /// initialisation of all arry
+    /// initialisation of all arry with their maximum sizes
     /// </summary>
-    internal static Product[] tabProduct = new Product[50];// array of Products
-    internal static OrderItem[] tabOrderItem = new OrderItem[100];// array of OrderItem
-    internal static Order[] tabOrder = new Order[200];// array of Order
+    internal static Product[] tabProduct = new Product[50]; // array of Products
+    internal static OrderItem[] tabOrderItem = new OrderItem[200];  // array of OrderItem
+    internal static Order[] tabOrder = new Order[100];  // array of Order
 
     /// <summary>
     /// static readonly variable
@@ -41,6 +42,9 @@ namespace Dal;
     /// </summary>
     internal static class Config
     {
+        internal static int indexTabProduct = 0;
+        internal static int indexOrderItem = 0;
+        internal static int indexOrder = 0;
         private static int startSerialNumber = 1000;
         internal static int NextSerialNumber { get => startSerialNumber++; }
     }
@@ -50,7 +54,7 @@ namespace Dal;
     {
         for(int i = 0; i < 5; i++)
         {
-            tabProduct[i].ID = random.Next(100000, 1000000);
+            tabProduct[i].ID = random.Next(100000, 1000000); //ca dt etre le mm que 
             tabProduct[i].Name = Convert.ToString((Names)i);
             tabProduct[i].Price = random.Next(50,100);
             tabProduct[i].MyCategory = (Category)0;  // quest ce que ca veut dire ?
@@ -61,9 +65,9 @@ namespace Dal;
         {
             tabProduct[i].ID = random.Next(100000, 1000000);
             tabProduct[i].Name = Convert.ToString((Names)i);
-            tabProduct[i].Price = random.Next(60,100);
+            tabProduct[i].Price = random.Next(50,100);
             tabProduct[i].MyCategory = (Category)1;
-            tabProduct[i].InStock = random.Next(3,6);
+            tabProduct[i].InStock = random.Next(5,10);
         }
     }
 
@@ -71,13 +75,19 @@ namespace Dal;
     //fonction that add OrderItem in the array of OrderItem
     private static void InitializeOrderItem()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 40; i++)
         {
-            tabOrderItem[i].ProductID = random.Next(100000,1000000);
+            int indexSpecificProduct = random.Next(1, 10);
+            tabOrderItem[i].ProductID = tabProduct[indexSpecificProduct].ID;
             tabOrderItem[i].OrderItemID = random.Next(100000, 1000000);
-            tabOrderItem[i].OrderID = random.Next(100000,100000);
-            tabOrderItem[i].Price = random.Next(50,100);
-            tabOrderItem[i].Amount = random.Next(3,10);
+
+            if (i % 2 == 0)
+                tabOrderItem[i].OrderID = Config.NextSerialNumber;
+            else
+                tabOrderItem[i].OrderID = tabOrderItem[i - 1].OrderID;
+
+            tabOrderItem[i].Price = tabProduct[indexSpecificProduct].Price;
+            tabOrderItem[i].Amount = random.Next(5,10);
         }
     }
 
@@ -85,9 +95,16 @@ namespace Dal;
     //fonction that add Order in the array of Order
     private static void InitializeOrder()
     {
-        for(int i = 0; i < 40; i++)
+
+        int j = -1;
+        for(int i = 0 ; i < 20; i++)
         {
-            tabOrder[i].ID = Config.NextSerialNumber;
+            j++;
+            if(i % 2 != 0)
+                j++;
+            tabOrderItem[i].OrderID = tabOrderItem[j].OrderID;
+
+            tabOrder[i].ID = tabOrderItem[i].OrderID;
             tabOrder[i].CustomerName = Convert.ToString((CustomerName)i);
             tabOrder[i].CustomerEmail = Convert.ToString((CustomerName)i) + "@gmail.com";
             tabOrder[i].CustomerAddress = Convert.ToString((CustomerAdress)i);
