@@ -21,12 +21,12 @@ public class DalOrderItem
             }
         }
 
-                int b = 100;
-                DataSource.tabOrderItem[b] = p1;
-                b++;
-                return p1.ProductID;
-            
-        
+        int index = DataSource.tabOrderItem.Length;
+        DataSource.tabOrderItem[index] = p1;
+
+        return p1.OrderItemID;
+
+
     }
 
     public void DeletOrderItem(int id)
@@ -79,13 +79,8 @@ public class DalOrderItem
 
         for (int i = 0; i < 100; i++)
 
-            Console.WriteLine($@"
-        Order Item ID={DataSource.tabOrderItem[i].OrderItemID} 
-        Product ID={DataSource.tabOrderItem[i].ProductID}
-        Order ID= {DataSource.tabOrderItem[i].OrderID}
-    	Price: {DataSource.tabOrderItem[i].Price}
-    	Amount: {DataSource.tabOrderItem[i].Amount}
-          ");
+
+            DataSource.tabOrderItem[i].ToString();
     }
 
 }

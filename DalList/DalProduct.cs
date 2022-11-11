@@ -15,14 +15,11 @@ public class DalProduct
             {
                 throw new Exception("the product already exist");
 
-
             }
-
 
         }
                 int index = DataSource.tabProduct.Length;
                 DataSource.tabProduct[index] = p1;
-                
                 return p1.ID;
             
         
@@ -81,15 +78,10 @@ public class DalProduct
 
         for (int i = 0; i < 50; i++) {
 
-        Console.WriteLine( $@"
-        Product ID={DataSource.tabProduct[i].ID}: {DataSource.tabProduct[i].Name}, 
-        category - {DataSource.tabProduct[i].MyCategory}
-    	Price: {DataSource.tabProduct[i].Price}
-    	Amount in stock: {DataSource.tabProduct[i].InStock} ");
 
+            DataSource.tabProduct[i].ToString();
         }
     }
-
 }
         
 

@@ -20,12 +20,10 @@ public class DalOrder
         }
 
 
-            int b = 40;
-            DataSource.tabOrder[b] = p1;
-            b++;
-
-
-            return p1.ID;
+            int index = DataSource.tabOrder.Length;
+            DataSource.tabOrder[index] = p1;
+          
+        return p1.ID;
         
     }
 
@@ -62,15 +60,19 @@ public class DalOrder
 
     public Order GetOrder(int id)
     {
-        for (int i = 0; i < 40; i++)
+        int temps = 0;
+        for (int i = 0; i < 200; i++)
         {
             if (DataSource.tabOrder[i].ID == id)
             {
 
-                return DataSource.tabOrder[i];
+                temps = i;
+
 
             }
         }
+
+        return DataSource.tabOrder[temps];
 
     }
 
@@ -80,14 +82,7 @@ public class DalOrder
         for (int i = 0; i < 200; i++)
         {
 
-            Console.WriteLine($@"
-        Customer ID: {DataSource.tabOrder[i].ID}
-        Customer Name: {DataSource.tabOrder[i].CustomerName}
-        Customer Email: {DataSource.tabOrder[i].CustomerEmail}
-        Customer Address: {DataSource.tabOrder[i].CustomerAddress}
-        OrderDate: {DataSource.tabOrder[i].OrderDate}
-    	ShipDate: {DataSource.tabOrder[i].ShipDate}
-    	DeliveryDate: {DataSource.tabOrder[i].DeliveryDate} ");
+            DataSource.tabOrder[i].ToString();
         }
     }
 
