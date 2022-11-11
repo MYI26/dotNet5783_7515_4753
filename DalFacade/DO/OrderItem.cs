@@ -2,47 +2,57 @@
 namespace DO;
 
 /// <summary>
-/// Structure for Product on sale resource
+/// Structure for Order Item
 /// </summary>
 
 public struct OrderItem
 {
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Order Item ID
     /// </summary>
+
+    public int OrderItemID { get; set; }
+
+
+    /// <summary>
+    /// Product ID
+    /// </summary>
+
 
     public int ProductID { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// ID of the Order the same in the struct Order
     /// </summary>
-   
+
     public int OrderID { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Price
     /// </summary>
 
     public double Price { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Amount
     /// </summary>
-  
+
     public int Amount { get; set; }
 
 
     /// <summary>
-    /// Structure for Product on sale resource
+    /// Order Item ToString
     /// </summary>
-  
-    //public override string ToString() => $@"
-    //    Product ID={ID}: {Name}, 
-    //    category - {Category}
-    //	Price: {Price}
-    //	Amount in stock: {InStock}
-    //";
+
+    public override string ToString() => $@"
+        Order Item ID={OrderItemID} 
+        Product ID={ProductID}
+        Order ID= {OrderID}
+    	Price: {Price}
+    	Amount: {Amount}
+";
+
 }

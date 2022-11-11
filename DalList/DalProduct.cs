@@ -6,31 +6,30 @@ namespace Dal;
 public class DalProduct
 {
 
-    public int add(Product p1)
+    public int AddProduct(Product p1)
     {
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 50; i++)
         {
             if (DataSource.tabProduct[i].ID == p1.ID)
             {
-                throw new Execution("the product already exist")
-                return 0;
+                throw new Exception("the product already exist");
+
 
             }
+
+
         }
 
-        else {
-
-            int i = 10;
-            DataSource.tabProduct[i] = p1;
-            i++;
-
-
-            return p1.ID;
-        }
+              int  b = 10;
+                DataSource.tabProduct[b] = p1;
+                b++;
+                return p1.ID;
+            
+        
     }
 
-    public void delet(int id)
+    public void DeletProduct(int id)
     {
 
         for (int i = 0; i < 50; i++)
@@ -46,10 +45,10 @@ public class DalProduct
 
     }
 
-    public void update(Product P1)
+    public void UpdateProduct(Product P1)
     {
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 50; i++)
         {
             if (DataSource.tabProduct[i].ID == P1.ID)
             {
@@ -61,17 +60,21 @@ public class DalProduct
 
     }
 
-    public Product get(int id)
+    public Product GetProduct(int id)
     {
+        int temps = 0;
         for (int i = 0; i < 50; i++)
         {
             if (DataSource.tabProduct[i].ID == id)
             {
 
-                return DataSource.tabProduct[i];
+                temps = i;
+                
 
             }
         }
+
+        return DataSource.tabProduct[temps];
 
     }
 
@@ -79,17 +82,14 @@ public class DalProduct
 
         for (int i = 0; i < 50; i++) {
 
-
-
-
-              public override string ToString() => $@"
+        Console.WriteLine( $@"
         Product ID={DataSource.tabProduct[i].ID}: {DataSource.tabProduct[i].Name}, 
-        category - {DataSource.tabProduct[i].Category}
+        category - {DataSource.tabProduct[i].MyCategory}
     	Price: {DataSource.tabProduct[i].Price}
-    	Amount in stock: {DataSource.tabProduct[i].InStock} ";
+    	Amount in stock: {DataSource.tabProduct[i].InStock} ");
 
-                 }
-
+        }
+    }
 
 }
         

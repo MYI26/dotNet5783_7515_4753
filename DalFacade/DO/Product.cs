@@ -1,5 +1,8 @@
-﻿namespace DO;
+﻿
+namespace DO;
 using static DO.Enums;
+
+
 /// <summary>
 /// Structure for Product on sale resource
 /// </summary>
@@ -43,12 +46,12 @@ public struct Product
 
 
     /// <summary>
-    /// Category of product in the store product list
+    /// Product ToString
     /// </summary>
    
     public override string ToString() => $@"
         Product ID={ID}: {Name}, 
-        category - {Category}
+        category - {MyCategory}
     	Price: {Price}
     	Amount in stock: {InStock}
 ";
