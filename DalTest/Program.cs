@@ -4,8 +4,6 @@ using static DO.Enums;
 using System;
 using System.Net.WebSockets;
 using System.Diagnostics;
-
-using DO;
 using System.Net.Http.Headers;
 using System.ComponentModel;
 using static System.Collections.Specialized.BitVector32;
@@ -170,7 +168,7 @@ e) Delete Order Item");
                     string idOfTheorderitem = Console.ReadLine();
                     int id1 = int.Parse(idOfTheorderitem);
 
-                    DalProduct.AskProduct(id1).ToString();
+                    DalOrderItemt.AskOrderItem(id1).ToString();
                     break;
 
                 case "c":
@@ -318,6 +316,47 @@ e) Delete Order");
             return product1;
         }
 
+
+
+        private static OrderItem fonctionDataOrderItem()
+        {
+            int orderitemid;
+            int productid;
+            int orderid;
+            double price;
+            int amount;
+
+            Console.WriteLine("add Order Item ID:\n");
+            string ordid = Console.ReadLine();
+            orderitemid = int.Parse(ordid);
+
+            Console.WriteLine("add Product ID:\n");
+            string prodid = Console.ReadLine();
+            productid = int.Parse(prodid);
+
+
+            Console.WriteLine("Order ID:\n");
+            string odrd = Console.ReadLine();
+            orderid = int.Parse(odrd);
+
+            Console.WriteLine("price:\n");
+            string pri = Console.ReadLine();
+            price = int.Parse(pri);
+
+            Console.WriteLine("Amount:\n");
+            string inStock = Console.ReadLine();
+            amount = int.Parse(inStock);
+
+            OrderItem OrderItem1 = new OrderItem();
+            OrderItem1.OrderItemID = orderitemid;
+            OrderItem1.ProductID = productid;
+            OrderItem1.OrderID = orderid;
+            OrderItem1.Price = price;
+            OrderItem1.Amount = amount;
+
+            return OrderItem1;
+        }
+
         private static Order fonctionDataOrder()
         {
             int ID;
@@ -355,6 +394,7 @@ e) Delete Order");
             order1.DeliveryDate = DeliveryDate;
 
             return order1;
+
         }
     }   
 }
