@@ -27,11 +27,11 @@ public class DalOrderItem
     public void DeletOrderItem(int id)
     {
 
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 200; i++)
         {
             if (DataSource.tabOrderItem[i].OrderItemID == id)
             {
-                for (int j = i; j < 40; j++)
+                for (int j = i; j < 200; j++)
                 {
                     DataSource.tabOrderItem[j].OrderItemID = DataSource.tabOrderItem[j + 1].OrderItemID;
                 }
@@ -71,7 +71,7 @@ public class DalOrderItem
 
     public OrderItem[] AskOrderItem() 
     {
-        OrderItem[] orderItem = new OrderItem[100];
+        OrderItem[] orderItem = new OrderItem[200];
         for (int i = 0; i < DataSource.tabOrderItem.Length; i++)
         {
             orderItem[i] = DataSource.tabOrderItem[i];

@@ -70,7 +70,7 @@ public class DalProduct
 
     public Product[] AskProduct()
     {
-        Product[] product = new Product[100];
+        Product[] product = new Product[50];
         for (int i = 0; i < DataSource.tabProduct.Length; i++)
         {
             product[i] = DataSource.tabProduct[i];
