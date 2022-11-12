@@ -1,5 +1,7 @@
 ﻿using DO;
 using System;
+using System.Runtime.CompilerServices;
+using static Dal.DataSource;
 
 namespace Dal;
 
@@ -14,15 +16,12 @@ public class DalProduct
             if (DataSource.tabProduct[i].ID == p1.ID)
             {
                 throw new Exception("the product already exist");
-
             }
-
         }
-                int index = DataSource.tabProduct.Length;
-                DataSource.tabProduct[index] = p1;
-                return p1.ID;
             
-        
+        DataSource.tabProduct[Config.NextIndexTabProduct] = p1;
+
+        return p1.ID;      
     }
 
     public void DeletProduct(int id)
@@ -32,19 +31,13 @@ public class DalProduct
         {
             if (DataSource.tabProduct[i].ID == id)
             {
-               
-                
-                for ( int j =i; j < 50; j++) {
-
-
-                    DataSource.tabProduct[j].ID = DataSource.tabProduct[j + 1].ID;
-
+                for ( int j =i; j < 50; j++) 
+                {
+                    DataSource.tabProduct[j] = DataSource.tabProduct[j + 1];
                 }
-
+                break;
             }
-
         }
-
     }
 
     public void UpdateProduct(Product P1)
@@ -54,41 +47,33 @@ public class DalProduct
         {
             if (DataSource.tabProduct[i].ID == P1.ID)
             {
-
                 DataSource.tabProduct[i] = P1;
-
+                return;
             }
-
-            //else
-           // {
-            //    throw new Exception("the product dont exist");
-            //}
         }
-
+        throw new Exception("the product dont exist");
     }
 
-    public Product GetProduct(int id)
+    public Product AskProduct(int id)
     {
         int temps = 0;
         for (int i = 0; i < 50; i++)
         {
             if (DataSource.tabProduct[i].ID == id)
-            {
-
+            { 
                 temps = i;
             }
         }
 
         return DataSource.tabProduct[temps];
-
     }
 
-    public void get() {
-
-        for (int i = 0; i < 50; i++) {
-
-
-            DataSource.tabProduct[i].ToString();
+    public void AskProduct()
+    {
+        Product[] order = new Product[100];
+        for (int i = 0; i < DataSource.tabProduct.Length; i++)
+        {
+            order[i] = DataSource.tabProduct[i];
         }
     }
 }

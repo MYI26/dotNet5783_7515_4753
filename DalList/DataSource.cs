@@ -42,9 +42,15 @@ namespace Dal;
     /// </summary>
     internal static class Config
     {
-        internal static int indexTabProduct = 0;
-        internal static int indexOrderItem = 0;
-        internal static int indexOrder = 0;
+        private static int startIndexlTabProduct = 0;
+        internal static int NextIndexTabProduct { get => startIndexlTabProduct++; }
+
+        private static int startIndexTabOrderItem = 0;
+        internal static int NextIndexTabOrderItem { get => startIndexTabOrderItem++; }
+
+        private static int startIndexTabOrder = 0;
+        internal static int NextIndexTabOrder { get => startIndexTabOrder++; }
+
         private static int startSerialNumber = 1000;
         internal static int NextSerialNumber { get => startSerialNumber++; }
     }
@@ -54,7 +60,8 @@ namespace Dal;
     {
         for(int i = 0; i < 5; i++)
         {
-            tabProduct[i].ID = random.Next(100000, 1000000); //ca dt etre le mm que 
+            
+            tabProduct[Config.NextIndexTabProduct].ID = random.Next(100000, 1000000); //ca dt etre le mm que 
             tabProduct[i].Name = Convert.ToString((Names)i);
             tabProduct[i].Price = random.Next(50,100);
             tabProduct[i].MyCategory = (Category)0;  // quest ce que ca veut dire ?
@@ -63,7 +70,7 @@ namespace Dal;
         
         for(int i = 5; i < 10; i++)
         {
-            tabProduct[i].ID = random.Next(100000, 1000000);
+            tabProduct[Config.NextIndexTabProduct].ID = random.Next(100000, 1000000);
             tabProduct[i].Name = Convert.ToString((Names)i);
             tabProduct[i].Price = random.Next(50,100);
             tabProduct[i].MyCategory = (Category)1;
@@ -78,7 +85,7 @@ namespace Dal;
         for (int i = 0; i < 40; i++)
         {
             int indexSpecificProduct = random.Next(1, 10);
-            tabOrderItem[i].ProductID = tabProduct[indexSpecificProduct].ID;
+            tabOrderItem[Config.NextIndexTabOrderItem].ProductID = tabProduct[indexSpecificProduct].ID;
             tabOrderItem[i].OrderItemID = random.Next(100000, 1000000);
 
             if (i % 2 == 0)
@@ -104,13 +111,13 @@ namespace Dal;
                 j++;
             tabOrderItem[i].OrderID = tabOrderItem[j].OrderID;
 
-            tabOrder[i].ID = tabOrderItem[i].OrderID;
+            tabOrder[Config.NextIndexTabOrder].ID = tabOrderItem[i].OrderID;
             tabOrder[i].CustomerName = Convert.ToString((CustomerName)i);
             tabOrder[i].CustomerEmail = Convert.ToString((CustomerName)i) + "@gmail.com";
             tabOrder[i].CustomerAddress = Convert.ToString((CustomerAdress)i);
-            tabOrder[i].OrderDate = DateTime.Now.AddMinutes(-random.Next(455, 500));
-            tabOrder[i].ShipDate = DateTime.Now.AddMinutes(-random.Next(455, 600));
-            tabOrder[i].DeliveryDate = DateTime.Now.AddMinutes(-random.Next(400, 700));
+            tabOrder[i].OrderDate = DateTime.Today.AddDays(-random.Next(10, 20)); // our clients ordered between 10 and 60 days ago
+            tabOrder[i].ShipDate = DateTime.Today.AddDays(-random.Next(5, 10));
+            tabOrder[i].DeliveryDate = DateTime.Today.AddDays(-random.Next(0,5));
         }
     }
 
