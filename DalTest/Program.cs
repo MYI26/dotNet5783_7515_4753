@@ -133,9 +133,77 @@ e) Delete Product");
             }
 
         }
+
+
+
+
         private static void fonctionOrderItem()
         {
+            Console.WriteLine(
 
+@"
+Enter:
+
+a) Add Order Item
+b) Ask Order Item
+c) Ask All Order Item 
+d) Update Order Item
+e) Delete Order Item");
+
+            string choice2 = Console.ReadLine();
+
+            switch (choice2)
+            {
+
+                case "a":
+                    OrderItem OI1 = new OrderItem();
+                    OI1 = fonctionDataOrderItem();
+
+                    DalOrderItemt.AddOrderItem(OI1);
+                    break;
+
+                case "b":
+
+                    Console.WriteLine(
+@"Enter ID of the Order Item:");
+
+                    string idOfTheorderitem = Console.ReadLine();
+                    int id1 = int.Parse(idOfTheorderitem);
+
+                    DalProduct.AskProduct(id1).ToString();
+                    break;
+
+                case "c":
+                    OrderItem[] taborderitem = new OrderItem[DalOrderItemt.AskOrderItem().Length];
+                    taborderitem = DalOrderItemt.AskOrderItem();
+
+                    for (int i = 0; i < taborderitem.Length; i++)
+                    {
+                        taborderitem[i].ToString();
+                    }
+
+                    break;
+
+                case "d":
+                    OrderItem p2 = new OrderItem();
+                    p2 = fonctionDataOrderItem();
+
+                    DalOrderItemt.UpdateOrderItem(p2);
+
+                    break;
+
+                case "e":
+                    Console.WriteLine(
+@"Enter ID of the Order Item:");
+
+                    string idOftheOrderItem2 = Console.ReadLine();
+                    int id2 = int.Parse(idOftheOrderItem2);
+                    
+                    DalOrderItemt.DeletOrderItem(id2);
+
+                    break;
+
+            }
         }
         private static void fonctionOrder()
         {
@@ -186,5 +254,44 @@ e) Delete Product");
             return product1;
         }
 
+
+        private static OrderItem fonctionDataOrderItem()
+        {
+            int orderitemid;
+            int productid;
+            int orderid;
+            double price;
+            int amount;
+
+            Console.WriteLine("add Order Item ID:\n");
+            string ordid = Console.ReadLine();
+            orderitemid = int.Parse(ordid);
+
+            Console.WriteLine("add Product ID:\n");
+            string prodid = Console.ReadLine();
+            productid = int.Parse(prodid);
+
+
+            Console.WriteLine("Order ID:\n");
+            string odrd = Console.ReadLine();
+            orderid = int.Parse(odrd);
+
+            Console.WriteLine("price:\n");
+            string pri = Console.ReadLine();
+            price = int.Parse(pri);
+
+            Console.WriteLine("Amount:\n");
+            string inStock = Console.ReadLine();
+            amount = int.Parse(inStock);
+
+            OrderItem OrderItem1 = new OrderItem();
+            OrderItem1.OrderItemID = orderitemid;
+            OrderItem1.ProductID = productid;
+            OrderItem1.OrderID = orderid;
+            OrderItem1.Price = price;
+            OrderItem1.Amount = amount;
+
+            return OrderItem1;
+        }
     }   
 }
