@@ -69,13 +69,14 @@ public class DalOrderItem
       return DataSource.tabOrderItem[temps];
     }
 
-    public void AskOrderItem() 
+    public OrderItem[] AskOrderItem() 
     {
         OrderItem[] orderItem = new OrderItem[100];
         for (int i = 0; i < DataSource.tabOrderItem.Length; i++)
         {
             orderItem[i] = DataSource.tabOrderItem[i];
         }
+        return orderItem;
     }
 
 }

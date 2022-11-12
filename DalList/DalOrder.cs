@@ -60,13 +60,14 @@ public class DalOrder
         return DataSource.tabOrder[temps];
     }
 
-    public void AskOrder()
+    public Order[] AskOrder()
     {
         Order[] order = new Order[100];
         for (int i = 0; i < DataSource.tabOrder.Length; i++)
         {
             order[i] = DataSource.tabOrder[i];
         }
+        return order;
     }
 
 }

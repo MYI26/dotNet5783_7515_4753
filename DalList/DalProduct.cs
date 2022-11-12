@@ -68,13 +68,14 @@ public class DalProduct
         return DataSource.tabProduct[temps];
     }
 
-    public void AskProduct()
+    public Product[] AskProduct()
     {
-        Product[] order = new Product[100];
+        Product[] product = new Product[100];
         for (int i = 0; i < DataSource.tabProduct.Length; i++)
         {
-            order[i] = DataSource.tabProduct[i];
+            product[i] = DataSource.tabProduct[i];
         }
+        return product;
     }
 }
         
