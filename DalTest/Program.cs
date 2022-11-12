@@ -207,7 +207,71 @@ e) Delete Order Item");
         }
         private static void fonctionOrder()
         {
+            Console.WriteLine(
 
+@"
+Enter:
+
+a) Add Order
+b) Ask Order
+c) Ask All Order
+d) Update Order
+e) Delete Order");
+
+            string choice2 = Console.ReadLine();
+
+            switch (choice2)
+            {
+
+                case "a":
+                    Order o1 = new Order();
+                    o1 = fonctionDataOrder();
+
+                    DalOrder.AddOrder(o1);
+                    break;
+
+                case "b":
+
+                    Console.WriteLine(
+@"Enter ID of the order:");
+
+                    string idOfTheOrder = Console.ReadLine();
+                    int id1 = int.Parse(idOfTheOrder);
+
+                    DalOrder.AskOrder(id1).ToString();
+                    break;
+
+                case "c":
+                    Order[] tabOrder = new Order[DalOrder.AskOrder().Length];
+                    tabOrder = DalOrder.AskOrder();
+
+                    for (int i = 0; i < tabOrder.Length; i++)
+                    {
+                        tabOrder[i].ToString();
+                    }
+
+                    break;
+
+                case "d":
+                    Order o2 = new Order();
+                    o2 = fonctionDataOrder();
+
+                    DalOrder.UpdateOrder(o2);
+
+                    break;
+
+                case "e":
+                    Console.WriteLine(
+@"Enter ID of the order:");
+
+                    string idOfTheOrder2 = Console.ReadLine();
+                    int id2 = int.Parse(idOfTheOrder2);
+
+                    DalOrder.DeletOrder(id2);
+
+                    break;
+
+            }
         }
 
         private static Product fonctionDataProduct() 
@@ -254,44 +318,43 @@ e) Delete Order Item");
             return product1;
         }
 
-
-        private static OrderItem fonctionDataOrderItem()
+        private static Order fonctionDataOrder()
         {
-            int orderitemid;
-            int productid;
-            int orderid;
-            double price;
-            int amount;
+            int ID;
+            string CustomerName;
+            string CustomerEmail;
+            string CustomerAdress;
+            DateTime OrderDate;
+            DateTime ShipDate;
+            DateTime DeliveryDate;
 
-            Console.WriteLine("add Order Item ID:\n");
-            string ordid = Console.ReadLine();
-            orderitemid = int.Parse(ordid);
+            Console.WriteLine("add ID:\n");
+            string id = Console.ReadLine();
+            ID = int.Parse(id);
 
-            Console.WriteLine("add Product ID:\n");
-            string prodid = Console.ReadLine();
-            productid = int.Parse(prodid);
+            Console.WriteLine("add CustomerName:\n");
+            CustomerName = Console.ReadLine();
 
+            Console.WriteLine("add CustomerEmail:\n");
+            CustomerEmail = Console.ReadLine();
 
-            Console.WriteLine("Order ID:\n");
-            string odrd = Console.ReadLine();
-            orderid = int.Parse(odrd);
+            Console.WriteLine("add CustomerAdress:\n");
+            CustomerAdress = Console.ReadLine();
 
-            Console.WriteLine("price:\n");
-            string pri = Console.ReadLine();
-            price = int.Parse(pri);
+            OrderDate = DateTime.Today;
+            ShipDate = OrderDate.AddDays(1);
+            DeliveryDate = ShipDate.AddDays(1);
 
-            Console.WriteLine("Amount:\n");
-            string inStock = Console.ReadLine();
-            amount = int.Parse(inStock);
+            Order order1 = new Order();
+            order1.ID = ID;
+            order1.CustomerName = CustomerName;
+            order1.CustomerEmail = CustomerEmail;
+            order1.CustomerAddress = CustomerAdress;
+            order1.OrderDate = OrderDate;
+            order1.ShipDate = ShipDate;
+            order1.DeliveryDate = DeliveryDate;
 
-            OrderItem OrderItem1 = new OrderItem();
-            OrderItem1.OrderItemID = orderitemid;
-            OrderItem1.ProductID = productid;
-            OrderItem1.OrderID = orderid;
-            OrderItem1.Price = price;
-            OrderItem1.Amount = amount;
-
-            return OrderItem1;
+            return order1;
         }
     }   
 }
