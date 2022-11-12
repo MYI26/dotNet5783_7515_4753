@@ -1,11 +1,15 @@
 ﻿using DO;
 using Dal;
+using static DO.Enums;
 using System;
 using System.Net.WebSockets;
 using System.Diagnostics;
 
 using DO;
 using System.Net.Http.Headers;
+using System.ComponentModel;
+using static System.Collections.Specialized.BitVector32;
+using System.Xml.Linq;
 
 namespace Program
 {
@@ -16,34 +20,53 @@ namespace Program
         private static DalProduct DalProduct = new DalProduct();
         private static DalOrderItem DalOrderItemt = new DalOrderItem();
         private static DalOrder DalOrder = new DalOrder();
-       
 
         static void Main(string[] args) { 
         
         int choice = 5;
-        
-        while (choice != 0)
+
+            while (choice != 0)
             {
 
-               Console.WriteLine(
+                Console.WriteLine(
 
-@"Enter:
+ @"Enter:
 
 0) exit
 1) Product
 2) Order Item
 3) Order");
 
-            string s = Console.ReadLine();
-            choice  = int.Parse(s);
+                string s = Console.ReadLine();
+                choice = int.Parse(s);
                 try
                 {
                     switch (choice)
                     {
 
                         case 1:
+                            fonctionProduct();
+                            break;
+                        case 2:
+                            fonctionOrderItem();
+                            break;
+                        case 3:
+                            fonctionOrder();
+                            break;
+                    }
+                }
 
-                            Console.WriteLine(
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+
+                }
+
+            }
+        }
+       private static void fonctionProduct()
+        {
+            Console.WriteLine(
 
 @"
 Enter:
@@ -54,79 +77,114 @@ c) Ask All Product
 d) Update Product
 e) Delete Product");
 
-                            string choice2 = Console.ReadLine();
+            string choice2 = Console.ReadLine();
 
-                            switch (choice2) {
+            switch (choice2)
+            {
 
-                                case "a":
-                                    Product p1;
-                                    p1 = new Product();
+                case "a":
+                    Product p1 = new Product();
+                    p1 = fonctionDataProduct();
+       
+                    DalProduct.AddProduct(p1);
+                    break;
 
-                                    DalProduct.AddProduct(p1);
-                                    break;
+                case "b":
 
-                                case "b":
-                                    int id1 = 0;
-                                    DalProduct.AskProduct(id1);
-                                    break;
+                    Console.WriteLine(
+@"Enter ID of the product:");
 
-                                case "c":
-                                    DalProduct.AskProduct();
-                                    break;
+                    string idOfTheProduct = Console.ReadLine();
+                    int id1 = int.Parse(idOfTheProduct);
 
-                                case "d":
-                                    Product p2;
-                                    p2 = new Product();
-                                    DalProduct.UpdateProduct(p2);
-                                    break;
+                    DalProduct.AskProduct(id1).ToString();
+                    break;
 
-                                case "e":
-                                    int id2 = 0;
-                                    DalProduct.DeletProduct(id2);
-                                    break;
+                case "c":
+                    Product[] tabProduct = new Product[DalProduct.AskProduct().Length];
+                    tabProduct = DalProduct.AskProduct();
 
-                            }
-
-                            break;
-
-                        case 2:
-
-                            Console.WriteLine(
-@"
-Enter:
-
-a) Add Order Item
-b) Ask Order Item
-c) Ask All Order Item 
-d) Update Order Item
-e) Delete Order Item");
-
-                            break;
-
-                        case 3:
-
-
-                            Console.WriteLine(
-@"
-Enter:
-
-a) Add Order
-b) Ask Order
-c) Ask All Order 
-d) Update Order
-e) Delete Order");
-
-                            break;
+                    for (int i = 0; i < tabProduct.Length; i++)
+                    {
+                        tabProduct[i].ToString();
                     }
-                }
 
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
+                    break;
 
-                }
-            
+                case "d":
+                    Product p2 = new Product();
+                    p2 = fonctionDataProduct();
+
+                    DalProduct.UpdateProduct(p2);
+
+                    break;
+
+                case "e":
+                    Console.WriteLine(
+@"Enter ID of the product:");
+
+                    string idOfTheProduct2 = Console.ReadLine();
+                    int id2 = int.Parse(idOfTheProduct2);
+;
+                    DalProduct.DeletProduct(id2);
+
+                    break;
+
             }
+
         }
+        private static void fonctionOrderItem()
+        {
+
+        }
+        private static void fonctionOrder()
+        {
+
+        }
+
+        private static Product fonctionDataProduct() 
+        {
+            int ID;
+            string Name;
+            int Price;
+            Category Category1;
+            Category1 = new Category();
+            int InStock;
+
+            Console.WriteLine("add ID:\n");
+            string id = Console.ReadLine();
+            ID = int.Parse(id);
+
+            Console.WriteLine("add Name:\n");
+            Name = Console.ReadLine();
+
+            Console.WriteLine("add Price:\n");
+            string price = Console.ReadLine();
+            Price = int.Parse(price);
+
+            Console.WriteLine(
+                "add Category:\n" +
+                "1: Guitar\n" +
+                "2: Violin\n" +
+                "3: Flute\n" +
+                "4: piano\n" +
+                "5: musicBrochures\n");
+            string category = Console.ReadLine();
+            Category1 = (Category)int.Parse(category);
+
+            Console.WriteLine("add InStock:\n");
+            string inStock = Console.ReadLine();
+            InStock = int.Parse(inStock);
+
+            Product product1 = new Product();
+            product1.ID = ID;
+            product1.Name = Name;
+            product1.Price = Price;
+            product1.MyCategory = Category1;
+            product1.InStock = InStock;
+
+            return product1;
+        }
+
     }   
 }

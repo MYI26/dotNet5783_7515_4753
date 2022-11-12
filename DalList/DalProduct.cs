@@ -56,16 +56,15 @@ public class DalProduct
 
     public Product AskProduct(int id)
     {
-        int temps = 0;
         for (int i = 0; i < 50; i++)
         {
             if (DataSource.tabProduct[i].ID == id)
-            { 
-                temps = i;
+            {
+                return DataSource.tabProduct[i];
             }
         }
 
-        return DataSource.tabProduct[temps];
+        throw new Exception("the product dont exist");
     }
 
     public Product[] AskProduct()
