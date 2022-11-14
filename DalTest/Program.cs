@@ -57,7 +57,6 @@ namespace Program
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-
                 }
 
             }
@@ -95,17 +94,15 @@ e) Delete Product");
                     string idOfTheProduct = Console.ReadLine();
                     int id1 = int.Parse(idOfTheProduct);
 
-                    DalProduct.AskProduct(id1).ToString();
+                    Console.WriteLine(DalProduct.AskProduct(id1));
                     break;
 
                 case "c":
                     Product[] tabProduct = new Product[DalProduct.AskProduct().Length];
                     tabProduct = DalProduct.AskProduct();
 
-                    for (int i = 0; i < tabProduct.Length; i++)
-                    {
-                        tabProduct[i].ToString();
-                    }
+                    foreach (Product p in tabProduct)
+                        Console.WriteLine(p);
 
                     break;
 
@@ -168,17 +165,15 @@ e) Delete Order Item");
                     string idOfTheorderitem = Console.ReadLine();
                     int id1 = int.Parse(idOfTheorderitem);
 
-                    DalOrderItemt.AskOrderItem(id1).ToString();
+                    Console.WriteLine(DalOrderItemt.AskOrderItem(id1));
                     break;
 
                 case "c":
                     OrderItem[] taborderitem = new OrderItem[DalOrderItemt.AskOrderItem().Length];
                     taborderitem = DalOrderItemt.AskOrderItem();
 
-                    for (int i = 0; i < taborderitem.Length; i++)
-                    {
-                        taborderitem[i].ToString();
-                    }
+                    foreach (OrderItem orderitem in taborderitem)
+                        Console.WriteLine(orderitem);
 
                     break;
 
@@ -236,17 +231,15 @@ e) Delete Order");
                     string idOfTheOrder = Console.ReadLine();
                     int id1 = int.Parse(idOfTheOrder);
 
-                    DalOrder.AskOrder(id1).ToString();
+                    Console.WriteLine(DalOrder.AskOrder(id1));
                     break;
 
                 case "c":
                     Order[] tabOrder = new Order[DalOrder.AskOrder().Length];
                     tabOrder = DalOrder.AskOrder();
 
-                    for (int i = 0; i < tabOrder.Length; i++)
-                    {
-                        tabOrder[i].ToString();
-                    }
+                    foreach (Order order in tabOrder)
+                        Console.WriteLine(order);
 
                     break;
 
