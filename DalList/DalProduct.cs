@@ -11,7 +11,7 @@ public class DalProduct
     public int AddProduct(Product p1)
     {
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < Config.startIndexlTabProduct; i++)
         {
             if (DataSource.tabProduct[i].ID == p1.ID)
             {
@@ -27,14 +27,15 @@ public class DalProduct
     public void DeletProduct(int id)
     {
         
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < Config.startIndexlTabProduct; i++)
         {
             if (DataSource.tabProduct[i].ID == id)
             {
-                for ( int j =i; j < 50; j++) 
+                for ( int j =i; j < Config.startIndexlTabProduct; j++) 
                 {
                     DataSource.tabProduct[j] = DataSource.tabProduct[j + 1];
                 }
+                Config.startIndexlTabProduct--;
                 break;
             }
         }
@@ -43,7 +44,7 @@ public class DalProduct
     public void UpdateProduct(Product P1)
     {
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < Config.startIndexlTabProduct; i++)
         {
             if (DataSource.tabProduct[i].ID == P1.ID)
             {
@@ -56,7 +57,7 @@ public class DalProduct
 
     public Product AskProduct(int id)
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < Config.startIndexlTabProduct; i++)
         {
             if (DataSource.tabProduct[i].ID == id)
             {
@@ -69,8 +70,8 @@ public class DalProduct
 
     public Product[] AskProduct()
     {
-        Product[] product = new Product[50];
-        for (int i = 0; i < DataSource.tabProduct.Length; i++)
+        Product[] product = new Product[Config.startIndexlTabProduct];
+        for (int i = 0; i < Config.startIndexlTabProduct; i++)
         {
             product[i] = DataSource.tabProduct[i];
         }

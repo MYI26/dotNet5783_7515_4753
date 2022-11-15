@@ -42,16 +42,16 @@ namespace Dal;
     /// </summary>
     internal static class Config
     {
-        private static int startIndexlTabProduct = 0;
+        internal static int startIndexlTabProduct = 0;
         internal static int NextIndexTabProduct { get => startIndexlTabProduct++; }
 
-        private static int startIndexTabOrderItem = 0;
+        internal static int startIndexTabOrderItem = 0;
         internal static int NextIndexTabOrderItem { get => startIndexTabOrderItem++; }
 
-        private static int startIndexTabOrder = 0;
+        internal static int startIndexTabOrder = 0;
         internal static int NextIndexTabOrder { get => startIndexTabOrder++; }
 
-        private static int startSerialNumber = 1000;
+        internal static int startSerialNumber = 1000;
         internal static int NextSerialNumber { get => startSerialNumber++; }
     }
 

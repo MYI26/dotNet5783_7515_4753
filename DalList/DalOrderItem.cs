@@ -11,7 +11,7 @@ public class DalOrderItem
 
        // p1.OrderID = DataSource.Config.NextSerialNumber;
 
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
         {
             if (DataSource.tabOrderItem[i].OrderItemID == p1.OrderItemID)
             {
@@ -27,14 +27,15 @@ public class DalOrderItem
     public void DeletOrderItem(int id)
     {
 
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
         {
             if (DataSource.tabOrderItem[i].OrderItemID == id)
             {
-                for (int j = i; j < 200; j++)
+                for (int j = i; j < Config.startIndexTabOrderItem; j++)
                 {
                     DataSource.tabOrderItem[j].OrderItemID = DataSource.tabOrderItem[j + 1].OrderItemID;
                 }
+                Config.startIndexTabOrderItem--;
                 break;
             }
         }
@@ -43,7 +44,7 @@ public class DalOrderItem
     public void UpdateOrderItem(OrderItem P1)
     {
 
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
         {
             if (DataSource.tabOrderItem[i].OrderItemID == P1.OrderItemID)
             {
@@ -58,7 +59,7 @@ public class DalOrderItem
     public OrderItem AskOrderItem(int id)
     {
         int temps = 0;
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
         {
             if (DataSource.tabOrderItem[i].OrderItemID == id)
             {
@@ -72,7 +73,7 @@ public class DalOrderItem
     public OrderItem[] AskOrderItem() 
     {
         OrderItem[] orderItem = new OrderItem[200];
-        for (int i = 0; i < DataSource.tabOrderItem.Length; i++)
+        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
         {
             orderItem[i] = DataSource.tabOrderItem[i];
         }

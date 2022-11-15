@@ -19,14 +19,15 @@ public class DalOrder
     public void DeletOrder(int id)
     {
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < Config.startIndexTabOrder; i++)
         {
             if (DataSource.tabOrder[i].ID == id)
             {
-                for (int j = i; j < 100; j++)
+                for (int j = i; j < Config.startIndexTabOrder; j++)
                 {
                     DataSource.tabOrder[j].ID = DataSource.tabOrder[j + 1].ID;
                 }
+                Config.startIndexTabOrder--;
                 break;
             }
         }
@@ -35,7 +36,7 @@ public class DalOrder
     public void UpdateOrder(Order P1)
     {
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < Config.startIndexTabOrder; i++)
         {
             if (DataSource.tabOrder[i].ID == P1.ID)
             {
@@ -49,7 +50,7 @@ public class DalOrder
     public Order AskOrder(int id)
     {
         int temps = 0;
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < Config.startIndexTabOrder; i++)
         {
             if (DataSource.tabOrder[i].ID == id)
             {
@@ -63,7 +64,7 @@ public class DalOrder
     public Order[] AskOrder()
     {
         Order[] order = new Order[100];
-        for (int i = 0; i < DataSource.tabOrder.Length; i++)
+        for (int i = 0; i < Config.startIndexTabOrder; i++)
         {
             order[i] = DataSource.tabOrder[i];
         }

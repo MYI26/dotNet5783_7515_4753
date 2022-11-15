@@ -98,8 +98,7 @@ e) Delete Product");
                     break;
 
                 case "c":
-                    Product[] tabProduct = new Product[DalProduct.AskProduct().Length];
-                    tabProduct = DalProduct.AskProduct();
+                    Product[] tabProduct = DalProduct.AskProduct();
 
                     foreach (Product p in tabProduct)
                         Console.WriteLine(p);
@@ -169,8 +168,7 @@ e) Delete Order Item");
                     break;
 
                 case "c":
-                    OrderItem[] taborderitem = new OrderItem[DalOrderItemt.AskOrderItem().Length];
-                    taborderitem = DalOrderItemt.AskOrderItem();
+                    OrderItem[] taborderitem = DalOrderItemt.AskOrderItem();
 
                     foreach (OrderItem orderitem in taborderitem)
                         Console.WriteLine(orderitem);
@@ -235,8 +233,7 @@ e) Delete Order");
                     break;
 
                 case "c":
-                    Order[] tabOrder = new Order[DalOrder.AskOrder().Length];
-                    tabOrder = DalOrder.AskOrder();
+                    Order[] tabOrder = DalOrder.AskOrder();
 
                     foreach (Order order in tabOrder)
                         Console.WriteLine(order);
