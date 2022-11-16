@@ -63,7 +63,7 @@ public class DalOrder
 
     public Order[] AskOrder()
     {
-        Order[] order = new Order[100];
+        Order[] order = new Order[Config.startIndexTabOrder];
         for (int i = 0; i < Config.startIndexTabOrder; i++)
         {
             order[i] = DataSource.tabOrder[i];

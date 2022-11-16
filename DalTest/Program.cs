@@ -59,6 +59,7 @@ namespace Program
                     Console.WriteLine(e);
                 }
 
+                Console.WriteLine("\n");
             }
         }
        private static void fonctionProduct()
@@ -201,6 +202,7 @@ e) Delete Order Item");
             Console.WriteLine(
 
 @"
+
 Enter:
 
 a) Add Order
@@ -271,14 +273,14 @@ e) Delete Order");
             Category1 = new Category();
             int InStock;
 
-            Console.WriteLine("add ID:\n");
+            Console.WriteLine("\nadd ID:");
             string id = Console.ReadLine();
             ID = int.Parse(id);
 
-            Console.WriteLine("add Name:\n");
+            Console.WriteLine("add Name:");
             Name = Console.ReadLine();
 
-            Console.WriteLine("add Price:\n");
+            Console.WriteLine("add Price:");
             string price = Console.ReadLine();
             Price = int.Parse(price);
 
@@ -288,11 +290,11 @@ e) Delete Order");
                 "2: Violin\n" +
                 "3: Flute\n" +
                 "4: piano\n" +
-                "5: musicBrochures\n");
+                "5: musicBrochures");
             string category = Console.ReadLine();
             Category1 = (Category)int.Parse(category);
 
-            Console.WriteLine("add InStock:\n");
+            Console.WriteLine("add InStock:");
             string inStock = Console.ReadLine();
             InStock = int.Parse(inStock);
 
@@ -316,24 +318,24 @@ e) Delete Order");
             double price;
             int amount;
 
-            Console.WriteLine("add Order Item ID:\n");
+            Console.WriteLine("\nadd Order Item ID:");
             string ordid = Console.ReadLine();
             orderitemid = int.Parse(ordid);
 
-            Console.WriteLine("add Product ID:\n");
+            Console.WriteLine("add Product ID:");
             string prodid = Console.ReadLine();
             productid = int.Parse(prodid);
 
 
-            Console.WriteLine("Order ID:\n");
+            Console.WriteLine("Order ID:");
             string odrd = Console.ReadLine();
             orderid = int.Parse(odrd);
 
-            Console.WriteLine("price:\n");
+            Console.WriteLine("price:");
             string pri = Console.ReadLine();
             price = int.Parse(pri);
 
-            Console.WriteLine("Amount:\n");
+            Console.WriteLine("Amount:");
             string inStock = Console.ReadLine();
             amount = int.Parse(inStock);
 
@@ -357,17 +359,17 @@ e) Delete Order");
             DateTime ShipDate;
             DateTime DeliveryDate;
 
-            Console.WriteLine("add ID:\n");
+            Console.WriteLine("\nadd ID:");
             string id = Console.ReadLine();
             ID = int.Parse(id);
 
-            Console.WriteLine("add CustomerName:\n");
+            Console.WriteLine("\nadd CustomerName:");
             CustomerName = Console.ReadLine();
 
-            Console.WriteLine("add CustomerEmail:\n");
+            Console.WriteLine("\nadd CustomerEmail:");
             CustomerEmail = Console.ReadLine();
 
-            Console.WriteLine("add CustomerAdress:\n");
+            Console.WriteLine("\nadd CustomerAdress:");
             CustomerAdress = Console.ReadLine();
 
             OrderDate = DateTime.Today;

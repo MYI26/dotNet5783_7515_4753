@@ -72,7 +72,7 @@ public class DalOrderItem
 
     public OrderItem[] AskOrderItem() 
     {
-        OrderItem[] orderItem = new OrderItem[200];
+        OrderItem[] orderItem = new OrderItem[Config.startIndexTabOrderItem];
         for (int i = 0; i < Config.startIndexTabOrderItem; i++)
         {
             orderItem[i] = DataSource.tabOrderItem[i];
