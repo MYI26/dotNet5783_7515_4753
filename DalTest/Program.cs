@@ -121,7 +121,7 @@ e) Delete Product");
                     string idOfTheProduct2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheProduct2);
 ;
-                    DalProduct.DeletProduct(id2);
+                    DalProduct.DeleteProduct(id2);
 
                     break;
 

@@ -1,44 +1,53 @@
-﻿using DO;
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
+using System.Security.Principal;
 using static Dal.DataSource;
-
+using DalApi;
+using DO;
 namespace Dal;
 
-public class DalProduct
+//We will add a declaration of the corresponding entity interface implementation
+//as defined in DalApi
+internal class DalDoEntity : IDoEntity
+{
+}
+
+//we must change the class to internal
+internal class DalProduct
 {
 
+    //add a product in the list of products and returns his Id
     public int AddProduct(Product p1)
     {
 
-        for (int i = 0; i < Config.startIndexlTabProduct; i++)
+        foreach(Product p in listProduct)
         {
-            if (DataSource.tabProduct[i].ID == p1.ID)
+            if(p.ID == p1.ID)
             {
                 throw new Exception("the product already exist");
             }
         }
-            
-        DataSource.tabProduct[Config.NextIndexTabProduct] = p1;
+
+        listProduct.Add(p1);
 
         return p1.ID;      
     }
 
-    public void DeletProduct(int id)
+    //delete a product in the list of products
+    public void DeleteProduct(int id)
     {
-        
-        for (int i = 0; i < Config.startIndexlTabProduct; i++)
+
+        Product p1 = new Product();
+
+        foreach (Product p in listProduct)
         {
-            if (DataSource.tabProduct[i].ID == id)
-            {
-                for ( int j =i; j < Config.startIndexlTabProduct; j++) 
-                {
-                    DataSource.tabProduct[j] = DataSource.tabProduct[j + 1];
-                }
-                Config.startIndexlTabProduct--;
-                break;
-            }
+            if (p.ID == id)
+                p1 = p;
         }
+        if(p1.ID < 10000 || p1.ID > 100000)
+            throw new Exception("the product dosn't exist");
+
+        listProduct.Remove(p1);
     }
 
     public void UpdateProduct(Product P1)
