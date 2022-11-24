@@ -56,7 +56,7 @@ internal static class DataSource
             p.ID = random.Next(100000, 1000000);    // it has 6 digits at least
             p.Name = Convert.ToString((Names)i);    // all names of the first products are saved in the enums
             p.Price = random.Next(50, 100);
-            p.MyCategory = (Category)0;     // the first 5 products minimum in the database are guitars
+            p.MyCategory = (Category)1;     // the first 5 products minimum in the database are guitars
             p.InStock = random.Next(5, 10);
 
             listProduct.Add(p);
@@ -67,7 +67,7 @@ internal static class DataSource
             p.ID = random.Next(100000, 1000000);
             p.Name = Convert.ToString((Names)i);
             p.Price = random.Next(50,100);
-            p.MyCategory = (Category)1;     // the last 5 products minimum in the database are violins
+            p.MyCategory = (Category)2;     // the last 5 products minimum in the database are violins
             p.InStock = random.Next(5,10);
 
             listProduct.Add(p);

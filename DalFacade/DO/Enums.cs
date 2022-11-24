@@ -10,7 +10,7 @@ namespace DO;
     /// </summary>
     public struct Enums
     {
-        public enum Category { guitar, violin, flute, piano, musicBrochures }
+        public enum Category { guitar = 1, violin, flute, piano, musicBrochures }
         public enum Names  // les noms sont trop complique et je pense qu,il faut faire 5 enum Names :Names_guitar ,Names_flute... ne pas oubliet de maitre en anglais
         {
             YamahaF310, CordobaC3M, TanglewoodCrossroads,
