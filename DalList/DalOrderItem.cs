@@ -1,87 +1,91 @@
-﻿using DO;
-using DalApi;
+﻿using System;
+using System.Runtime.CompilerServices;
+using System.Security.Principal;
+using DalApi.DO.Exceptions;
+
 using static Dal.DataSource;
+using DalApi;
+using DO;
 
 namespace Dal;
 
-public class DalOrderItem : IOrderItem //attention ici on nous demander du internal
+internal class DalOrderItem : IOrderItem //attention ici on nous demander du internal
 {
 
-    public int Add(OrderItem p1)
+    public int Add(OrderItem oI1)
     {
 
-        // p1.OrderID = DataSource.Config.NextSerialNumber;
-
-        foreach (OrderItem p in listOrderItem)
+        foreach (OrderItem oI in listOrderItem)
         {
-            if (p.OrderItemID == p1.OrderItemID)
+            if (oI.OrderItemID == oI1.OrderItemID)
             {
                 ExeptionAlreadyExist();
             }
         }
 
-        listOrderItem.Add(p1);
+        listOrderItem.Add(oI1);
 
-        return p1.OrderItemID;
+        return oI1.OrderItemID;
     }
 
     public void Delet(int id)
     {
 
-        foreach (OrderItem p in listOrderItem)
-        {
-            if (p.OrderItemID == id)
-            {
+        bool found = false;
 
-                listOrderItem.Remove(p);
-                //for (int j = i; j < Config.startIndexTabOrderItem; j++)
-                //{
-                //    DataSource.tabOrderItem[j].OrderItemID = DataSource.tabOrderItem[j + 1].OrderItemID;
-                //}
-                //Config.startIndexTabOrderItem--;
-                break;
-            }
+        foreach (OrderItem oI in listOrderItem)
+        {
+            if (oI.OrderItemID == id)
+                listOrderItem.Remove(oI);
+            found = true;
+            break;
         }
+        if (found = !true)
+            ExeptionDontExist();
     }
 
-    public void Update(OrderItem P1)
+    public void Update(OrderItem oI1)
     {
 
-        foreach (OrderItem p in listOrderItem)
+    bool found = false;
+
+    foreach (OrderItem oI in listOrderItem)
         {
-            if (p.OrderItemID == P1.OrderItemID)
+            if (oI.OrderItemID == oI1.OrderItemID)
             {
-                listOrderItem[listOrderItem.IndexOf(p)] = P1;
+                listOrderItem[listOrderItem.IndexOf(oI)] = oI1;
                 break;
             }
         }
-
+    if (found = !true)
         ExeptionDontExist();
     }
 
     public OrderItem Ask(int id)
     {
-       // OrderItem p2 = new OrderItem();
-        foreach (OrderItem p in listOrderItem)
+     
+        foreach (OrderItem oI in listOrderItem)
         {
-            if (p.OrderItemID == id)
+            if (oI.OrderItemID == id)
             {
-                return p;
-                
+                return oI;
             }
         }
-        //   return p2;
+
         ExeptionDontExist();
     }
 
-    public List<OrderItem> Ask()
+    public OrderItem[] AskOrderItem()
     {
-        List<OrderItem> orderitem = new List<OrderItem>();
-        foreach (OrderItem p in listOrderItem)
+        OrderItem[] orderItem = new OrderItem[listOrderItem.Count];
+        int i = 0;
+
+        foreach (OrderItem oI in listOrderItem)
         {
-            listOrderItem.Add(p);
+            orderItem[i] = oI;
+            i++;
         }
-        return orderitem;
+        return orderItem;
     }
 
 }

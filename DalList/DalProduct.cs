@@ -2,17 +2,19 @@
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using DalApi.DO.Exceptions;
+
 using static Dal.DataSource;
 using DalApi;
 using DO;
+
 namespace Dal;
 
 //We will add a declaration of the corresponding entity interface implementation
 //as defined in DalApi
-public class DalProduct : IProduct //attention ici on nous demander du internal
+internal class DalProduct : IProduct //attention ici on nous demander du internal
 {
 
-   //public List<Product> GetByOrderId(int id) { return new List<Product>(); }
+   //public List<Product> GetByOrderId(int id) { return new List<Product>(); }                                                               ??
     //add a product in the list of products and returns his Id
     public int Add(Product p1)
     {
@@ -21,7 +23,7 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
         {
             if(p.ID == p1.ID)
             {
-                ExeptionAlreadyExist();
+                ExeptionAlreadyExist();                                                                                                     //
             }
         }
 
@@ -34,38 +36,43 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
     public void Delet(int id)
     {
 
-        //Product p1 = new Product();
+        bool found = false;
 
         foreach (Product p in listProduct)
         {
             if (p.ID == id)
               listProduct.Remove(p);
+            found = true;
             break;
         }
-        //if(p1.ID < 10000 || p1.ID > 100000)
-        //    throw new Exception("the product dosn't exist");
-
+        if (found = !true)
+            ExeptionDontExist();                                                                                        //
        
     }
 
     public void Update(Product P1)
     {
 
+        bool found = false;
+
         foreach (Product p in listProduct)
         {
             if (p.ID == P1.ID)
             {
                 listProduct[listProduct.IndexOf(p)] = P1;
+                found = true;
                 break;
             }
         }
+        if (found = !true)
+            ExeptionDontExist();
 
-        ExeptionDontExist();
     }
 
 
     public Product Ask(int id)
     {
+
         foreach (Product p in listProduct)
         {
             if (p.ID == id)
@@ -77,20 +84,20 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
         ExeptionDontExist();
     }
 
-    public List<Product> Ask()
+    public Product[] AskProduct()
     {
-        List<Product> product = new List<Product>();
+        Product[] product = new Product[listProduct.Count];
+        int i = 0;
+
         foreach (Product p in listProduct)
         {
-            listProduct.Add(p);
+            product[i] = p;
+            i++;
         }
         return product;
     }
 
-    IEnumerable<Product> AskAll(Func<Product, bool> filter = null) {  }
-
-
-
+    //IEnumerable<Product> AskAll(Func<Product, bool> filter = null) { return new Product; }                                //??
 
 }
         
