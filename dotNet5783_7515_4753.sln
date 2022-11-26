@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33027.164
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stage0", "Stage0\Stage0.csproj", "{2282FD29-12CB-4F50-9A44-7F4945A48DA3}"
 EndProject
@@ -10,11 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "�
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalFacade", "DalFacade\DalFacade.csproj", "{573522B6-39AA-4C50-86F0-54EFD2E9B03D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalFacade", "DalFacade\DalFacade.csproj", "{573522B6-39AA-4C50-86F0-54EFD2E9B03D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalList", "DalList\DalList.csproj", "{9AE4FF2D-5191-4C8D-8252-80BE8C49E1D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalList", "DalList\DalList.csproj", "{9AE4FF2D-5191-4C8D-8252-80BE8C49E1D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalTest", "DalTest\DalTest.csproj", "{10F22346-519F-4D4F-AC1B-1E619C48CBE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalTest", "DalTest\DalTest.csproj", "{10F22346-519F-4D4F-AC1B-1E619C48CBE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logicalLayer", "logicalLayer\logicalLayer.csproj", "{0E100DAE-FF4E-417E-8C5D-3112D7068564}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logicalLayerTestPlan", "logicalLayerTestPlan\logicalLayerTestPlan.csproj", "{E3C17292-1CA5-4461-9224-3A88DDFADD9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +42,14 @@ Global
 		{10F22346-519F-4D4F-AC1B-1E619C48CBE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10F22346-519F-4D4F-AC1B-1E619C48CBE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10F22346-519F-4D4F-AC1B-1E619C48CBE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E100DAE-FF4E-417E-8C5D-3112D7068564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E100DAE-FF4E-417E-8C5D-3112D7068564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E100DAE-FF4E-417E-8C5D-3112D7068564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E100DAE-FF4E-417E-8C5D-3112D7068564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3C17292-1CA5-4461-9224-3A88DDFADD9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3C17292-1CA5-4461-9224-3A88DDFADD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3C17292-1CA5-4461-9224-3A88DDFADD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3C17292-1CA5-4461-9224-3A88DDFADD9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
