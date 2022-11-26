@@ -9,7 +9,7 @@ namespace Dal;
 
 //We will add a declaration of the corresponding entity interface implementation
 //as defined in DalApi
-internal class DalProduct : IProduct
+public class DalProduct : IProduct //attention ici on nous demander du internal
 {
 
    //public List<Product> GetByOrderId(int id) { return new List<Product>(); }
@@ -77,17 +77,17 @@ internal class DalProduct : IProduct
         ExeptionDontExist();
     }
 
-    //public Product[] AskProduct()
-    //{
-    //    Product[] product = new Product[Config.startIndexlTabProduct];
-    //    foreach (Product p in listProduct)
-    //    {
-    //        product[i] = DataSource.tabProduct[i];
-    //    }
-    //    return product;
-    //}
+    public List<Product> Ask()
+    {
+        List<Product> product = new List<Product>();
+        foreach (Product p in listProduct)
+        {
+            listProduct.Add(p);
+        }
+        return product;
+    }
 
-   // IEnumerable<Product> AskAll(Func<Product, bool> filter = null) { return new Product; } 
+    IEnumerable<Product> AskAll(Func<Product, bool> filter = null) { return new Product; }
 
 
 

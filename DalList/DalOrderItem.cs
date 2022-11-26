@@ -4,7 +4,7 @@ using static Dal.DataSource;
 
 namespace Dal;
 
-internal class DalOrderItem : IOrderItem
+public class DalOrderItem : IOrderItem //attention ici on nous demander du internal
 {
 
     public int Add(OrderItem p1)
@@ -74,14 +74,14 @@ internal class DalOrderItem : IOrderItem
         ExeptionDontExist();
     }
 
-    //public OrderItem[] AskOrderItem() 
-    //{
-    //    OrderItem[] orderItem = new OrderItem[Config.startIndexTabOrderItem];
-    //    for (int i = 0; i < Config.startIndexTabOrderItem; i++)
-    //    {
-    //        orderItem[i] = DataSource.tabOrderItem[i];
-    //    }
-    //    return orderItem;
-    //}
+    public List<OrderItem> Ask()
+    {
+        List<OrderItem> orderitem = new List<OrderItem>();
+        foreach (OrderItem p in listOrderItem)
+        {
+            listOrderItem.Add(p);
+        }
+        return orderitem;
+    }
 
 }

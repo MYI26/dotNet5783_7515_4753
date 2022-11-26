@@ -84,7 +84,7 @@ e) Delete Product");
                     Product p1 = new Product();
                     p1 = fonctionDataProduct();
        
-                    DalProduct.AddProduct(p1);
+                    DalProduct.Add(p1);
                     break;
 
                 case "b":
@@ -95,11 +95,11 @@ e) Delete Product");
                     string idOfTheProduct = Console.ReadLine();
                     int id1 = int.Parse(idOfTheProduct);
 
-                    Console.WriteLine(DalProduct.AskProduct(id1));
+                    Console.WriteLine(DalProduct.Ask(id1));
                     break;
 
                 case "c":
-                    Product[] tabProduct = DalProduct.AskProduct();
+                    List<Product> tabProduct = DalProduct.Ask();
 
                     foreach (Product p in tabProduct)
                         Console.WriteLine(p);
@@ -110,7 +110,7 @@ e) Delete Product");
                     Product p2 = new Product();
                     p2 = fonctionDataProduct();
 
-                    DalProduct.UpdateProduct(p2);
+                    DalProduct.Update(p2);
 
                     break;
 
@@ -121,7 +121,7 @@ e) Delete Product");
                     string idOfTheProduct2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheProduct2);
 ;
-                    DalProduct.DeleteProduct(id2);
+                    DalProduct.Delet(id2);
 
                     break;
 
@@ -154,7 +154,7 @@ e) Delete Order Item");
                     OrderItem OI1 = new OrderItem();
                     OI1 = fonctionDataOrderItem();
 
-                    DalOrderItemt.AddOrderItem(OI1);
+                    DalOrderItemt.Add(OI1);
                     break;
 
                 case "b":
@@ -165,11 +165,11 @@ e) Delete Order Item");
                     string idOfTheorderitem = Console.ReadLine();
                     int id1 = int.Parse(idOfTheorderitem);
 
-                    Console.WriteLine(DalOrderItemt.AskOrderItem(id1));
+                    Console.WriteLine(DalOrderItemt.Ask(id1));
                     break;
 
                 case "c":
-                    OrderItem[] taborderitem = DalOrderItemt.AskOrderItem();
+                    List<OrderItem> taborderitem = DalOrderItemt.Ask();
 
                     foreach (OrderItem orderitem in taborderitem)
                         Console.WriteLine(orderitem);
@@ -180,7 +180,7 @@ e) Delete Order Item");
                     OrderItem p2 = new OrderItem();
                     p2 = fonctionDataOrderItem();
 
-                    DalOrderItemt.UpdateOrderItem(p2);
+                    DalOrderItemt.Update(p2);
 
                     break;
 
@@ -191,7 +191,7 @@ e) Delete Order Item");
                     string idOftheOrderItem2 = Console.ReadLine();
                     int id2 = int.Parse(idOftheOrderItem2);
                     
-                    DalOrderItemt.DeletOrderItem(id2);
+                    DalOrderItemt.Delet(id2);
 
                     break;
 
@@ -220,7 +220,7 @@ e) Delete Order");
                     Order o1 = new Order();
                     o1 = fonctionDataOrder();
 
-                    DalOrder.AddOrder(o1);
+                    DalOrder.Add(o1);
                     break;
 
                 case "b":
@@ -231,11 +231,11 @@ e) Delete Order");
                     string idOfTheOrder = Console.ReadLine();
                     int id1 = int.Parse(idOfTheOrder);
 
-                    Console.WriteLine(DalOrder.AskOrder(id1));
+                    Console.WriteLine(DalOrder.Ask(id1));
                     break;
 
                 case "c":
-                    Order[] tabOrder = DalOrder.AskOrder();
+                    List<Order> tabOrder = DalOrder.Ask();
 
                     foreach (Order order in tabOrder)
                         Console.WriteLine(order);
@@ -246,7 +246,7 @@ e) Delete Order");
                     Order o2 = new Order();
                     o2 = fonctionDataOrder();
 
-                    DalOrder.UpdateOrder(o2);
+                    DalOrder.Update(o2);
 
                     break;
 
@@ -257,7 +257,7 @@ e) Delete Order");
                     string idOfTheOrder2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheOrder2);
 
-                    DalOrder.DeletOrder(id2);
+                    DalOrder.Delet(id2);
 
                     break;
 
