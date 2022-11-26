@@ -9,7 +9,7 @@ using DO;
 
 namespace Dal;
 
-public class DalOrder : IOrder //attention ici on nous demander du internal
+internal class DalOrder : IOrder //attention ici on nous demander du internal
 {
 
     public int Add(Order o1)

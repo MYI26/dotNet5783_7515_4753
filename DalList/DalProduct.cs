@@ -11,7 +11,7 @@ namespace Dal;
 
 //We will add a declaration of the corresponding entity interface implementation
 //as defined in DalApi
-public class DalProduct : IProduct //attention ici on nous demander du internal
+internal class DalProduct : IProduct //attention ici on nous demander du internal
 {
 
    //public List<Product> GetByOrderId(int id) { return new List<Product>(); }                                                               ??
