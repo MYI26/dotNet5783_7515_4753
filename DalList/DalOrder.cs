@@ -1,78 +1,93 @@
-﻿using DO;
-using System;
-using DalApi;
+﻿using System;
+using System.Runtime.CompilerServices;
+using System.Security.Principal;
+using DalApi.DO.Exceptions;
+
 using static Dal.DataSource;
+using DalApi;
+using DO;
 
 namespace Dal;
 
 internal class DalOrder : IOrder
 {
 
-    public int Add(Order p1)
+    public int Add(Order o1)
     {
 
-        foreach (Order p in listOrder)
+        foreach (Order o in listOrder)
         {
-            if (p.ID== p1.ID)
+            if (o.ID== o1.ID)
             {
                 ExeptionAlreadyExist();
             }
         }
-       // p1.ID = Config.NextSerialNumber;
 
-        listOrder.Add(p1);
+        listOrder.Add(o1);
 
-        return p1.ID;
+        return o1.ID;
     }
 
     public void Delet(int id)
     {
 
-        foreach (Order p in listOrder)
+        bool found = false;
+
+        foreach (Order o in listOrder)
         {
-            if (p.ID == id)
-                listOrder.Remove(p);
+            if (o.ID == id)
+                listOrder.Remove(o);
+            found = true;
             break;
         }
+        if (found =! true)
+            ExeptionDontExist();
     }
 
-    public void Update(Order P1)
+    public void Update(Order o1)
     {
-        
-        foreach (Order p in listOrder)
+
+        bool found = false;
+
+        foreach (Order o in listOrder)
         {
-            if (p.ID == P1.ID)
+            if (o.ID == o1.ID)
             {
-              listOrder[listOrder.IndexOf(p)] = P1;
+              listOrder[listOrder.IndexOf(o)] = o1;
+              found = true;
                break;
             }
         }
+        if (found = ! true)
+            ExeptionDontExist();
 
-        ExeptionDontExist();
     }
 
     public Order Ask(int id)
     {
        
-        foreach (Order p in listOrder)
+        foreach (Order o in listOrder)
         {
-            if (p.ID == id)
+            if (o.ID == id)
             {
-                return p;
+                return o;
             }
         }
 
         ExeptionDontExist();
     }
 
-    //public Order[] AskOrder()
-    //{
-    //    Order[] order = new Order[Config.startIndexTabOrder];
-    //    for (int i = 0; i < Config.startIndexTabOrder; i++)
-    //    {
-    //        order[i] = DataSource.tabOrder[i];
-    //    }
-    //    return order;
-    //}
+    public Order[] AskOrder()
+    {
+        Order[] order = new Order[listOrder.Count];
+        int i = 0;
+
+        foreach (Order o in listOrder)
+        {
+            order[i] = o;
+            i++;
+        }
+        return order;
+    }
 
 }
