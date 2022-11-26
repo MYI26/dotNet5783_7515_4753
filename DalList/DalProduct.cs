@@ -87,7 +87,7 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
         return product;
     }
 
-    IEnumerable<Product> AskAll(Func<Product, bool> filter = null) { return new Product; }
+    IEnumerable<Product> AskAll(Func<Product, bool> filter = null) {  }
 
 
 

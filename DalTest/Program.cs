@@ -15,6 +15,7 @@ namespace Program
     {
 
 
+        // private static DalList DalProduct = new DalList();
         private static DalProduct DalProduct = new DalProduct();
         private static DalOrderItem DalOrderItemt = new DalOrderItem();
         private static DalOrder DalOrder = new DalOrder();
