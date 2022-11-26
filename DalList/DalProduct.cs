@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
+using DalApi.DO.Exceptions;
 using static Dal.DataSource;
 using DalApi;
 using DO;
@@ -8,23 +9,19 @@ namespace Dal;
 
 //We will add a declaration of the corresponding entity interface implementation
 //as defined in DalApi
-internal class DalDoEntity : IDoEntity
-{
-}
-
-//we must change the class to internal
-internal class DalProduct
+internal class DalProduct : IProduct
 {
 
+   //public List<Product> GetByOrderId(int id) { return new List<Product>(); }
     //add a product in the list of products and returns his Id
-    public int AddProduct(Product p1)
+    public int Add(Product p1)
     {
 
         foreach(Product p in listProduct)
         {
             if(p.ID == p1.ID)
             {
-                throw new Exception("the product already exist");
+                ExeptionAlreadyExist();
             }
         }
 
@@ -34,58 +31,67 @@ internal class DalProduct
     }
 
     //delete a product in the list of products
-    public void DeleteProduct(int id)
+    public void Delet(int id)
     {
 
-        Product p1 = new Product();
+        //Product p1 = new Product();
 
         foreach (Product p in listProduct)
         {
             if (p.ID == id)
-                p1 = p;
+              listProduct.Remove(p);
+            break;
         }
-        if(p1.ID < 10000 || p1.ID > 100000)
-            throw new Exception("the product dosn't exist");
+        //if(p1.ID < 10000 || p1.ID > 100000)
+        //    throw new Exception("the product dosn't exist");
 
-        listProduct.Remove(p1);
+       
     }
 
-    public void UpdateProduct(Product P1)
+    public void Update(Product P1)
     {
 
-        for (int i = 0; i < Config.startIndexlTabProduct; i++)
+        foreach (Product p in listProduct)
         {
-            if (DataSource.tabProduct[i].ID == P1.ID)
+            if (p.ID == P1.ID)
             {
-                DataSource.tabProduct[i] = P1;
-                return;
-            }
-        }
-        throw new Exception("the product dont exist");
-    }
-
-    public Product AskProduct(int id)
-    {
-        for (int i = 0; i < Config.startIndexlTabProduct; i++)
-        {
-            if (DataSource.tabProduct[i].ID == id)
-            {
-                return DataSource.tabProduct[i];
+                listProduct[listProduct.IndexOf(p)] = P1;
+                break;
             }
         }
 
-        throw new Exception("the product dont exist");
+        ExeptionDontExist();
     }
 
-    public Product[] AskProduct()
+
+    public Product Ask(int id)
     {
-        Product[] product = new Product[Config.startIndexlTabProduct];
-        for (int i = 0; i < Config.startIndexlTabProduct; i++)
+        foreach (Product p in listProduct)
         {
-            product[i] = DataSource.tabProduct[i];
+            if (p.ID == id)
+            {
+                return p;
+            }
         }
-        return product;
+
+        ExeptionDontExist();
     }
+
+    //public Product[] AskProduct()
+    //{
+    //    Product[] product = new Product[Config.startIndexlTabProduct];
+    //    foreach (Product p in listProduct)
+    //    {
+    //        product[i] = DataSource.tabProduct[i];
+    //    }
+    //    return product;
+    //}
+
+   // IEnumerable<Product> AskAll(Func<Product, bool> filter = null) { return new Product; } 
+
+
+
+
 }
         
 

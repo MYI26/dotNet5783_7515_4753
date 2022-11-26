@@ -1,74 +1,78 @@
 ﻿using DO;
 using System;
+using DalApi;
 using static Dal.DataSource;
 
 namespace Dal;
 
-public class DalOrder
+internal class DalOrder : IOrder
 {
 
-    public int AddOrder(Order p1)
+    public int Add(Order p1)
     {
-        p1.ID = DataSource.Config.NextSerialNumber;
 
-        DataSource.tabOrder[Config.NextIndexTabOrder] = p1;
-          
+        foreach (Order p in listOrder)
+        {
+            if (p.ID== p1.ID)
+            {
+                ExeptionAlreadyExist();
+            }
+        }
+       // p1.ID = Config.NextSerialNumber;
+
+        listOrder.Add(p1);
+
         return p1.ID;
     }
 
-    public void DeletOrder(int id)
+    public void Delet(int id)
     {
 
-        for (int i = 0; i < Config.startIndexTabOrder; i++)
+        foreach (Order p in listOrder)
         {
-            if (DataSource.tabOrder[i].ID == id)
-            {
-                for (int j = i; j < Config.startIndexTabOrder; j++)
-                {
-                    DataSource.tabOrder[j].ID = DataSource.tabOrder[j + 1].ID;
-                }
-                Config.startIndexTabOrder--;
-                break;
-            }
+            if (p.ID == id)
+                listOrder.Remove(p);
+            break;
         }
     }
 
-    public void UpdateOrder(Order P1)
+    public void Update(Order P1)
     {
-
-        for (int i = 0; i < Config.startIndexTabOrder; i++)
+        
+        foreach (Order p in listOrder)
         {
-            if (DataSource.tabOrder[i].ID == P1.ID)
+            if (p.ID == P1.ID)
             {
-                DataSource.tabOrder[i] = P1;
-                return;
-            }
-        }
-        throw new Exception("the order dont exist");
-    }
-
-    public Order AskOrder(int id)
-    {
-        int temps = 0;
-        for (int i = 0; i < Config.startIndexTabOrder; i++)
-        {
-            if (DataSource.tabOrder[i].ID == id)
-            {
-                temps = i;
+              listOrder[listOrder.IndexOf(p)] = P1;
+               break;
             }
         }
 
-        return DataSource.tabOrder[temps];
+        ExeptionDontExist();
     }
 
-    public Order[] AskOrder()
+    public Order Ask(int id)
     {
-        Order[] order = new Order[Config.startIndexTabOrder];
-        for (int i = 0; i < Config.startIndexTabOrder; i++)
+       
+        foreach (Order p in listOrder)
         {
-            order[i] = DataSource.tabOrder[i];
+            if (p.ID == id)
+            {
+                return p;
+            }
         }
-        return order;
+
+        ExeptionDontExist();
     }
+
+    //public Order[] AskOrder()
+    //{
+    //    Order[] order = new Order[Config.startIndexTabOrder];
+    //    for (int i = 0; i < Config.startIndexTabOrder; i++)
+    //    {
+    //        order[i] = DataSource.tabOrder[i];
+    //    }
+    //    return order;
+    //}
 
 }

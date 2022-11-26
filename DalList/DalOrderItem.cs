@@ -1,83 +1,87 @@
 ﻿using DO;
+using DalApi;
 using static Dal.DataSource;
 
 namespace Dal;
 
-public class DalOrderItem
+internal class DalOrderItem : IOrderItem
 {
 
-    public int AddOrderItem(OrderItem p1)
+    public int Add(OrderItem p1)
     {
 
-       // p1.OrderID = DataSource.Config.NextSerialNumber;
+        // p1.OrderID = DataSource.Config.NextSerialNumber;
 
-        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
+        foreach (OrderItem p in listOrderItem)
         {
-            if (DataSource.tabOrderItem[i].OrderItemID == p1.OrderItemID)
+            if (p.OrderItemID == p1.OrderItemID)
             {
-                throw new Exception("the OrderItem already exist");
+                ExeptionAlreadyExist();
             }
         }
 
-        DataSource.tabOrderItem[Config.NextIndexTabOrderItem]= p1;
+        listOrderItem.Add(p1);
 
         return p1.OrderItemID;
     }
 
-    public void DeletOrderItem(int id)
+    public void Delet(int id)
     {
 
-        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
+        foreach (OrderItem p in listOrderItem)
         {
-            if (DataSource.tabOrderItem[i].OrderItemID == id)
+            if (p.OrderItemID == id)
             {
-                for (int j = i; j < Config.startIndexTabOrderItem; j++)
-                {
-                    DataSource.tabOrderItem[j].OrderItemID = DataSource.tabOrderItem[j + 1].OrderItemID;
-                }
-                Config.startIndexTabOrderItem--;
+
+                listOrderItem.Remove(p);
+                //for (int j = i; j < Config.startIndexTabOrderItem; j++)
+                //{
+                //    DataSource.tabOrderItem[j].OrderItemID = DataSource.tabOrderItem[j + 1].OrderItemID;
+                //}
+                //Config.startIndexTabOrderItem--;
                 break;
             }
         }
     }
 
-    public void UpdateOrderItem(OrderItem P1)
+    public void Update(OrderItem P1)
     {
 
-        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
+        foreach (OrderItem p in listOrderItem)
         {
-            if (DataSource.tabOrderItem[i].OrderItemID == P1.OrderItemID)
+            if (p.OrderItemID == P1.OrderItemID)
             {
-                DataSource.tabOrderItem[i] = P1;
-                return;
+                listOrderItem[listOrderItem.IndexOf(p)] = P1;
+                break;
             }
         }
 
-        throw new Exception("the OrderItem dont exist");
+        ExeptionDontExist();
     }
 
-    public OrderItem AskOrderItem(int id)
+    public OrderItem Ask(int id)
     {
-        int temps = 0;
-        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
+       // OrderItem p2 = new OrderItem();
+        foreach (OrderItem p in listOrderItem)
         {
-            if (DataSource.tabOrderItem[i].OrderItemID == id)
+            if (p.OrderItemID == id)
             {
-                temps = i;
+                return p;
+                
             }
         }
-
-      return DataSource.tabOrderItem[temps];
+        //   return p2;
+        ExeptionDontExist();
     }
 
-    public OrderItem[] AskOrderItem() 
-    {
-        OrderItem[] orderItem = new OrderItem[Config.startIndexTabOrderItem];
-        for (int i = 0; i < Config.startIndexTabOrderItem; i++)
-        {
-            orderItem[i] = DataSource.tabOrderItem[i];
-        }
-        return orderItem;
-    }
+    //public OrderItem[] AskOrderItem() 
+    //{
+    //    OrderItem[] orderItem = new OrderItem[Config.startIndexTabOrderItem];
+    //    for (int i = 0; i < Config.startIndexTabOrderItem; i++)
+    //    {
+    //        orderItem[i] = DataSource.tabOrderItem[i];
+    //    }
+    //    return orderItem;
+    //}
 
 }

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DO;
 using System.Reflection.Metadata.Ecma335;
-using DalFacade;
 namespace DalApi;
 
 
@@ -16,7 +15,7 @@ public interface ICrud<T> where T : struct
     public void Update(T t1);
     public T Ask(int id1);
 
-    IEnumerable<T?> AskAll(Func<T?, bool>? filter = null);
+   // IEnumerable<T?> AskAll(Func<T?, bool>? filter = null);
 
 }
 

@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace DalApi.DO;
 
- internal class ExeptionAlreadyExist
+ internal class Exeption1
 {
-    static void Main(string[] args)
+    public string ExeptionAlreadyExist()
     {
-        Console.WriteLine("the product already exist");
+        return "the Item already exist";
     }
     
 }
 
 
- internal class ExeptionDontExist
+ internal class Exeption2
 {
-    static void Main(string[] args)
+    public string ExeptionDontExist()
     {
-        Console.WriteLine("the product dont exist");
+        return "the Item dont exist";
     }
 }
