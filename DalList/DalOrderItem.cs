@@ -9,7 +9,7 @@ using DO;
 
 namespace Dal;
 
-internal class DalOrderItem : IOrderItem //attention ici on nous demander du internal
+public class DalOrderItem : IOrderItem //attention ici on nous demander du internal
 {
 
     public int Add(OrderItem oI1)
@@ -75,15 +75,13 @@ internal class DalOrderItem : IOrderItem //attention ici on nous demander du int
         ExeptionDontExist();
     }
 
-    public OrderItem[] AskOrderItem()
+    public List<OrderItem> Ask()
     {
-        OrderItem[] orderItem = new OrderItem[listOrderItem.Count];
-        int i = 0;
+        List<OrderItem> orderItem = new List<OrderItem>();
 
         foreach (OrderItem oI in listOrderItem)
         {
-            orderItem[i] = oI;
-            i++;
+            orderItem.Add(oI);
         }
         return orderItem;
     }
