@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace DalApi.DO;
 
- internal class Exeption1
+internal class Exeption1
 {
     public string ExeptionAlreadyExist()
     {
         return "the Item already exist";
     }
-    
+
 }
 
 
- internal class Exeption2
+internal class Exeption2
 {
     public string ExeptionDontExist()
     {
