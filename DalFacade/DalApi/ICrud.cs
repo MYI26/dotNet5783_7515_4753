@@ -11,11 +11,11 @@ namespace DalApi;
 public interface ICrud<T> where T : struct
 {
     public int Add(T t);
-    public void Delet(int id);
+    public void Delete(int id);
     public void Update(T t1);
     public T Ask(int id1);
 
-    IEnumerable<T?> AskAll(Func<T?, bool>? filter = null);
+   // public IEnumerable<T?> AskAll(Func<T?, bool>? filter = null);
 
 }
 

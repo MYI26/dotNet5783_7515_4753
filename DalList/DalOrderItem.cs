@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
-using DalApi.DO.Exceptions;
-
+using DalApi.DO;
 using static Dal.DataSource;
 using DalApi;
 using DO;
@@ -19,7 +18,7 @@ public class DalOrderItem : IOrderItem //attention ici on nous demander du inter
         {
             if (oI.OrderItemID == oI1.OrderItemID)
             {
-                ExeptionAlreadyExist();
+              throw new AlreadyExistException($"the order item whith ID: {oI1.OrderItemID} already exist");
             }
         }
 
@@ -28,7 +27,7 @@ public class DalOrderItem : IOrderItem //attention ici on nous demander du inter
         return oI1.OrderItemID;
     }
 
-    public void Delet(int id)
+    public void Delete(int id)
     {
 
         bool found = false;
@@ -41,7 +40,7 @@ public class DalOrderItem : IOrderItem //attention ici on nous demander du inter
             break;
         }
         if (found = !true)
-            ExeptionDontExist();
+            throw new DontExistException("the order item dont exist");
     }
 
     public void Update(OrderItem oI1)
@@ -58,7 +57,7 @@ public class DalOrderItem : IOrderItem //attention ici on nous demander du inter
             }
         }
     if (found = !true)
-        ExeptionDontExist();
+            throw new DontExistException("the order item dont exist");
     }
 
     public OrderItem Ask(int id)
@@ -72,7 +71,7 @@ public class DalOrderItem : IOrderItem //attention ici on nous demander du inter
             }
         }
 
-        ExeptionDontExist();
+        throw new DontExistException("the order item dont exist");
     }
 
     public List<OrderItem> Ask()

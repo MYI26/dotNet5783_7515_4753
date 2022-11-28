@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
-using DalApi.DO.Exceptions;
-
+using DalApi.DO;
 using static Dal.DataSource;
 using DalApi;
 using DO;
@@ -19,7 +18,7 @@ public class DalOrder : IOrder //attention ici on nous demander du internal
         {
             if (o.ID== o1.ID)
             {
-                ExeptionAlreadyExist();
+               throw new AlreadyExistException($"the order whith ID: {o1.ID} already exist");
             }
         }
 
@@ -28,7 +27,7 @@ public class DalOrder : IOrder //attention ici on nous demander du internal
         return o1.ID;
     }
 
-    public void Delet(int id)
+    public void Delete(int id)
     {
 
         bool found = false;
@@ -41,7 +40,7 @@ public class DalOrder : IOrder //attention ici on nous demander du internal
             break;
         }
         if (found =! true)
-            ExeptionDontExist();
+           throw new DontExistException("the order dont exist");
     }
 
     public void Update(Order o1)
@@ -59,7 +58,7 @@ public class DalOrder : IOrder //attention ici on nous demander du internal
             }
         }
         if (found = ! true)
-            ExeptionDontExist();
+            throw new DontExistException("the order dont exist");
 
     }
 
@@ -74,7 +73,7 @@ public class DalOrder : IOrder //attention ici on nous demander du internal
             }
         }
 
-        ExeptionDontExist();
+        throw new DontExistException("the order dont exist");
     }
 
     public List<Order> Ask()
@@ -87,5 +86,7 @@ public class DalOrder : IOrder //attention ici on nous demander du internal
         }
         return order;
     }
+
+   //public IEnumerable<Order> AskAll(Func<Order, bool> filter = null) { }
 
 }

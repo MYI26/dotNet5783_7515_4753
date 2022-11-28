@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace DalApi.DO;
 
 
-public class ExceptionAlreadyExist : Exception
+public class AlreadyExistException : Exception
 {
-    public ExceptionAlreadyExist(string? message) : base(message) { }
+    public AlreadyExistException(string? message) : base(message) { }
 }
 
 
-public class ExceptionDontExist : Exception
+public class DontExistException : Exception
 {
-    public ExceptionDontExist(string? message) : base(message) { }
+    public DontExistException(string? message) : base(message) { }
 }

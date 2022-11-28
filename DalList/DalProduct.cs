@@ -17,12 +17,12 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
     //add a product in the list of products and returns his Id
     public int Add(Product p1)
     {
-        Exception1 E = new Exception1();
+        
         foreach(Product p in listProduct)
         {
             if(p.ID == p1.ID)
             {
-                E.ExeptionAlreadyExist();                                                                                                     //
+                throw new AlreadyExistException($"the product whith ID: {p1.ID} already exist");                                                                                                     //
             }
         }
 
@@ -32,7 +32,7 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
     }
 
     //delete a product in the list of products
-    public void Delet(int id)
+    public void Delete(int id)
     {
 
         bool found = false;
@@ -45,7 +45,7 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
             break;
         }
         if (found = !true)
-            ExeptionDontExist();                                                                                        //
+            throw new DontExistException("the product dont exist");                                                                                        //
        
     }
 
@@ -64,7 +64,7 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
             }
         }
         if (found = !true)
-            ExeptionDontExist();
+            throw new DontExistException("the product dont exist");
 
     }
 
@@ -80,7 +80,7 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
             }
         }
 
-        ExeptionDontExist();
+        throw new DontExistException("the product dont exist");
     }
 
     public List<Product> Ask()
@@ -94,7 +94,7 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
         return product;
     }
 
-    IEnumerable<Product> AskAll(Func<Product, bool> filter = null) {  }                                //??
+   // public IEnumerable<Product> AskAll(Func<Product, bool> filter = null) {  }                                //??
 
 }
         

@@ -122,7 +122,7 @@ e) Delete Product");
                     string idOfTheProduct2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheProduct2);
 ;
-                    DalProduct.Delet(id2);
+                    DalProduct.Delete(id2);
 
                     break;
 
@@ -192,7 +192,7 @@ e) Delete Order Item");
                     string idOftheOrderItem2 = Console.ReadLine();
                     int id2 = int.Parse(idOftheOrderItem2);
                     
-                    DalOrderItemt.Delet(id2);
+                    DalOrderItemt.Delete(id2);
 
                     break;
 
@@ -258,7 +258,7 @@ e) Delete Order");
                     string idOfTheOrder2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheOrder2);
 
-                    DalOrder.Delet(id2);
+                    DalOrder.Delete(id2);
 
                     break;
 
