@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
-using DalApi.DO.Exceptions;
-
+using DalApi.DO;
 using static Dal.DataSource;
 using DalApi;
 using DO;
@@ -18,12 +17,12 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
     //add a product in the list of products and returns his Id
     public int Add(Product p1)
     {
-
+        Exception1 E = new Exception1();
         foreach(Product p in listProduct)
         {
             if(p.ID == p1.ID)
             {
-                ExeptionAlreadyExist();                                                                                                     //
+                E.ExeptionAlreadyExist();                                                                                                     //
             }
         }
 

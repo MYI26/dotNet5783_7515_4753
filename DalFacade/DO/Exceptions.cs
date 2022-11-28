@@ -6,20 +6,14 @@ using System.Threading.Tasks;
 
 namespace DalApi.DO;
 
-internal class Exeption1
-{
-    public string ExeptionAlreadyExist()
-    {
-        return "the Item already exist";
-    }
 
+public class ExceptionAlreadyExist : Exception
+{
+    public ExceptionAlreadyExist(string? message) : base(message) { }
 }
 
 
-internal class Exeption2
+public class ExceptionDontExist : Exception
 {
-    public string ExeptionDontExist()
-    {
-        return "the Item dont exist";
-    }
+    public ExceptionDontExist(string? message) : base(message) { }
 }
