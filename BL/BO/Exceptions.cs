@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    //contains the exceptions that may occur during debugging
     internal class Exceptions
     {
     }

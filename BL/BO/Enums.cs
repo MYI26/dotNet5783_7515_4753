@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    internal class Enums
+    //class enum which contains the enumeration of the different categories
+    //and the different statuses that the command can take
+    public class Enums
     {
+        public enum Category { guitar = 1, violin, flute, piano, musicBrochures }
+
+        public enum OrderStatus {ordered, sent, delivered }
     }
 }

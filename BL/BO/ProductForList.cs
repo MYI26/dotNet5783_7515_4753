@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +8,14 @@ using static DO.Enums;
 
 namespace BO
 {
-    //Order tracking utility
-    //For an order tracking screen, which will contain:
-    internal class OrderTracking
+    //A product reference entity in the list
+    //For the product list screen and catalog screen, which will contain:
+    public class ProductForList
     {
-        public int OrderId { get; set; }
-        public OrderStatus? Status { get; set; }
-        public List<Order?>? Items { get; set; }
+        public int ProductId { get; set; }
+        public string? Name { get; set; }
+        public double Price { get; set; }
+        public Category? Category { get; set; }
 
         public override string ToString() => $@"
         Product ID={ID}: {Name}, 

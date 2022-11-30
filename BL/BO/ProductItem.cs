@@ -1,12 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BO.Enums;
+using static DO.Enums;
 
 namespace BO
 {
+    //ProductItem helper entity (representing a product for the catalog)
+    //For the catalog screen -
+    //with the list of products shown to the buyer, which will contain:
     internal class ProductItem
     {
+        public int ProductId { get; set; }
+        public string? Name { get; set; }
+        public double? Price { get; set; }
+        public Category? Category { get; set; }
+        public bool Availability { get; set; }
+        public int QuantityInCart { get; set; }
+
+        public override string ToString() => $@"
+        Product ID={ID}: {Name}, 
+        category - {MyCategory}
+    	Price: {Price}
+    	Amount in stock: {InStock}
+";
     }
 }
