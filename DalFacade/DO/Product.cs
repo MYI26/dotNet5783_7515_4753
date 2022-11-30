@@ -18,7 +18,7 @@ public struct Product
 
 
     /// <summary>
-    /// Descriptivename of product
+    /// Descriptive name of product
     /// </summary>
  
     public string Name { get; set; }
