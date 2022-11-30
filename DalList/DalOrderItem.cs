@@ -74,15 +74,19 @@ public class DalOrderItem : IOrderItem //attention ici on nous demander du inter
         throw new DontExistException("the order item dont exist");
     }
 
-    public List<OrderItem> Ask()
-    {
-        List<OrderItem> orderItem = new List<OrderItem>();
+    //public IEnumerable<OrderItem> Ask()
+    //{
+    //    List<OrderItem> orderItem = new List<OrderItem>();
 
-        foreach (OrderItem oI in listOrderItem)
-        {
-            orderItem.Add(oI);
-        }
-        return orderItem;
-    }
+    //    foreach (OrderItem oI in listOrderItem)
+    //    {
+    //        orderItem.Add(oI);
+    //    }
+    //    IEnumerable<OrderItem> enumerable = orderItem;
+
+    //    return enumerable;//return IEnumerator
+    //}
+
+    public IEnumerable<OrderItem> AskAll(Func<OrderItem, bool> filter = null) { IEnumerable<OrderItem> orderitem = listOrderItem; return orderitem; }
 
 }

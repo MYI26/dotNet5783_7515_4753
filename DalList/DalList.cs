@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dal;
 
-sealed public class DalList : IDal
+sealed public class DalList : IDal //sealed disallow inheriting from class
 {
 
     public IProduct Product => new DalProduct();

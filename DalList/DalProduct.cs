@@ -83,18 +83,21 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
         throw new DontExistException("the product dont exist");
     }
 
-    public List<Product> Ask()
-    {
-        List<Product> product = new List<Product>();
+    //public IEnumerable<Product> Ask()
+    //{
+    //    List<Product> product = new List<Product>();
 
-        foreach (Product oI in listProduct)
-        {
-            product.Add(oI);
-        }
-        return product;
-    }
+    //    foreach (Product oI in listProduct)
+    //    {
+    //        product.Add(oI);
+    //    }
 
-   // public IEnumerable<Product> AskAll(Func<Product, bool> filter = null) {  }                                //??
+    //    IEnumerable<Product> enumerable = product;
+
+    //    return enumerable;//return IEnumerator
+    //}
+
+    public IEnumerable<Product> AskAll(Func<Product, bool> filter = null) { IEnumerable<Product> product = listProduct; return product;  }                                //??
 
 }
         
@@ -107,5 +110,5 @@ public class DalProduct : IProduct //attention ici on nous demander du internal
 
 
 
-
+ 
 

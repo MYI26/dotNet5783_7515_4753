@@ -14,8 +14,7 @@ public interface ICrud<T> where T : struct
     public void Delete(int id);
     public void Update(T t1);
     public T Ask(int id1);
-
-   // public IEnumerable<T?> AskAll(Func<T?, bool>? filter = null);
+    public IEnumerable<T> AskAll(Func<T, bool> filter = null);
 
 }
 

@@ -100,7 +100,7 @@ e) Delete Product");
                     break;
 
                 case "c":
-                    List<Product> tabProduct = DalProduct.Ask();
+                    IEnumerable<Product> tabProduct = DalProduct.AskAll();
 
                     foreach (Product p in tabProduct)
                         Console.WriteLine(p);
@@ -170,7 +170,7 @@ e) Delete Order Item");
                     break;
 
                 case "c":
-                    List<OrderItem> taborderitem = DalOrderItemt.Ask();
+                    IEnumerable<OrderItem> taborderitem = DalOrderItemt.AskAll();
 
                     foreach (OrderItem orderitem in taborderitem)
                         Console.WriteLine(orderitem);
@@ -236,7 +236,7 @@ e) Delete Order");
                     break;
 
                 case "c":
-                    List<Order> tabOrder = DalOrder.Ask();
+                    IEnumerable<Order> tabOrder = DalOrder.AskAll();
 
                     foreach (Order order in tabOrder)
                         Console.WriteLine(order);

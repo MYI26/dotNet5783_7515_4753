@@ -5,6 +5,7 @@ using DalApi.DO;
 using static Dal.DataSource;
 using DalApi;
 using DO;
+using System.Collections.Generic;
 
 namespace Dal;
 
@@ -76,17 +77,20 @@ public class DalOrder : IOrder //attention ici on nous demander du internal
         throw new DontExistException("the order dont exist");
     }
 
-    public List<Order> Ask()
-    {
-        List<Order> order = new List<Order>();
+    //public IEnumerable<Order> Ask()
+    //{
+    //    List<Order> order = new List<Order>(listOrder.Count());// creat new list with size of the actualy list
 
-        foreach (Order oI in listOrder)
-        {
-            order.Add(oI);
-        }
-        return order;
-    }
+    //    foreach (Order oI in listOrder)
+    //    {
+    //        order.Add(oI);
+    //    }
 
-   //public IEnumerable<Order> AskAll(Func<Order, bool> filter = null) { }
+    //    IEnumerable<Order> enumerable = order;
+
+    //    return enumerable; //return IEnumerator
+    //}
+
+    public IEnumerable<Order> AskAll(Func<Order, bool> filter = null) { IEnumerable<Order> order = listOrder; return order; }
 
 }
