@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Dal;
 
-public class DalOrder : IOrder //attention ici on nous demander du internal
+internal class DalOrder : IOrder 
 {
 
     public int Add(Order o1)
