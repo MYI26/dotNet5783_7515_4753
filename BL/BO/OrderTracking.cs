@@ -11,7 +11,7 @@ namespace BO
 {
     //Order tracking utility
     //For an order tracking screen, which will contain:
-    internal class OrderTracking
+    public class OrderTracking
     {
         public int OrderId { get; set; }
         public OrderStatus? Status { get; set; }

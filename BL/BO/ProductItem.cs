@@ -12,7 +12,7 @@ namespace BO
     //ProductItem helper entity (representing a product for the catalog)
     //For the catalog screen -
     //with the list of products shown to the buyer, which will contain:
-    internal class ProductItem
+    public class ProductItem
     {
         public int ProductId { get; set; }
         public string? Name { get; set; }

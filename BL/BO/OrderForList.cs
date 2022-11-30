@@ -11,7 +11,7 @@ namespace BO
 {
     //A helper entity of a list order
     //For an order list screen, which will contain:
-    internal class OrderForList
+    public class OrderForList
     {
         public int OrderID { get; set; }
         public string? CustomerName { get; set; }

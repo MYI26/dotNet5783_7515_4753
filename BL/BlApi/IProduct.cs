@@ -10,10 +10,41 @@ public interface IProduct
     IEnumerable<ProductForList?> GetProduct();
 
     /// <summary>
-    /// return product of id specific
+    /// return product of id specific for admin screen and for
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Product GetById(int id);
+    Product GetById(int id); 
+
+    /// <summary>
+    /// For a buyer screen - from the catalog
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="cart1"></param>
+    /// <returns></returns>
+    Product GetByid(int id,Cart cart1);
+
+    // <summary>
+    /// add product. specific for admin screen and for
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public void Add(Product product);
+
+    /// <summary>
+    /// delete product. specific for admin screen and for
+    /// </summary>
+    /// <param name="product"></param>
+    public void Delete(int id);
+
+    /// <summary>
+    /// Update product. specific for admin screen and for
+    /// </summary>
+    /// <param name="product"></param>
+    public void Update(Product product);
+
+
+
+
 
 }
