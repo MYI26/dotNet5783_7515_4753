@@ -14,15 +14,16 @@ namespace BO
     {
         public string? CustomerName { get; set; }
         public string? CustomerEmail { get; set; }
-        public string? CustomerAdress { get; set; }
+        public string? CustomerAddress { get; set; }
         public List<OrderItem?>? Items { get; set; }
         public double TotalPrice { get; set; }
 
         public override string ToString() => $@"
-        Product ID={ID}: {Name}, 
-        category - {MyCategory}
-    	Price: {Price}
-    	Amount in stock: {InStock}
-";
+        Name of customer:{CustomerName}
+        Adress of customer:{CustomerAddress}
+        Email of customer:{CustomerEmail}
+        Items:{Items}
+        Total Price: {TotalPrice}
+        ";
     }
 }

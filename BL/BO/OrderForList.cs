@@ -17,13 +17,14 @@ namespace BO
         public string? CustomerName { get; set; }
         public OrderStatus? Status { get; set; }
         public int Amount { get; set; }
-        public double ToatalPrice { get; set; }
+        public double TotalPrice { get; set; }
 
         public override string ToString() => $@"
-        Product ID={ID}: {Name}, 
-        category - {MyCategory}
-    	Price: {Price}
-    	Amount in stock: {InStock}
-";
+        Order Id={OrderID}
+        Name of customer{CustomerName}
+        Status:{Status}
+        Amount:{Amount}
+        Total Price: {TotalPrice}
+        ";
     }
 }

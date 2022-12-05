@@ -13,15 +13,14 @@ namespace BO
     //For an order tracking screen, which will contain:
     public class OrderTracking
     {
-        public int OrderId { get; set; }
+        public int OrderID { get; set; }
         public OrderStatus? Status { get; set; }
         public List<Order?>? Items { get; set; }
 
         public override string ToString() => $@"
-        Product ID={ID}: {Name}, 
-        category - {MyCategory}
-    	Price: {Price}
-    	Amount in stock: {InStock}
-";
+        Order Id={OrderID}
+        Status:{Status}
+        Items:{Items}
+        ";
     }
 }
