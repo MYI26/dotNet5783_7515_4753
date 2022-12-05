@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BO.Enums;
-using static DO.Enums;
 
 namespace BO
 {
@@ -12,16 +11,15 @@ namespace BO
     //For the product list screen and catalog screen, which will contain:
     public class ProductForList
     {
-        public int ProductId { get; set; }
+        public int ProductID { get; set; }
         public string? Name { get; set; }
         public double Price { get; set; }
         public Category? Category { get; set; }
 
         public override string ToString() => $@"
-        Product ID={ID}: {Name}, 
-        category - {MyCategory}
+        Product ID={ProductID}: {Name},
     	Price: {Price}
-    	Amount in stock: {InStock}
+        category - {Category}
 ";
     }
 }

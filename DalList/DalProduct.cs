@@ -10,7 +10,7 @@ namespace Dal;
 
 //We will add a declaration of the corresponding entity interface implementation
 //as defined in DalApi
-internal class DalProduct : IProduct 
+internal class DalProduct : IProduct
 {
 
    //public List<Product> GetByOrderId(int id) { return new List<Product>(); }                                                               ??

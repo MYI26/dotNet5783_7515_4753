@@ -13,7 +13,7 @@ namespace BO
     //For an order details screen and actions on an order, which will contain:
     public class Order
     {
-        public int OrderId { get; set; }
+        public int OrderID { get; set; }
         public string? CustomerName { get; set; }
         public string? CustomerEmail { get; set; }
         public string? CustomerAddress { get; set; }
@@ -25,10 +25,16 @@ namespace BO
         public double TotalPrice { get; set; }
 
         public override string ToString() => $@"
-        Product ID={ID}: {Name}, 
-        category - {MyCategory}
-    	Price: {Price}
-    	Amount in stock: {InStock}
-";
+        Order Id={OrderID}
+        Name of customer{CustomerName}
+        Email of customer{CustomerEmail}
+        Adress of customer:{CustomerAddress}
+        Status:{Status}
+        Order Date:{OrderDate}
+        ShipDate{ShipDate}
+        DeliveryDate{DeliveryDate}
+        Items:{Items}
+        Total Price: {TotalPrice}
+        ";
     }
 }
