@@ -1,7 +1,7 @@
 ﻿using BO;
 namespace BlApi;
 
-interface ICart
+public interface ICart
 {
     /// <summary>
     /// Adding a product to the shopping cart (for catalog screen, product details screen)

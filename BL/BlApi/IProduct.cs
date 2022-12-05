@@ -1,7 +1,7 @@
 ﻿using BO;
 namespace BlApi;
 
-interface IProduct
+public interface IProduct
 {
     /// <summary>
     /// return product of list of product

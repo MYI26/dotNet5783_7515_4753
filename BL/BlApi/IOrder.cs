@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlApi;
 
-interface IOrder
+public interface IOrder
 {
     /// <summary>
     /// return order of list of order
@@ -24,7 +24,7 @@ interface IOrder
 
     Order update(int id);
 
-    DO.Order updateDO(int id);  // je ne comprend pas ce qui veulent dans le tiour aclali
+    Order updateDelivrery(int id);
 
     OrderTracking Tracking(int id);
 
