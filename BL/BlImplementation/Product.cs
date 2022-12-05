@@ -1,26 +1,37 @@
 ﻿using BlApi;
-using DalApi;
 namespace BlImplementation;
 
 internal class Product : IProduct
 {
 
-   // private static readonly IDal? Dal = Factory.Get();
+    // private static readonly IDal? Dal = Factory.Get();
+    public void Add(BO.Product product)
+    {
+        throw new NotImplementedException();
+    }
 
+    public void Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
 
-    IEnumerable<BO.ProductForList?> GetProduct() { }
+    public BO.Product GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
 
-    Product GetById(int id) {  }
+    public BO.Product GetByid(int id, BO.Cart cart1)
+    {
+        throw new NotImplementedException();
+    }
 
-  
-    Product GetByid(int id, Cart cart1) { }
+    public IEnumerable<BO.ProductForList?> GetProduct()
+    {
+        throw new NotImplementedException();
+    }
 
-   
-    public void Add(Product product) { }
-
-  
-    public void Delete(int id) { }
-
-    public void Update(Product product) { }
-
+    public void Update(BO.Product product)
+    {
+        throw new NotImplementedException();
+    }
 }
