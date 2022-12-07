@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BlApi;
 
+/// <summary>
+/// interface IOrder
+/// </summary>
 public interface IOrder
 {
     /// <summary>
@@ -22,9 +25,24 @@ public interface IOrder
     /// <returns></returns>
     Order GetById(int id);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     Order update(int id);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
 
     Order updateDelivrery(int id);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
 
     OrderTracking Tracking(int id);
 
