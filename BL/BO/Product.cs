@@ -17,10 +17,10 @@ public class Product
     public Category? MyCategory { get; set; }
     public int? InStock { get; set; }
 
-    public override string ToString() => $@"
-        Product ID={ProductID}: {Name},
-    	Price: {Price}
-        category - {MyCategory}
-    	Amount in stock: {InStock}
-";
+//    public override string ToString() => $@"
+//        Product ID={ProductID}: {Name},
+//    	Price: {Price}
+//        category - {MyCategory}
+//    	Amount in stock: {InStock}
+//";
 }

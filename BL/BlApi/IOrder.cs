@@ -16,14 +16,14 @@ public interface IOrder
     /// return order of list of order
     /// </summary>
     /// <returns></returns>
-    IEnumerable<OrderForList?> GetOrder();
+    IEnumerable<OrderForList?> Ask();
 
     /// <summary>
     /// return order of id specific for admin screen and for
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Order GetById(int id);
+    Order Ask(int id);
 
     /// <summary>
     /// 
