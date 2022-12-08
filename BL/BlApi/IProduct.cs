@@ -25,7 +25,7 @@ public interface IProduct
     /// <param name="id"></param>
     /// <param name="cart1"></param>
     /// <returns></returns>
-    Product GetByid(int id,Cart cart1);
+    Product Ask(int id,Cart cart1);
 
     // <summary>
     /// add product. specific for admin screen and for

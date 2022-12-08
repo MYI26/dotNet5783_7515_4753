@@ -1,6 +1,6 @@
 ﻿using BlApi;
-using BO;
 using Dal;
+
 
 namespace BlImplementation;
 
@@ -11,12 +11,38 @@ internal class Product : IProduct
     private static DalList Dal = new DalList();
     public void Add(BO.Product product)
     {
-        throw new NotImplementedException();
+
+        DO.Product? product1;
+        if (product.ProductID <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
+        try
+        {
+            product1 = new() // creat new product
+            {
+                ID = product.ProductID,
+                Name = product.Name,
+                Price = product.Price,
+                MyCategory = product.MyCategory,
+                InStock = product.InStock,
+
+            };
+
+
+            Dal?.Product.Add(product1);
+        }
+
+        catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); } 
+
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Dal?.Product.Delete(id);
+        }
+
+        catch(DalApi.DO.DontExistException) {throw new BO.DontExistException("the product dont exist") }
+
     }
 
     public BO.Product Ask(int id)
@@ -27,23 +53,25 @@ internal class Product : IProduct
             return new BO.Product()
             {
                 ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
-                Name = product?.Name ?? throw new BO.MissingException("Name missing"), 
-                Price = product?.Price ?? throw new BO.MissingException("Price missing"), 
-                MyCategory = product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing"), 
-                InStock = product?.InStock ?? throw new BO.MissingException("quantity in stock missing"), 
-               
+                Name = product?.Name ?? throw new BO.MissingException("Name missing"),
+                Price = product?.Price ?? throw new BO.MissingException("Price missing"),
+                MyCategory = product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing"),
+                InStock = product?.InStock ?? throw new BO.MissingException("quantity in stock missing"),
+
             };
 
         }
 
-        catch(BO.MissingException) {
-        
-        throw new BO.Missing("Entity missing");
+        catch (BO.MissingException)
+        {
+
+            throw new BO.Missing("Entity missing");
         }
+
      
     }
 
-    public BO.Product GetByid(int id, BO.Cart cart1)
+    public BO.Product Ask(int id, BO.Cart cart1)
     {
         throw new NotImplementedException();
     }

@@ -30,9 +30,9 @@ public class NotEnought : Exception
     public NotEnought(string? message) : base(message) { }
 }
 
-public class AlreExist : Exception
+public class AlreadyExistException : Exception
 {
-    public AlreExist(string? message) : base(message) { }
+    public AlreadyExistException(string? message) : base(message) { }
 }
 
 public class MissingException : Exception
@@ -44,4 +44,13 @@ public class Missing : Exception
 {
     public Missing(string? message) : base(message) { }
 }
+
+public class DontExistException : Exception
+{
+    public DontExistException(string? message) : base(message) { }
+}
+
+
+
+
 

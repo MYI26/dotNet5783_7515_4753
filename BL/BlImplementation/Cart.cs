@@ -43,9 +43,9 @@ internal class Cart : ICart
         {
             if (newItem) cart.Items?.Add(item);
         }
-        catch (AlreadyExistException) {
+        catch (DalApi.DO.AlreadyExistException) {
 
-            throw new BO.AlreExist("the order item already exist");//the product already exist
+            throw new BO.AlreadyExistException("the order item already exist");//the product already exist
         }
 
         return cart;
