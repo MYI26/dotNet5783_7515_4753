@@ -20,11 +20,11 @@ public interface ICart
     /// <param name="cart"></param>
     public void UpdateTotalSum(Cart cart);
 
-    /// <summary>
-    /// Basket confirmation for order \ placing order (for shopping basket screen or order completion screen)
-    /// </summary>
-    /// <param name="cart"></param>
-    public void ConfirmationCard(Cart cart);
+    ///// <summary>
+    ///// Basket confirmation for order \ placing order (for shopping basket screen or order completion screen)
+    ///// </summary>
+    ///// <param name = "cart" ></ param >
+    //public void ConfirmationCard(Cart cart);
 
 
 }

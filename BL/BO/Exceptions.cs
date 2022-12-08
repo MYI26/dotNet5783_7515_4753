@@ -35,4 +35,13 @@ public class AlreExist : Exception
     public AlreExist(string? message) : base(message) { }
 }
 
+public class MissingException : Exception
+{
+    public MissingException(string? message) : base(message) { }
+}
+
+public class Missing : Exception
+{
+    public Missing(string? message) : base(message) { }
+}
 

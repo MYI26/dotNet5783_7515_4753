@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using Dal;
 using DalApi;
 using DalApi.DO;
@@ -50,14 +51,21 @@ internal class Cart : ICart
         return cart;
     }
  
-    public void ConfirmationCard(BO.Cart cart)
-    {
-        throw new NotImplementedException();
-    }
-    
+   
     public void UpdateTotalSum(BO.Cart cart)
     {
-        throw new NotImplementedException();
+        foreach (OrderItem oi in cart.Items)
+            cart.TotalPrice = cart.TotalPrice + (oi.Price * oi.QuantityInCart);
+
+        //cart.TotalPrice = cart.Items?.Sum(c => c?.Price * c?.QuantityInCart) ?? 0; // the same line that the top
     }
+
+    //public void ConfirmationCard(BO.Cart cart)
+    //{
+    //    throw new NotImplementedException();
+    //}
+    
+
+
 }
    

@@ -17,7 +17,7 @@ public interface IProduct
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Product GetById(int id); 
+    Product Ask(int id); 
 
     /// <summary>
     /// For a buyer screen - from the catalog

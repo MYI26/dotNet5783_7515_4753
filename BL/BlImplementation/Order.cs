@@ -23,7 +23,7 @@ internal class Order : IOrder
         throw new NotImplementedException();
     }
 
-    public DO.Order updateDO(int id)
+    public BO.Order updateDelivrery(int id)
     {
         throw new NotImplementedException();
     }
