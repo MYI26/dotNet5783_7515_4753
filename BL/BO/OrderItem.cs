@@ -13,12 +13,12 @@ namespace BO
 
     public class OrderItem
     {
-        public int Id{ get; set; }
-        public int ProductID { get; set; }
+        public int? Id{ get; set; }
+        public int? ProductID { get; set; }
         public string? NameProduct { get; set; }
-        public double Price { get; set; }
-        public int QuantityInCart { get; set; }
-        public double PriceOfAll { get; set; }
+        public int? Price { get; set; }
+        public int? QuantityInCart { get; set; }
+        public int? PriceOfAll { get; set; }
 
         public override string ToString() => $@"
         Order Id={Id}
