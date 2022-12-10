@@ -37,12 +37,12 @@ public interface IOrder
     /// <param name="id"></param>
     /// <returns></returns>
 
-    Order updateDelivrery(int id);
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    //Order updateDelivrery(int id);   // je ne sais pas comment la faire
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    ///// <param name="id"></param>
+    ///// <returns></returns>
 
     OrderTracking Tracking(int id);
 

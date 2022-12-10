@@ -1,20 +1,16 @@
 ﻿using BlApi;
-using BO;
 using Dal;
-using DalApi;
-using DO;
-
 namespace BlImplementation;
 
 internal class Order : IOrder
 {
 
     private static DalList Dal = new DalList();
-    public BO.Order Ask(int id)
+    public BO.Order Ask(int id) // je recois un ID BO et je veut retourner un BO seulement la base de donner et les fontion sont dans DO 
     {
         try
         {
-            DO.Order? order = Dal?.Order.Ask(id); //place the order id in new oroduct of DO
+            DO.Order? order = Dal?.Order.Ask(id); //je recher dans la base de donner les order associer
 
             return new BO.Order()
             {
@@ -49,10 +45,19 @@ internal class Order : IOrder
         }
     }
 
-    public IEnumerable<BO.OrderForList?> Ask()
-    {
-        IEnumerable<BO.OrderForList?> listorder = new List<OrderForList>(); return listorder;
-    }
+    public IEnumerable<BO.OrderForList?> Ask()=>
+    
+        from order in Dal?.Order.AskAll() //from == a partir de, select new == new
+        select new BO.OrderForList
+        {
+            OrderID = order.ID,
+            CustomerName = order.CustomerName,
+            Status = 0,
+            Amount = 0,
+            TotalPrice = 0, 
+
+        };
+    
 
     public BO.OrderTracking Tracking(int id)
     {
@@ -73,16 +78,16 @@ internal class Order : IOrder
         catch (BO.DontExistException) { throw new BO.DontExistException("the order dont exist"); }
     }
 
-    public BO.Order update(int id)
+    public BO.Order update(int id) // est ce que je recois le id d,un order deja modifier ou pas ?
     {
         
         DO.Order? order = Dal?.Order.Ask(id);
         if (id <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
         try
         {
-            order = new() // creat new product
+            order = new() // creat new order
             {
-                OrderID = order?.ID ?? throw new BO.MissingException("ID missing"),
+                ID = order?.ID ?? throw new BO.MissingException("ID missing"),
 
                 CustomerName = order?.CustomerName ?? throw new BO.MissingException("Name missing"),
 
@@ -90,31 +95,29 @@ internal class Order : IOrder
 
                 CustomerAddress = order?.CustomerAddress ?? throw new BO.MissingException("Address missing"),
 
-                Status = (BO.Enums.OrderStatus)1,
-
                 OrderDate = order?.OrderDate ?? throw new BO.MissingException("OrderDate missing"),
 
                 ShipDate = order?.ShipDate ?? throw new BO.MissingException("ShipDate missing"),
 
                 DeliveryDate = order?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing"),
 
-                Items = null,
-
-                TotalPrice = 0,
-
+               
             };
 
 
-            Dal?.Product.Update(order);
+            Dal?.Order.Update(order);
         }
 
-        return 
-
         catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); }
+
+        return Ask(id);
     }
 
-    public BO.Order updateDelivrery(int id)
-    {
-        throw new NotImplementedException();
-    }
+    //public BO.Order updateDelivrery(int id)  // je ne sais pas ce quil faut faire
+    //{
+    //    DO.Order? order = Dal?.Order.Ask(id);
+    //    if (id <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
+
+
+    //}
 }

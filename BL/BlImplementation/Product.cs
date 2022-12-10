@@ -1,9 +1,5 @@
 ﻿using BlApi;
-using BO;
 using Dal;
-using DO;
-using System.Diagnostics;
-
 
 namespace BlImplementation;
 
@@ -109,10 +105,18 @@ internal class Product : IProduct
         }
     }
 
-    public IEnumerable<BO.ProductForList?> GetProduct()
-    {
-        IEnumerable<BO.ProductForList?> listproduct = new List<ProductForList>();  return listproduct;
-    }
+    public IEnumerable<BO.ProductForList?> GetProduct()=>
+    
+        from product in Dal?.Product.AskAll() //from == a partir de, select new == new
+        select new BO.ProductForList
+        {
+            ProductID = product.ID,
+            Name = product.Name,
+            Price = product.Price,
+            Category = (BO.Enums.Category?)product.MyCategory,
+
+        };
+        
 
 
     public void Update(BO.Product product)
