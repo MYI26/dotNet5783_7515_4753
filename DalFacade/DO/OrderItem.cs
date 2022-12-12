@@ -33,7 +33,7 @@ public struct OrderItem
     /// Price
     /// </summary>
 
-    public double Price { get; set; }
+    public int Price { get; set; }
 
 
     /// <summary>

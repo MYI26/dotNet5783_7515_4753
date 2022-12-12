@@ -44,14 +44,14 @@ internal class DalOrder : IOrder
            throw new DontExistException("the order dont exist");
     }
 
-    public void Update(Order? o1)
+    public void Update(Order o1)
     {
 
         bool found = false;
 
         foreach (Order o in listOrder)
         {
-            if (o.ID == o1?.ID)
+            if (o.ID == o1.ID)
             {
               listOrder[listOrder.IndexOf(o)] = (Order)o1;
               found = true;

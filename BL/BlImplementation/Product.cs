@@ -20,7 +20,7 @@ internal class Product : IProduct
                 ID = product.ProductID,
                 Name = product.Name,
                 Price = product.Price,
-                MyCategory = product.MyCategory,
+                MyCategory = (DO.Enums.Category?)product.MyCategory,
                 InStock = product.InStock,
 
             };
@@ -54,7 +54,7 @@ internal class Product : IProduct
                 ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
                 Name = product?.Name ?? throw new BO.MissingException("Name missing"),
                 Price = product?.Price ?? throw new BO.MissingException("Price missing"),
-                MyCategory = product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing"),
+                MyCategory = (BO.Enums.Category?)(product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing")),
                 InStock = product?.InStock ?? throw new BO.MissingException("quantity in stock missing"),
 
             };
@@ -91,7 +91,7 @@ internal class Product : IProduct
                     ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
                     Name = product?.Name ?? throw new BO.MissingException("Name missing"),
                     Price = product?.Price ?? throw new BO.MissingException("Price missing"),
-                    MyCategory = product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing"),
+                    MyCategory = (BO.Enums.Category?)(product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing")),
                     InStock = product?.InStock ?? throw new BO.MissingException("quantity in stock missing"),
                 };
             }
@@ -130,7 +130,7 @@ internal class Product : IProduct
                 ID = product.ProductID,
                 Name = product.Name,
                 Price = product.Price,
-                MyCategory = product.MyCategory,
+                MyCategory = (DO.Enums.Category?)product.MyCategory,
                 InStock = product.InStock,
 
             };

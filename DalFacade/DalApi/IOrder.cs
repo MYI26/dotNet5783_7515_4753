@@ -10,6 +10,6 @@ public interface IOrder : ICrud<Order>
 {
 
     // List<Order> GetByOrderId(int id);
-    void Update(Order? order);
+    void Update(Order order);
 }
 

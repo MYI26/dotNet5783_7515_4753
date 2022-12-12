@@ -94,9 +94,9 @@ e) Delete Product");
                     break;
 
                 case "c":
-                    IEnumerable<Product> tabProduct = bl.Product.AskAll();
+                    IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProduct();
 
-                    foreach (Product p in tabProduct)
+                    foreach (ProductForList p in tabProduct)
                         Console.WriteLine(p);
 
                     break;
@@ -146,10 +146,10 @@ e) Delete Order Item");
             {
 
                 case "a":
-                    OrderItem OI1 = new OrderItem();
-                    OI1 = fonctionDataOrderItem();
+                    //OrderItem OI1 = new OrderItem();
+                    //OI1 = fonctionDataOrderItem();
 
-                    bl.OrderItem.Add(OI1);
+                    //bl.OrderItem.Add(OI1);
                     break;
 
                 case "b":
@@ -157,25 +157,25 @@ e) Delete Order Item");
                     Console.WriteLine(
 @"Enter ID of the Order Item:");
 
-                    string idOfTheorderitem = Console.ReadLine();
-                    int id1 = int.Parse(idOfTheorderitem);
+                    //string idOfTheorderitem = Console.ReadLine();
+                    //int id1 = int.Parse(idOfTheorderitem);
 
-                    Console.WriteLine(bl.OrderItem.Ask(id1));
+                    //Console.WriteLine(bl.OrderItem.Ask(id1));
                     break;
 
                 case "c":
-                    IEnumerable<OrderItem> taborderitem = bl.OrderItem.AskAll();
+                    //IEnumerable<OrderItem> taborderitem = bl.OrderItem.();
 
-                    foreach (OrderItem orderitem in taborderitem)
-                        Console.WriteLine(orderitem);
+                    //foreach (OrderItem orderitem in taborderitem)
+                    //    Console.WriteLine(orderitem);
 
                     break;
 
                 case "d":
-                    OrderItem p2 = new OrderItem();
-                    p2 = fonctionDataOrderItem();
+                    //OrderItem p2 = new OrderItem();
+                    //p2 = fonctionDataOrderItem();
 
-                    bl.OrderItem.Update(p2);
+                    //bl.OrderItem.Update(p2);
 
                     break;
 
@@ -183,10 +183,10 @@ e) Delete Order Item");
                     Console.WriteLine(
 @"Enter ID of the Order Item:");
 
-                    string idOftheOrderItem2 = Console.ReadLine();
-                    int id2 = int.Parse(idOftheOrderItem2);
+                    //string idOftheOrderItem2 = Console.ReadLine();
+                    //int id2 = int.Parse(idOftheOrderItem2);
 
-                    bl.OrderItem.Delete(id2);
+                    //bl.OrderItem.Delete(id2);
 
                     break;
 
@@ -212,11 +212,11 @@ e) Delete Order");
             {
 
                 case "a":
-                    Order o1 = new Order();
-                    o1 = fonctionDataOrder();
+                    //Order o1 = new Order();
+                    //o1 = fonctionDataOrder();//il n'y a pas de add dans order
 
-                    bl.Order.Add(o1);
-                    break;
+                    //bl.Order.Add(o1);
+                    //break;
 
                 case "b":
 
@@ -230,9 +230,9 @@ e) Delete Order");
                     break;
 
                 case "c":
-                    IEnumerable<Order> tabOrder = bl.Order.AskAll();
+                    IEnumerable<OrderForList?> tabOrder = bl.Order.GetOrder();
 
-                    foreach (Order order in tabOrder)
+                    foreach (OrderForList order in tabOrder)
                         Console.WriteLine(order);
 
                     break;
@@ -241,7 +241,7 @@ e) Delete Order");
                     Order o2 = new Order();
                     o2 = fonctionDataOrder();
 
-                    bl.Order.Update(o2);
+                    bl.Order.update(o2.OrderID);
 
                     break;
 
@@ -249,10 +249,10 @@ e) Delete Order");
                     Console.WriteLine(
 @"Enter ID of the order:");
 
-                    string idOfTheOrder2 = Console.ReadLine();
-                    int id2 = int.Parse(idOfTheOrder2);
+                    //string idOfTheOrder2 = Console.ReadLine(); // il n'y a pas de delete dans bl
+                    //int id2 = int.Parse(idOfTheOrder2);
 
-                    bl.Order.Delete(id2);
+                    //bl.Order.Delete(id2);
 
                     break;
 
@@ -264,8 +264,8 @@ e) Delete Order");
             int ID;
             string Name;
             int Price;
-            Category Category1;
-            Category1 = new Category();
+            BO.Enums.Category Category1;
+            Category1 = new Enums.Category();
             int InStock;
 
             Console.WriteLine("\nadd ID:");
@@ -287,14 +287,14 @@ e) Delete Order");
                 "4: piano\n" +
                 "5: musicBrochures");
             string category = Console.ReadLine();
-            Category1 = (Category)int.Parse(category);
+            Category1 = (Enums.Category)int.Parse(category);
 
             Console.WriteLine("add InStock:");
             string inStock = Console.ReadLine();
             InStock = int.Parse(inStock);
 
-            Product product1 = new Product();
-            product1.ID = ID;
+            BO.Product product1 = new BO.Product();
+            product1.ProductID = ID;
             product1.Name = Name;
             product1.Price = Price;
             product1.MyCategory = Category1;
@@ -305,44 +305,44 @@ e) Delete Order");
 
 
 
-        private static OrderItem fonctionDataOrderItem()
-        {
-            int orderitemid;
-            int productid;
-            int orderid;
-            double price;
-            int amount;
+        //private static OrderItem fonctionDataOrderItem()
+        //{
+        //    int orderitemid;
+        //    int productid;
+        //    int orderid;
+        //    double price;
+        //    int amount;
 
-            Console.WriteLine("\nadd Order Item ID:");
-            string ordid = Console.ReadLine();
-            orderitemid = int.Parse(ordid);
+        //    Console.WriteLine("\nadd Order Item ID:");
+        //    string ordid = Console.ReadLine();
+        //    orderitemid = int.Parse(ordid);
 
-            Console.WriteLine("add Product ID:");
-            string prodid = Console.ReadLine();
-            productid = int.Parse(prodid);
+        //    Console.WriteLine("add Product ID:");
+        //    string prodid = Console.ReadLine();
+        //    productid = int.Parse(prodid);
 
 
-            Console.WriteLine("Order ID:");
-            string odrd = Console.ReadLine();
-            orderid = int.Parse(odrd);
+        //    Console.WriteLine("Order ID:");
+        //    string odrd = Console.ReadLine();
+        //    orderid = int.Parse(odrd);
 
-            Console.WriteLine("price:");
-            string pri = Console.ReadLine();
-            price = int.Parse(pri);
+        //    Console.WriteLine("price:");
+        //    string pri = Console.ReadLine();
+        //    price = int.Parse(pri);
 
-            Console.WriteLine("Amount:");
-            string inStock = Console.ReadLine();
-            amount = int.Parse(inStock);
+        //    Console.WriteLine("Amount:");
+        //    string inStock = Console.ReadLine();
+        //    amount = int.Parse(inStock);
 
-            OrderItem OrderItem1 = new OrderItem();
-            OrderItem1.OrderItemID = orderitemid;
-            OrderItem1.ProductID = productid;
-            OrderItem1.OrderID = orderid;
-            OrderItem1.Price = price;
-            OrderItem1.Amount = amount;
+        //    //OrderItem OrderItem1 = new OrderItem();  // il n'y a pas de orderitem dans bl
+        //    //OrderItem1.OrderItemID = orderitemid;
+        //    //OrderItem1.ProductID = productid;
+        //    //OrderItem1.OrderID = orderid;
+        //    //OrderItem1.Price = price;
+        //    //OrderItem1.Amount = amount;
 
-            return OrderItem1;
-        }
+        //    //return OrderItem1;
+        //}
 
         private static Order fonctionDataOrder()
         {
@@ -372,7 +372,7 @@ e) Delete Order");
             DeliveryDate = ShipDate.AddDays(1);
 
             Order order1 = new Order();
-            order1.ID = ID;
+            order1.OrderID = ID;
             order1.CustomerName = CustomerName;
             order1.CustomerEmail = CustomerEmail;
             order1.CustomerAddress = CustomerAdress;

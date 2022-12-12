@@ -92,7 +92,7 @@ internal static class DataSource
             else                                             // else if i is odd then we stay in the same basket
                 oI.OrderID = listOrderItem[i - 1].OrderID;   //and therefore the basket number does not change
 
-            oI.Price = listProduct[indexSpecificProduct].Price;     //the price corresponds to the product that has been chosen
+            oI.Price = (int)listProduct[indexSpecificProduct].Price;     //the price corresponds to the product that has been chosen
             oI.Amount = random.Next(5,10);      //it does not depend on what we have left in stock for each product in the database
 
             listOrderItem.Add(oI);

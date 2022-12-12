@@ -45,7 +45,7 @@ internal class Order : IOrder
         }
     }
 
-    public IEnumerable<BO.OrderForList?> Ask()=>
+    public IEnumerable<BO.OrderForList?> GetOrder()=>
     
         from order in Dal?.Order.AskAll() //from == a partir de, select new == new
         select new BO.OrderForList
@@ -80,7 +80,7 @@ internal class Order : IOrder
 
     public BO.Order update(int id) // est ce que je recois le id d,un order deja modifier ou pas ?
     {
-        
+
         DO.Order? order = Dal?.Order.Ask(id);
         if (id <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
         try
@@ -104,8 +104,8 @@ internal class Order : IOrder
                
             };
 
-
-            Dal?.Order.Update(order);
+            DO.Order order1 = (DO.Order)order;
+            Dal?.Order.Update(order1);
         }
 
         catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); }

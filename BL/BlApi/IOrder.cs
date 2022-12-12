@@ -16,7 +16,7 @@ public interface IOrder
     /// return order of list of order
     /// </summary>
     /// <returns></returns>
-    IEnumerable<OrderForList?> Ask();
+    IEnumerable<OrderForList?> GetOrder();
 
     /// <summary>
     /// return order of id specific for admin screen and for
