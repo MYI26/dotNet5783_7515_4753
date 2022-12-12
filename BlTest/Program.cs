@@ -27,7 +27,7 @@ namespace BlTest
 
 0) exit
 1) Product
-2) Order Item
+2) Cart
 3) Order");
 
                 string s = Console.ReadLine();
@@ -41,7 +41,7 @@ namespace BlTest
                             fonctionProduct();
                             break;
                         case 2:
-                            fonctionOrderItem();
+                            fonctionCart();
                             break;
                         case 3:
                             fonctionOrder();
@@ -127,18 +127,18 @@ e) Delete Product");
 
 
 
-        private static void fonctionOrderItem()
+        private static void fonctionCart()
         {
             Console.WriteLine(
 
 @"
 Enter:
 
-a) Add Order Item
-b) Ask Order Item
-c) Ask All Order Item 
-d) Update Order Item
-e) Delete Order Item");
+a) Add Cart
+b) Ask Cart
+c) Ask All Cart 
+d) Update Cart
+e) Delete Cart");
 
             string choice2 = Console.ReadLine();
 
@@ -155,7 +155,7 @@ e) Delete Order Item");
                 case "b":
 
                     Console.WriteLine(
-@"Enter ID of the Order Item:");
+@"Enter ID of the cart:");
 
                     //string idOfTheorderitem = Console.ReadLine();
                     //int id1 = int.Parse(idOfTheorderitem);
@@ -181,7 +181,7 @@ e) Delete Order Item");
 
                 case "e":
                     Console.WriteLine(
-@"Enter ID of the Order Item:");
+@"Enter ID of the cart:");
 
                     //string idOftheOrderItem2 = Console.ReadLine();
                     //int id2 = int.Parse(idOftheOrderItem2);
@@ -305,44 +305,44 @@ e) Delete Order");
 
 
 
-        //private static OrderItem fonctionDataOrderItem()
-        //{
-        //    int orderitemid;
-        //    int productid;
-        //    int orderid;
-        //    double price;
-        //    int amount;
+        private static OrderItem fonctionDataCart()
+        {
+            int orderitemid;
+            int productid;
+            int orderid;
+            double price;
+            int amount;
 
-        //    Console.WriteLine("\nadd Order Item ID:");
-        //    string ordid = Console.ReadLine();
-        //    orderitemid = int.Parse(ordid);
+            Console.WriteLine("\nadd Order Item ID:");
+            string ordid = Console.ReadLine();
+            orderitemid = int.Parse(ordid);
 
-        //    Console.WriteLine("add Product ID:");
-        //    string prodid = Console.ReadLine();
-        //    productid = int.Parse(prodid);
+            Console.WriteLine("add Product ID:");
+            string prodid = Console.ReadLine();
+            productid = int.Parse(prodid);
 
 
-        //    Console.WriteLine("Order ID:");
-        //    string odrd = Console.ReadLine();
-        //    orderid = int.Parse(odrd);
+            Console.WriteLine("Order ID:");
+            string odrd = Console.ReadLine();
+            orderid = int.Parse(odrd);
 
-        //    Console.WriteLine("price:");
-        //    string pri = Console.ReadLine();
-        //    price = int.Parse(pri);
+            Console.WriteLine("price:");
+            string pri = Console.ReadLine();
+            price = int.Parse(pri);
 
-        //    Console.WriteLine("Amount:");
-        //    string inStock = Console.ReadLine();
-        //    amount = int.Parse(inStock);
+            Console.WriteLine("Amount:");
+            string inStock = Console.ReadLine();
+            amount = int.Parse(inStock);
 
-        //    //OrderItem OrderItem1 = new OrderItem();  // il n'y a pas de orderitem dans bl
-        //    //OrderItem1.OrderItemID = orderitemid;
-        //    //OrderItem1.ProductID = productid;
-        //    //OrderItem1.OrderID = orderid;
-        //    //OrderItem1.Price = price;
-        //    //OrderItem1.Amount = amount;
+            OrderItem OrderItem1 = new OrderItem();  // il n'y a pas de orderitem dans bl
+            OrderItem1.OrderItemID = orderitemid;
+            OrderItem1.ProductID = productid;
+            OrderItem1.OrderID = orderid;
+            OrderItem1.Price = price;
+            OrderItem1.Amount = amount;
 
-        //    //return OrderItem1;
-        //}
+            return OrderItem1;
+        }
 
         private static Order fonctionDataOrder()
         {
