@@ -46,4 +46,14 @@ public interface IOrder
 
     OrderTracking Tracking(int id);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+
+    public Order updateDelivrery(int id);  // je ne sais pas ce quil faut faire
+
+
+
 }

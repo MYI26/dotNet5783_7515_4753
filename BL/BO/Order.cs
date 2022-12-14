@@ -24,17 +24,17 @@ namespace BO
         public List<OrderItem?>? Items { get; set; }
         public int TotalPrice { get; set; }
 
-        //public override string ToString() => $@"
-        //Order Id={OrderID}
-        //Name of customer{CustomerName}
-        //Email of customer{CustomerEmail}
-        //Adress of customer:{CustomerAddress}
-        //Status:{Status}
-        //Order Date:{OrderDate}
-        //ShipDate{ShipDate}
-        //DeliveryDate{DeliveryDate}
-        //Items:{Items}
-        //Total Price: {TotalPrice}
-        //";
+        public override string ToString() => $@"
+        Order Id: {OrderID}
+        Name of customer: {CustomerName}
+        Email of customer: {CustomerEmail}
+        Adress of customer:{CustomerAddress}
+        Status: {Status}
+        Order Date: {OrderDate}
+        ShipDate: {ShipDate}
+        DeliveryDate: {DeliveryDate}
+        Items: {Items}
+        Total Price: {TotalPrice}
+        ";
     }
 }

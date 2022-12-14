@@ -65,8 +65,8 @@ namespace BlTest
 Enter:
 
 a) Add Product
-b) Ask Product
-c) Ask All Product 
+b) Product list request
+c) Product details request
 d) Update Product
 e) Delete Product");
 
@@ -83,22 +83,22 @@ e) Delete Product");
                     break;
 
                 case "b":
+ IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProduct();
 
-                    Console.WriteLine(
+                    foreach (ProductForList p in tabProduct)
+                        Console.WriteLine(p);
+
+                    break;
+                    
+
+                case "c":
+                   Console.WriteLine(
 @"Enter ID of the product:");
 
                     string idOfTheProduct = Console.ReadLine();
                     int id1 = int.Parse(idOfTheProduct);
 
                     Console.WriteLine(bl.Product.Ask(id1));
-                    break;
-
-                case "c":
-                    IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProduct();
-
-                    foreach (ProductForList p in tabProduct)
-                        Console.WriteLine(p);
-
                     break;
 
                 case "d":
@@ -134,11 +134,9 @@ e) Delete Product");
 @"
 Enter:
 
-a) Add Cart
-b) Ask Cart
-c) Ask All Cart 
-d) Update Cart
-e) Delete Cart");
+a) Add Product Cart
+b) Update Total Sum of Product in the cart
+c) Confirmation Card"); // cart == chario
 
             string choice2 = Console.ReadLine();
 
@@ -146,10 +144,13 @@ e) Delete Cart");
             {
 
                 case "a":
-                    //OrderItem OI1 = new OrderItem();
-                    //OI1 = fonctionDataOrderItem();
+                    Cart OI1 = new Cart();
+                    OI1 = fonctionDataCart();
+                    
+                    string idOfTheOrder = Console.ReadLine();
+                    int id = int.Parse(idOfTheOrder);
 
-                    //bl.OrderItem.Add(OI1);
+                    bl.Cart.AddProduct(OI1 , id);
                     break;
 
                 case "b":
@@ -157,37 +158,16 @@ e) Delete Cart");
                     Console.WriteLine(
 @"Enter ID of the cart:");
 
-                    //string idOfTheorderitem = Console.ReadLine();
-                    //int id1 = int.Parse(idOfTheorderitem);
-
-                    //Console.WriteLine(bl.OrderItem.Ask(id1));
+                    Cart OI2 = new Cart();
+                    bl.Cart.UpdateTotalSum(OI2);
                     break;
 
                 case "c":
-                    //IEnumerable<OrderItem> taborderitem = bl.OrderItem.();
-
-                    //foreach (OrderItem orderitem in taborderitem)
-                    //    Console.WriteLine(orderitem);
-
-                    break;
-
-                case "d":
-                    //OrderItem p2 = new OrderItem();
-                    //p2 = fonctionDataOrderItem();
-
-                    //bl.OrderItem.Update(p2);
-
-                    break;
-
-                case "e":
                     Console.WriteLine(
 @"Enter ID of the cart:");
 
-                    //string idOftheOrderItem2 = Console.ReadLine();
-                    //int id2 = int.Parse(idOftheOrderItem2);
-
-                    //bl.OrderItem.Delete(id2);
-
+                    Cart OI3 = new Cart();                  
+                    bl.Cart.ConfirmationCard(OI3);
                     break;
 
             }
@@ -200,11 +180,11 @@ e) Delete Cart");
 
 Enter:
 
-a) Add Order
-b) Ask Order
-c) Ask All Order
-d) Update Order
-e) Delete Order");
+a) Order list request
+b) Order details request
+c) Order shipping update
+d) Order delivery update
+e) Order Tracking");
 
             string choice2 = Console.ReadLine();
 
@@ -212,11 +192,13 @@ e) Delete Order");
             {
 
                 case "a":
-                    //Order o1 = new Order();
-                    //o1 = fonctionDataOrder();//il n'y a pas de add dans order
 
-                    //bl.Order.Add(o1);
-                    //break;
+                    IEnumerable<BO.OrderForList?> enume = bl.Order.GetOrder();
+
+                    foreach (OrderForList p in enume)
+                        Console.WriteLine(p);
+
+                    break;
 
                 case "b":
 
@@ -230,14 +212,6 @@ e) Delete Order");
                     break;
 
                 case "c":
-                    IEnumerable<OrderForList?> tabOrder = bl.Order.GetOrder();
-
-                    foreach (OrderForList order in tabOrder)
-                        Console.WriteLine(order);
-
-                    break;
-
-                case "d":
                     Order o2 = new Order();
                     o2 = fonctionDataOrder();
 
@@ -245,13 +219,24 @@ e) Delete Order");
 
                     break;
 
+                case "d":
+
+                    Console.WriteLine(
+@"Enter ID of the order:");
+                    string idOfTheOrder2 = Console.ReadLine(); // il n'y a pas de delete dans bl
+                    int id2 = int.Parse(idOfTheOrder2);
+
+                    bl.Order.updateDelivrery(id2);
+
+                    break;
+
                 case "e":
                     Console.WriteLine(
 @"Enter ID of the order:");
 
-                    //string idOfTheOrder2 = Console.ReadLine(); // il n'y a pas de delete dans bl
-                    //int id2 = int.Parse(idOfTheOrder2);
-
+                    string idOfTheOrder3 = Console.ReadLine(); // il n'y a pas de delete dans bl
+                    int id3 = int.Parse(idOfTheOrder3);
+                    bl.Order.Tracking(id3);
                     //bl.Order.Delete(id2);
 
                     break;
@@ -305,43 +290,38 @@ e) Delete Order");
 
 
 
-        private static OrderItem fonctionDataCart()
+        private static Cart fonctionDataCart()
         {
-            int orderitemid;
-            int productid;
-            int orderid;
-            double price;
-            int amount;
+            string customerName;
+            string customerEmail;
+            string customerAdress;
+            List<OrderItem?>? items;
+            int totaleprice;
 
-            Console.WriteLine("\nadd Order Item ID:");
-            string ordid = Console.ReadLine();
-            orderitemid = int.Parse(ordid);
-
-            Console.WriteLine("add Product ID:");
-            string prodid = Console.ReadLine();
-            productid = int.Parse(prodid);
-
-
-            Console.WriteLine("Order ID:");
-            string odrd = Console.ReadLine();
-            orderid = int.Parse(odrd);
+            Console.WriteLine("\nCustomerName:");
+             customerName = Console.ReadLine();
+            
+            Console.WriteLine("\nCustomerEmail:");
+             customerEmail = Console.ReadLine();
+            
+            Console.WriteLine("\nCustomerAdress:");
+            customerAdress = Console.ReadLine();
+           
 
             Console.WriteLine("price:");
             string pri = Console.ReadLine();
-            price = int.Parse(pri);
+            totaleprice = int.Parse(pri);
 
-            Console.WriteLine("Amount:");
-            string inStock = Console.ReadLine();
-            amount = int.Parse(inStock);
+            
 
-            OrderItem OrderItem1 = new OrderItem();  // il n'y a pas de orderitem dans bl
-            OrderItem1.OrderItemID = orderitemid;
-            OrderItem1.ProductID = productid;
-            OrderItem1.OrderID = orderid;
-            OrderItem1.Price = price;
-            OrderItem1.Amount = amount;
+            Cart cart1 = new Cart();
+            cart1.CustomerName = customerName;
+            cart1.CustomerEmail = customerEmail;
+            cart1.CustomerAddress = customerAdress;
+            cart1.TotalPrice = totaleprice;
+           
 
-            return OrderItem1;
+            return cart1;
         }
 
         private static Order fonctionDataOrder()

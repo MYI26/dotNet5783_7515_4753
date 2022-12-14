@@ -113,11 +113,40 @@ internal class Order : IOrder
         return Ask(id);
     }
 
-    //public BO.Order updateDelivrery(int id)  // je ne sais pas ce quil faut faire
-    //{
-    //    DO.Order? order = Dal?.Order.Ask(id);
-    //    if (id <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
+    public BO.Order updateDelivrery(int id)  // je ne sais pas ce quil faut faire
+    {
+        DO.Order? order = Dal?.Order.Ask(id);
+        if (id <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
+        try
+        {
+            order = new() // creat new order
+            {
+                ID = order?.ID ?? throw new BO.MissingException("ID missing"),
+
+                CustomerName = order?.CustomerName ?? throw new BO.MissingException("Name missing"),
+
+                CustomerEmail = order?.CustomerEmail ?? throw new BO.MissingException("Email missing"),
+
+                CustomerAddress = order?.CustomerAddress ?? throw new BO.MissingException("Address missing"),
+
+                OrderDate = order?.OrderDate ?? throw new BO.MissingException("OrderDate missing"),
+
+                ShipDate = order?.ShipDate ?? throw new BO.MissingException("ShipDate missing"),
+
+                DeliveryDate = order?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing"),
 
 
-    //}
+            };
+
+            DO.Order order1 = (DO.Order)order;
+            Dal?.Order.Update(order1);
+        }
+
+        catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); }
+
+        return Ask(id);
+    }
+
+
+
 }

@@ -21,12 +21,12 @@ namespace BO
         public int? PriceOfAll { get; set; }
 
         public override string ToString() => $@"
-        Order Id={Id}
-        Product ID={ProductID}
-        Name of product:{NameProduct}
-        Price:{Price}
-        Quantity in the cart:{QuantityInCart}
-        Total Price:{PriceOfAll}
+        Order Id: {Id}
+        Product ID: {ProductID}
+        Name of product: {NameProduct}
+        Price: {Price}
+        Quantity in the cart: {QuantityInCart}
+        Total Price: {PriceOfAll}
         ";
     }
 }
