@@ -111,11 +111,11 @@ e) Delete Product");
 
                 case "e":
                     Console.WriteLine(
-@"Enter ID of the product:");
+@"Enter ID of the product to delete:");
 
                     string idOfTheProduct2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheProduct2);
-                    ;
+                    
                     bl.Product.Delete(id2);
 
                     break;
@@ -146,17 +146,20 @@ c) Confirmation Card"); // cart == chario
                 case "a":
                     Cart OI1 = new Cart();
                     OI1 = fonctionDataCart();
-                    
-                    string idOfTheOrder = Console.ReadLine();
-                    int id = int.Parse(idOfTheOrder);
+
+                    Console.WriteLine(
+@"Enter ID of the product to add:");
+
+                    string productadd = Console.ReadLine();
+                    int id = int.Parse(productadd); // the id must be valid and reale
 
                     bl.Cart.AddProduct(OI1 , id);
                     break;
 
                 case "b":
 
-                    Console.WriteLine(
-@"Enter ID of the cart:");
+//                    Console.WriteLine(
+//@"Enter ID of the cart:");// cart dont have ab id
 
                     Cart OI2 = new Cart();
                     bl.Cart.UpdateTotalSum(OI2);

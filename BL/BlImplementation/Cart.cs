@@ -52,7 +52,7 @@ internal class Cart : ICart
    
     public void UpdateTotalSum(BO.Cart cart)
     {
-        foreach (OrderItem oi in cart.Items)
+        foreach (OrderItem? oi in cart?.Items)
             cart.TotalPrice = cart.TotalPrice + (oi.Price * oi.QuantityInCart);
 
         //cart.TotalPrice = cart.Items?.Sum(c => c?.Price * c?.QuantityInCart) ?? 0; // the same line that the top
