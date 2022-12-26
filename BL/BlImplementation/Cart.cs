@@ -20,7 +20,7 @@ internal class Cart : ICart
         {
             throw new BO.DontExist("the Id dont valid"); // the exeption if the id of productid dont ewist
         }
-        BO.OrderItem item = cart.Items?.FirstOrDefault(item => item.ProductID == productId)!; // we place in item the fist orderitem of the list orderitem of the cart and place productId in the ProductId of orderitem of item
+        BO.OrderItem item = cart.Items?.FirstOrDefault(item => item.ProductID == productId)!; // we place in item the first orderitem of the list orderitem of the cart and place productId in the ProductId of orderitem of item
         bool newItem = item == null;  // newItem == true if item == null
 
         if(newItem)// if newItem == null 
@@ -50,7 +50,7 @@ internal class Cart : ICart
     }
  
    
-    public void UpdateTotalSum(BO.Cart cart)
+    public void UpdateTotalSum(BO.Cart cart)//update totale summ of product
     {
         foreach (OrderItem? oi in cart?.Items)
             cart.TotalPrice = cart.TotalPrice + (oi.Price * oi.QuantityInCart);

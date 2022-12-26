@@ -21,12 +21,12 @@ namespace DO;
         public enum CustomerName // il n'y a pas que des garcon qui joue de la musique lol
         {
             Eliaou, Yona, Ouriel, Netanel, ELie, Yossef, Salomon, David, Jeremy, Inoun, BarYohai,
-            Raphael, Haim, Daniel, Mickael, Avi, Ruben, Arie, Isaac, Jonas, Dorone
+            Raphael, Haim_Hai, Daniel, Mickael, Avi, Ruben, Arie, Isaac, Jonas, Dorone
         }
         public enum CustomerAdress
         {
             Jerusalem, Efrat, Raanana, KarneiShomron, Hertslia, BatYam, Ashdod, BneBrak, Haifa, GuivatZeev, Rishonle_Zion, Lod, NeveIlan, RamatGan, Tel_Aviv, Givataim,
-            Holon, Ariel, Ashkelon
+            Holon, Ariel, Ashkelon, Mahon_lev
         }
     }
 

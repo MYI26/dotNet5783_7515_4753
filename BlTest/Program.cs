@@ -139,12 +139,12 @@ b) Update Total Sum of Product in the cart
 c) Confirmation Card"); // cart == chario
 
             string choice2 = Console.ReadLine();
-
+            Cart OI1 = new Cart();
             switch (choice2)
             {
 
                 case "a":
-                    Cart OI1 = new Cart();
+
                     OI1 = fonctionDataCart();
 
                     Console.WriteLine(
@@ -161,16 +161,16 @@ c) Confirmation Card"); // cart == chario
 //                    Console.WriteLine(
 //@"Enter ID of the cart:");// cart dont have ab id
 
-                    Cart OI2 = new Cart();
-                    bl.Cart.UpdateTotalSum(OI2);
+                   
+                    bl.Cart.UpdateTotalSum(OI1);
                     break;
 
                 case "c":
-                    Console.WriteLine(
-@"Enter ID of the cart:");
+                    //                    Console.WriteLine(
+                    //@"Enter ID of the cart:");// cart dont have ab id
 
-                    Cart OI3 = new Cart();                  
-                    bl.Cart.ConfirmationCard(OI3);
+                                    
+                    bl.Cart.ConfirmationCard(OI1);
                     break;
 
             }
@@ -311,9 +311,9 @@ e) Order Tracking");
             customerAdress = Console.ReadLine();
            
 
-            Console.WriteLine("price:");
-            string pri = Console.ReadLine();
-            totaleprice = int.Parse(pri);
+            //Console.WriteLine("price:");
+            //string pri = Console.ReadLine();
+            //totaleprice = int.Parse(pri);
 
             
 
@@ -321,7 +321,7 @@ e) Order Tracking");
             cart1.CustomerName = customerName;
             cart1.CustomerEmail = customerEmail;
             cart1.CustomerAddress = customerAdress;
-            cart1.TotalPrice = totaleprice;
+           // cart1.TotalPrice = totaleprice;
            
 
             return cart1;
