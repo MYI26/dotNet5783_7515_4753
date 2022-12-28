@@ -12,7 +12,7 @@ sealed public class Bl : IBl
 
     }
 
-    public IOrder Order { get; set; } = new Order();
-    public IProduct Product { get; set; } = new Product();
-    public ICart Cart { get; set; } = new Cart();
+    public IOrder Order { get; } = new Order();
+    public IProduct Product { get; } = new Product();
+    public ICart Cart { get; } = new Cart();
 }

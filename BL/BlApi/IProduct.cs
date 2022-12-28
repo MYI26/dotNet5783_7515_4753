@@ -10,7 +10,13 @@ public interface IProduct
     /// return product of list of product
     /// </summary>
     /// <returns></returns>
-    IEnumerable<ProductForList?> GetProduct();
+    IEnumerable<ProductForList?> GetProductList();
+
+    /// <summary>
+    /// return product of list of product
+    /// </summary>
+    /// <returns></returns>
+    IEnumerable<ProductItem?> GetProductCatalog();
 
     /// <summary>
     /// return product of id specific for admin screen and for
