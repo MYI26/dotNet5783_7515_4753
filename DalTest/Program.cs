@@ -316,7 +316,7 @@ e) Delete Order");
             int orderitemid;
             int productid;
             int orderid;
-            int price;
+            double price;
             int amount;
 
             Console.WriteLine("\nadd Order Item ID:");

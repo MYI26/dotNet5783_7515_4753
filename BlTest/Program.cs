@@ -1,18 +1,7 @@
-﻿using BlApi;
-using BO;
-using BlImplementation;
-
-namespace BlTest
+﻿namespace BlTest
 {
-    class program
+    internal class Program
     {
-
-
-        private static Bl bl = new Bl();
-        //private static DalProduct DalProduct = new DalProduct();
-        //private static DalOrderItem DalOrderItemt = new DalOrderItem();
-        //private static DalOrder DalOrder = new DalOrder();
-
         static void Main(string[] args)
         {
 

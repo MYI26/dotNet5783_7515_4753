@@ -18,9 +18,9 @@ namespace BO
         public List<Order?>? Items { get; set; } // list of all order
 
         public override string ToString() => $@"
-        Order Id: {OrderID}
-        Status: {Status}
-        Items: {Items}
+        Order Id={OrderID}
+        Status:{Status}
+        Items:{Items}
         ";
     }
 }

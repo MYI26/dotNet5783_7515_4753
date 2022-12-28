@@ -22,18 +22,18 @@ namespace BO
         public DateTime? ShipDate { get; set; }
         public DateTime? DeliveryDate { get; set; }
         public List<OrderItem?>? Items { get; set; }
-        public int TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
 
         public override string ToString() => $@"
-        Order Id: {OrderID}
-        Name of customer: {CustomerName}
-        Email of customer: {CustomerEmail}
+        Order Id={OrderID}
+        Name of customer{CustomerName}
+        Email of customer{CustomerEmail}
         Adress of customer:{CustomerAddress}
-        Status: {Status}
-        Order Date: {OrderDate}
-        ShipDate: {ShipDate}
-        DeliveryDate: {DeliveryDate}
-        Items: {Items}
+        Status:{Status}
+        Order Date:{OrderDate}
+        ShipDate{ShipDate}
+        DeliveryDate{DeliveryDate}
+        Items:{Items}
         Total Price: {TotalPrice}
         ";
     }

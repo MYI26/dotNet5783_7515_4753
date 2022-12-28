@@ -20,10 +20,10 @@ namespace BO
         public double TotalPrice { get; set; }
 
         public override string ToString() => $@"
-        Order Id: {OrderID}
-        Name of customer: {CustomerName}
-        Status: {Status}
-        Amount: {Amount}
+        Order Id={OrderID}
+        Name of customer{CustomerName}
+        Status:{Status}
+        Amount:{Amount}
         Total Price: {TotalPrice}
         ";
     }

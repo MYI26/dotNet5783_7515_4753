@@ -53,7 +53,7 @@ internal class DalOrder : IOrder
         {
             if (o.ID == o1.ID)
             {
-              listOrder[listOrder.IndexOf(o)] = (Order)o1;
+              listOrder[listOrder.IndexOf(o)] = o1;
               found = true;
                break;
             }
