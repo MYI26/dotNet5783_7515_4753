@@ -1,6 +1,9 @@
 ﻿using BO;
 namespace BlApi;
 
+/// <summary>
+/// 
+/// </summary>
 public interface IProduct
 {
     /// <summary>
