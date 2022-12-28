@@ -1,7 +1,5 @@
 ﻿using BlApi;
-using BO;
 using Dal;
-using static DO.Enums;
 
 namespace BlImplementation;
 
@@ -20,31 +18,44 @@ internal class Cart : ICart
         {
             throw new BO.DontExist("the Id dont valid"); // the exeption if the id of productid dont ewist
         }
-        BO.OrderItem item = cart.Items?.FirstOrDefault(item => item.ProductID == productId)!; // we place in item the fist orderitem of the list orderitem of the cart and place productId in the ProductId of orderitem of item
-        bool newItem = item == null;  // newItem == true if item == null
 
-        if(newItem)// if newItem == null 
-        {
-            item = new() // creat new orderitem
+        BO.OrderItem item = new() // creat new orderitem
             {
                 Id = 0,
                 NameProduct = product.Name,
                 Price = product.Price,
-                QuantityInCart = 0,
+                QuantityInCart = 1,
                 PriceOfAll = product.Price,
                 ProductID = productId
             };
-        }
-        if (item.QuantityInCart > product.InStock) { throw new BO.NotEnought("ther is no enough product items in stock"); }// if the consomer want to take mor product that exist
+        cart.Items.Add(item);
+        
+        //BO.OrderItem item = cart.Items?.FirstOrDefault(item => item.ProductID == productId)!; // we place in item the fist orderitem of the list orderitem of the cart and place productId in the ProductId of orderitem of item
+        //bool newItem = item == null;  // newItem == true if item == null
 
-        try
-        {
-            if (newItem) cart.Items?.Add(item);
-        }
-        catch (DalApi.DO.AlreadyExistException) {
+        //if (newItem)// if newItem == null 
+        //{
+        //    item = new() // creat new orderitem
+        //    {
+        //        Id = 0,
+        //        NameProduct = product.Name,
+        //        Price = product.Price,
+        //        QuantityInCart = 0,
+        //        PriceOfAll = product.Price,
+        //        ProductID = productId
+        //    };
+        //}
+        //if (item.QuantityInCart > product.InStock) { throw new BO.NotEnought("ther is no enough product items in stock"); }// if the consomer want to take mor product that exist
 
-            throw new BO.AlreadyExistException("the order item already exist");//the product already exist
-        }
+        //try
+        //{
+        //    if (newItem) cart.Items?.Add(item);
+        //}
+        //catch (DalApi.DO.AlreadyExistException)
+        //{
+
+        //    throw new BO.AlreadyExistException("the order item already exist");//the product already exist
+        //}
 
         return cart;
     }
@@ -52,8 +63,8 @@ internal class Cart : ICart
    
     public void UpdateTotalSum(BO.Cart cart)
     {
-        foreach (OrderItem oi in cart.Items)
-            cart.TotalPrice = cart.TotalPrice + (oi.Price * oi.QuantityInCart);
+        foreach (BO.OrderItem oi in cart.Items)
+            cart.TotalPrice = (double)(cart.TotalPrice + (oi.Price * oi.QuantityInCart));
 
         //cart.TotalPrice = cart.Items?.Sum(c => c?.Price * c?.QuantityInCart) ?? 0; // the same line that the top
     }
@@ -76,7 +87,7 @@ internal class Cart : ICart
 
         }
 
-        catch(DontExist) { throw new BO.DontExist("the Id dont valid"); }
+        catch(BO.DontExist) { throw new BO.DontExist("the Id dont valid"); }
 
 
 

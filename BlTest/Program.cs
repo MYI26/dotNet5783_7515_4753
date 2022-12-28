@@ -57,9 +57,16 @@ namespace BlTest
                 Console.WriteLine("\n");
             }
         }
+
+
+
+
         private static void fonctionProduct()
         {
-            Console.WriteLine(
+            int chart = 1;
+            while (chart != 0)
+            {
+                Console.WriteLine(
 
 @"
 Enter:
@@ -69,65 +76,87 @@ b) Product list request
 c) Product details request
 d) Update Product
 e) Delete Product
-f) Catalog of all Product");
+f) Catalog of all Product
+g) Product details in cart request
+h) exit");
 
-            string choice2 = Console.ReadLine();
+                string choice2 = Console.ReadLine();
 
-            switch (choice2)
-            {
+                switch (choice2)
+                {
 
-                case "a":
-                    Product p1 = new Product();
-                    p1 = fonctionDataProduct();
+                    case "a":
+                        Product p1 = new Product();
+                        p1 = fonctionDataProduct();
 
-                    bl.Product.Add(p1);
-                    break;
+                        bl.Product.Add(p1);
+                        break;
 
-                case "b":
- IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProductList();
+                    case "b":
+                        IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProductList();
 
-                    foreach (ProductForList p in tabProduct)
-                        Console.WriteLine(p);
+                        foreach (ProductForList p in tabProduct)
+                            Console.WriteLine(p);
 
-                    break;
-                    
+                        break;
 
-                case "c":
-                   Console.WriteLine(
-@"Enter ID of the product:");
 
-                    string idOfTheProduct = Console.ReadLine();
-                    int id1 = int.Parse(idOfTheProduct);
+                    case "c":
+                        Console.WriteLine(
+     @"Enter ID of the product:");
 
-                    Console.WriteLine(bl.Product.Ask(id1));
-                    break;
+                        string idOfTheProduct = Console.ReadLine();
+                        int id1 = int.Parse(idOfTheProduct);
 
-                case "d":
-                    Product p2 = new Product();
-                    p2 = fonctionDataProduct();
+                        Console.WriteLine(bl.Product.Ask(id1));
+                        break;
 
-                    bl.Product.Update(p2);
+                    case "d":
+                        Product p2 = new Product();
+                        p2 = fonctionDataProduct();
 
-                    break;
+                        bl.Product.Update(p2);
 
-                case "e":
-                    Console.WriteLine(
-@"Enter ID of the product:");
+                        break;
 
-                    string idOfTheProduct2 = Console.ReadLine();
-                    int id2 = int.Parse(idOfTheProduct2);
-                    ;
-                    bl.Product.Delete(id2);
+                    case "e":
+                        Console.WriteLine(
+    @"Enter ID of the product:");
 
-                    break;
+                        string idOfTheProduct2 = Console.ReadLine();
+                        int id2 = int.Parse(idOfTheProduct2);
+                        ;
+                        bl.Product.Delete(id2);
 
-                case "f":
-                    IEnumerable<BO.ProductItem?> tabProduct1 = bl.Product.GetProductCatalog();
+                        break;
 
-                    foreach (ProductItem p in tabProduct1)
-                        Console.WriteLine(p);
+                    case "f":
+                        IEnumerable<BO.ProductItem?> tabProduct1 = bl.Product.GetProductCatalog();
 
-                    break;
+                        foreach (ProductItem p in tabProduct1)
+                            Console.WriteLine(p);
+
+                        break;
+
+
+                    case "g":
+                        Console.WriteLine(
+     @"Enter ID of the product:");
+
+                        string idOfTheProduct3 = Console.ReadLine();
+                        int id3 = int.Parse(idOfTheProduct3);
+
+                        Console.WriteLine(
+    @"Enter details of cart:");
+
+                        Cart OI1 = new Cart();
+                        OI1 = fonctionDataCart();
+
+                        Console.WriteLine(bl.Product.Ask(id3, OI1));
+                        break;
+
+                    case "h": chart = 0; break;
+                }
 
             }
 
@@ -135,55 +164,67 @@ f) Catalog of all Product");
 
 
 
-
         private static void fonctionCart()
         {
-            Console.WriteLine(
+            int chart = 1;
+            Cart OI1 = new Cart();
+            OI1 = fonctionDataCart();
+            while (chart != 0)
+            {
+                Console.WriteLine(
 
 @"
 Enter:
 
 a) Add Product Cart
 b) Update Total Sum of Product in the cart
-c) Confirmation Card"); // cart == chario
+c) Confirmation Card
+d) exit "); // cart == chario
 
-            string choice2 = Console.ReadLine();
-            Cart OI1 = new Cart();
-            switch (choice2)
-            {
+                string choice2 = Console.ReadLine();
+                
+                switch (choice2)
+                {
 
-                case "a":
-                   
-                    OI1 = fonctionDataCart();
-                    
-                    string idOfTheOrder = Console.ReadLine();
-                    int id = int.Parse(idOfTheOrder);
+                    case "a":
 
-                    bl.Cart.AddProduct(OI1 , id);
-                    break;
+                        
 
-                case "b":
+                        Console.WriteLine(
+    @"Enter ID of the product to add to cart:");
 
-                    Console.WriteLine(
-@"Enter ID of the cart:");
+                        string idOfTheOrder = Console.ReadLine();
+                        int id = int.Parse(idOfTheOrder);
 
-                    
-                    bl.Cart.UpdateTotalSum(OI1);
-                    break;
+                        Console.WriteLine(bl.Cart.AddProduct(OI1, id));
+                        break;
 
-                case "c":
-                    Console.WriteLine(
-@"Enter ID of the cart:");
+                    case "b":
 
-                                     
-                    bl.Cart.ConfirmationCard(OI1);
-                    break;
+                        bl.Cart.UpdateTotalSum(OI1);
+                        break;
 
+                    case "c":
+                        bl.Cart.ConfirmationCard(OI1);
+                        break;
+
+                    case "d": chart = 0; break;
+
+                }
             }
+
+
         }
+
+
+
         private static void fonctionOrder()
         {
-            Console.WriteLine(
+
+            int chart = 1;
+            while (chart != 0)
+            {
+                Console.WriteLine(
 
 @"
 
@@ -193,63 +234,67 @@ a) Order list request
 b) Order details request
 c) Order shipping update
 d) Order delivery update
-e) Order Tracking");
+e) Order Tracking
+f) exit ");
 
-            string choice2 = Console.ReadLine();
+                string choice2 = Console.ReadLine();
 
-            switch (choice2)
-            {
+                switch (choice2)
+                {
 
-                case "a":
+                    case "a":
 
-                    IEnumerable<BO.OrderForList?> enume = bl.Order.GetOrder();
+                        IEnumerable<BO.OrderForList?> enume = bl.Order.GetOrder();
 
-                    foreach (OrderForList p in enume)
-                        Console.WriteLine(p);
+                        foreach (OrderForList p in enume)
+                            Console.WriteLine(p);
 
-                    break;
+                        break;
 
-                case "b":
+                    case "b":
 
-                    Console.WriteLine(
-@"Enter ID of the order:");
+                        Console.WriteLine(
+    @"Enter ID of the order:");
 
-                    string idOfTheOrder = Console.ReadLine();
-                    int id1 = int.Parse(idOfTheOrder);
+                        string idOfTheOrder = Console.ReadLine();
+                        int id1 = int.Parse(idOfTheOrder);
 
-                    Console.WriteLine(bl.Order.Ask(id1));
-                    break;
+                        Console.WriteLine(bl.Order.Ask(id1));
+                        break;
 
-                case "c":
-                    Order o2 = new Order();
-                    o2 = fonctionDataOrder();
+                    case "c":
+                        Order o2 = new Order();
+                        o2 = fonctionDataOrder();
 
-                    bl.Order.update(o2.OrderID);
+                        bl.Order.update(o2.OrderID);
 
-                    break;
+                        break;
 
-                case "d":
+                    case "d":
 
-                    Console.WriteLine(
-@"Enter ID of the order:");
-                    string idOfTheOrder2 = Console.ReadLine(); // il n'y a pas de delete dans bl
-                    int id2 = int.Parse(idOfTheOrder2);
+                        Console.WriteLine(
+    @"Enter ID of the order:");
+                        string idOfTheOrder2 = Console.ReadLine(); // il n'y a pas de delete dans bl
+                        int id2 = int.Parse(idOfTheOrder2);
 
-                    bl.Order.updateDelivrery(id2);
+                        bl.Order.updateDelivrery(id2);
 
-                    break;
+                        break;
 
-                case "e":
-                    Console.WriteLine(
-@"Enter ID of the order:");
+                    case "e":
+                        Console.WriteLine(
+    @"Enter ID of the order:");
 
-                    string idOfTheOrder3 = Console.ReadLine(); // il n'y a pas de delete dans bl
-                    int id3 = int.Parse(idOfTheOrder3);
-                    bl.Order.Tracking(id3);
-                    //bl.Order.Delete(id2);
+                        string idOfTheOrder3 = Console.ReadLine(); // il n'y a pas de delete dans bl
+                        int id3 = int.Parse(idOfTheOrder3);
+                        bl.Order.Tracking(id3);
+                        //bl.Order.Delete(id2);
 
-                    break;
+                        break;
 
+                        case"f": chart = 0; break;
+
+                }
             }
         }
 
@@ -304,8 +349,8 @@ e) Order Tracking");
             string customerName;
             string customerEmail;
             string customerAdress;
-            List<OrderItem?>? items;
-            int totaleprice;
+            //List<OrderItem?>? items;
+            //int totaleprice;
 
             Console.WriteLine("\nCustomerName:");
              customerName = Console.ReadLine();

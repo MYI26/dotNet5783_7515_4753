@@ -18,7 +18,7 @@ namespace BO
         public double? Price { get; set; }
         public Category? Category { get; set; }
         public bool Availability { get; set; } // disponibilite
-        public int QuantityInCart { get; set; }
+        public int? QuantityInCart { get; set; }
 
         public override string ToString() => $@"
         Product ID: {ProductID}: {Name}, 
