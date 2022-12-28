@@ -21,7 +21,7 @@ namespace BO
         public int QuantityInCart { get; set; }
 
         public override string ToString() => $@"
-        Product ID={ProductID}: {Name}, 
+        Product ID: {ProductID}: {Name}, 
     	Price: {Price}
         category - {Category}
     	Availability: {Availability}

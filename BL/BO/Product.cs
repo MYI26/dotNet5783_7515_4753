@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static DO.Enums;
+using static BO.Enums;
 
 namespace BO;
 
@@ -13,12 +13,12 @@ public class Product
 {
     public int ProductID { get; set; }
     public string? Name { get; set; }    
-    public int Price { get; set; }
+    public int? Price { get; set; }
     public Category? MyCategory { get; set; }
-    public int InStock { get; set; }
+    public int? InStock { get; set; }
 
     public override string ToString() => $@"
-        Product ID={ProductID}: {Name},
+        Product ID: {ProductID}: {Name},
     	Price: {Price}
         category - {MyCategory}
     	Amount in stock: {InStock}
