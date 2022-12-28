@@ -1,13 +1,18 @@
 ﻿using BlApi;
 namespace BlImplementation;
 
-internal class Bl : IBl
+sealed public class Bl : IBl
 {
 
-    public Bl() {}
+    public Bl() {
+
+    IOrder Order  = new Order();
+    IProduct Product  = new Product();
+    ICart Cart = new Cart();
+
+    }
+
     public IOrder Order { get; set; } = new Order();
     public IProduct Product { get; set; } = new Product();
     public ICart Cart { get; set; } = new Cart();
-
-
 }
