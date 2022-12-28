@@ -2,7 +2,7 @@
 namespace BlApi;
 
 /// <summary>
-/// 
+///  interface IProduct
 /// </summary>
 public interface IProduct
 {
@@ -17,7 +17,7 @@ public interface IProduct
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Product GetById(int id); 
+    Product Ask(int id); 
 
     /// <summary>
     /// For a buyer screen - from the catalog
@@ -25,7 +25,7 @@ public interface IProduct
     /// <param name="id"></param>
     /// <param name="cart1"></param>
     /// <returns></returns>
-    Product GetByid(int id,Cart cart1);
+    Product Ask(int id,Cart cart1);
 
     // <summary>
     /// add product. specific for admin screen and for
