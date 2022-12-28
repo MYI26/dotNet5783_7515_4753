@@ -44,7 +44,8 @@ internal class DalProduct : IProduct
             found = true;
             break;
         }
-        if (found = !true)
+
+        if (found == false)
             throw new DontExistException("the product dont exist");                                                                                        //
        
     }
@@ -63,7 +64,8 @@ internal class DalProduct : IProduct
                 break;
             }
         }
-        if (found = !true)
+
+        if (found != true)
             throw new DontExistException("the product dont exist");
 
     }

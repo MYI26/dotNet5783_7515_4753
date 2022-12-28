@@ -21,7 +21,7 @@ namespace DO;
         public enum CustomerName // il n'y a pas que des garcon qui joue de la musique lol
         {
             Eliaou, Yona, Ouriel, Netanel, ELie, Yossef, Salomon, David, Jeremy, Inoun, BarYohai,
-            Raphael, Haim, Daniel, Mickael, Avi, Ruben, Arie, Isaac, Jonas, Dorone
+            Raphael, Haim_Hai, Daniel, Mickael, Avi, Ruben, Arie, Isaac, Jonas, Dorone
         }
         public enum CustomerAdress
         {
