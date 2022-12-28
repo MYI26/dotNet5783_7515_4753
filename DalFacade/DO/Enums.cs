@@ -26,7 +26,7 @@ namespace DO;
         public enum CustomerAdress
         {
             Jerusalem, Efrat, Raanana, KarneiShomron, Hertslia, BatYam, Ashdod, BneBrak, Haifa, GuivatZeev, Rishonle_Zion, Lod, NeveIlan, RamatGan, Tel_Aviv, Givataim,
-            Holon, Ariel, Ashkelon, Mahon_lev
+            Holon, Ariel, Ashkelon
         }
     }
 
