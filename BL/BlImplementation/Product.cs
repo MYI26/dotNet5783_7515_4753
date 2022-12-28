@@ -20,7 +20,7 @@ internal class Product : IProduct
                 ID = product.ProductID,
                 Name = product.Name,
                 Price = product.Price,
-                MyCategory = (DO.Enums.Category?)product.MyCategory,
+                MyCategory = (DO.Enums.Category)product.MyCategory,
                 InStock = product.InStock,
 
             };
@@ -105,7 +105,7 @@ internal class Product : IProduct
         }
     }
 
-    public IEnumerable<BO.ProductForList?> GetProduct()=>
+    public IEnumerable<BO.ProductForList?> GetProductList()=>
     
         from product in Dal?.Product.AskAll() //from == a partir de, select new == new
         select new BO.ProductForList
@@ -116,8 +116,21 @@ internal class Product : IProduct
             Category = (BO.Enums.Category?)product.MyCategory,
 
         };
-        
 
+    public IEnumerable<BO.ProductItem?> GetProductCatalog() =>
+
+        from product in Dal?.Product.AskAll() //from == a partir de, select new == new
+        select new BO.ProductItem
+        {
+            ProductID = product.ID,
+            Name = product.Name,
+            Price = product.Price,
+            Category = (BO.Enums.Category?)product.MyCategory,
+            Availability = true,
+            QuantityInCart = product.InStock,
+
+
+        };
 
     public void Update(BO.Product product)
     {
@@ -130,7 +143,7 @@ internal class Product : IProduct
                 ID = product.ProductID,
                 Name = product.Name,
                 Price = product.Price,
-                MyCategory = (DO.Enums.Category?)product.MyCategory,
+                MyCategory = (DO.Enums.Category)product.MyCategory,
                 InStock = product.InStock,
 
             };

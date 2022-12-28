@@ -68,7 +68,8 @@ a) Add Product
 b) Product list request
 c) Product details request
 d) Update Product
-e) Delete Product");
+e) Delete Product
+f) Catalog of all Product");
 
             string choice2 = Console.ReadLine();
 
@@ -83,7 +84,7 @@ e) Delete Product");
                     break;
 
                 case "b":
- IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProduct();
+ IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProductList();
 
                     foreach (ProductForList p in tabProduct)
                         Console.WriteLine(p);
@@ -120,6 +121,14 @@ e) Delete Product");
 
                     break;
 
+                case "f":
+                    IEnumerable<BO.ProductItem?> tabProduct1 = bl.Product.GetProductCatalog();
+
+                    foreach (ProductItem p in tabProduct1)
+                        Console.WriteLine(p);
+
+                    break;
+
             }
 
         }
@@ -139,12 +148,12 @@ b) Update Total Sum of Product in the cart
 c) Confirmation Card"); // cart == chario
 
             string choice2 = Console.ReadLine();
-
+            Cart OI1 = new Cart();
             switch (choice2)
             {
 
                 case "a":
-                    Cart OI1 = new Cart();
+                   
                     OI1 = fonctionDataCart();
                     
                     string idOfTheOrder = Console.ReadLine();
@@ -158,16 +167,16 @@ c) Confirmation Card"); // cart == chario
                     Console.WriteLine(
 @"Enter ID of the cart:");
 
-                    Cart OI2 = new Cart();
-                    bl.Cart.UpdateTotalSum(OI2);
+                    
+                    bl.Cart.UpdateTotalSum(OI1);
                     break;
 
                 case "c":
                     Console.WriteLine(
 @"Enter ID of the cart:");
 
-                    Cart OI3 = new Cart();                  
-                    bl.Cart.ConfirmationCard(OI3);
+                                     
+                    bl.Cart.ConfirmationCard(OI1);
                     break;
 
             }
@@ -308,9 +317,9 @@ e) Order Tracking");
             customerAdress = Console.ReadLine();
            
 
-            Console.WriteLine("price:");
-            string pri = Console.ReadLine();
-            totaleprice = int.Parse(pri);
+            //Console.WriteLine("price:");
+            //string pri = Console.ReadLine();
+            //totaleprice = int.Parse(pri);
 
             
 
@@ -318,7 +327,7 @@ e) Order Tracking");
             cart1.CustomerName = customerName;
             cart1.CustomerEmail = customerEmail;
             cart1.CustomerAddress = customerAdress;
-            cart1.TotalPrice = totaleprice;
+            //cart1.TotalPrice = totaleprice;
            
 
             return cart1;
