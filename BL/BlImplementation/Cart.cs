@@ -58,14 +58,6 @@ internal class Cart : ICart
         //cart.TotalPrice = cart.Items?.Sum(c => c?.Price * c?.QuantityInCart) ?? 0; // the same line that the top
     }
  
-   
-    public void UpdateTotalSum(BO.Cart cart)//update totale summ of product
-    {
-        foreach (OrderItem? oi in cart?.Items)
-            cart.TotalPrice = cart.TotalPrice + (oi.Price * oi.QuantityInCart);
-
-        //cart.TotalPrice = cart.Items?.Sum(c => c?.Price * c?.QuantityInCart) ?? 0; // the same line that the top
-    }
 
     public void ConfirmationCard(BO.Cart cart)
     {
