@@ -99,7 +99,12 @@ internal class DalProduct : IProduct
     //    return enumerable;//return IEnumerator
     //}
 
-    public IEnumerable<Product> AskAll(Func<Product, bool> filter = null) { IEnumerable<Product> listproduct = listProduct; return listproduct;  }        
+    public IEnumerable<Product> AskAll(Func<Product, bool> filter = null) {
+
+        IEnumerable<Product> listproduct = listProduct;
+
+        return listproduct;
+    }        
 
 }
         

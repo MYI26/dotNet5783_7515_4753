@@ -9,7 +9,7 @@ public interface IProduct
     /// <summary>
     /// return product of list of product
     /// </summary>
-    /// <returns></returns>
+    /// <returns></returns> // for director application
     IEnumerable<ProductForList?> GetProductList();
 
     /// <summary>
@@ -31,7 +31,7 @@ public interface IProduct
     /// <param name="id"></param>
     /// <param name="cart1"></param>
     /// <returns></returns>
-    Product Ask(int id,Cart cart1);
+    ProductItem Ask(int id,Cart cart1);
 
     // <summary>
     /// add product. specific for admin screen and for
