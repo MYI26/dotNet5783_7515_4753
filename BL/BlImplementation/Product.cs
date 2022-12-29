@@ -41,9 +41,10 @@ internal class Product : IProduct
         try
         {
             Dal?.Product.Delete(id);
+            
         }
 
-        catch(DalApi.DO.DontExistException) { throw new BO.DontExistException("the product dont exist"); }
+        catch(Exception e) { throw e; }
 
     }
 
