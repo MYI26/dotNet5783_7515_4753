@@ -177,9 +177,9 @@ h) exit");
 Enter:
 
 a) Add Product Cart
-b) Update Total Sum of Product in the cart
+b) Details cart
 c) Confirmation Card
-d) exit "); // cart == chario
+d) exit"); // cart == chario
 
                 string choice2 = Console.ReadLine();
                 
@@ -188,20 +188,24 @@ d) exit "); // cart == chario
 
                     case "a":
 
-                        
-
                         Console.WriteLine(
     @"Enter ID of the product to add to cart:");
 
                         string idOfTheOrder = Console.ReadLine();
                         int id = int.Parse(idOfTheOrder);
 
-                        Console.WriteLine(bl.Cart.AddProduct(OI1, id));
+                       bl.Cart.AddProduct(OI1, id);
                         break;
 
                     case "b":
 
-                        bl.Cart.UpdateTotalSum(OI1);
+                        Console.WriteLine(OI1);
+
+                        foreach(OrderItem oi in OI1.Items)
+                        {
+                            Console.WriteLine(oi);
+                        }
+
                         break;
 
                     case "c":
