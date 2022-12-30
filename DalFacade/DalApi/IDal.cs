@@ -1,11 +1,17 @@
-﻿namespace DalApi;
+﻿
+namespace DalApi;
 
 
+/// <summary>
+/// general interface for the first data layer, it contains the three interfaces of the three entities
+/// </summary>
 public interface IDal
 {
 
-    IOrder Order { get; } 
+    IProduct Product { get; }
+
+    IOrder Order { get; }
+
     IOrderItem OrderItem { get; }
-    IProduct Product { get; } 
 
 }

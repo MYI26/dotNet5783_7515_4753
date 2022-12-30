@@ -352,7 +352,6 @@ e) Delete Order");
 
         private static Order fonctionDataOrder()
         {
-            int ID;
             string CustomerName;
             string CustomerEmail;
             string CustomerAdress;

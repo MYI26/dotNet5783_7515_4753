@@ -1,54 +1,48 @@
 ﻿
 namespace DO;
 
+
 /// <summary>
 /// Structure for Order Item
 /// </summary>
-
 public struct OrderItem
 {
+
     /// <summary>
     /// Order Item ID
     /// </summary>
-
-    public int OrderItemID { get; set; }
+    public int? ID { get; set; }
 
 
     /// <summary>
     /// Product ID
+    /// it corresponds to the ID of the Product structure
     /// </summary>
-
-
-    public int ProductID { get; set; }
+    public int? ProductID { get; set; }
 
 
     /// <summary>
-    /// ID of the Order the same in the struct Order
+    /// ID of the Order
+    /// it corresponds to the ID of the Order structure
     /// </summary>
+    public int? OrderID { get; set; }
 
-    public int OrderID { get; set; }
+    /// <summary>
+    /// Price of the orderitem
+    /// </summary>
+    public int? Price { get; set; }
+
+    /// <summary>
+    /// Amount of the orderitem
+    /// </summary>
+    public int? Amount { get; set; }
 
 
     /// <summary>
-    /// Price
+    /// OrderItem ToString
     /// </summary>
-
-    public int Price { get; set; }
-
-
-    /// <summary>
-    /// Amount
-    /// </summary>
-
-    public int Amount { get; set; }
-
-
-    /// <summary>
-    /// Order Item ToString
-    /// </summary>
-
     public override string ToString() => $@"
-        Order Item ID={OrderItemID} 
+        Order Item ID={ID} 
         Product ID={ProductID}
         Order ID= {OrderID}
     	Price: {Price}

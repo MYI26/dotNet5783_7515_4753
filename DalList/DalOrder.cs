@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using DalApi.DO;
@@ -9,6 +10,10 @@ using System.Collections.Generic;
 
 namespace Dal;
 
+
+/// <summary>
+///the implementation of functions for the Order entity
+/// </summary>
 internal class DalOrder : IOrder 
 {
 
@@ -17,11 +22,13 @@ internal class DalOrder : IOrder
 
         foreach (Order o in listOrder)
         {
-            if (o.ID== o1.ID)
+            if (o.ID == o1.ID)
             {
-               throw new AlreadyExistException($"the order whith ID: {o1.ID} already exist");
+               throw new AlreadyExistException($"the order with ID: {o1.ID} already exist");
             }
         }
+
+        o1.ID = Config.NextSerialNumber;    
 
         listOrder.Add(o1);
 
@@ -63,7 +70,7 @@ internal class DalOrder : IOrder
 
     }
 
-    public Order Ask(int id)
+    public Order Get(int id)
     {
        
         foreach (Order o in listOrder)
@@ -91,6 +98,6 @@ internal class DalOrder : IOrder
     //    return enumerable; //return IEnumerator
     //}
 
-    public IEnumerable<Order> AskAll(Func<Order, bool> filter = null) { IEnumerable<Order> order = listOrder; return order; }
+    public IEnumerable<Order> GetAll(Func<Order, bool> filter = null) { IEnumerable<Order> order = listOrder; return order; }
 
 }
