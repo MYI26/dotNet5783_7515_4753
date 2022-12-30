@@ -20,15 +20,14 @@ internal class DalOrder : IOrder
     public int Add(Order o1)
     {
 
-        foreach (Order o in listOrder)
-        {
-            if (o.ID == o1.ID)
-            {
-               throw new AlreadyExistException($"the order with ID: {o1.ID} already exist");
-            }
-        }
-
-        o1.ID = Config.NextSerialNumber;    
+    //    foreach (Order o in listOrder)
+    //    {
+    //        if (o.ID == o1.ID)
+    //        {
+    //           throw new AlreadyExistException($"the order whith ID: {o1.ID} already exist");
+    //        }
+    //    }
+        o1.ID = Config.NextSerialNumber;
 
         listOrder.Add(o1);
 

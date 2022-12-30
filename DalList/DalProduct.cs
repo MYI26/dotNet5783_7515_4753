@@ -27,6 +27,7 @@ internal class DalProduct : IProduct
         }
 
         listProduct.Add(p1);
+        
 
         return p1.ID;      
     }
@@ -36,14 +37,7 @@ internal class DalProduct : IProduct
     {
 
         bool found = false;
-
-        foreach (Product p in listProduct)
-        {
-            if (p.ID == id)
-              listProduct.Remove(p);
-            found = true;
-            break;
-        }
+        foreach(Product p in listProduct) { if(p.ID == id) { listProduct.Remove(p); found = true; } }
 
         if (found == false)
             throw new DontExistException("the product dont exist");                                                                                        //

@@ -352,6 +352,7 @@ e) Delete Order");
 
         private static Order fonctionDataOrder()
         {
+            
             string CustomerName;
             string CustomerEmail;
             string CustomerAdress;
@@ -359,9 +360,7 @@ e) Delete Order");
             DateTime ShipDate;
             DateTime DeliveryDate;
 
-            Console.WriteLine("\nadd ID:");
-            string id = Console.ReadLine();
-            ID = int.Parse(id);
+            
 
             Console.WriteLine("\nadd CustomerName:");
             CustomerName = Console.ReadLine();
@@ -377,7 +376,7 @@ e) Delete Order");
             DeliveryDate = ShipDate.AddDays(1);
 
             Order order1 = new Order();
-            order1.ID = ID;
+            
             order1.CustomerName = CustomerName;
             order1.CustomerEmail = CustomerEmail;
             order1.CustomerAddress = CustomerAdress;

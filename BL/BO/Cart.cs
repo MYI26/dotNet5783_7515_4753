@@ -23,7 +23,7 @@ namespace BO
         Name of customer: {CustomerName}
         Adress of customer: {CustomerAddress}
         Email of customer: {CustomerEmail}
-        Items: {Items.Count}
+        Items: {Items?.Count}
         Total Price: {TotalPrice}
         ";
     }
