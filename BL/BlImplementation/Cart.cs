@@ -14,7 +14,7 @@ internal class Cart : ICart
         if (cart == null) throw new BO.ErrorDontExist("Cart dont exist");
         if (cart.Items == null) cart.Items = new();  // creat new List<OrderItem?>
         DO.Product product; // creation of new product Product in DO
-        try { product = Dal.Product.Ask(productId); } // place the product with id productId in the new product
+        try { product = Dal.Product.Get(productId); } // place the product with id productId in the new product
         catch (DalApi.DO.DontExistException) // the Exeption that ask can return 
         {
             throw new BO.DontExist("the Id dont valid"); // the exeption if the id of productid dont ewist
@@ -119,12 +119,12 @@ internal class Cart : ICart
             DO.OrderItem orderitemdo = new DO.OrderItem();
             // oi = cart.Items[index++];
             orderitemdo.OrderID = temp;
-            orderitemdo.OrderItemID = (int)oi.Id;
+            orderitemdo.ID = (int)oi.Id;
             orderitemdo.ProductID = (int)oi.ProductID;
-            product = Dal.Product.Ask(orderitemdo.ProductID);
+            product = Dal.Product.Get(orderitemdo.ProductID);
             product.InStock--;
             Dal.Product.Update(product);
-            orderitemdo.Price = (int)cart.TotalPrice;
+            orderitemdo.Price = 0;
             orderitemdo.Amount = cart.Items.Count;
 
 

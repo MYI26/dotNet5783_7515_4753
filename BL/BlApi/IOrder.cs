@@ -23,7 +23,7 @@ public interface IOrder
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Order Ask(int id);
+    Order Get(int id);
 
     /// <summary>
     /// 

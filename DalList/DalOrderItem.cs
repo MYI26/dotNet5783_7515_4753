@@ -16,15 +16,15 @@ internal class DalOrderItem : IOrderItem
 
         foreach (OrderItem oI in listOrderItem)
         {
-            if (oI.OrderItemID == oI1.OrderItemID)
+            if (oI.ID == oI1.ID)
             {
-              throw new AlreadyExistException($"the order item whith ID: {oI1.OrderItemID} already exist");
+              throw new AlreadyExistException($"the order item whith ID: {oI1.ID} already exist");
             }
         }
 
         listOrderItem.Add(oI1);
 
-        return oI1.OrderItemID;
+        return oI1.ID;
     }
 
     public void Delete(int id)
@@ -34,7 +34,7 @@ internal class DalOrderItem : IOrderItem
 
         foreach (OrderItem oI in listOrderItem)
         {
-            if (oI.OrderItemID == id)
+            if (oI.ID == id)
                 listOrderItem.Remove(oI);
             found = true;
             break;
@@ -50,7 +50,7 @@ internal class DalOrderItem : IOrderItem
 
     foreach (OrderItem oI in listOrderItem)
         {
-            if (oI.OrderItemID == oI1.OrderItemID)
+            if (oI.ID == oI1.ID)
             {
                 listOrderItem[listOrderItem.IndexOf(oI)] = oI1;
                 break;
@@ -60,12 +60,12 @@ internal class DalOrderItem : IOrderItem
             throw new DontExistException("the order item dont exist");
     }
 
-    public OrderItem Ask(int id)
+    public OrderItem Get(int id)
     {
      
         foreach (OrderItem oI in listOrderItem)
         {
-            if (oI.OrderItemID == id)
+            if (oI.ID == id)
             {
                 return oI;
             }
@@ -87,6 +87,6 @@ internal class DalOrderItem : IOrderItem
     //    return enumerable;//return IEnumerator
     //}
 
-    public IEnumerable<OrderItem> AskAll(Func<OrderItem, bool> filter = null) { IEnumerable<OrderItem> orderitem = listOrderItem; return orderitem; }
+    public IEnumerable<OrderItem> GetAll(Func<OrderItem, bool> filter = null) { IEnumerable<OrderItem> orderitem = listOrderItem; return orderitem; }
 
 }
