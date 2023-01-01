@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using BO;
 using BlImplementation;
+using System.Security.Cryptography;
 
 namespace BlTest
 {
@@ -110,7 +111,7 @@ h) exit");
                             string idOfTheProduct = Console.ReadLine();
                             int id1 = int.Parse(idOfTheProduct);
 
-                            Console.WriteLine(bl.Product.Ask(id1));
+                            Console.WriteLine(bl.Product.Get(id1));
                             break;
 
                         case "d":
@@ -154,7 +155,7 @@ h) exit");
                             Cart OI1 = new Cart();
                             OI1 = fonctionDataCart();
 
-                            Console.WriteLine(bl.Product.Ask(id3, OI1));
+                            Console.WriteLine(bl.Product.Get(id3, OI1));
                             break;
 
                         case "h": chart = 0; break;
@@ -282,14 +283,22 @@ f) exit ");
                             string idOfTheOrder = Console.ReadLine();
                             int id1 = int.Parse(idOfTheOrder);
 
-                            Console.WriteLine(bl.Order.Ask(id1));
+                            Console.WriteLine(bl.Order.Get(id1));
+
+                            foreach (OrderItem oi in bl.Order.Get(id1).Items)
+                            {
+                                Console.WriteLine(oi);
+                            }
                             break;
 
                         case "c":
-                            Order o2 = new Order();
-                            o2 = fonctionDataOrder();
+                            Console.WriteLine(
+        @"Enter ID of the order:");
 
-                            bl.Order.update(o2.OrderID);
+                            string idOfTheOrder1 = Console.ReadLine();
+                            int id2 = int.Parse(idOfTheOrder1);
+
+                            bl.Order.update(id2);
 
                             break;
 
@@ -298,9 +307,9 @@ f) exit ");
                             Console.WriteLine(
         @"Enter ID of the order:");
                             string idOfTheOrder2 = Console.ReadLine(); // il n'y a pas de delete dans bl
-                            int id2 = int.Parse(idOfTheOrder2);
+                            int id3 = int.Parse(idOfTheOrder2);
 
-                            bl.Order.updateDelivrery(id2);
+                            bl.Order.updateDelivrery(id3);
 
                             break;
 
@@ -309,8 +318,8 @@ f) exit ");
         @"Enter ID of the order:");
 
                             string idOfTheOrder3 = Console.ReadLine(); // il n'y a pas de delete dans bl
-                            int id3 = int.Parse(idOfTheOrder3);
-                            bl.Order.Tracking(id3);
+                            int id4 = int.Parse(idOfTheOrder3);
+                           Console.WriteLine(bl.Order.Tracking(id4));
                             //bl.Order.Delete(id2);
 
                             break;

@@ -48,12 +48,12 @@ internal class Product : IProduct
 
     }
 
-    public BO.Product Ask(int id)
+    public BO.Product Get(int id)
     {
         try
         {
             if (id <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
-            DO.Product? product = Dal?.Product.Ask(id); //place the product id in new product of DO
+            DO.Product? product = Dal?.Product.Get(id); //place the product id in new product of DO
             return new BO.Product()
             {
                 ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
@@ -79,14 +79,14 @@ internal class Product : IProduct
 
 
 
-    public BO.ProductItem Ask(int id, BO.Cart cart1)
+    public BO.ProductItem Get(int id, BO.Cart cart1)
     {
         try
         {
             bool flag = false;
             int compt = 0;
             if (id <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
-            IEnumerable<DO.Product> listproduct = Dal?.Product.AskAll();
+            IEnumerable<DO.Product> listproduct = Dal?.Product.GetAll();
             foreach (DO.Product p in listproduct)
                 if (p.ID == id) { compt++; }
             if (compt != 1)
@@ -96,7 +96,7 @@ internal class Product : IProduct
 
             if (cart1 == null) throw new BO.ErrorDontExist("Cart dont exist");
 
-                DO.Product? product = Dal?.Product.Ask(id); //place the product id in new product of DO
+                DO.Product? product = Dal?.Product.Get(id); //place the product id in new product of DO
 
             if (cart1.Items == null) cart1.Items = new();  // creat new List<OrderItem?>
 
@@ -145,7 +145,7 @@ internal class Product : IProduct
 
     public IEnumerable<BO.ProductForList?> GetProductList() { 
     
-        return from product in Dal?.Product.AskAll() //from == a partir de, select new == new
+        return from product in Dal?.Product.GetAll() //from == a partir de, select new == new
         select new BO.ProductForList
         {
             ProductID = product.ID,
@@ -157,7 +157,7 @@ internal class Product : IProduct
     }
     public IEnumerable<BO.ProductItem?> GetProductCatalog() =>
 
-        from product in Dal?.Product.AskAll() //from == a partir de, select new == new
+        from product in Dal?.Product.GetAll() //from == a partir de, select new == new
         select new BO.ProductItem
         {
             ProductID = product.ID,

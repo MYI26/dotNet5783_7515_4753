@@ -84,7 +84,7 @@ internal static class DataSource
             int indexSpecificProduct = random.Next(1, 10);
 
             oI.ProductID = listProduct[indexSpecificProduct].ID;        //ProductId = ID of the product in the orderItem
-            oI.OrderItemID = random.Next(100000, 1000000);      // it has 6 digits at least
+            oI.ID = random.Next(100000, 1000000);      // it has 6 digits at least
 
             if (i % 2 == 0)                                  //we will have a database where customers will all have to start ordering two products in their baskets
                 oI.OrderID = Config.NextSerialNumber;        //so if the i is even, we change to the next basket number
@@ -115,8 +115,8 @@ internal static class DataSource
             o.CustomerAddress = Convert.ToString((CustomerAdress)i);        //all the address of our customers are registered in the enum
             o.OrderDate = DateTime.Today.AddDays(-random.Next(10, 20));     // our clients ordered between 10 and 20 days ago
             o.ShipDate = DateTime.Today.AddDays(-random.Next(5, 10));       //all orders were sent between 5 and 10 days ago
-            o.DeliveryDate = DateTime.Today.AddDays(-random.Next(0,5));     //they were all delivered within the last 5 days
-
+            o.DeliveryDate = DateTime.Today.AddDays(-random.Next(0, 5));     //they were all delivered within the last 5 days
+           
             listOrder.Add(o);
         }
     }

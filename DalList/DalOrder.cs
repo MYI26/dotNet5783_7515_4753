@@ -14,12 +14,19 @@ namespace Dal;
 /// <summary>
 ///the implementation of functions for the Order entity
 /// </summary>
-internal class DalOrder : IOrder 
+internal class DalOrder : IOrder
 {
 
     public int Add(Order o1)
     {
 
+        //    foreach (Order o in listOrder)
+        //    {
+        //        if (o.ID == o1.ID)
+        //        {
+        //           throw new AlreadyExistException($"the order whith ID: {o1.ID} already exist");
+        //        }
+        //    }
         o1.ID = Config.NextSerialNumber;
         listOrder.Add(o1);
 
@@ -38,8 +45,8 @@ internal class DalOrder : IOrder
             found = true;
             break;
         }
-        if (found =! true)
-           throw new DontExistException("the order dont exist");
+        if (found = !true)
+            throw new DontExistException("the order dont exist");
     }
 
     public void Update(Order o1)
@@ -51,19 +58,19 @@ internal class DalOrder : IOrder
         {
             if (o.ID == o1.ID)
             {
-              listOrder[listOrder.IndexOf(o)] = (Order)o1;
-              found = true;
-               break;
+                listOrder[listOrder.IndexOf(o)] = (Order)o1;
+                found = true;
+                break;
             }
         }
-        if (found = ! true)
+        if (found = !true)
             throw new DontExistException("the order dont exist");
 
     }
 
     public Order Get(int id)
     {
-       
+
         foreach (Order o in listOrder)
         {
             if (o.ID == id)
@@ -96,6 +103,58 @@ internal class DalOrder : IOrder
         IEnumerable<Order> order = listOrder;
         return order; 
     
+    }
+
+
+    public int GetAmoutOrderItem(int id)
+    {
+
+        int temp = 0;
+        foreach (OrderItem oi in listOrderItem)
+        {
+            if (oi.OrderID == id)
+            {
+                temp += oi.Amount;
+
+            }
+        }
+
+        return temp;
+    }
+
+
+    public double GetTotalPrice(int id)
+    {
+
+        double temp = 0;
+        foreach (OrderItem oi in listOrderItem)
+        {
+            if (oi.OrderID == id)
+            {
+                temp = temp+ oi.Price * oi.Amount;
+            }
+        }
+
+        return temp;
+    }
+
+    public int GetNumStatus(int id)
+    {
+        if (Get(id).DeliveryDate != null)
+        {
+            return 3;
+        }
+
+        else if (Get(id).ShipDate != null)
+        {
+            return 2;
+        }
+
+        else
+        { 
+            return 1; 
+        }
+
     }
 
 }
