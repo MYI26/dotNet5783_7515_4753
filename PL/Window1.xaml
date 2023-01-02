@@ -12,6 +12,18 @@
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <ComboBox Name="CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <ComboBox Name="AttributeSelector" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+                <Label Grid.Column="0" Content="Label"/>
+            </ComboBox>
+        </Grid>
+
 
     </Grid>
 </Window>
