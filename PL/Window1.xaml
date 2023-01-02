@@ -23,6 +23,13 @@ VerticalAlignment="Stretch" Width="auto">
                 <Label Grid.Column="0" Content="Label"/>
             </ComboBox>
         </Grid>
+        <ListView Grid.Row="1" x:Name="StudentsListview" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
 
     </Grid>

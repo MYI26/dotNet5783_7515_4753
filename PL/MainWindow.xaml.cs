@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace PL
 {
     /// <summary>
@@ -23,6 +25,10 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+
         }
+        private void ShowWindow1sButton_Click(object sender, RoutedEventArgs e) => new Window1().Show();
+
+       // private IBL bl;
     }
 }
