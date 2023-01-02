@@ -23,7 +23,7 @@ public struct Product
     /// <summary>
     /// Current sell price of product
     /// </summary>
-    public int? Price { get; set; }
+    public int Price { get; set; }
 
     /// <summary>
     /// The product category
@@ -33,7 +33,7 @@ public struct Product
     /// <summary>
     /// Quantity of the product instock 
     /// </summary>
-    public int? InStock { get; set; }
+    public int InStock { get; set; }
 
 
     /// <summary>

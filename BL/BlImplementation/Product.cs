@@ -48,7 +48,7 @@ internal class Product : IProduct
 
     }
 
-    public BO.Product Get(int id)
+    public BO.Product? Get(int id)
     {
         try
         {
@@ -79,14 +79,14 @@ internal class Product : IProduct
 
 
 
-    public BO.ProductItem Get(int id, BO.Cart cart1)
+    public ProductItem? Get(int id, BO.Cart cart1)
     {
         try
         {
             bool flag = false;
             int compt = 0;
             if (id <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
-            IEnumerable<DO.Product> listproduct = Dal?.Product.GetAll();
+            IEnumerable<DO.Product?>? listproduct = Dal?.Product.GetAll();
             foreach (DO.Product p in listproduct)
                 if (p.ID == id) { compt++; }
             if (compt != 1)
@@ -115,7 +115,7 @@ internal class Product : IProduct
                         Price = product?.Price ?? throw new BO.MissingException("Price missing"),
                         Category = (BO.Enums.Category?)(product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing")),
                         Availability = true,
-                        QuantityInCart = product?.InStock,
+                        QuantityInCart = product?.InStock ?? throw new BO.MissingException("Quantity InCart missing"),
                     };
                 }
 
@@ -143,30 +143,32 @@ internal class Product : IProduct
 
     }
 
-    public IEnumerable<BO.ProductForList?> GetProductList() { 
+    public IEnumerable<BO.ProductForList?>? GetProductList() { 
     
         return from product in Dal?.Product.GetAll() //from == a partir de, select new == new
         select new BO.ProductForList
         {
-            ProductID = product.ID,
-            Name = product.Name,
-            Price = product.Price,
-            Category = (BO.Enums.Category?)product.MyCategory,
+            ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
+            Name = product?.Name ?? throw new BO.MissingException("Name missing"),
+            Price = product?.Price ?? throw new BO.MissingException("Price missing"),
+            Category = (BO.Enums.Category?)product?.MyCategory ?? throw new BO.MissingException("Category missing"),
 
         };
     }
-    public IEnumerable<BO.ProductItem?> GetProductCatalog() =>
+    public IEnumerable<BO.ProductItem?>? GetProductCatalog() =>
 
         from product in Dal?.Product.GetAll() //from == a partir de, select new == new
         select new BO.ProductItem
         {
-            ProductID = product.ID,
-            Name = product.Name,
-            Price = product.Price,
-            Category = (BO.Enums.Category?)product.MyCategory,
+            ProductID = product?.ID ?? throw new BO.MissingException("Quantity InCart missing"),
+            Name = product?.Name,
+            Price = product?.Price ?? throw new BO.MissingException("Quantity InCart missing"),
+            Category = (BO.Enums.Category?)product?.MyCategory ?? throw new BO.MissingException("Quantity InCart missing"),
             Availability = true,
-            QuantityInCart = product.InStock,
+            QuantityInCart = product?.InStock ?? throw new BO.MissingException("Quantity InCart missing"),
         };
+
+
 
     public void Update(BO.Product product)
     {

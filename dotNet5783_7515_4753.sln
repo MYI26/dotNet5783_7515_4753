@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stage0", "Stage0\Stage0.csproj", "{2282FD29-12CB-4F50-9A44-7F4945A48DA3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7762E847-21FD-4273-8D9D-E84044858DA7} = {7762E847-21FD-4273-8D9D-E84044858DA7}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{8CA86278-62DC-4A8F-B962-C132FFAAAFFD}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalList", "DalList\DalList.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalTest", "DalTest\DalTest.csproj", "{10F22346-519F-4D4F-AC1B-1E619C48CBE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{7762E847-21FD-4273-8D9D-E84044858DA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{7762E847-21FD-4273-8D9D-E84044858DA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlTest", "BlTest\BlTest.csproj", "{23336A7F-7526-43EB-B18E-F5DA809D642C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlTest", "BlTest\BlTest.csproj", "{23336A7F-7526-43EB-B18E-F5DA809D642C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{B0647A36-9A58-4C12-97C3-7027C111DCE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +55,10 @@ Global
 		{23336A7F-7526-43EB-B18E-F5DA809D642C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23336A7F-7526-43EB-B18E-F5DA809D642C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23336A7F-7526-43EB-B18E-F5DA809D642C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0647A36-9A58-4C12-97C3-7027C111DCE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0647A36-9A58-4C12-97C3-7027C111DCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0647A36-9A58-4C12-97C3-7027C111DCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0647A36-9A58-4C12-97C3-7027C111DCE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

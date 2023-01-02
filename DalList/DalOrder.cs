@@ -69,7 +69,7 @@ internal class DalOrder : IOrder
 
     }
 
-    public Order Get(int id)
+    public Order? Get(int id)
     {
 
         foreach (Order o in listOrder)
@@ -97,7 +97,7 @@ internal class DalOrder : IOrder
     //    return enumerable; //return IEnumerator
     //}
 
-    public IEnumerable<Order> GetAll(Func<Order, bool> filter = null) { IEnumerable<Order> order = listOrder; return order; }
+    public IEnumerable<Order?>? GetAll(Func<Order, bool> filter = null) { IEnumerable<Order?> order = listOrder; return order; }
 
 
     public int GetAmoutOrderItem(int id)
@@ -134,12 +134,12 @@ internal class DalOrder : IOrder
 
     public int GetNumStatus(int id)
     {
-        if (Get(id).DeliveryDate != null)
+        if (Get(id)?.DeliveryDate != null)
         {
             return 3;
         }
 
-        else if (Get(id).ShipDate != null)
+        else if (Get(id)?.ShipDate != null)
         {
             return 2;
         }

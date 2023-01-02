@@ -9,9 +9,9 @@ internal static class DataSource
     // <summary>
     // initialisation of all lists
     // </summary>
-    internal static List<Product> listProduct = new List<Product>(50);    // list of Product
-    internal static List<OrderItem> listOrderItem = new List<OrderItem>(200);      // list of OrderItem
-    internal static List<Order> listOrder = new List<Order>(100);      //list of Order
+    internal static List<Product?> listProduct = new List<Product?>(50);    // list of Product
+    internal static List<OrderItem?> listOrderItem = new List<OrderItem?>(200);      // list of OrderItem
+    internal static List<Order?> listOrder = new List<Order?>(100);      //list of Order
 
     /// <summary>
     /// static readonly variable
@@ -83,15 +83,15 @@ internal static class DataSource
         {
             int indexSpecificProduct = random.Next(1, 10);
 
-            oI.ProductID = listProduct[indexSpecificProduct].ID;        //ProductId = ID of the product in the orderItem
+            oI.ProductID = listProduct[indexSpecificProduct]?.ID ?? throw new Exception("ID of product missing");        //ProductId = ID of the product in the orderItem
             oI.ID = random.Next(100000, 1000000);      // it has 6 digits at least
 
             if (i % 2 == 0)                                  //we will have a database where customers will all have to start ordering two products in their baskets
                 oI.OrderID = Config.NextSerialNumber;        //so if the i is even, we change to the next basket number
             else                                             // else if i is odd then we stay in the same basket
-                oI.OrderID = listOrderItem[i - 1].OrderID;   //and therefore the basket number does not change
+                oI.OrderID = listOrderItem[i - 1]?.OrderID ?? throw new Exception("Quantity InCart missing");   //and therefore the basket number does not change
 
-            oI.Price = (int)listProduct[indexSpecificProduct].Price;     //the price corresponds to the product that has been chosen
+            oI.Price = listProduct[indexSpecificProduct]?.Price ?? throw new Exception("Price of product missing");     //the price corresponds to the product that has been chosen
             oI.Amount = random.Next(5,10);      //it does not depend on what we have left in stock for each product in the database
 
             listOrderItem.Add(oI);
@@ -108,7 +108,7 @@ internal static class DataSource
         for(int i = 0 ; i < 20; i++)
         {
             j = j + 2;      //we go from one basket number to the next each time
-            o.ID = listOrderItem[j].OrderID;
+            o.ID = listOrderItem[j]?.OrderID ?? throw new Exception("ID of order missing");
 
             o.CustomerName = Convert.ToString((CustomerName)i);      //all the names of our customers are registered in the enum
             o.CustomerEmail = Convert.ToString((CustomerName)i) + "@gmail.com";     //all our registered customers use gmail

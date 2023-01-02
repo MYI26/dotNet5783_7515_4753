@@ -12,7 +12,7 @@ public interface ICart
     /// <param name="cart"></param>
     /// <param name="productId"></param>
     /// <returns></returns>
-    Cart AddProduct(Cart cart,int productId);
+    Cart? AddProduct(Cart cart,int productId);
 
     /// <summary>
     /// Updating the quantity of a product in the shopping cart (for the shopping cart screen)

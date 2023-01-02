@@ -15,10 +15,10 @@ namespace BO
     {
         public int ProductID { get; set; }
         public string? Name { get; set; }
-        public double? Price { get; set; }
+        public double Price { get; set; }
         public Category? Category { get; set; }
         public bool Availability { get; set; } // disponibilite
-        public int? QuantityInCart { get; set; }
+        public int QuantityInCart { get; set; }
 
         public override string ToString() => $@"
         Product ID: {ProductID}: {Name}, 

@@ -65,7 +65,7 @@ internal class DalProduct : IProduct
     }
 
 
-    public Product Get(int id)
+    public Product? Get(int id)
     {
 
         foreach (Product p in listProduct)
@@ -93,9 +93,9 @@ internal class DalProduct : IProduct
     //    return enumerable;//return IEnumerator
     //}
 
-    public IEnumerable<Product> GetAll(Func<Product, bool> filter = null) {
+    public IEnumerable<Product?> GetAll(Func<Product, bool> filter = null) {
 
-        IEnumerable<Product> listproduct = listProduct;
+        IEnumerable<Product?> listproduct = listProduct;
 
         return listproduct;
     }        

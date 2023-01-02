@@ -8,13 +8,13 @@ internal class Cart : ICart
 {
 
    private static DalList Dal = new DalList();
-    public BO.Cart AddProduct(BO.Cart cart, int productId) // place product with productid in the list orderitem of the cart
+    public BO.Cart? AddProduct(BO.Cart cart, int productId) // place product with productid in the list orderitem of the cart
     {
         if (productId <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
         if (cart == null) throw new BO.ErrorDontExist("Cart dont exist");
         if (cart.Items == null) cart.Items = new();  // creat new List<OrderItem?>
         DO.Product product; // creation of new product Product in DO
-        try { product = Dal.Product.Get(productId); } // place the product with id productId in the new product
+        try { product = Dal.Product.Get(productId) ?? throw new BO.MissingException("product dont exist"); } // place the product with id productId in the new product
         catch (DalApi.DO.DontExistException) // the Exeption that ask can return 
         {
             throw new BO.DontExist("the Id dont valid"); // the exeption if the id of productid dont ewist
@@ -121,7 +121,7 @@ internal class Cart : ICart
             orderitemdo.OrderID = temp;
             orderitemdo.ID = (int)oi.Id;
             orderitemdo.ProductID = (int)oi.ProductID;
-            product = Dal.Product.Get(orderitemdo.ProductID);
+            product = Dal.Product?.Get(orderitemdo.ProductID) ?? throw new BO.MissingException("product dont exist");
             product.InStock--;
             Dal.Product.Update(product);
             orderitemdo.Price = 0;
