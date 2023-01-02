@@ -96,11 +96,11 @@ e) Delete Product");
                     string idOfTheProduct = Console.ReadLine();
                     int id1 = int.Parse(idOfTheProduct);
 
-                    Console.WriteLine(Dallist.Product.Ask(id1));
+                    Console.WriteLine(Dallist.Product.Get(id1));
                     break;
 
                 case "c":
-                    IEnumerable<Product> tabProduct = Dallist.Product.AskAll();
+                    IEnumerable<Product?>? tabProduct = Dallist.Product?.GetAll();
 
                     foreach (Product p in tabProduct)
                         Console.WriteLine(p);
@@ -166,11 +166,11 @@ e) Delete Order Item");
                     string idOfTheorderitem = Console.ReadLine();
                     int id1 = int.Parse(idOfTheorderitem);
 
-                    Console.WriteLine(Dallist.OrderItem.Ask(id1));
+                    Console.WriteLine(Dallist.OrderItem.Get(id1));
                     break;
 
                 case "c":
-                    IEnumerable<OrderItem> taborderitem = Dallist.OrderItem.AskAll();
+                    IEnumerable<OrderItem?>? taborderitem = Dallist.OrderItem.GetAll();
 
                     foreach (OrderItem orderitem in taborderitem)
                         Console.WriteLine(orderitem);
@@ -232,11 +232,11 @@ e) Delete Order");
                     string idOfTheOrder = Console.ReadLine();
                     int id1 = int.Parse(idOfTheOrder);
 
-                    Console.WriteLine(Dallist.Order.Ask(id1));
+                    Console.WriteLine(Dallist.Order.Get(id1));
                     break;
 
                 case "c":
-                    IEnumerable<Order> tabOrder = Dallist.Order.AskAll();
+                    IEnumerable<Order?>? tabOrder = Dallist.Order.GetAll();
 
                     foreach (Order order in tabOrder)
                         Console.WriteLine(order);
@@ -341,7 +341,7 @@ e) Delete Order");
             amount = int.Parse(inStock);
 
             OrderItem OrderItem1 = new OrderItem();
-            OrderItem1.OrderItemID = orderitemid;
+            OrderItem1.ID = orderitemid;
             OrderItem1.ProductID = productid;
             OrderItem1.OrderID = orderid;
             OrderItem1.Price = price;

@@ -23,9 +23,9 @@ public interface ICrud<T> where T : struct
 
     public void Update(T t1);
 
-    public T Get(int id1);
+    public T? Get(int id1);
 
-    public IEnumerable<T> GetAll(Func<T, bool> filter = null);
+    public IEnumerable<T?> GetAll(Func<T, bool> filter = null);
 
 }
 

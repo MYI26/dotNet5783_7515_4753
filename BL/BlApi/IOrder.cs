@@ -16,21 +16,21 @@ public interface IOrder
     /// return order of list of order
     /// </summary>
     /// <returns></returns>
-    IEnumerable<OrderForList?> GetOrder();
+    IEnumerable<OrderForList?>? GetOrder();
 
     /// <summary>
     /// return order of id specific for admin screen and for
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Order Get(int id);
+    Order? Get(int id);
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Order update(int id);
+    Order? update(int id);
     /// <summary>
     /// 
     /// </summary>
@@ -44,7 +44,7 @@ public interface IOrder
     ///// <param name="id"></param>
     ///// <returns></returns>
 
-    OrderTracking Tracking(int id);
+    OrderTracking? Tracking(int id);
 
     /// <summary>
     /// 
@@ -52,7 +52,7 @@ public interface IOrder
     /// <param name="id"></param>
     /// <returns></returns>
 
-    public Order updateDelivrery(int id);  // je ne sais pas ce quil faut faire
+    public Order? updateDelivrery(int id);  // je ne sais pas ce quil faut faire
 
 
 

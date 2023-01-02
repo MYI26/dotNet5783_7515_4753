@@ -8,7 +8,7 @@ internal class Order : IOrder
     private static DalList Dal = new DalList();
 
 
-    public BO.Order Get(int id) // 
+    public BO.Order? Get(int id) // 
     {
         try
         {
@@ -66,7 +66,7 @@ internal class Order : IOrder
         }
     }
 
-    public List<BO.OrderItem?> GetOrderItem(int id) {
+    public List<BO.OrderItem?>? GetOrderItem(int id) {
 
         List<BO.OrderItem?> ListOrderItemBo = new List<BO.OrderItem?>();
 
@@ -80,10 +80,10 @@ internal class Order : IOrder
 
             BoOrderItem.Id = oi.ID;
             BoOrderItem.ProductID = oi.ProductID;
-            BoOrderItem.NameProduct = Dal?.Product.Get(oi.ProductID).Name;
-            BoOrderItem.Price = (int?)oi.Price;
+            BoOrderItem.NameProduct = Dal?.Product.Get(oi.ProductID)?.Name;
+            BoOrderItem.Price = oi.Price;
             BoOrderItem.QuantityInCart = oi.Amount;
-            BoOrderItem.PriceOfAll = oi.Amount * (int?)oi.Price;
+            BoOrderItem.PriceOfAll = oi.Amount * oi.Price;
 
             ListOrderItemBo.Add(BoOrderItem);
         } 
@@ -93,7 +93,7 @@ internal class Order : IOrder
     }
 
 
-    public IEnumerable<BO.OrderForList?> GetOrder()=>
+    public IEnumerable<BO.OrderForList?>? GetOrder()=>
 
     //IEnumerable<DO.Order> listorder = Dal?.Order.GetAll();
 
@@ -103,15 +103,16 @@ internal class Order : IOrder
         from order in Dal?.Order.GetAll() //from == a partir de, select new == new
         select new BO.OrderForList
         {
-            OrderID = order.ID,
-            CustomerName = order.CustomerName,
-            Status = Get(order.ID).Status,
-            Amount = Dal.Order.GetAmoutOrderItem(order.ID),
-            TotalPrice = Get(order.ID).TotalPrice, 
+            OrderID = order?.ID ?? throw new BO.MissingException("Quantity InCart missing"),
+            CustomerName = order?.CustomerName,
+            Status = (BO.Enums.OrderStatus)Dal?.Order.GetNumStatus((int)(order?.ID)),
+            Amount = Dal?.Order.GetAmoutOrderItem((int)(order?.ID)) ?? throw new BO.MissingException("Quantity InCart missing"),
+            TotalPrice = Get((int)(order?.ID)).TotalPrice,
         };
-    
 
-    public BO.OrderTracking Tracking(int id)
+   
+
+    public BO.OrderTracking? Tracking(int id)
     {
         try
         {
@@ -147,7 +148,7 @@ internal class Order : IOrder
         catch (BO.DontExistException) { throw new BO.DontExistException("the order dont exist"); }
     }
 
-    public BO.Order update(int id)
+    public BO.Order? update(int id)
     {
 
 
@@ -203,7 +204,7 @@ internal class Order : IOrder
         return Get(id);
     }
 
-    public BO.Order updateDelivrery(int id)  // je ne sais pas ce quil faut faire
+    public BO.Order? updateDelivrery(int id)  // je ne sais pas ce quil faut faire
     {
         try
         {
