@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using BlApi;
+using BlImplementation;
 
 namespace PL
 {
@@ -22,13 +23,17 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        BlApi.IBl bl = new BlImplementation.Bl();
+        //private static IBL bl;
         public MainWindow()
         {
             InitializeComponent();
 
         }
-        private void ShowWindow1sButton_Click(object sender, RoutedEventArgs e) => new Window1().Show();
 
-       // private IBL bl;
+        private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+       
+         
     }
 }
