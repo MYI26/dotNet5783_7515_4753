@@ -87,6 +87,6 @@ internal class DalOrderItem : IOrderItem
     //    return enumerable;//return IEnumerator
     //}
 
-    public IEnumerable<OrderItem?> GetAll(Func<OrderItem, bool> filter = null) { IEnumerable<OrderItem?> orderitem = listOrderItem; return orderitem; }
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null) { IEnumerable<OrderItem?> orderitem = listOrderItem; return orderitem; }
 
 }

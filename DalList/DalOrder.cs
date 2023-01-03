@@ -97,12 +97,10 @@ internal class DalOrder : IOrder
     //    return enumerable; //return IEnumerator
     //}
 
-    public IEnumerable<Order> GetAll(Func<Order, bool> filter = null) 
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
     {
-        
-        IEnumerable<Order> order = listOrder;
-        return order; 
-    
+        IEnumerable<Order?> order = listOrder;
+        return order;
     }
 
 

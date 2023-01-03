@@ -104,8 +104,8 @@ internal class Cart : ICart
         orderdo.CustomerEmail = cart.CustomerEmail;
         orderdo.CustomerAddress = cart.CustomerAddress;
         orderdo.OrderDate = DateTime.Now;
-        orderdo.ShipDate = DateTime.MinValue;
-        orderdo.DeliveryDate = DateTime.MinValue;
+        orderdo.ShipDate = null;
+        orderdo.DeliveryDate = null;
         
 
         int temp = Dal.Order.Add(orderdo);
