@@ -28,7 +28,7 @@ namespace PL
 
        public void Show()
         {
-            InitializeComponent();
+            Console.WriteLine("me voila");
 
         }
         //private static IBL bl;
