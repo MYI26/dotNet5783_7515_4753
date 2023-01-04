@@ -18,7 +18,7 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True"/>
+            <ComboBox Name="CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
             <Label Grid.Column="0" Content="Category:" Height="46" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FFC1C1C1" FontSize="20">
                 <Label.RenderTransform>
                     <TransformGroup>

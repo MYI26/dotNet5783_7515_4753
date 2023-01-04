@@ -10,7 +10,7 @@ public interface IProduct
     /// return product of list of product
     /// </summary>
     /// <returns></returns> // for director application
-    IEnumerable<ProductForList?>? GetProductList();
+    IEnumerable<ProductForList?>? GetProductList(Func<DO.Product?,bool>? filter);
 
     /// <summary>
     /// return product of list of product

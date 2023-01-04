@@ -143,9 +143,9 @@ internal class Product : IProduct
 
     }
 
-    public IEnumerable<BO.ProductForList?>? GetProductList() { 
+    public IEnumerable<BO.ProductForList?>? GetProductList(Func<DO.Product?, bool>? filter) { 
     
-        return from product in Dal?.Product.GetAll() //from == a partir de, select new == new
+        return from product in Dal?.Product.GetAll(filter) //from == a partir de, select new == new
         select new BO.ProductForList
         {
             ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
