@@ -31,21 +31,22 @@ public partial class ProductListWindow : Window
     public ProductListWindow()
     {
         InitializeComponent();
-        ProductListView.ItemsSource = bl?.Product?.GetProductList(null);
+        ProductListView.ItemsSource = bl?.Product?.GetProductList(null); // sans filtre
         CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
 
     }
 
 
-    public BO.Enums.Category Category { get; set; }
+    public DO.Enums.Category Category { get; set; }
     //public BO.Product p;
 
-    //public bool fonctioncombox(DO.Product? p = null , bool? t = true)
-    //{
-    //  if (p?.MyCategory == Category) 
-     //       return true;
+    public bool fonctioncombox(DO.Product? p = null )
+    {
+        if (p?.MyCategory == Category)
+            return true;
 
-   // }
+        else return false;
+    }
 
     //private void CategorySelector_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
    // {
@@ -55,14 +56,16 @@ public partial class ProductListWindow : Window
    // }
     private void CatagorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        //Category = (DO.Enums.Category)sender;
+        Category = (DO.Enums.Category)CatagorySelector.SelectedItem;
         // Category = e.;
-      //  if (Category == BO.Enums.Category.piano)
-          //  var temp = Category.;
-       // ProductListView.ItemsSource = bl?.Product?.GetProductList(null).Where(item => item?.Category == Category);
+        //  if (Category == BO.Enums.Category.piano)
+        //  var temp = Category.;
+        // ProductListView.ItemsSource = bl?.Product?.GetProductList(null).Where(item => item?.Category == Category);
         // Products = temp == null ? new() : new(temp);
-
-        var temp = Category == Category.None ?
-            bl.Product.GetProductList(null) : bl.Product.GetProductList(null).Where(item => item.Category == Category);
+        ProductListView.ItemsSource = bl.Product.GetProductList(fonctioncombox);// filter list
+      //  var temp = Category == Category.None ?
+      // bl.Product.GetProductList(null) : bl.Product.GetProductList(null).Where(item => item.Category == Category);
       //  Products = temp == null ? new() : new(temp);
     }
 

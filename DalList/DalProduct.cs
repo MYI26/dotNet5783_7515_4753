@@ -104,29 +104,29 @@ internal class DalProduct : IProduct
 
         else//ici normalement on a pas le droit de creer une bouvelle liste seulement cree un enumerabele qui va trier le list
         {
-             //List<Product?> newlistproduct = new List<Product?>();
-              IEnumerable<Product?> listproduct1 = listProduct;
+             List<Product?> newlistproduct = new List<Product?>();
+             // IEnumerable<Product?> listproduct1 = listProduct;
 
-            IEnumerable<Product?> arr2 = listproduct1.Where(p => filter(p) == true).Select(item => item);
+           // IEnumerable<Product?> arr2 = listproduct1.Where(p => filter(p) == true).Select(item => item);
 
-         //   foreach (Product p in listProduct)
-            //  {
-                // if(filter(p))
-               //   {
-                 //     newlistproduct.Add(p);
+            foreach (Product p in listProduct)
+              {
+                 if(filter(p))
+                  {
+                      newlistproduct.Add(p);
 
-              //    }
-             // }
-             // IEnumerable<Product?> listproduct1 = newlistproduct;
+                  }
+              }
+             IEnumerable<Product?> listproduct1 = newlistproduct;
 
-              return arr2;
+            //return arr2;
 
-          /*  return from product in listProduct//from == a partir de, select new == new
-                   select new IEnumerable<Product?>
-                   {
-                       
+            return listproduct1;//from == a partir de, select new == new
+                   //select new IEnumerable<Product?>
+                   //  {
 
-                   };*/
+
+            // };*/
         }
     }        
 }
