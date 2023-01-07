@@ -44,6 +44,8 @@ public partial class ProductListWindow : Window
     {
         if (p?.MyCategory == Category)
             return true;
+        if ( Category == 0)
+            return true;
 
         else return false;
     }
