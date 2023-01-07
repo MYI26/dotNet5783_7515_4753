@@ -71,6 +71,13 @@ public partial class ProductListWindow : Window
       //  Products = temp == null ? new() : new(temp);
     }
 
+    private void Button_Click(object sender, RoutedEventArgs e) => new ProductWindow().Show();
+
+
+
+
+
+
 
 
 

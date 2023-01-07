@@ -23,7 +23,7 @@ public struct Product
     /// <summary>
     /// Current sell price of product
     /// </summary>
-    public int Price { get; set; }
+    public double Price { get; set; }
 
     /// <summary>
     /// The product category

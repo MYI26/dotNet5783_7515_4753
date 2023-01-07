@@ -95,22 +95,23 @@ internal class DalProduct : IProduct
 
     public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null) {
 
+         IEnumerable<Product?> listproduct = listProduct;
+
         if (filter == null)
         {
-            IEnumerable<Product?> listproduct = listProduct;
+            
 
             return listproduct;
         }
 
         else//ici normalement on a pas le droit de creer une bouvelle liste seulement cree un enumerabele qui va trier le list
         {
-         //-    List<Product?> newlistproduct = new List<Product?>();
-              IEnumerable<Product?> listproduct1 = listProduct;
+         //-    List<Product?> newlistproduct = new List<Product?>();             
 
-             IEnumerable<Product?> arr2 = listproduct1.Where(p => filter(p) == true).Select(item => item);
+             IEnumerable<Product?> arr2 = listproduct.Where(p => filter(p) == true).Select(item => item);  //sans creer une nouvelle list (permis)
 
             return arr2;
-         // -  foreach (Product p in listProduct)
+         // -  foreach (Product p in listProduct) // en creant une nouvelle list (interdit)
          // -    {
          // -       if(filter(p))
          // -        {

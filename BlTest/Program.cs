@@ -96,7 +96,7 @@ h) exit");
                             break;
 
                         case "b":
-                            IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProductList();
+                            IEnumerable<BO.ProductForList?> tabProduct = bl.Product.GetProductList(null);
 
                             foreach (ProductForList p in tabProduct)
                                 Console.WriteLine(p);
