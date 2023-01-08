@@ -30,7 +30,7 @@ VerticalAlignment="Stretch" Width="auto">
                 </Label.RenderTransform>
             </Label>
         </Grid>
-        <ListView Grid.Row="1" x:Name="ProductListView" d:ItemsSource= "{Binding ProductForList}">
+        <ListView Grid.Row="1" x:Name="ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick="DoubleClickUpdate">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

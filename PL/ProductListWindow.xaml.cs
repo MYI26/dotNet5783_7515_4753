@@ -73,7 +73,7 @@ public partial class ProductListWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e) => new ProductWindow().Show();
 
-
+    private void DoubleClickUpdate(object sender, RoutedEventArgs e) => new ProductWindow(ProductListView.SelectedItem).Show();
 
 
 

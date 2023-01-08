@@ -32,7 +32,7 @@ internal class Product : IProduct
             Dal?.Product.Add(product1);
         }
 
-        catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); } 
+        catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product Already exist"); } 
 
     }
 
