@@ -36,7 +36,7 @@ public partial class ProductWindow : Window
         TextBoxName.SelectedText = "";
         TextBoxPrice.SelectedText = "₪";
         TextBoxInStock.SelectedText = "0";
-
+        ButtonAdd.Content = "Add";
     }
 
     public ProductWindow(BO.ProductForList pfl)
@@ -44,26 +44,34 @@ public partial class ProductWindow : Window
         InitializeComponent();
         SelectProductWindow.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         TextBoxId.SelectedText = (pfl.ProductID).ToString();
+        TextBoxId.IsEnabled = false;
         TextBoxName.SelectedText = pfl.Name;
         TextBoxPrice.SelectedText = (pfl.Price).ToString();
-        //TextBoxInStock.SelectedText = (pfl.In).ToString(); ;
+        TextBoxInStock.SelectedText = (bl.Product.Get(pfl.ProductID).InStock).ToString();
+        ButtonAdd.Content = "Update";
+        SelectProductWindow.SelectedItem = (Category?)pfl.Category;
     }
 
     private void Button_ClickAddProduct(object sender, RoutedEventArgs e)
     {
-        Category = (DO.Enums.Category)SelectProductWindow.SelectedItem;
-        BO.Product p1 = new Product();
-        p1.ProductID = int.Parse(TextBoxId.Text);
-        p1.Name = TextBoxName.Text;
-        p1.MyCategory = (Category?)Category;
-        p1.Price = double.Parse(TextBoxPrice.Text);
-        p1.InStock = int.Parse(TextBoxInStock.Text);
 
-        bl.Product.Add(p1);
+       
+            Category = (DO.Enums.Category)SelectProductWindow.SelectedItem;
+            BO.Product p1 = new Product();
+            p1.ProductID = int.Parse(TextBoxId.Text);
+            p1.Name = TextBoxName.Text;
+            p1.MyCategory = (Category?)Category;
+            p1.Price = double.Parse(TextBoxPrice.Text);
+            p1.InStock = int.Parse(TextBoxInStock.Text);
 
-        //  ProductListView.ItemsSource = bl?.Product?.GetProductList(null);
-        new ProductListWindow().Show();
+        if (ButtonAdd.Content == "Add")
+        {
+            bl.Product.Add(p1);
+        }       
 
+        else bl.Product.Update(p1);    
+            //  ProductListView.ItemsSource = bl?.Product?.GetProductList(null);
+           new ProductListWindow().Show();
 
     }
 }

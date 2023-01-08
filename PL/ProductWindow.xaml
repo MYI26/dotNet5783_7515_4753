@@ -27,7 +27,7 @@
         <Label Content="In Stock:" Grid.Column="0" Margin="189,0,1,0" Grid.Row="5" VerticalAlignment="Center" Height="27" FontSize ="14"/>
         <Button x:Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="188,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="63" Height="26" Click="Button_ClickAddProduct"/>
         <ComboBox x:Name="SelectProductWindow" ItemsSource="{Binding Category}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="141" Height="30" Grid.Column="1"/>
-        <TextBox x:Name="TextBoxId" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Center" Width="141" Height="30" Grid.Column="1" />
+        <TextBox x:Name="TextBoxId" IsEnabled="True" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Center" Width="141" Height="30" Grid.Column="1" />
         <TextBox x:Name="TextBoxName"  HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap"  VerticalAlignment="Center" Width="141" Height="30" Grid.Column="1"/>
         <TextBox x:Name="TextBoxPrice" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap"  VerticalAlignment="Center" Width="141" Height="30" Grid.Column="1"/>
         <TextBox x:Name="TextBoxInStock" HorizontalAlignment="Left" Grid.Row="5" TextWrapping="Wrap"  VerticalAlignment="Center" Width="141" Height="30" Grid.Column="1"/>
