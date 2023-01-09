@@ -25,6 +25,7 @@ public partial class ProductListWindow : Window
 {
 
     private static IEnumerable<ProductForList?>? ItmesSource;
+
     BlApi.IBl? bl = BlApi.Factory.Get();
     public ProductListWindow()
     {
@@ -63,7 +64,7 @@ public partial class ProductListWindow : Window
         //  var temp = Category.;
         // ProductListView.ItemsSource = bl?.Product?.GetProductList(null).Where(item => item?.Category == Category);
         // Products = temp == null ? new() : new(temp);
-        ProductListView.ItemsSource = bl.Product.GetProductList(fonctioncombox);// filter list
+        ProductListView.ItemsSource = bl?.Product.GetProductList(fonctioncombox);// filter list
       //  var temp = Category == Category.None ?
       // bl.Product.GetProductList(null) : bl.Product.GetProductList(null).Where(item => item.Category == Category);
       //  Products = temp == null ? new() : new(temp);

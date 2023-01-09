@@ -1,5 +1,4 @@
-﻿
-namespace BlApi;
+﻿namespace BlApi;
 
 public static class Factory
 {
