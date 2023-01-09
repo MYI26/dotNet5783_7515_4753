@@ -1,5 +1,4 @@
-﻿
-namespace DalApi;
+﻿namespace DalApi;
 
 
 /// <summary>

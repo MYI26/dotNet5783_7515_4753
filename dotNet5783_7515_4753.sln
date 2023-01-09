@@ -29,6 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{B064
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{758F25C4-97F4-4FD2-83FA-AB7C862FC838}"
+	ProjectSection(SolutionItems) = preProject
+		xml\dal-config.xml = xml\dal-config.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

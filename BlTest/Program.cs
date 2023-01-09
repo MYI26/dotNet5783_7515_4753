@@ -1,7 +1,5 @@
-﻿using BlApi;
+﻿
 using BO;
-using BlImplementation;
-using System.Security.Cryptography;
 
 namespace BlTest
 {
@@ -9,7 +7,7 @@ namespace BlTest
     {
 
 
-        private static Bl bl = new Bl();
+        static BlApi.IBl bl = BlApi.Factory.Get();
         //private static DalProduct DalProduct = new DalProduct();
         //private static DalOrderItem DalOrderItemt = new DalOrderItem();
         //private static DalOrder DalOrder = new DalOrder();

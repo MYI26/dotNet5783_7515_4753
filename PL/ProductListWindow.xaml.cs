@@ -12,8 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BlApi;
-using BlImplementation;
 using DalApi;
 using static BO.Enums;
 using BO;
@@ -27,7 +25,7 @@ public partial class ProductListWindow : Window
 {
 
     private static IEnumerable<ProductForList?>? ItmesSource;
-    BlApi.IBl bl = new BlImplementation.Bl();
+    BlApi.IBl? bl = BlApi.Factory.Get();
     public ProductListWindow()
     {
         InitializeComponent();

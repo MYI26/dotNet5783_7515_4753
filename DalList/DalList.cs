@@ -1,7 +1,7 @@
-﻿//
-using DalApi;
+﻿using DalApi;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
@@ -16,14 +16,18 @@ namespace Dal;
 /// inherits of IDal and therefore of the interfaces of the three entities
 /// sealed, disallow inheriting from class
 /// </summary>
-sealed internal  class DalList : IDal 
+sealed internal class DalList : IDal
 {
 
     private DalList() { }
+    static DalList()
+    {
+        instance = new DalList();
+    }
 
-    public static IDal Instance { get; } = new DalList();
+    private static IDal instance;
+    public static IDal Instance { get => instance; }
 
-    //que ft cette fleche et à quoi ca sert
     public IProduct Product => new DalProduct();
 
     public IOrder Order => new DalOrder();

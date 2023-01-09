@@ -15,7 +15,8 @@ namespace Program
     {
 
 
-        private static DalList Dallist = new DalList();
+        // private static DalList Dallist = new DalList();
+         static DalApi.IDal dal = DalApi.Factory.Get()!;
         //private static DalProduct DalProduct = new DalProduct();
         //private static DalOrderItem DalOrderItemt = new DalOrderItem();
         //private static DalOrder DalOrder = new DalOrder();
@@ -84,8 +85,8 @@ e) Delete Product");
                 case "a":
                     Product p1 = new Product();
                     p1 = fonctionDataProduct();
-       
-                    Dallist.Product.Add(p1);
+
+                    dal.Product.Add(p1);
                     break;
 
                 case "b":
@@ -96,11 +97,11 @@ e) Delete Product");
                     string idOfTheProduct = Console.ReadLine();
                     int id1 = int.Parse(idOfTheProduct);
 
-                    Console.WriteLine(Dallist.Product.Get(id1));
+                    Console.WriteLine(dal.Product.Get(id1));
                     break;
 
                 case "c":
-                    IEnumerable<Product?>? tabProduct = Dallist.Product?.GetAll();
+                    IEnumerable<Product?>? tabProduct = dal.Product?.GetAll();
 
                     foreach (Product p in tabProduct)
                         Console.WriteLine(p);
@@ -111,7 +112,7 @@ e) Delete Product");
                     Product p2 = new Product();
                     p2 = fonctionDataProduct();
 
-                    Dallist.Product.Update(p2);
+                    dal.Product.Update(p2);
 
                     break;
 
@@ -122,7 +123,7 @@ e) Delete Product");
                     string idOfTheProduct2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheProduct2);
 ;
-                    Dallist.Product.Delete(id2);
+                    dal.Product.Delete(id2);
 
                     break;
 
@@ -155,7 +156,7 @@ e) Delete Order Item");
                     OrderItem OI1 = new OrderItem();
                     OI1 = fonctionDataOrderItem();
 
-                    Dallist.OrderItem.Add(OI1);
+                    dal.OrderItem.Add(OI1);
                     break;
 
                 case "b":
@@ -166,11 +167,11 @@ e) Delete Order Item");
                     string idOfTheorderitem = Console.ReadLine();
                     int id1 = int.Parse(idOfTheorderitem);
 
-                    Console.WriteLine(Dallist.OrderItem.Get(id1));
+                    Console.WriteLine(dal.OrderItem.Get(id1));
                     break;
 
                 case "c":
-                    IEnumerable<OrderItem?>? taborderitem = Dallist.OrderItem.GetAll();
+                    IEnumerable<OrderItem?>? taborderitem = dal.OrderItem.GetAll();
 
                     foreach (OrderItem orderitem in taborderitem)
                         Console.WriteLine(orderitem);
@@ -181,7 +182,7 @@ e) Delete Order Item");
                     OrderItem p2 = new OrderItem();
                     p2 = fonctionDataOrderItem();
 
-                    Dallist.OrderItem.Update(p2);
+                    dal.OrderItem.Update(p2);
 
                     break;
 
@@ -192,7 +193,7 @@ e) Delete Order Item");
                     string idOftheOrderItem2 = Console.ReadLine();
                     int id2 = int.Parse(idOftheOrderItem2);
 
-                    Dallist.OrderItem.Delete(id2);
+                    dal.OrderItem.Delete(id2);
 
                     break;
 
@@ -221,7 +222,7 @@ e) Delete Order");
                     Order o1 = new Order();
                     o1 = fonctionDataOrder();
 
-                    Dallist.Order.Add(o1);
+                    dal.Order.Add(o1);
                     break;
 
                 case "b":
@@ -232,11 +233,11 @@ e) Delete Order");
                     string idOfTheOrder = Console.ReadLine();
                     int id1 = int.Parse(idOfTheOrder);
 
-                    Console.WriteLine(Dallist.Order.Get(id1));
+                    Console.WriteLine(dal.Order.Get(id1));
                     break;
 
                 case "c":
-                    IEnumerable<Order?>? tabOrder = Dallist.Order.GetAll();
+                    IEnumerable<Order?>? tabOrder = dal.Order.GetAll();
 
                     foreach (Order order in tabOrder)
                         Console.WriteLine(order);
@@ -247,7 +248,7 @@ e) Delete Order");
                     Order o2 = new Order();
                     o2 = fonctionDataOrder();
 
-                    Dallist.Order.Update(o2);
+                    dal.Order.Update(o2);
 
                     break;
 
@@ -258,7 +259,7 @@ e) Delete Order");
                     string idOfTheOrder2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheOrder2);
 
-                    Dallist.Order.Delete(id2);
+                    dal.Order.Delete(id2);
 
                     break;
 

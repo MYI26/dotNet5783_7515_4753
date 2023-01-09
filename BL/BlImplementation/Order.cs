@@ -1,12 +1,11 @@
 ﻿using BlApi;
-using Dal;
 namespace BlImplementation;
 
 internal class Order : IOrder
 {
 
-    private static DalList Dal = new DalList();
-
+    // private static DalList Dal = new DalList();
+    DalApi.IDal?Dal = DalApi.Factory.Get();
 
     public BO.Order? Get(int id) // 
     {

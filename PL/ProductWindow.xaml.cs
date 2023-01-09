@@ -1,5 +1,4 @@
-﻿using BlImplementation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,8 +25,8 @@ namespace PL;
 public partial class ProductWindow : Window
 {
     public DO.Enums.Category Category { get; set; }
-    BlApi.IBl bl = new BlImplementation.Bl();
-  // ProductListWindow 
+    BlApi.IBl? bl = BlApi.Factory.Get();
+    // ProductListWindow 
     public ProductWindow()
     {
         InitializeComponent();

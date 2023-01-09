@@ -1,5 +1,6 @@
 ﻿using BO;
 namespace BlApi;
+using Dal;
 
 /// <summary>
 ///  interface IProduct

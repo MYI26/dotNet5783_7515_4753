@@ -1,18 +1,21 @@
 ﻿using BlApi;
+//using DalApi;
 namespace BlImplementation;
 
-sealed public class Bl : IBl
+
+sealed internal class Bl : IBl
 {
 
-    public Bl() {
+    public Bl()
+    {
 
-    IOrder Order  = new Order();
-    IProduct Product  = new Product();
-    ICart Cart = new Cart();
+        IOrder Order = new Order();
+        IProduct Product = new Product();
+        ICart Cart = new Cart();
 
     }
 
-    public IOrder Order { get; } = new Order();
-    public IProduct Product { get; } = new Product();
-    public ICart Cart { get; } = new Cart();
+    public IOrder Order { get; } //new Order();
+    public IProduct Product { get; } // new Product();
+    public ICart Cart { get; } //new Cart();
 }

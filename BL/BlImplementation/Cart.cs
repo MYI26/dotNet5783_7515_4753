@@ -1,13 +1,12 @@
 ﻿using BlApi;
-using Dal;
-using System.ComponentModel;
 
 namespace BlImplementation;
 
 internal class Cart : ICart
 {
 
-   private static DalList Dal = new DalList();
+    //private static DalList Dal = new DalList();
+    DalApi.IDal? Dal = DalApi.Factory.Get();
     public BO.Cart? AddProduct(BO.Cart cart, int productId) // place product with productid in the list orderitem of the cart
     {
         if (productId <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");

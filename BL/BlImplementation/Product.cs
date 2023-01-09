@@ -1,8 +1,5 @@
 ﻿using BlApi;
 using BO;
-using Dal;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlImplementation;
 
@@ -10,7 +7,8 @@ internal class Product : IProduct
 {
 
     // private static readonly IDal? Dal = Factory.Get();
-    private static DalList Dal = new DalList();
+    //private static DalList Dal = new DalList();
+    DalApi.IDal? Dal = DalApi.Factory.Get();
     public void Add(BO.Product product)
     {
 
