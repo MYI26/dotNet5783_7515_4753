@@ -16,8 +16,12 @@ namespace Dal;
 /// inherits of IDal and therefore of the interfaces of the three entities
 /// sealed, disallow inheriting from class
 /// </summary>
-sealed public class DalList : IDal 
+sealed internal  class DalList : IDal 
 {
+
+    private DalList() { }
+
+    public static IDal Instance { get; } = new DalList();
 
     //que ft cette fleche et à quoi ca sert
     public IProduct Product => new DalProduct();

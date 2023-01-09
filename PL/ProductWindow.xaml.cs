@@ -44,7 +44,7 @@ public partial class ProductWindow : Window
         InitializeComponent();
         SelectProductWindow.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         TextBoxId.SelectedText = (pfl.ProductID).ToString();
-        TextBoxId.IsEnabled = false;
+        TextBoxId.IsReadOnly = true ;
         TextBoxName.SelectedText = pfl.Name;
         TextBoxPrice.SelectedText = (pfl.Price).ToString();
         TextBoxInStock.SelectedText = (bl.Product.Get(pfl.ProductID).InStock).ToString();
