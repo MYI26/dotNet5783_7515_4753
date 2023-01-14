@@ -12,8 +12,7 @@
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -33,7 +32,10 @@ VerticalAlignment="Stretch" Width="auto">
         <ListView Grid.Row="1" x:Name="ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick="DoubleClickUpdate" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding ProductID}" />
+                    <GridViewColumn Header="Name" Width="130" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Category" Width="120" DisplayMemberBinding="{Binding Category}" />
+                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
                 </GridView>
             </ListView.View>
         </ListView>

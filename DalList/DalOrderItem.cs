@@ -5,6 +5,7 @@ using DalApi.DO;
 using static Dal.DataSource;
 using DalApi;
 using DO;
+using System.Security.Cryptography;
 
 namespace Dal;
 
@@ -14,33 +15,64 @@ internal class DalOrderItem : IOrderItem
     public int Add(OrderItem oI1)
     {
 
-        foreach (OrderItem oI in listOrderItem)
+        //foreach (OrderItem oI in listOrderItem)
+        //{
+        //    if (oI.ID == oI1.ID)
+        //    {
+        //      throw new AlreadyExistException($"the order item whith ID: {oI1.ID} already exist");
+        //    }
+        //}
+
+        //listOrderItem.Add(oI1);
+
+        //return oI1.ID;
+
+        IEnumerable<OrderItem> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+            from oi in listOrderItem
+            where oi?.ID == oI1.ID
+            select oI1;
+
+        foreach (var Oi in listorderitem1)
         {
-            if (oI.ID == oI1.ID)
-            {
-              throw new AlreadyExistException($"the order item whith ID: {oI1.ID} already exist");
-            }
+            throw new AlreadyExistException($"the  order item whith ID: {oI1.ID} already exist");
         }
 
-        listOrderItem.Add(oI1);
-
+        listOrderItem.Add(oI1);//si le foreach ne sais pas executer
         return oI1.ID;
     }
 
     public void Delete(int id)
     {
 
-        bool found = false;
+        //bool found = false;
 
-        foreach (OrderItem oI in listOrderItem)
+        //foreach (OrderItem oI in listOrderItem)
+        //{
+        //    if (oI.ID == id)
+        //        listOrderItem.Remove(oI);
+        //    found = true;
+        //    break;
+        //}
+        //if (found = !true)
+        //    c
+
+        IEnumerable<OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        from oi in listOrderItem
+            where oi?.ID == id
+            select oi;
+
+
+        if (listorderitem1 != null)
         {
-            if (oI.ID == id)
-                listOrderItem.Remove(oI);
-            found = true;
-            break;
+            foreach (var Oi in listorderitem1)
+            {
+                listOrderItem.Remove(Oi);
+            }
         }
-        if (found = !true)
-            throw new DontExistException("the order item dont exist");
+
+        else throw new DontExistException("the order item dont exist");
+
+
     }
 
     public void Update(OrderItem oI1)
@@ -62,16 +94,32 @@ internal class DalOrderItem : IOrderItem
 
     public OrderItem? Get(int id)
     {
-     
-        foreach (OrderItem oI in listOrderItem)
+
+        //foreach (OrderItem oI in listOrderItem)
+        //{
+        //    if (oI.ID == id)
+        //    {
+        //        return oI;
+        //    }
+        //}
+
+        //throw new DontExistException("the order item dont exist");
+
+        IEnumerable<OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        from oi in listOrderItem
+        where oi?.ID == id
+        select oi;
+
+
+        if (listorderitem1 != null)
         {
-            if (oI.ID == id)
+            foreach (var Oi in listorderitem1)
             {
-                return oI;
+                return Oi;
             }
         }
 
-        throw new DontExistException("the order item dont exist");
+         throw new DontExistException("the order item dont exist");
     }
 
     //public IEnumerable<OrderItem> Ask()

@@ -35,6 +35,7 @@ internal class Order : IOrder
 
                 temp.DeliveryDate = order?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing");
 
+
                 temp.Items = GetOrderItem(id);
 
                
@@ -65,28 +66,44 @@ internal class Order : IOrder
         }
     }
 
-    public List<BO.OrderItem?>? GetOrderItem(int id) {
+    public List<BO.OrderItem?>? GetOrderItem(int id)
+    {
 
         List<BO.OrderItem?> ListOrderItemBo = new List<BO.OrderItem?>();
 
         BO.OrderItem BoOrderItem = new BO.OrderItem();
 
-        foreach (DO.OrderItem oi in Dal?.OrderItem.GetAll()) {
+        foreach (DO.OrderItem oi in Dal?.OrderItem.GetAll())
+        {
 
-            if (oi.OrderID == id) {
+            if (oi.OrderID == id)
+            {
 
-            BoOrderItem.Id = oi.ID;
-            BoOrderItem.ProductID = oi.ProductID;
-            BoOrderItem.NameProduct = Dal?.Product.Get(oi.ProductID)?.Name;
-            BoOrderItem.Price = oi.Price;
-            BoOrderItem.QuantityInCart = oi.Amount;
-            BoOrderItem.PriceOfAll = oi.Amount * oi.Price;
+                BoOrderItem.Id = oi.ID;
+                BoOrderItem.ProductID = oi.ProductID;
+                BoOrderItem.NameProduct = Dal?.Product.Get(oi.ProductID)?.Name;
+                BoOrderItem.Price = oi.Price;
+                BoOrderItem.QuantityInCart = oi.Amount;
+                BoOrderItem.PriceOfAll = oi.Amount * oi.Price;
 
-            ListOrderItemBo.Add(BoOrderItem);
-        } 
+                ListOrderItemBo.Add(BoOrderItem);
+            }
 
         }
         return ListOrderItemBo;
+        //public IEnumerable<BO.OrderItem?>? GetOrderItem(int id) =>
+        //    from order in Dal?.OrderItem.GetAll()
+        //    where order?.OrderID == id//from == a partir de, select new == new
+        //        select new BO.OrderItem
+        //        {
+        //            Id = order?.ID ?? throw new BO.MissingException("Quantity InCart missing"),
+        //            ProductID = (int)(order?.ProductID),
+        //            NameProduct = Dal?.Product.Get((int)(order?.ProductID))?.Name,
+        //            Price = Dal?.Order.GetAmoutOrderItem((int)(order?.ID)) ?? throw new BO.MissingException("Quantity InCart missing"),
+        //            QuantityInCart = (int)(order?.Amount),
+        //            PriceOfAll = order?.Amount * order?.Price ?? throw new BO.MissingException("Quantity InCart missing"),
+        //        };
+
     }
 
 

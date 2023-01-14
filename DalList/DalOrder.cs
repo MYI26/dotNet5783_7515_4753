@@ -36,17 +36,33 @@ internal class DalOrder : IOrder
     public void Delete(int id)
     {
 
-        bool found = false;
+        //bool found = false;
 
-        foreach (Order o in listOrder)
+        //foreach (Order o in listOrder)
+        //{
+        //    if (o.ID == id)
+        //        listOrder.Remove(o);
+        //    found = true;
+        //    break;
+        //}
+        //if (found = !true)
+        //    throw new DontExistException("the order dont exist");
+
+        IEnumerable<Order?> listorder1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        from o in listOrder
+        where o?.ID == id
+        select o;
+
+
+        if (listorder1 != null)
         {
-            if (o.ID == id)
-                listOrder.Remove(o);
-            found = true;
-            break;
+            foreach (var O in listorder1)
+            {
+                listOrder.Remove(O);
+            }
         }
-        if (found = !true)
-            throw new DontExistException("the order dont exist");
+
+        else throw new DontExistException("the order dont exist");
     }
 
     public void Update(Order o1)
@@ -71,15 +87,31 @@ internal class DalOrder : IOrder
     public Order? Get(int id)
     {
 
-        foreach (Order o in listOrder)
+        //foreach (Order o in listOrder)
+        //{
+        //    if (o.ID == id)
+        //    {
+        //        return o;
+        //    }
+        //}
+
+        //throw new DontExistException("the order dont exist");
+
+        IEnumerable<Order?> listorder1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+       from o in listOrder
+       where o?.ID == id
+       select o;
+
+
+        if (listorder1 != null)
         {
-            if (o.ID == id)
+            foreach (var O in listorder1)
             {
-                return o;
+                return O;
             }
         }
 
-        throw new DontExistException("the order dont exist");
+         throw new DontExistException("the order dont exist");
     }
 
     //à quoi sert cette fonction?
