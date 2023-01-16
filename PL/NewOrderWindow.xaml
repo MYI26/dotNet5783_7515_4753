@@ -7,17 +7,33 @@
         mc:Ignorable="d"
         Title="NewOrderWindow" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="18*"/>
-            <RowDefinition Height="199*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-        
-        <Label Content="Label" Margin="1,1,400,0" Grid.ColumnSpan="2"/>
-        <ComboBox Grid.Column="1"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="CatagorySelector" Grid.Column="1" Margin="0,0,1,0" SelectionChanged="CatagorySelector_SelectionChanged" />
+            <Label Content="All our products available in the store: " Margin="1,1,0,0" FontSize="20" Background="#FFD2D2D2"/>
+        </Grid>
+        <ListView x:Name="ProductItemView"  Grid.Row="1" d:ItemsSource="{Binding}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding ProductID}" />
+                    <GridViewColumn Header="Name" Width="130" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Category" Width="120" DisplayMemberBinding="{Binding Category}" />
+                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Row="2">
+            <Button Content="Add Product in cart" HorizontalAlignment="Stretch" Margin="439,0,0,0" VerticalAlignment="Stretch" Click="Button_Click"/>
+        </Grid>
+
 
     </Grid>
 </Window>

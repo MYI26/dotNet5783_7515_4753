@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,38 @@ namespace PL
     /// </summary>
     public partial class NewOrderWindow : Window
     {
+
+        private static IEnumerable<ProductForList?>? ItmesSource;
+
+        BlApi.IBl? bl = BlApi.Factory.Get();
         public NewOrderWindow()
         {
             InitializeComponent();
+            ProductItemView.ItemsSource = bl?.Product?.GetProductList(null);
+            CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         }
+        public DO.Enums.Category Category { get; set; }
+        //public BO.Product p;
+
+        public bool fonctioncombox(DO.Product? p = null)
+        {
+            if (p?.MyCategory == Category)
+                return true;
+            if (Category == 0)
+                return true;
+
+            else return false;
+        }
+
+        private void CatagorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            Category = (DO.Enums.Category)CatagorySelector.SelectedItem;
+
+            ProductItemView.ItemsSource = bl?.Product.GetProductList(fonctioncombox);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) => new CartUser().Show();
+        
     }
 }
