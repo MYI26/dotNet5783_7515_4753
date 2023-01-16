@@ -6,7 +6,21 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="TrackingControlWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid RenderTransformOrigin="0.499,0.561">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="87*"/>
+            <RowDefinition Height="88*"/>
+            <RowDefinition Height="259*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="___Grid_1_" Grid.ColumnSpan="2">
+            <Label Content="What is your order number?" HorizontalAlignment="Left" Margin="29,20,0,0" VerticalAlignment="Top" Width="712" Height="67" FontSize="20"/>
+        </Grid>
+
     </Grid>
 </Window>
