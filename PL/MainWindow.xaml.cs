@@ -31,9 +31,9 @@ namespace PL
 
         }
 
-        private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+        private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) => new PassWord().Show();
 
-        private void ___ShowNewOrderButton_Click__Click(object sender, RoutedEventArgs e) => new NewOrderWindow().Show();
+        private void ___ShowNewOrderButton_Click__Click(object sender, RoutedEventArgs e) => new CartUser().Show();
 
         private void ___ShowTRackingControlButton_Click__Click(object sender, RoutedEventArgs e) => new TrackingControlWindow().Show();
 

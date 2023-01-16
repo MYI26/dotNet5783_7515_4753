@@ -70,7 +70,7 @@ public partial class ProductWindow : Window
 
         else bl.Product.Update(p1);    
             //  ProductListView.ItemsSource = bl?.Product?.GetProductList(null);
-           new ProductListWindow().Show();
+           new ProductListWindow().Show(); this.Close();
 
     }
 }

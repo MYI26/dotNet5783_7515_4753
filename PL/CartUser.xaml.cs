@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,23 @@ namespace PL
     /// </summary>
     public partial class CartUser : Window
     {
+
+        private static IEnumerable<ProductForList?>? ItmesSource;
+
+        BlApi.IBl? bl = BlApi.Factory.Get();
+
+        Cart cartuser = new Cart();
         public CartUser()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            cartuser.CustomerName = customername.Text;
+            cartuser.CustomerAddress = customeradress.Text;
+            cartuser.CustomerEmail = customeremail.Text;
+
         }
     }
 }

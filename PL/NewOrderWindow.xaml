@@ -8,9 +8,9 @@
         Title="NewOrderWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="17*"/>
-            <RowDefinition Height="200*"/>
             <RowDefinition Height="20*"/>
+            <RowDefinition Height="175*"/>
+            <RowDefinition Height="22*"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,7 +20,7 @@
             <ComboBox x:Name="CatagorySelector" Grid.Column="1" Margin="0,0,1,0" SelectionChanged="CatagorySelector_SelectionChanged" />
             <Label Content="All our products available in the store: " Margin="1,1,0,0" FontSize="20" Background="#FFD2D2D2"/>
         </Grid>
-        <ListView x:Name="ProductItemView"  Grid.Row="1" d:ItemsSource="{Binding}" >
+        <ListView x:Name="ProductItemView" d:ItemsSource="{Binding}" Margin="0,38,0,0" Grid.RowSpan="2" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding ProductID}" />
@@ -30,7 +30,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="0,2,0,0">
             <Button Content="Add Product in cart" HorizontalAlignment="Stretch" Margin="439,0,0,0" VerticalAlignment="Stretch" Click="Button_Click"/>
         </Grid>
 
