@@ -9,11 +9,15 @@ internal class Cart : ICart
     DalApi.IDal? Dal = DalApi.Factory.Get();
     public BO.Cart? AddProduct(BO.Cart cart, int productId) // place product with productid in the list orderitem of the cart
     {
-        if (productId <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
-        if (cart == null) throw new BO.ErrorDontExist("Cart dont exist");
-        if (cart.Items == null) cart.Items = new();  // creat new List<OrderItem?>
+        if (productId <= 0) 
+            throw new BO.ErrorIdException("Produt ID is not a positive number");
+        if (cart == null) 
+            throw new BO.ErrorDontExist("Cart dont exist");
+        if (cart.Items == null) 
+            cart.Items = new();  // creat new List<OrderItem?>
         DO.Product product; // creation of new product Product in DO
-        try { product = Dal.Product.Get(productId) ?? throw new BO.MissingException("product dont exist"); } // place the product with id productId in the new product
+        try { 
+            product = Dal.Product.Get(productId) ?? throw new BO.MissingException("product dont exist"); } // place the product with id productId in the new product
         catch (DalApi.DO.DontExistException) // the Exeption that ask can return 
         {
             throw new BO.DontExist("the Id dont valid"); // the exeption if the id of productid dont ewist
@@ -32,6 +36,8 @@ internal class Cart : ICart
         
 
         cart.Items.Add(item);
+      
+                  
         UpdateTotalSum(cart);
         //BO.OrderItem item = cart.Items?.FirstOrDefault(item => item.ProductID == productId)!; // we place in item the fist orderitem of the list orderitem of the cart and place productId in the ProductId of orderitem of item
         //bool newItem = item == null;  // newItem == true if item == null

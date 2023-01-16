@@ -5,7 +5,7 @@ internal class Order : IOrder
 {
 
     // private static DalList Dal = new DalList();
-    DalApi.IDal?Dal = DalApi.Factory.Get();
+    DalApi.IDal Dal = DalApi.Factory.Get() ?? throw new BO.DontExistException("dal invalid");
 
     public BO.Order? Get(int id) // 
     {
@@ -14,45 +14,34 @@ internal class Order : IOrder
 
             if (id > 999)
             {
-                DO.Order? order = Dal?.Order.Get(id); //je recher dans la base de donner les order associer
+                DO.Order? doOrder = Dal?.Order.Get(id); //je recher dans la base de donner les order associer
 
 
-                BO.Order temp = new BO.Order();
-
-                temp.OrderID = order?.ID ?? throw new BO.MissingException("ID missing");
-
-                temp.CustomerName = order?.CustomerName ?? throw new BO.MissingException("Name missing");
-
-                temp.CustomerEmail = order?.CustomerEmail ?? throw new BO.MissingException("Email missing");
-
-                temp.CustomerAddress = order?.CustomerAddress ?? throw new BO.MissingException("Address missing");
-
-                temp.Status = (BO.Enums.OrderStatus)Dal?.Order.GetNumStatus(id);
-
-                temp.OrderDate = order?.OrderDate ?? throw new BO.MissingException("OrderDate missing");
-
-                temp.ShipDate = order?.ShipDate ?? throw new BO.MissingException("ShipDate missing");
-
-                temp.DeliveryDate = order?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing");
-
-
-                temp.Items = GetOrderItem(id);
-
-               
-
-                double temp1 = 0;
-                foreach (DO.OrderItem oi in Dal?.OrderItem.GetAll())
+                BO.Order result = new BO.Order
                 {
-                    if (oi.OrderID == id)
-                    {
-                        temp1 += oi.Amount * oi.Price;
 
-                    }
-                }
+                    OrderID = doOrder?.ID ?? throw new BO.MissingException("ID missing"),
+                    CustomerName = doOrder?.CustomerName ?? throw new BO.MissingException("Name missing"),
+                    CustomerEmail = doOrder?.CustomerEmail ?? throw new BO.MissingException("Email missing"),
 
-                temp.TotalPrice = temp1;
+                    CustomerAddress = doOrder?.CustomerAddress ?? throw new BO.MissingException("Address missing"),
 
-                    return temp;
+                    Status = (BO.Enums.OrderStatus)Dal?.Order.GetNumStatus(id) !,
+
+                    OrderDate = doOrder?.OrderDate ?? throw new BO.MissingException("OrderDate missing"),
+
+                    ShipDate = doOrder?.ShipDate ?? throw new BO.MissingException("ShipDate missing"),
+
+                    DeliveryDate = doOrder?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing"),
+                    Items = GetOrderItem(id)
+                };
+
+                result.TotalPrice = (from item in Dal?.OrderItem.GetAll()
+                           where item?.ID == id
+                           select item?.Amount*item?.Price).Sum() ?? 0.0;
+
+
+                return result;
 
             }
 
@@ -107,36 +96,38 @@ internal class Order : IOrder
     }
 
 
-    public IEnumerable<BO.OrderForList?>? GetOrder()=>
+    public IEnumerable<BO.OrderForList?>? GetOrders() =>
 
-    //IEnumerable<DO.Order> listorder = Dal?.Order.GetAll();
+        //IEnumerable<DO.Order> listorder = Dal?.Order.GetAll();
 
-    //  foreach (Order p in listOrder){
-        
-    //    }
+        //  foreach (Order p in listOrder){
+
+        //    }
         from order in Dal?.Order.GetAll() //from == a partir de, select new == new
+        orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
+        let  ord = (DO.Order)order 
         select new BO.OrderForList
         {
-            OrderID = order?.ID ?? throw new BO.MissingException("Quantity InCart missing"),
-            CustomerName = order?.CustomerName,
-            Status = (BO.Enums.OrderStatus)Dal?.Order.GetNumStatus((int)(order?.ID)),
-            Amount = Dal?.Order.GetAmoutOrderItem((int)(order?.ID)) ?? throw new BO.MissingException("Quantity InCart missing"),
-            TotalPrice = Get((int)(order?.ID)).TotalPrice,
+            OrderID = ord.ID ,
+            CustomerName = ord.CustomerName,
+            Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID),
+            Amount = Dal?.Order.GetAmoutOrderItem(ord.ID) ?? throw new BO.MissingException("Quantity InCart missing"),
+            TotalPrice = Get(ord.ID)?.TotalPrice ?? 0.0
         };
 
-   
+
 
     public BO.OrderTracking? Tracking(int id)
     {
         try
         {
             bool flag = false;
-            foreach (DO.Order o in Dal?.Order.GetAll())
+            foreach (DO.Order? o in Dal.Order.GetAll())
             {
-                if (o.ID == id)
+                if (o?.ID == id)
                 {
                     flag = true;
-                    
+
                 }
             }
 
@@ -150,7 +141,7 @@ internal class Order : IOrder
                     return new BO.OrderTracking()
                     {
                         OrderID = id,
-                        Status = (BO.Enums.OrderStatus)Dal?.Order.GetNumStatus(id),
+                        Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(id),
                         Items = null,
                     };
                 }
@@ -158,7 +149,7 @@ internal class Order : IOrder
             }
             else throw new BO.DontExistException("the order dont exist");
         }
-        
+
         catch (BO.DontExistException) { throw new BO.DontExistException("the order dont exist"); }
     }
 
@@ -168,12 +159,12 @@ internal class Order : IOrder
 
         try
         {
-            DO.Order? order = Dal?.Order.Get(id);
+            DO.Order? order = Dal.Order.Get(id);
 
             bool flag = false;
-            foreach (DO.Order o in Dal?.Order.GetAll())
+            foreach (DO.Order? o in Dal.Order.GetAll())
             {
-                if (o.ID == id)
+                if (o?.ID == id)
                 {
                     flag = true;
                 }
@@ -183,34 +174,34 @@ internal class Order : IOrder
             {
                 //if (order?.ShipDate == null)
                 //{
-                    
 
-                    order = new() // creat new order
-                    {
-                        ID = order?.ID ?? throw new BO.MissingException("ID missing"),
 
-                        CustomerName = order?.CustomerName ?? throw new BO.MissingException("Name missing"),
+                order = new() // creat new order
+                {
+                    ID = order?.ID ?? throw new BO.MissingException("ID missing"),
 
-                        CustomerEmail = order?.CustomerEmail ?? throw new BO.MissingException("Email missing"),
+                    CustomerName = order?.CustomerName ?? throw new BO.MissingException("Name missing"),
 
-                        CustomerAddress = order?.CustomerAddress ?? throw new BO.MissingException("Address missing"),
+                    CustomerEmail = order?.CustomerEmail ?? throw new BO.MissingException("Email missing"),
 
-                        OrderDate = order?.OrderDate ?? throw new BO.MissingException("OrderDate missing"),
+                    CustomerAddress = order?.CustomerAddress ?? throw new BO.MissingException("Address missing"),
 
-                        ShipDate = DateTime.Now,
+                    OrderDate = order?.OrderDate ?? throw new BO.MissingException("OrderDate missing"),
 
-                        DeliveryDate = order?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing"),
+                    ShipDate = DateTime.Now,
 
-                    };
+                    DeliveryDate = order?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing"),
 
-                    Dal?.Order.Update((DO.Order)order);
+                };
+
+                Dal.Order.Update((DO.Order)order);
                 //}
                 //else throw new BO.ErrorDontExist("Id of Order no valid");
             }
-           
-        
+
+
             else throw new BO.DontExistException("the order dont exist");
-    
+
         }
 
         catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); }
@@ -222,12 +213,12 @@ internal class Order : IOrder
     {
         try
         {
-            DO.Order? order = Dal?.Order.Get(id);
+            DO.Order? order = Dal.Order.Get(id);
 
             bool flag = false;
-            foreach (DO.Order o in Dal?.Order.GetAll())
+            foreach (DO.Order? o in Dal.Order.GetAll())
             {
-                if (o.ID == id)
+                if (o?.ID == id)
                 {
                     flag = true;
                 }
@@ -238,30 +229,30 @@ internal class Order : IOrder
                 //if (order?.DeliveryDate == null)
                 //{
 
-                    order = new() // creat new order
-                    {
-                        ID = order?.ID ?? throw new BO.MissingException("ID missing"),
+                order = new() // creat new order
+                {
+                    ID = order?.ID ?? throw new BO.MissingException("ID missing"),
 
-                        CustomerName = order?.CustomerName ?? throw new BO.MissingException("Name missing"),
+                    CustomerName = order?.CustomerName ?? throw new BO.MissingException("Name missing"),
 
-                        CustomerEmail = order?.CustomerEmail ?? throw new BO.MissingException("Email missing"),
+                    CustomerEmail = order?.CustomerEmail ?? throw new BO.MissingException("Email missing"),
 
-                        CustomerAddress = order?.CustomerAddress ?? throw new BO.MissingException("Address missing"),
+                    CustomerAddress = order?.CustomerAddress ?? throw new BO.MissingException("Address missing"),
 
-                        OrderDate = order?.OrderDate ?? throw new BO.MissingException("OrderDate missing"),
+                    OrderDate = order?.OrderDate ?? throw new BO.MissingException("OrderDate missing"),
 
-                        ShipDate = order?.ShipDate ?? throw new BO.MissingException("DeliveryDate missing"),
+                    ShipDate = order?.ShipDate ?? throw new BO.MissingException("DeliveryDate missing"),
 
-                        DeliveryDate = DateTime.Now,
+                    DeliveryDate = DateTime.Now,
 
-                    };
+                };
 
-                    Dal?.Order.Update((DO.Order)order);
+                Dal?.Order.Update((DO.Order)order);
                 //}
                 //else throw new BO.ErrorDontExist("Id of Order no valid");
-            }                   
-        else throw new BO.DontExistException("the order dont exist");
-    }
+            }
+            else throw new BO.DontExistException("the order dont exist");
+        }
 
         catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); }
 

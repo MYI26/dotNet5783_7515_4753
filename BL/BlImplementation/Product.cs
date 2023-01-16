@@ -12,25 +12,25 @@ internal class Product : IProduct
     public void Add(BO.Product product)
     {
 
-        DO.Product product1;
+        DO.Product doProduct;
         if (product.ProductID <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
         try
         {
-            product1 = new() // creat new product
+            doProduct = new() // creat new product
             {
                 ID = product.ProductID,
                 Name = product.Name,
                 Price = product.Price,
-                MyCategory = (DO.Enums.Category)product.MyCategory,
+                MyCategory = (DO.Enums.Category)product.MyCategory!,
                 InStock = product.InStock,
 
             };
 
 
-            Dal?.Product.Add(product1);
+            Dal?.Product.Add(doProduct);
         }
 
-        catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product Already exist"); } 
+        catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product Already exist"); }
 
     }
 
@@ -39,10 +39,10 @@ internal class Product : IProduct
         try
         {
             Dal?.Product.Delete(id);
-            
+
         }
 
-        catch(Exception e) { throw e; }
+        catch (Exception e) { throw e; }
 
     }
 
@@ -94,37 +94,37 @@ internal class Product : IProduct
 
             if (cart1 == null) throw new BO.ErrorDontExist("Cart dont exist");
 
-                DO.Product? product = Dal?.Product.Get(id); //place the product id in new product of DO
+            DO.Product? product = Dal?.Product.Get(id); //place the product id in new product of DO
 
             if (cart1.Items == null) cart1.Items = new();  // creat new List<OrderItem?>
 
             IEnumerable<BO.OrderItem?> listorderitem = cart1.Items;
 
-                foreach (BO.OrderItem? orderitem in listorderitem)
-                    if (orderitem.ProductID == id) { flag = true; break; }
-                //we check that this product our cart
+            foreach (BO.OrderItem? orderitem in listorderitem)
+                if (orderitem.ProductID == id) { flag = true; break; }
+            //we check that this product our cart
 
-                if (flag == true)
+            if (flag == true)
+            {
+                return new BO.ProductItem()
                 {
-                    return new BO.ProductItem()
-                    {
-                        ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
-                        Name = product?.Name ?? throw new BO.MissingException("Name missing"),
-                        Price = product?.Price ?? throw new BO.MissingException("Price missing"),
-                        Category = (BO.Enums.Category?)(product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing")),
-                        Availability = true,
-                        QuantityInCart = product?.InStock ?? throw new BO.MissingException("Quantity InCart missing"),
-                    };
-                }
+                    ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
+                    Name = product?.Name ?? throw new BO.MissingException("Name missing"),
+                    Price = product?.Price ?? throw new BO.MissingException("Price missing"),
+                    Category = (BO.Enums.Category?)(product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing")),
+                    Availability = true,
+                    QuantityInCart = product?.InStock ?? throw new BO.MissingException("Quantity InCart missing"),
+                };
+            }
 
-                else { throw new BO.DontExistException("Product ID dont exist in the cart"); }
-            
+            else { throw new BO.DontExistException("Product ID dont exist in the cart"); }
+
         }
-        
-        catch (BO.MissingException)
+
+        catch (BO.MissingException ex)
         {
 
-            throw new BO.Missing("Entity missing");
+            throw new BO.Missing("Entity missing", ex);
         }
 
         catch (BO.ErrorIdException)
@@ -141,17 +141,18 @@ internal class Product : IProduct
 
     }
 
-    public IEnumerable<BO.ProductForList?>? GetProductList(Func<DO.Product?, bool>? filter) { 
-    
-        return from product in Dal?.Product.GetAll(filter) //from == a partir de, select new == new
-        select new BO.ProductForList
-        {
-            ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
-            Name = product?.Name ?? throw new BO.MissingException("Name missing"),
-            Price = product?.Price ?? throw new BO.MissingException("Price missing"),
-            Category = (BO.Enums.Category?)product?.MyCategory ?? throw new BO.MissingException("Category missing"),
+    public IEnumerable<BO.ProductForList?>? GetProductList(Func<DO.Product?, bool>? filter)
+    {
 
-        };
+        return from product in Dal?.Product.GetAll(filter) //from == a partir de, select new == new
+               select new BO.ProductForList
+               {
+                   ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
+                   Name = product?.Name ?? throw new BO.MissingException("Name missing"),
+                   Price = product?.Price ?? throw new BO.MissingException("Price missing"),
+                   Category = (BO.Enums.Category?)product?.MyCategory ?? throw new BO.MissingException("Category missing"),
+
+               };
     }
     public IEnumerable<BO.ProductItem?>? GetProductCatalog() =>
 

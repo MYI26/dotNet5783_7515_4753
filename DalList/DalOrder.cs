@@ -138,16 +138,33 @@ internal class DalOrder : IOrder
 
     public int GetAmoutOrderItem(int id)
     {
-
         int temp = 0;
-        foreach (OrderItem oi in listOrderItem)
-        {
-            if (oi.OrderID == id)
-            {
-                temp += oi.Amount;
 
+        IEnumerable<OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+       from oI in listOrderItem
+       where oI?.OrderID == id
+       select oI;
+
+
+        if (listorderitem1 != null)
+        {
+            foreach (OrderItem OI in listorderitem1)
+            {
+                temp += OI.Amount;
             }
         }
+
+
+        //int temp = 0;
+        //foreach (OrderItem oi in listOrderItem)
+        //{
+        //    if (oi.OrderID == id)
+        //    {
+        //        temp += oi.Amount;
+        //    }
+        //}
+
+
 
         return temp;
     }
@@ -157,11 +174,25 @@ internal class DalOrder : IOrder
     {
 
         double temp = 0;
-        foreach (OrderItem oi in listOrderItem)
+        //foreach (OrderItem oi in listOrderItem)
+        //{
+        //    if (oi.OrderID == id)
+        //    {
+        //        temp = temp+ oi.Price * oi.Amount;
+        //    }
+        //}
+
+        IEnumerable<OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+       from oI in listOrderItem
+       where oI?.OrderID == id
+       select oI;
+
+
+        if (listorderitem1 != null)
         {
-            if (oi.OrderID == id)
+            foreach (OrderItem OI in listorderitem1)
             {
-                temp = temp+ oi.Price * oi.Amount;
+                temp += OI.Amount * OI.Price;
             }
         }
 

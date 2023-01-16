@@ -239,7 +239,7 @@ e) Delete Order");
                 case "c":
                     IEnumerable<Order?>? tabOrder = dal.Order.GetAll();
 
-                    foreach (Order order in tabOrder)
+                    foreach (Order? order in tabOrder)
                         Console.WriteLine(order);
 
                     break;
