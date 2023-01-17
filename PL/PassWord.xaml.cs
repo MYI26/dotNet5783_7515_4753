@@ -28,7 +28,7 @@ namespace PL
         {
             string pass = "123456";
             if (PasswordBox.Password == pass) { new ProductListWindow().Show(); this.Close(); }
-
+            else MessageBox.Show("the password not valid");
         }
     }
 }

@@ -7,40 +7,120 @@
         mc:Ignorable="d"
         Title="ProductListWindow" Height="640" Width="800">
     <Grid Name="MainGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="500*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
-            <ComboBox Name="CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
-            <Label Grid.Column="0" Content="Category:" Height="46" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FFC1C1C1" FontSize="20">
-                <Label.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-        </Grid>
-        <ListView Grid.Row="1" x:Name="ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick="DoubleClickUpdate" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding ProductID}" />
-                    <GridViewColumn Header="Name" Width="130" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Category" Width="120" DisplayMemberBinding="{Binding Category}" />
-                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-        
-        <Button x:Name="ButtonAddProduct" Content="Add new product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Button_Click"/>
+        <TabControl>
+            <TabControl.Items>
+                <TabItem Header="Product List">
+                    <TabItem.Content>
+                        <StackPanel>
+                            <Grid Height="597">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="41*"/>
+                                    <RowDefinition Height="497*"/>
+                                    <RowDefinition Height="59*"/>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="198*"/>
+                                        <ColumnDefinition Width="199*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content= "Category:" Height= "46" RenderTransformOrigin= "0.5,0.5" VerticalContentAlignment= "Center" HorizontalContentAlignment= "Center" Background= "#FFC1C1C1" FontSize= "20" >
+
+                                        <Label.RenderTransform >
+
+                                            <TransformGroup >
+
+                                                <ScaleTransform/>
+
+                                                <SkewTransform/>
+
+                                                <RotateTransform Angle= "0"/>
+
+                                                <TranslateTransform/>
+
+                                            </TransformGroup>
+
+                                        </Label.RenderTransform >
+
+                                    </Label >
+                                    <ComboBox Name = "CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
+                                </Grid>
+                                <ListView Grid.Row= "1" x:Name= "ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick= "DoubleClickUpdate" >
+
+                                    <ListView.View >
+
+                                        <GridView >
+
+                                            <GridViewColumn Header= "ID" Width= "100" DisplayMemberBinding= "{Binding ProductID}" />
+
+                                            <GridViewColumn Header= "Name" Width= "130" DisplayMemberBinding= "{Binding Name}" />
+
+                                            <GridViewColumn Header= "Category" Width= "120" DisplayMemberBinding= "{Binding Category}" />
+
+                                            <GridViewColumn Header= "Price" Width= "100" DisplayMemberBinding= "{Binding Price}" />
+
+                                        </GridView >
+
+                                    </ListView.View >
+
+                                </ListView >
+                                <Button x:Name= "ButtonAddProduct" Content= "Add new product" Grid.Row= "2" HorizontalAlignment= "Left" Margin= "685,5,0,5" Padding= "5" Click= "Button_Click" Width="104"/>
+                            </Grid>
+
+                        </StackPanel>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Order List">
+                    <TabItem.Content>
+                        <StackPanel>
+                            <Grid Height="598">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="46*"/>
+                                    <RowDefinition Height="501*"/>
+                                    <RowDefinition Height="51*"/>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="198*"/>
+                                        <ColumnDefinition Width="199*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content= "Category:" Height= "46" RenderTransformOrigin= "0.5,0.5" VerticalContentAlignment= "Center" HorizontalContentAlignment= "Center" Background= "#FFC1C1C1" FontSize= "20" />
+
+                                    <ComboBox Name = "CatagorySelecto2r" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
+                                </Grid>
+                                <ListView Grid.Row= "1" x:Name= "OrderListView" d:ItemsSource= "{Binding OrderForList}"  >
+
+                                    <ListView.View >
+
+                                        <GridView >
+
+                                            <GridViewColumn Header= "Order ID" Width= "100" DisplayMemberBinding= "{Binding OrderID}" />
+
+                                            <GridViewColumn Header= "Customer Name" Width= "130" DisplayMemberBinding= "{Binding CustomerName}" />
+
+                                            <GridViewColumn Header= "Status" Width= "120" DisplayMemberBinding= "{Binding Status}" />
+
+                                            <GridViewColumn Header= "Amount" Width= "100" DisplayMemberBinding= "{Binding Amount}" />
+
+                                            <GridViewColumn Header= "Total Price" Width= "100" DisplayMemberBinding= "{Binding TotalPrice}" />
+
+                                        </GridView >
+
+                                    </ListView.View >
+
+                                </ListView >
+
+
+                            </Grid>
+
+
+                        </StackPanel>
+                    </TabItem.Content>
+                </TabItem>
+
+            </TabControl.Items>
+        </TabControl>
+
 
     </Grid>
 </Window>
+    

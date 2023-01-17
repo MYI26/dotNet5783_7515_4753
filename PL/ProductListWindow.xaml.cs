@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 using DalApi;
 using static BO.Enums;
 using BO;
+using System.Reflection.Metadata;
+using System.Reflection.PortableExecutable;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Media3D;
 
 namespace PL;
 
@@ -32,6 +36,8 @@ public partial class ProductListWindow : Window
         InitializeComponent();
         ProductListView.ItemsSource = bl?.Product?.GetProductList(null); // sans filtre
         CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+        OrderListView.ItemsSource = bl?.Order?.GetOrders();
+
 
     }
 
@@ -78,7 +84,40 @@ public partial class ProductListWindow : Window
 
 
 
+//    <Grid.RowDefinitions>
+//    <RowDefinition Height = "40*" />
+//    < RowDefinition Height="500*"/>
+//    <RowDefinition Height = "Auto" />
+//</ Grid.RowDefinitions >
+//< Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+//    <Grid.ColumnDefinitions>
+//        <ColumnDefinition Width = "*" />
+//        < ColumnDefinition Width="*"/>
+//    </Grid.ColumnDefinitions >
+//    <ComboBox Name = "CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
+//    <Label Grid.Column="0" Content= "Category:" Height= "46" RenderTransformOrigin= "0.5,0.5" VerticalContentAlignment= "Center" HorizontalContentAlignment= "Center" Background= "#FFC1C1C1" FontSize= "20" >
+//        < Label.RenderTransform >
+//            < TransformGroup >
+//                < ScaleTransform />
+//                < SkewTransform />
+//                < RotateTransform Angle= "0" />
+//                < TranslateTransform />
+//            </ TransformGroup >
+//        </ Label.RenderTransform >
+//    </ Label >
+//</ Grid >
+//< ListView Grid.Row= "1" x:Name= "ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick= "DoubleClickUpdate" >
+//    < ListView.View >
+//        < GridView >
+//            < GridViewColumn Header= "ID" Width= "100" DisplayMemberBinding= "{Binding ProductID}" />
+//            < GridViewColumn Header= "Name" Width= "130" DisplayMemberBinding= "{Binding Name}" />
+//            < GridViewColumn Header= "Category" Width= "120" DisplayMemberBinding= "{Binding Category}" />
+//            < GridViewColumn Header= "Price" Width= "100" DisplayMemberBinding= "{Binding Price}" />
+//        </ GridView >
+//    </ ListView.View >
+//</ ListView >
 
+//< Button x:Name= "ButtonAddProduct" Content= "Add new product" Grid.Row= "2" HorizontalAlignment= "Right" Margin= "5" Padding= "5" Click= "Button_Click" />
 
 
 
