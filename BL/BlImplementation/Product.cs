@@ -36,7 +36,7 @@ internal class Product : IProduct
 
     public void Delete(int id)
     {
-        try
+       try
         {
             Dal?.Product.Delete(id);
 

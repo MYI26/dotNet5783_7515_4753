@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using static PL.ProductListWindow;
 using static BO.Enums;
 using BO;
+using System.Windows.Controls.Primitives;
+
 
 
 namespace PL;
@@ -50,25 +52,54 @@ public partial class ProductWindow : Window
         TextBoxInStock.SelectedText = (bl.Product.Get(pfl.ProductID).InStock).ToString();
         ButtonAdd.Content = "Update";
         SelectProductWindow.SelectedItem = (Category?)pfl.Category;
+        deletebutton.Visibility = Visibility.Visible;
     }
 
     public ProductWindow(BO.OrderForList ofl)
     {
         InitializeComponent();
-        AffichageId.Content = "Order ID:";
-        AffichageName.Content = "Customer Name:";
-        AffichageEmail.Content = "Customer Email:";
-        AffichageAdress.Content = "Customer Address:";
-        AffichageStatus.Content = "Status:";
+        Order order = bl?.Order?.Get(ofl.OrderID)!;
 
-        SelectProductWindow.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-       // TextBoxId.SelectedText = (ofl.ProductID).ToString();
-        TextBoxId.IsReadOnly = true;
-        TextBoxName.SelectedText = ofl?.CustomerName;
-        TextBoxPrice.SelectedText = (ofl?.TotalPrice).ToString();
-       // TextBoxInStock.SelectedText = (bl.Product.Get(ofl.Amount).InStock).ToString();
-        ButtonAdd.Visibility= Visibility.Collapsed;
-        
+        Details.Visibility= Visibility.Visible;
+        id.Text = order.OrderID.ToString();
+        name.Text = order.CustomerName.ToString();
+        email.Text = order.CustomerEmail.ToString();
+        address.Text = order.CustomerAddress.ToString();
+        status.Text = order.Status.ToString();
+        ship.Text = order.ShipDate.ToString();
+        delivery.Text = order.DeliveryDate.ToString();  
+        orderdate.Text = order.OrderDate.ToString();
+        price.Text = order.TotalPrice.ToString();
+        deletebutton.Visibility= Visibility.Collapsed;
+        TextBoxInStock.Visibility = Visibility.Collapsed;
+        TextBoxPrice.Visibility = Visibility.Collapsed;
+        TextBoxName.Visibility = Visibility.Collapsed;
+        TextBoxId.Visibility = Visibility.Collapsed;
+        SelectProductWindow.Visibility= Visibility.Collapsed;
+        listorderitem.ItemsSource = bl.Order.Get(ofl.OrderID).Items;
+        selectorderitem.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+
+       // AffichageId.Content = "Order ID:";
+       // AffichageName.Content = "Customer Name:";
+       // AffichageEmail.Content = "Customer Email:";
+       // AffichageAdress.Content = "Customer Address:";
+       // AffichageStatus.Content = "Status:";
+       // TextBoxId.Text = (ofl.OrderID).ToString();
+       // TextBoxName.Text = (ofl.CustomerName).ToString();
+       // //TextBoxPrice.Text = (ofl?.Cut).ToString();
+
+        // SelectProductWindow.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+        //// TextBoxId.SelectedText = (ofl.ProductID).ToString();
+        // TextBoxId.IsReadOnly = true;
+        // TextBoxName.SelectedText = ofl?.CustomerName;
+        // TextBoxPrice.SelectedText = (ofl?.TotalPrice).ToString();
+        //// TextBoxInStock.SelectedText = (bl.Product.Get(ofl.Amount).InStock).ToString();
+        // ButtonAdd.Visibility= Visibility.Collapsed;
+
+
+
+
+
     }
 
     private void Button_ClickAddProduct(object sender, RoutedEventArgs e)
@@ -92,5 +123,26 @@ public partial class ProductWindow : Window
             //  ProductListView.ItemsSource = bl?.Product?.GetProductList(null);
            new ProductListWindow().Show(); this.Close();
 
+    }
+
+    private void deletebutton_Click(object sender, RoutedEventArgs e)
+    {
+        bl?.Product?.Delete(int.Parse(TextBoxId.Text)); this.Close();
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e) => this.Close();
+
+    private void shippingupdate_Click(object sender, RoutedEventArgs e)
+    {
+        bl.Order.update(int.Parse(id.Text));
+
+        ship.Text = bl?.Order?.Get(int.Parse(id.Text)).ShipDate.ToString();      
+    }
+
+    private void deliveryupdate_Click(object sender, RoutedEventArgs e)
+    {
+        bl.Order.updateDelivrery(int.Parse(id.Text));
+
+        delivery.Text = bl?.Order?.Get(int.Parse(id.Text)).DeliveryDate.ToString();
     }
 }
