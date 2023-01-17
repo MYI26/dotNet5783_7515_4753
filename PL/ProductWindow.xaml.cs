@@ -15,6 +15,7 @@ using static PL.ProductListWindow;
 using static BO.Enums;
 using BO;
 
+
 namespace PL;
 
 /// <summary>
@@ -49,6 +50,25 @@ public partial class ProductWindow : Window
         TextBoxInStock.SelectedText = (bl.Product.Get(pfl.ProductID).InStock).ToString();
         ButtonAdd.Content = "Update";
         SelectProductWindow.SelectedItem = (Category?)pfl.Category;
+    }
+
+    public ProductWindow(BO.OrderForList ofl)
+    {
+        InitializeComponent();
+        AffichageId.Content = "Order ID:";
+        AffichageName.Content = "Customer Name:";
+        AffichageEmail.Content = "Customer Email:";
+        AffichageAdress.Content = "Customer Address:";
+        AffichageStatus.Content = "Status:";
+
+        SelectProductWindow.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+       // TextBoxId.SelectedText = (ofl.ProductID).ToString();
+        TextBoxId.IsReadOnly = true;
+        TextBoxName.SelectedText = ofl?.CustomerName;
+        TextBoxPrice.SelectedText = (ofl?.TotalPrice).ToString();
+       // TextBoxInStock.SelectedText = (bl.Product.Get(ofl.Amount).InStock).ToString();
+        ButtonAdd.Visibility= Visibility.Collapsed;
+        
     }
 
     private void Button_ClickAddProduct(object sender, RoutedEventArgs e)

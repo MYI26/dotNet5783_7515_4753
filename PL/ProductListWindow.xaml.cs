@@ -80,7 +80,7 @@ public partial class ProductListWindow : Window
 
     private void DoubleClickUpdate(object sender, RoutedEventArgs e) => new ProductWindow((BO.ProductForList)ProductListView.SelectedItem).Show();
 
-
+    private void DoubleClickDetail(object sender, RoutedEventArgs e) => new ProductWindow((BO.OrderForList)OrderListView.SelectedItem).Show();
 
 
 
@@ -117,7 +117,7 @@ public partial class ProductListWindow : Window
 //    </ ListView.View >
 //</ ListView >
 
-//< Button x:Name= "ButtonAddProduct" Content= "Add new product" Grid.Row= "2" HorizontalAlignment= "Right" Margin= "5" Padding= "5" Click= "Button_Click" />
+    //< Button x:Name= "ButtonAddProduct" Content= "Add new product" Grid.Row= "2" HorizontalAlignment= "Right" Margin= "5" Padding= "5" Click= "Button_Click" />
 
 
 

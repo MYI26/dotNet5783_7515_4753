@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ProductListWindow" Height="640" Width="800">
+        Title="ProductListWindow" Height="657" Width="820">
     <Grid Name="MainGrid">
         <TabControl>
             <TabControl.Items>
@@ -87,7 +87,7 @@
 
                                     <ComboBox Name = "CatagorySelecto2r" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
                                 </Grid>
-                                <ListView Grid.Row= "1" x:Name= "OrderListView" d:ItemsSource= "{Binding OrderForList}"  >
+                                <ListView Grid.Row= "1" x:Name= "OrderListView" d:ItemsSource= "{Binding OrderForList}"  MouseDoubleClick= "DoubleClickDetail" >
 
                                     <ListView.View >
 

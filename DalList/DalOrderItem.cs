@@ -27,15 +27,15 @@ internal class DalOrderItem : IOrderItem
 
         //return oI1.ID;
 
-        IEnumerable<OrderItem> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
-            from oi in listOrderItem
-            where oi?.ID == oI1.ID
-            select oI1;
+        //IEnumerable<OrderItem> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        //    from oi in listOrderItem
+        //    where oi?.ProductID <= 0
+        //    select oI1;
 
-        foreach (var Oi in listorderitem1)
-        {
-            throw new AlreadyExistException($"the  order item whith ID: {oI1.ID} already exist");
-        }
+        //foreach (var Oi in listorderitem1)
+        //{
+        //    throw new AlreadyExistException($"the  order item whith ID: {oI1.ID} already exist");
+        //}
 
         listOrderItem.Add(oI1);//si le foreach ne sais pas executer
         return oI1.ID;

@@ -24,11 +24,13 @@ namespace PL
         private static IEnumerable<ProductForList?>? ItmesSource;
 
         BlApi.IBl? bl = BlApi.Factory.Get();
-        public NewOrderWindow()
+        Cart cartuser = new Cart();
+        public NewOrderWindow(Cart cart)
         {
             InitializeComponent();
             ProductItemView.ItemsSource = bl?.Product?.GetProductList(null);
             CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            cartuser = cart;
         }
         public DO.Enums.Category Category { get; set; }
         //public BO.Product p;
@@ -51,7 +53,14 @@ namespace PL
             ProductItemView.ItemsSource = bl?.Product.GetProductList(fonctioncombox);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) => new CartUser().Show();
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            bl?.Cart?.AddProduct(cartuser, int.Parse(idofadd.Text));
+
+            MessageBox.Show("The product was add whith success");
+
+            this.Close();
+        }
         
     }
 }

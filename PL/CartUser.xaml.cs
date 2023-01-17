@@ -88,8 +88,12 @@ namespace PL
 
         }
 
-        private void but3_Click(object sender, RoutedEventArgs e) => new NewOrderWindow().Show();
-        
+        private void but3_Click(object sender, RoutedEventArgs e) => new NewOrderWindow(cartuser).Show();
+
+        private void but2_Click(object sender, RoutedEventArgs e)
+        {
+            bl?.Cart?.ConfirmationCard(cartuser); this.Close();
+        }
     }
 
 }

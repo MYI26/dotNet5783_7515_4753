@@ -35,7 +35,13 @@
             </ListView.View>
         </ListView>
         <Grid Grid.Row="3" Margin="0,2,0,0">
-            <Button Content="Valid" Margin="439,-3,0,0" Click="Button_Click"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="383*"/>
+                <ColumnDefinition Width="418*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Valid" Margin="56,-3,0,0" Click="Button_Click" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Enter the Id of the product to add:" VerticalAlignment="Center" Height="34" Width="192"/>
+            <TextBox x:Name="idofadd" HorizontalAlignment="Left" Margin="202,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="130" Height="36"/>
         </Grid>
         <Grid/>
         <StackPanel>

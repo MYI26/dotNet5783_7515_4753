@@ -44,7 +44,7 @@
         </Grid>
 
         <Button x:Name="but1"  Content="Details cart" HorizontalAlignment="Left" Margin="337,139,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="80" Height="23" Click="but1_Click" />
-        <Button x:Name="but2" Content="Confirmation Card" HorizontalAlignment="Left" Margin="62,139,0,0" VerticalAlignment="Top" Width="110" Height="23" Grid.Column="1" />
+        <Button x:Name="but2" Content="Confirmation Card" HorizontalAlignment="Left" Margin="62,139,0,0" VerticalAlignment="Top" Width="110" Height="23" Grid.Column="1" Click="but2_Click" />
         <Button x:Name="but3" Content="Add Product Cart" HorizontalAlignment="Left" Margin="206,139,0,0" VerticalAlignment="Top" Width="104" Height="23" Click="but3_Click" />
 
     </Grid>

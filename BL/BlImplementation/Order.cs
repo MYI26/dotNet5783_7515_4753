@@ -28,16 +28,16 @@ internal class Order : IOrder
 
                     Status = (BO.Enums.OrderStatus)Dal?.Order.GetNumStatus(id) !,
 
-                    OrderDate = doOrder?.OrderDate ?? throw new BO.MissingException("OrderDate missing"),
+                    OrderDate = doOrder?.OrderDate ?? null,
 
-                    ShipDate = doOrder?.ShipDate ?? throw new BO.MissingException("ShipDate missing"),
+                    ShipDate = doOrder?.ShipDate ?? null,
 
-                    DeliveryDate = doOrder?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing"),
+                    DeliveryDate = doOrder?.DeliveryDate ?? null,
                     Items = GetOrderItem(id)
                 };
 
                 result.TotalPrice = (from item in Dal?.OrderItem.GetAll()
-                           where item?.ID == id
+                           where item?.OrderID == id
                            select item?.Amount*item?.Price).Sum() ?? 0.0;
 
 
