@@ -60,7 +60,12 @@ namespace PL
 
         private void but1_Click(object sender, RoutedEventArgs e)
         {
-            but1.Visibility = Visibility.Collapsed;
+
+            affichelist.Visibility = Visibility.Visible;
+
+            listorderitem.ItemsSource = cartuser.Items;
+
+            //but1.Visibility = Visibility.Collapsed;
            // but2.Visibility = Visibility.Collapsed;
            //but3.Visibility = Visibility.Collapsed;
             Titre.Content = "Details of your cart";

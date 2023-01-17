@@ -44,7 +44,7 @@
                                     </Label >
                                     <ComboBox Name = "CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
                                 </Grid>
-                                <ListView Grid.Row= "1" x:Name= "ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick= "DoubleClickUpdate" >
+                                <ListView Grid.Row= "1" x:Name= "ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick= "DoubleClickProduct" >
 
                                     <ListView.View >
 
@@ -87,7 +87,7 @@
 
                                     <ComboBox Name = "CatagorySelecto2r" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
                                 </Grid>
-                                <ListView Grid.Row= "1" x:Name= "OrderListView" d:ItemsSource= "{Binding OrderForList}"  MouseDoubleClick= "DoubleClickDetail" >
+                                <ListView Grid.Row= "1" x:Name= "OrderListView" d:ItemsSource= "{Binding OrderForList}"  MouseDoubleClick= "DoubleClickOrder" >
 
                                     <ListView.View >
 

@@ -39,6 +39,7 @@ public partial class ProductWindow : Window
         TextBoxPrice.SelectedText = "₪";
         TextBoxInStock.SelectedText = "0";
         ButtonAdd.Content = "Add";
+        grid1.Visibility = Visibility.Collapsed;
     }
 
     public ProductWindow(BO.ProductForList pfl)
@@ -53,6 +54,8 @@ public partial class ProductWindow : Window
         ButtonAdd.Content = "Update";
         SelectProductWindow.SelectedItem = (Category?)pfl.Category;
         deletebutton.Visibility = Visibility.Visible;
+        grid1.Visibility = Visibility.Collapsed;
+    
     }
 
     public ProductWindow(BO.OrderForList ofl)
@@ -127,7 +130,8 @@ public partial class ProductWindow : Window
 
     private void deletebutton_Click(object sender, RoutedEventArgs e)
     {
-        bl?.Product?.Delete(int.Parse(TextBoxId.Text)); this.Close();
+        bl?.Product?.Delete(int.Parse(TextBoxId.Text));
+        new ProductListWindow().Show();  this.Close(); 
     }
 
     private void Button_Click(object sender, RoutedEventArgs e) => this.Close();

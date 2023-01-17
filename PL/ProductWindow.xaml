@@ -34,7 +34,7 @@
         <TextBox x:Name="TextBoxPrice" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap"  VerticalAlignment="Center" Width="141" Height="30" Grid.Column="1"/>
         <TextBox x:Name="TextBoxInStock" HorizontalAlignment="Left" Grid.Row="5" TextWrapping="Wrap"  VerticalAlignment="Center" Width="141" Height="30" Grid.Column="1"/>
         <Button x:Name="deletebutton" Grid.Column="1" Content="Delete" HorizontalAlignment="Left" Margin="52,24,0,0" Grid.Row="6" VerticalAlignment="Top" Height="26" Width="71" Click="deletebutton_Click" />
-        <Grid Grid.Column="1">
+        <Grid x:Name="grid1" Grid.Column="1">
             <StackPanel x:Name="Details" Margin="-319,0,0,-326" >
                 <Grid Height="434">
                     <Grid.ColumnDefinitions>

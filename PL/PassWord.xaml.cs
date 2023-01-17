@@ -26,7 +26,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string pass = "123456";
+            string pass = "eliaouleboss";
             if (PasswordBox.Password == pass) { new ProductListWindow().Show(); this.Close(); }
             else MessageBox.Show("the password not valid");
         }

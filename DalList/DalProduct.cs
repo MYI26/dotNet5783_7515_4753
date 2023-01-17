@@ -61,7 +61,7 @@ internal class DalProduct : IProduct
 
         if (listproduct4 != null)
         {
-            foreach (var p3 in listproduct4)
+            foreach (var p3 in listproduct4.ToList())
             {
                 listProduct.Remove(p3);
             }
@@ -141,7 +141,8 @@ internal class DalProduct : IProduct
             }
         }
 
-         throw new DontExistException("the product dont exist");//si le foreach ne sais pas executer        
+        return null;
+       //throw new DontExistException("the product dont exist");//si le foreach ne sais pas executer        
         
 
         

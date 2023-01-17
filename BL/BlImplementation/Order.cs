@@ -103,9 +103,9 @@ internal class Order : IOrder
         //  foreach (Order p in listOrder){
 
         //    }
-        from order in Dal?.Order.GetAll() //from == a partir de, select new == new
+        from order in Dal?.Order.GetAll(null) //from == a partir de, select new == new
         orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
-        let  ord = (DO.Order)order 
+        let  ord = (DO.Order)order
         select new BO.OrderForList
         {
             OrderID = ord.ID ,
