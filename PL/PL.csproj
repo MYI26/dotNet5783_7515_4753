@@ -18,7 +18,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="photo_2023-01-17_22-02-02.jpg" />
+    <None Remove="photo_2023-01-17_22-05-54.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="photo_2023-01-17_22-02-02.jpg" />
+    <Resource Include="photo_2023-01-17_22-05-54.jpg" />
   </ItemGroup>
 
 </Project>

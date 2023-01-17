@@ -31,11 +31,18 @@ namespace PL
 
         }
 
-        private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) => new PassWord().Show();
+        private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; }
 
         private void ___ShowNewOrderButton_Click__Click(object sender, RoutedEventArgs e) => new CartUser().Show();
 
         private void ___ShowTRackingControlButton_Click__Click(object sender, RoutedEventArgs e) => new TrackingControlWindow().Show();
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string pass = "eliaou";
+            if (PasswordBox.Password == pass) { new ProductListWindow().Show();  }
+            else MessageBox.Show("the password not valid");
+        }
 
     }
 }
