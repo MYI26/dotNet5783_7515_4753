@@ -46,7 +46,6 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            cartuser.CustomerName = customername.Text;
             cartuser.CustomerAddress = customeradress.Text;
             cartuser.CustomerEmail = customeremail.Text;
             clickValid.Visibility = Visibility.Collapsed;
