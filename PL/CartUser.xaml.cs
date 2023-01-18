@@ -33,9 +33,9 @@ namespace PL
         public CartUser()
         {
             InitializeComponent();
-            but1.Visibility = Visibility.Collapsed;
-            but2.Visibility = Visibility.Collapsed;
-            but3.Visibility = Visibility.Collapsed;
+            detailcardbutton.Visibility = Visibility.Collapsed;
+            comfirmationcardbutton.Visibility = Visibility.Collapsed;
+            addproductcartbutton.Visibility = Visibility.Collapsed;
             price.Visibility = Visibility.Collapsed;
             itemamount.Visibility= Visibility.Collapsed;
             Amountitem.Visibility= Visibility.Collapsed;
@@ -44,20 +44,22 @@ namespace PL
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Valid(object sender, RoutedEventArgs e)
         {
+
+            cartuser.CustomerName = customername.Text;
             cartuser.CustomerAddress = customeradress.Text;
             cartuser.CustomerEmail = customeremail.Text;
             clickValid.Visibility = Visibility.Collapsed;
             Imformation.Visibility = Visibility.Collapsed;
             Label.Visibility = Visibility.Collapsed;
             Titre.Content = "Chose an Action";
-            but1.Visibility = Visibility.Visible;
-            but2.Visibility = Visibility.Visible;
-            but3.Visibility = Visibility.Visible;
+            detailcardbutton.Visibility = Visibility.Visible;
+            comfirmationcardbutton.Visibility = Visibility.Visible;
+            addproductcartbutton.Visibility = Visibility.Visible;
         }
 
-        private void but1_Click(object sender, RoutedEventArgs e)
+        private void detailcardbutton_Click(object sender, RoutedEventArgs e)
         {
 
             affichelist.Visibility = Visibility.Visible;
@@ -74,9 +76,9 @@ namespace PL
             Amountitem.Visibility = Visibility.Visible;
             priceT.Visibility = Visibility.Visible;
 
-            customername.Text = cartuser.CustomerName;
-            customeradress.Text = cartuser.CustomerAddress;
-            customeremail.Text = cartuser.CustomerEmail;
+            //customername.Text = cartuser.CustomerName;
+            //customeradress.Text = cartuser.CustomerAddress;
+           // customeremail.Text = cartuser.CustomerEmail;
             price.Text = cartuser.TotalPrice.ToString();
             // itemamount.Text = cartuser.Items.ToString();
 
@@ -92,11 +94,19 @@ namespace PL
 
         }
 
-        private void but3_Click(object sender, RoutedEventArgs e) => new NewOrderWindow(cartuser).Show();
+        private void addproductcartbutton_Click(object sender, RoutedEventArgs e) => new NewOrderWindow(cartuser).Show();
 
-        private void but2_Click(object sender, RoutedEventArgs e)
+        private void comfirmationcardbutton_Click(object sender, RoutedEventArgs e)
         {
-            bl?.Cart?.ConfirmationCard(cartuser); this.Close();
+            try
+            {
+                bl?.Cart?.ConfirmationCard(cartuser);         
+            }
+
+        
+            catch(BO.ErrorDontExist ex) { MessageBox.Show(ex.Message);  }
+
+            this.Close();
         }
     }
 

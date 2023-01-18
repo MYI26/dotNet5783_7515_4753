@@ -78,8 +78,7 @@ public partial class ProductListWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e) => new ProductWindow().Show();
 
-    private void DoubleClickProduct(object sender, RoutedEventArgs e) { new ProductWindow((BO.ProductForList)ProductListView.SelectedItem).Show();this.Close(); }
-
+    private void DoubleClickProduct(object sender, RoutedEventArgs e) { new ProductWindow((BO.ProductForList)ProductListView.SelectedItem).Show(); }
     private void DoubleClickOrder(object sender, RoutedEventArgs e) => new ProductWindow((BO.OrderForList)OrderListView.SelectedItem).Show();  
 
 

@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"       
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+        <!-- xmlns:local1="clr-namespace:Convert"-->
+           
+   <!-- <Window.Resources>
+        <local:VisibilityOrderForListConverter x:Key="VisibilityUpdateConverter"/>
+    </Window.Resources>-->
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/photo_2023-01-17_22-05-54.jpg"/>
@@ -45,11 +51,12 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <StackPanel x:Name="password" Margin="297,118,301,54" Grid.RowSpan="2" Visibility="Collapsed" Grid.Row="1" >
+        <StackPanel x:Name="password" Margin="297,118,301,54" Grid.RowSpan="2" Visibility="Collapsed"  Grid.Row="1" >
+            <!--Visibility="{Binding Path=login Converter={StaticResource VisibilityUpdateConverter}}"-->
             <TextBlock Text="Enter your password:" Height="23" FontWeight="Bold" />
             <PasswordBox x:Name="PasswordBox"  Height="26"  />
             <Grid Height="50">
-                <Button Content="login" HorizontalAlignment="Left" Margin="77,6,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+                <Button x:Name="login" Content="login" HorizontalAlignment="Left" Margin="77,6,0,0" VerticalAlignment="Top" Click="Button_Click"/>
             </Grid>
         </StackPanel>
         <Label Content="MusicoWorld" HorizontalAlignment="Left" Margin="215,44,0,0" VerticalAlignment="Top" Height="95" Width="354" FontSize="25" FontFamily="Harlow Solid Italic" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>

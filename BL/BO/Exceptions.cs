@@ -23,7 +23,7 @@ namespace BO;
 
     public class DontExist : Exception
     {
-        public DontExist(string? message) : base(message) { }
+        public DontExist(string? message,Exception e ) : base(message) { }
     }
 
 public class NotEnought : Exception

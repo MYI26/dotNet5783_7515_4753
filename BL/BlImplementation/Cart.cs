@@ -18,9 +18,9 @@ internal class Cart : ICart
         DO.Product product; // creation of new product Product in DO
         try { 
             product = Dal.Product.Get(productId) ?? throw new BO.MissingException("product dont exist"); } // place the product with id productId in the new product
-        catch (DalApi.DO.DontExistException) // the Exeption that ask can return 
+        catch (DalApi.DO.DontExistException ex) // the Exeption that ask can return 
         {
-            throw new BO.DontExist("the Id dont valid"); // the exeption if the id of productid dont ewist
+            throw new BO.DontExist( "the Id dont valid", ex); // the exeption if the id of productid dont ewist
         }
 
         BO.OrderItem item = new() // creat new orderitem
@@ -85,22 +85,25 @@ internal class Cart : ICart
         try
         {
             DO.Product product;
-            if (cart == null) throw new BO.ErrorDontExist("Cart dont exist");
-            if (cart.CustomerName == null) throw new BO.ErrorDontExist("Cart dont exist");
-            if (cart.CustomerAddress == null) throw new BO.ErrorDontExist("Cart dont exist");
-            if (cart.CustomerEmail == null) throw new BO.ErrorDontExist("Cart dont exist");
-            if (cart.CustomerEmail != cart.CustomerName + "@gmail.com") throw new BO.ErrorDontExist("Cart dont exist");
+            if (cart == null) throw new BO.ErrorDontExist("your card dont exist");
+            if (cart.CustomerName == null) throw new BO.ErrorDontExist("you must enter a name");
+            if (cart.CustomerAddress == null) throw new BO.ErrorDontExist("you must enter an address");
+            if (cart.CustomerEmail == null) throw new BO.ErrorDontExist("you must enter Mail");
+            if (cart.CustomerEmail != cart.CustomerName + "@gmail.com") throw new BO.ErrorDontExist("Mail dont valid");
 
 
-            foreach (BO.OrderItem oi in cart.Items)
-                if (oi.ProductID <= 0) throw new BO.DontExist("the Id dont valid");
-
+            if (cart.Items != null)
+                foreach (BO.OrderItem oi in cart.Items)
+                {
+                    if (oi.ProductID <= 0) throw new BO.ErrorDontExist("Id not valid");
+                }
+            else throw new BO.ErrorDontExist("Il n'y a pas de produit dans votre pannier");
             // if (cart.Items.QuantityInCart > product.InStock) { throw new BO.NotEnought("ther is no enough product items in stock"); }
 
         }
 
-        catch (BO.DontExist) { throw new BO.DontExist("the Id dont valid"); }
-        catch (BO.ErrorDontExist) { throw new BO.DontExist("Cart dont exist"); }
+        //catch (BO.DontExist ex) { throw new BO.DontExist( ); }
+        catch (BO.ErrorDontExist ex) { throw ex; }
 
 
         DO.Order orderdo = new DO.Order();

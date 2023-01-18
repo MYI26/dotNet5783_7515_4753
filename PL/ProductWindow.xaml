@@ -58,9 +58,9 @@
                             <Button x:Name="deliveryupdate"  Content="delivery update" HorizontalAlignment="Left" Margin="4,52,0,0" VerticalAlignment="Top" Height="26" Width="98" Click="deliveryupdate_Click"/>
                         </Grid>
                     </StackPanel>
-                    <StackPanel Grid.Column="2">
+                    <StackPanel Grid.Column="2" DataContext="{Binding order}">
                         <TextBlock x:Name="id" TextWrapping="Wrap" Text="" Height="34"/>
-                        <TextBlock x:Name="name" TextWrapping="Wrap" Text="" Height="22"/>
+                        <TextBlock x:Name="name" TextWrapping="Wrap" Text="{Binding CustomerName}" Height="22"/>
                         <TextBlock x:Name="email" TextWrapping="Wrap" Text="" Height="28"/>
                         <TextBlock x:Name="address" TextWrapping="Wrap" Text="" Height="24"/>
                         <TextBlock x:Name="status" TextWrapping="Wrap" Text="" Height="25"/>

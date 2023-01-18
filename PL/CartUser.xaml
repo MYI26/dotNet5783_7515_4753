@@ -32,22 +32,22 @@
 
         <Label x:Name="Titre"  Content="Login to your account" HorizontalAlignment="Left" Margin="184,0,0,0" VerticalAlignment="Center" Height="33" Width="215" FontSize="15" Grid.ColumnSpan="2"/>
         <StackPanel x:Name="Imformation" Margin="284,4,6,97" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="2" DataContext="{Binding cartuser}">
-            <TextBox x:Name="customername" Text="{Binding CustomerName}" TextWrapping="Wrap" Width="217" Height="30"/>
-            <TextBox x:Name="customeremail" TextWrapping="Wrap" Width="217" Height="30"/>
-            <TextBox x:Name="customeradress" TextWrapping="Wrap" Width="217" Height="30"/>
+            <TextBox x:Name="customername" Text="{Binding CustomerName}" TextWrapping="Wrap" Width="217" Height="30" IsReadOnly="{Binding ElementName=but1,Path=ClickMode}"/>
+            <TextBox x:Name="customeremail" Text="{Binding CustomerEmail}" TextWrapping="Wrap" Width="217" Height="30"/>
+            <TextBox x:Name="customeradress" Text="{Binding CustomerAddress}" TextWrapping="Wrap" Width="217" Height="30"/>
             <TextBox x:Name="itemamount" TextWrapping="Wrap" Width="217" Height="30"/>
-            <TextBox x:Name="price" TextWrapping="Wrap" Width="217" Height="30"/>
+            <TextBox x:Name="price" Text="{Binding TotalPrice}" TextWrapping="Wrap" Width="217" Height="30"/>
         </StackPanel>
         <Grid Grid.Row="1" Margin="155,156,4,27" Grid.RowSpan="2">
 
-            <Button x:Name="clickValid" Content="Valid" HorizontalAlignment="Left" Margin="21,8,0,0" VerticalAlignment="Top" Width="71" Height="25" Click="Button_Click_1"/>
+            <Button x:Name="clickValid" Content="Valid" HorizontalAlignment="Left" Margin="21,8,0,0" VerticalAlignment="Top" Width="71" Height="25" Click="Button_Valid"/>
 
 
         </Grid>
 
-        <Button x:Name="but1"  Content="Details cart" HorizontalAlignment="Left" Margin="251,138,0,0" VerticalAlignment="Top" Width="80" Height="23" Click="but1_Click" Grid.ColumnSpan="2" />
-        <Button x:Name="but2" Content="Confirmation Card" HorizontalAlignment="Left" Margin="62,139,0,0" VerticalAlignment="Top" Width="110" Height="23" Grid.Column="1" Click="but2_Click" />
-        <Button x:Name="but3" Content="Add Product Cart" HorizontalAlignment="Left" Margin="122,139,0,0" VerticalAlignment="Top" Width="104" Height="23" Click="but3_Click" />
+        <Button x:Name="detailcardbutton"  Content="Details cart" HorizontalAlignment="Left" Margin="251,138,0,0" VerticalAlignment="Top" Width="80" Height="23" Click="detailcardbutton_Click" Grid.ColumnSpan="2" />
+        <Button x:Name="comfirmationcardbutton" Content="Confirmation Card" HorizontalAlignment="Left" Margin="62,139,0,0" VerticalAlignment="Top" Width="110" Height="23" Grid.Column="1" Click="comfirmationcardbutton_Click" />
+        <Button x:Name="addproductcartbutton" Content="Add Product Cart" HorizontalAlignment="Left" Margin="122,139,0,0" VerticalAlignment="Top" Width="104" Height="23" Click="addproductcartbutton_Click" />
         <StackPanel x:Name="affichelist" Grid.Column="2" Margin="0,0,0,1" Grid.RowSpan="3" Visibility="Collapsed">
             <Grid Height="432">
                 <Grid.RowDefinitions>
@@ -55,7 +55,7 @@
                     <RowDefinition Height="401*"/>
                 </Grid.RowDefinitions>
                 <Label Content="your product in the cart:" Margin="1,-1,0,0" FontSize="14"/>
-                <ListView x:Name="listorderitem" Grid.Row="1" d:ItemsSource="{Binding OrderItem}">
+                <ListView x:Name="listorderitem" Grid.Row="1" DataContext="{Binding cartuser}" d:ItemsSource="{Binding ElementName=but1,Path=ClickMode}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn/>
