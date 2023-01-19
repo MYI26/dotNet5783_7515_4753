@@ -68,19 +68,15 @@ internal class DalOrder : IOrder
     public void Update(Order o1)
     {
 
-        bool found = false;
-
-        foreach (Order o in listOrder)
+        foreach (Order? o in listOrder)
         {
-            if (o.ID == o1.ID)
+            if (o?.ID == o1.ID)
             {
                 listOrder[listOrder.IndexOf(o)] = (Order)o1;
-                found = true;
-                break;
+                return;
             }
         }
-        if (found = !true)
-            throw new DontExistException("the order dont exist");
+     throw new DontExistException("the order dont exist");
 
     }
 

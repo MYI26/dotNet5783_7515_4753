@@ -6,21 +6,64 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="TrackingControlWindow" Height="450" Width="800">
+
+
     <Grid RenderTransformOrigin="0.499,0.561">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="87*"/>
-            <RowDefinition Height="88*"/>
-            <RowDefinition Height="259*"/>
-        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <StackPanel  x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="Visible">
+            <Grid Margin="0,0,0,1" RenderTransformOrigin="0.361,0.53" Height="435">
 
-        <Grid x:Name="___Grid_1_" Grid.ColumnSpan="2">
-            <Label Content="What is your order number?" HorizontalAlignment="Left" Margin="29,20,0,0" VerticalAlignment="Top" Width="712" Height="67" FontSize="20"/>
-        </Grid>
+                <Label x:Name="LabelName" Content="Name :" HorizontalAlignment="Left" Margin="106,13,0,381" Width="146" RenderTransformOrigin="0.493,0.473" FontSize="20" />
+                <Label x:Name="LabelMailAddress" Content="Mail Adress :" HorizontalAlignment="Left" Margin="106,54,0,340" Width="146" RenderTransformOrigin="0.508,0.455" FontSize="20" />
+                <Label x:Name="LabelOrderId" Content="Order Id :" HorizontalAlignment="Left" Margin="106,100,0,298" Width="146" RenderTransformOrigin="0.508,0.455" FontSize="20" />
+
+                <StackPanel Margin="252,13,0,287" HorizontalAlignment="Left" Width="380">
+                    <TextBox  x:Name="ForTheName" TextWrapping="Wrap" Text="" Width="380" RenderTransformOrigin="0.497,2.066" Height="42" />
+                    <TextBox  x:Name="ForTheAddress" TextWrapping="Wrap" Text="" Width="380"  Height="42" />
+                    <TextBox  x:Name="ForTheOrderId" TextWrapping="Wrap" Text="" Width="380"  Height="41" />
+                </StackPanel>
+
+                <Button Content="Valid" RenderTransformOrigin="-0.05,-0.299" Click="Button_Click" Margin="269,176,447,217" />
+
+            </Grid>
+        </StackPanel>
+
+        <StackPanel x:Name="DisplayAfterValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="Collapsed" >
+            <Grid Height="434">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="81*"/>
+                    <RowDefinition Height="353*"/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="399*"/>
+                        <ColumnDefinition Width="401*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="LabelForOrderIdDisplay" Content="Order Id :" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="131" Height="30"/>
+                    <TextBlock x:Name="ForOrderIdDisplay" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="16" Width="154" Margin="173,29,0,0"/>
+                    <Label Grid.Column="1" Content="Statut :" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top" Width="103" Height="27"/>
+                    <TextBlock x:Name="ForStatutDisplay" Grid.Column="1" HorizontalAlignment="Left" Margin="136,22,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="34" Width="104"/>
+
+                </Grid>
+
+                <ListView x:Name="ListOrderItemForClient"  Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding Id}" />
+                            <GridViewColumn Header="ProductID" Width="130" DisplayMemberBinding="{Binding ProductID}" />
+                            <GridViewColumn Header="NameProduct" Width="120" DisplayMemberBinding="{Binding NameProduct}" />
+                            <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
+                            <GridViewColumn Header="QuantityInCart" Width="100" DisplayMemberBinding="{Binding QuantityInCart}" />
+                            <GridViewColumn Header="PriceOfAll" Width="100" DisplayMemberBinding="{Binding PriceOfAll}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </Grid>
+        </StackPanel>
 
     </Grid>
 </Window>

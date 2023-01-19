@@ -33,7 +33,7 @@ internal class Order : IOrder
                     ShipDate = doOrder?.ShipDate ?? null,
 
                     DeliveryDate = doOrder?.DeliveryDate ?? null,
-                    Items = GetOrderItem(id)
+                    Items = GetListOrderItem(id)
                 };
 
                 result.TotalPrice = (from item in Dal?.OrderItem.GetAll()
@@ -55,19 +55,16 @@ internal class Order : IOrder
         }
     }
 
-    public List<BO.OrderItem?>? GetOrderItem(int id)
+    public List<BO.OrderItem?>? GetListOrderItem(int id)
     {
 
         List<BO.OrderItem?> ListOrderItemBo = new List<BO.OrderItem?>();
-
         BO.OrderItem BoOrderItem = new BO.OrderItem();
 
-        foreach (DO.OrderItem oi in Dal?.OrderItem.GetAll())
+        foreach (DO.OrderItem oi in Dal?.OrderItem.GetAll()!)
         {
-
             if (oi.OrderID == id)
             {
-
                 BoOrderItem.Id = oi.ID;
                 BoOrderItem.ProductID = oi.ProductID;
                 BoOrderItem.NameProduct = Dal?.Product.Get(oi.ProductID)?.Name;
@@ -77,22 +74,9 @@ internal class Order : IOrder
 
                 ListOrderItemBo.Add(BoOrderItem);
             }
-
         }
-        return ListOrderItemBo;
-        //public IEnumerable<BO.OrderItem?>? GetOrderItem(int id) =>
-        //    from order in Dal?.OrderItem.GetAll()
-        //    where order?.OrderID == id//from == a partir de, select new == new
-        //        select new BO.OrderItem
-        //        {
-        //            Id = order?.ID ?? throw new BO.MissingException("Quantity InCart missing"),
-        //            ProductID = (int)(order?.ProductID),
-        //            NameProduct = Dal?.Product.Get((int)(order?.ProductID))?.Name,
-        //            Price = Dal?.Order.GetAmoutOrderItem((int)(order?.ID)) ?? throw new BO.MissingException("Quantity InCart missing"),
-        //            QuantityInCart = (int)(order?.Amount),
-        //            PriceOfAll = order?.Amount * order?.Price ?? throw new BO.MissingException("Quantity InCart missing"),
-        //        };
 
+        return ListOrderItemBo;
     }
 
 
@@ -121,31 +105,41 @@ internal class Order : IOrder
     {
         try
         {
-            bool flag = false;
+            bool found = false;
+
             foreach (DO.Order? o in Dal.Order.GetAll())
             {
                 if (o?.ID == id)
                 {
-                    flag = true;
-
+                    found = true;
                 }
             }
-
-            if (flag)
+            if (found)
             {
+                List<BO.OrderItem?> ListOrderItemBo = new List<BO.OrderItem?>();
+                BO.OrderItem BoOrderItem = new BO.OrderItem();
 
-                DO.Order? order = Dal?.Order.Get(id);
-
-                if (order != null)
+                foreach (DO.OrderItem oi in Dal?.OrderItem.GetAll()!)
                 {
-                    return new BO.OrderTracking()
+                    if (oi.OrderID == id)
+                    {
+                        BoOrderItem.Id = oi.ID;
+                        BoOrderItem.ProductID = oi.ProductID;
+                        BoOrderItem.NameProduct = Dal?.Product.Get(oi.ProductID)?.Name;
+                        BoOrderItem.Price = oi.Price;
+                        BoOrderItem.QuantityInCart = oi.Amount;
+                        BoOrderItem.PriceOfAll = oi.Amount * oi.Price;
+
+                        ListOrderItemBo.Add(BoOrderItem);
+                    }
+                }
+
+                return new BO.OrderTracking()
                     {
                         OrderID = id,
                         Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(id),
-                        Items = null,
+                        Items = ListOrderItemBo,
                     };
-                }
-                else throw new BO.DontExistException("the order dont exist");
             }
             else throw new BO.DontExistException("the order dont exist");
         }
@@ -169,14 +163,13 @@ internal class Order : IOrder
                     flag = true;
                 }
             }
-
             if (flag)
             {
                 //if (order?.ShipDate == null)
                 //{
 
-
-                order = new() // creat new order
+                DO.Order? newOrder;
+                newOrder = new() // creat new order
                 {
                     ID = order?.ID ?? throw new BO.MissingException("ID missing"),
 
@@ -190,11 +183,11 @@ internal class Order : IOrder
 
                     ShipDate = DateTime.Now,
 
-                    DeliveryDate = order?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing"),
+                    //DeliveryDate = order?.DeliveryDate ?? throw new BO.MissingException("DeliveryDate missing"),
 
                 };
 
-                Dal.Order.Update((DO.Order)order);
+                Dal.Order.Update((DO.Order)newOrder);
                 //}
                 //else throw new BO.ErrorDontExist("Id of Order no valid");
             }
