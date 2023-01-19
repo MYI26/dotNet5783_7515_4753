@@ -64,7 +64,7 @@ namespace PL
 
             affichelist.Visibility = Visibility.Visible;
 
-            listorderitem.ItemsSource = cartuser.Items;
+            
 
             //but1.Visibility = Visibility.Collapsed;
            // but2.Visibility = Visibility.Collapsed;
@@ -91,6 +91,9 @@ namespace PL
             customeradress.IsReadOnly = true;
             customeremail.IsReadOnly = true;
             itemamount.IsReadOnly = true;
+
+            listorderitem.ItemsSource = null;
+            listorderitem.ItemsSource = cartuser.Items;
 
         }
 

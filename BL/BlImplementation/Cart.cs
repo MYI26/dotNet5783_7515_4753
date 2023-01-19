@@ -42,9 +42,9 @@ internal class Cart : ICart
                 NameProduct = product.Name,
                 Price = product.Price,
                 QuantityInCart = 1,
-                PriceOfAll = product.Price,
+                PriceOfAll = product.Price * 1,
                 ProductID = productId
-            };
+        };
 
       cart.Items.Add(item);
       
