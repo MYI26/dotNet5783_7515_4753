@@ -55,10 +55,16 @@
                     <RowDefinition Height="401*"/>
                 </Grid.RowDefinitions>
                 <Label Content="your product in the cart:" Margin="1,-1,0,0" FontSize="14"/>
+                
                 <ListView x:Name="listorderitem" Grid.Row="1" d:ItemsSource="{Binding}" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn/>
+                            <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />
+                            <GridViewColumn Header="Product ID" Width="50" DisplayMemberBinding="{Binding ProductID}" />
+                            <GridViewColumn Header="Name Of Product" Width="50" DisplayMemberBinding="{Binding NameProduct}" />
+                            <GridViewColumn Header="Price" Width="50" DisplayMemberBinding="{Binding Price}" />
+                            <GridViewColumn Header="Quantity In Cart" Width="50" DisplayMemberBinding="{Binding QuantityInCart}" />
+                            <GridViewColumn Header="Price Of All" Width="50" DisplayMemberBinding="{Binding PriceOfAll}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
