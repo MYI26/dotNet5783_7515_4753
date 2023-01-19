@@ -63,6 +63,7 @@ namespace PL
             TextBoxInStock.SelectedText = "0";
             ButtonAdd.Content = "Add";
             grid1.Visibility = Visibility.Collapsed;
+            deletebutton.Visibility = Visibility.Collapsed;
         }
 
         public ProductWindow(BO.ProductForList pfl)
@@ -143,17 +144,20 @@ namespace PL
             if (ButtonAdd.Content == "Add")
             {
                 bl.Product.Add(p1);
+                MessageBox.Show("the product has been successfully add");
             }
 
-            else bl.Product.Update(p1);
+            else bl.Product.Update(p1); MessageBox.Show("the product has been successfully update");
             //  ProductListView.ItemsSource = bl?.Product?.GetProductList(null);
-            new ProductListWindow().Show(); this.Close();
-
+           
+            this.Close();
+            new ProductListWindow().Show();
         }
 
         private void deletebutton_Click(object sender, RoutedEventArgs e)
         {
             bl?.Product?.Delete(int.Parse(TextBoxId.Text));
+            MessageBox.Show("the product has been successfully deleted");
             new ProductListWindow().Show(); this.Close();
         }
 
@@ -162,6 +166,7 @@ namespace PL
         private void shippingupdate_Click(object sender, RoutedEventArgs e)
         {
             bl.Order.update(int.Parse(id.Text));
+
 
             ship.Text = bl?.Order?.Get(int.Parse(id.Text)).ShipDate.ToString();
         }

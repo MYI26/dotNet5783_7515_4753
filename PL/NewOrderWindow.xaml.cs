@@ -53,11 +53,16 @@ namespace PL
             ProductItemView.ItemsSource = bl?.Product.GetProductList(fonctioncombox);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonValid_Click(object sender, RoutedEventArgs e)
         {
-            bl?.Cart?.AddProduct(cartuser, int.Parse(idofadd.Text));
+            try
+            {
+                bl?.Cart?.AddProduct(cartuser, int.Parse(idofadd.Text));
+                MessageBox.Show("The product was add whith success");
+            }
+            catch(BO.DontExist ex) { MessageBox.Show(ex.Message);  }
 
-            MessageBox.Show("The product was add whith success");
+            
 
             this.Close();
         }

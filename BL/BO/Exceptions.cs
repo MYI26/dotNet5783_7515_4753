@@ -24,7 +24,8 @@ namespace BO;
     public class DontExist : Exception
     {
         public DontExist(string? message,Exception e ) : base(message) { }
-    }
+    public DontExist(Exception e) : base(e.Message) { }
+}
 
 public class NotEnought : Exception
 {
@@ -59,6 +60,7 @@ internal class Missing : Exception
     {
     }
 }
+
 
 public class DontExistException : Exception
 {

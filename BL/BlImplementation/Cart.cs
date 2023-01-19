@@ -9,19 +9,32 @@ internal class Cart : ICart
     DalApi.IDal? Dal = DalApi.Factory.Get();
     public BO.Cart? AddProduct(BO.Cart cart, int productId) // place product with productid in the list orderitem of the cart
     {
-        if (productId <= 0) 
-            throw new BO.ErrorIdException("Produt ID is not a positive number");
-        if (cart == null) 
-            throw new BO.ErrorDontExist("Cart dont exist");
+        try
+        {
+            if (productId <= 0)
+                throw new BO.ErrorIdException("Produt ID is not a positive number");
+
+            if (cart == null)
+                throw new BO.ErrorDontExist("Cart dont exist");
+        }
+
+        catch (BO.ErrorIdException ex) // the Exeption that ask can return 
+        {
+            throw new BO.DontExist( /*"the Id dont valid",*/ ex); // the exeption if the id of productid dont ewist
+        }
+
+        DO.Product product; // creation of new product Product in DO
+
+        try { product = Dal.Product.Get(productId) ?? throw new BO.MissingException("product dont exist"); }
+              // place the product with id productId in the new product
+
+       catch( BO.MissingException ex) // the Exeption that ask can return 
+        {
+            throw new BO.DontExist(/*"the Id dont valid",*/ ex); // the exeption if the id of productid dont ewist
+        }
+
         if (cart.Items == null) 
             cart.Items = new();  // creat new List<OrderItem?>
-        DO.Product product; // creation of new product Product in DO
-        try { 
-            product = Dal.Product.Get(productId) ?? throw new BO.MissingException("product dont exist"); } // place the product with id productId in the new product
-        catch (DalApi.DO.DontExistException ex) // the Exeption that ask can return 
-        {
-            throw new BO.DontExist( "the Id dont valid", ex); // the exeption if the id of productid dont ewist
-        }
 
         BO.OrderItem item = new() // creat new orderitem
             {
@@ -33,9 +46,7 @@ internal class Cart : ICart
                 ProductID = productId
             };
 
-        
-
-        cart.Items.Add(item);
+      cart.Items.Add(item);
       
                   
         UpdateTotalSum(cart);
@@ -87,9 +98,9 @@ internal class Cart : ICart
             DO.Product product;
             if (cart == null) throw new BO.ErrorDontExist("your card dont exist");
             if (cart.CustomerName == null) throw new BO.ErrorDontExist("you must enter a name");
-            if (cart.CustomerAddress == null) throw new BO.ErrorDontExist("you must enter an address");
+            if (cart.CustomerAddress == "") throw new BO.ErrorDontExist("you must enter an address");
             if (cart.CustomerEmail == null) throw new BO.ErrorDontExist("you must enter Mail");
-            if (cart.CustomerEmail != cart.CustomerName + "@gmail.com") throw new BO.ErrorDontExist("Mail dont valid");
+            if (!cart.CustomerEmail.Contains("@gmail.com")) throw new BO.ErrorDontExist("Mail dont valid");
 
 
             if (cart.Items != null)

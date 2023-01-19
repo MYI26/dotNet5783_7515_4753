@@ -55,7 +55,7 @@
                     <RowDefinition Height="401*"/>
                 </Grid.RowDefinitions>
                 <Label Content="your product in the cart:" Margin="1,-1,0,0" FontSize="14"/>
-                <ListView x:Name="listorderitem" Grid.Row="1" DataContext="{Binding cartuser}" d:ItemsSource="{Binding ElementName=but1,Path=ClickMode}">
+                <ListView x:Name="listorderitem" Grid.Row="1" d:ItemsSource="{Binding}" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn/>

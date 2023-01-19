@@ -37,8 +37,6 @@ public partial class ProductListWindow : Window
         ProductListView.ItemsSource = bl?.Product?.GetProductList(null); // sans filtrebl.Product.GetProductList(null)
         CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         OrderListView.ItemsSource = bl?.Order?.GetOrders();
-
-
     }
 
 
@@ -76,45 +74,45 @@ public partial class ProductListWindow : Window
                                                                                  //  Products = temp == null ? new() : new(temp);
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e) => new ProductWindow().Show();
+    private void Button_Click(object sender, RoutedEventArgs e) { new ProductWindow().Show(); this.Close(); }
 
-    private void DoubleClickProduct(object sender, RoutedEventArgs e) { new ProductWindow((BO.ProductForList)ProductListView.SelectedItem).Show(); }
-    private void DoubleClickOrder(object sender, RoutedEventArgs e) => new ProductWindow((BO.OrderForList)OrderListView.SelectedItem).Show();  
+    private void DoubleClickProduct(object sender, RoutedEventArgs e) { new ProductWindow((BO.ProductForList)ProductListView.SelectedItem).Show(); this.Close(); }
+    private void DoubleClickOrder(object sender, RoutedEventArgs e){ new ProductWindow((BO.OrderForList)OrderListView.SelectedItem).Show();  /*this.Close();*/ }
 
 
 
-//    <Grid.RowDefinitions>
-//    <RowDefinition Height = "40*" />
-//    < RowDefinition Height="500*"/>
-//    <RowDefinition Height = "Auto" />
-//</ Grid.RowDefinitions >
-//< Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
-//    <Grid.ColumnDefinitions>
-//        <ColumnDefinition Width = "*" />
-//        < ColumnDefinition Width="*"/>
-//    </Grid.ColumnDefinitions >
-//    <ComboBox Name = "CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
-//    <Label Grid.Column="0" Content= "Category:" Height= "46" RenderTransformOrigin= "0.5,0.5" VerticalContentAlignment= "Center" HorizontalContentAlignment= "Center" Background= "#FFC1C1C1" FontSize= "20" >
-//        < Label.RenderTransform >
-//            < TransformGroup >
-//                < ScaleTransform />
-//                < SkewTransform />
-//                < RotateTransform Angle= "0" />
-//                < TranslateTransform />
-//            </ TransformGroup >
-//        </ Label.RenderTransform >
-//    </ Label >
-//</ Grid >
-//< ListView Grid.Row= "1" x:Name= "ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick= "DoubleClickUpdate" >
-//    < ListView.View >
-//        < GridView >
-//            < GridViewColumn Header= "ID" Width= "100" DisplayMemberBinding= "{Binding ProductID}" />
-//            < GridViewColumn Header= "Name" Width= "130" DisplayMemberBinding= "{Binding Name}" />
-//            < GridViewColumn Header= "Category" Width= "120" DisplayMemberBinding= "{Binding Category}" />
-//            < GridViewColumn Header= "Price" Width= "100" DisplayMemberBinding= "{Binding Price}" />
-//        </ GridView >
-//    </ ListView.View >
-//</ ListView >
+    //    <Grid.RowDefinitions>
+    //    <RowDefinition Height = "40*" />
+    //    < RowDefinition Height="500*"/>
+    //    <RowDefinition Height = "Auto" />
+    //</ Grid.RowDefinitions >
+    //< Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+    //    <Grid.ColumnDefinitions>
+    //        <ColumnDefinition Width = "*" />
+    //        < ColumnDefinition Width="*"/>
+    //    </Grid.ColumnDefinitions >
+    //    <ComboBox Name = "CatagorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CatagorySelector_SelectionChanged" FontSize="20" ItemsSource="{Binding Category}" IsEditable="True" />
+    //    <Label Grid.Column="0" Content= "Category:" Height= "46" RenderTransformOrigin= "0.5,0.5" VerticalContentAlignment= "Center" HorizontalContentAlignment= "Center" Background= "#FFC1C1C1" FontSize= "20" >
+    //        < Label.RenderTransform >
+    //            < TransformGroup >
+    //                < ScaleTransform />
+    //                < SkewTransform />
+    //                < RotateTransform Angle= "0" />
+    //                < TranslateTransform />
+    //            </ TransformGroup >
+    //        </ Label.RenderTransform >
+    //    </ Label >
+    //</ Grid >
+    //< ListView Grid.Row= "1" x:Name= "ProductListView" d:ItemsSource= "{Binding ProductForList}" MouseDoubleClick= "DoubleClickUpdate" >
+    //    < ListView.View >
+    //        < GridView >
+    //            < GridViewColumn Header= "ID" Width= "100" DisplayMemberBinding= "{Binding ProductID}" />
+    //            < GridViewColumn Header= "Name" Width= "130" DisplayMemberBinding= "{Binding Name}" />
+    //            < GridViewColumn Header= "Category" Width= "120" DisplayMemberBinding= "{Binding Category}" />
+    //            < GridViewColumn Header= "Price" Width= "100" DisplayMemberBinding= "{Binding Price}" />
+    //        </ GridView >
+    //    </ ListView.View >
+    //</ ListView >
 
     //< Button x:Name= "ButtonAddProduct" Content= "Add new product" Grid.Row= "2" HorizontalAlignment= "Right" Margin= "5" Padding= "5" Click= "Button_Click" />
 
