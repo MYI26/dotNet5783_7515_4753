@@ -45,7 +45,7 @@ namespace PL
             string pass = "eliaou";
             if (PasswordBox.Password == pass) {
 
-               // password.Visibility = Visibility.Collapsed;
+               // password.Visibility = Visibility.Collapsed; jais punaise de reussi!!!!!!!!! binding ola ola
                 PasswordBox.Password = "";
                 new ProductListWindow().Show(); 
             }
