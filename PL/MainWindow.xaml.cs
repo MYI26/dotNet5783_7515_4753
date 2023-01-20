@@ -43,7 +43,12 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string pass = "eliaou";
-            if (PasswordBox.Password == pass) { password.Visibility = Visibility.Collapsed; PasswordBox.Password = ""; new ProductListWindow().Show(); }
+            if (PasswordBox.Password == pass) {
+
+               // password.Visibility = Visibility.Collapsed;
+                PasswordBox.Password = "";
+                new ProductListWindow().Show(); 
+            }
             else MessageBox.Show("the password not valid");
         }
 
