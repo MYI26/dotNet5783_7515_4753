@@ -34,7 +34,7 @@ namespace PL
 
 
 
-       private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; } //jais punaise de reussi!!!!!!!!! binding ola ola
+      // private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; } //jais punaise de reussi!!!!!!!!! binding ola ola
 
         private void ___ShowNewOrderButton_Click__Click(object sender, RoutedEventArgs e) => new CartUser().Show();
 

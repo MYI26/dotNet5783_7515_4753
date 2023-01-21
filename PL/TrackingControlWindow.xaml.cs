@@ -26,7 +26,9 @@ namespace PL
 
         public TrackingControlWindow()
         {
-            InitializeComponent();         
+            InitializeComponent();
+          // DisplayAfterValidation.Visibility = Visibility.Collapsed;
+          // DisplayBeforeValidation.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -40,8 +42,8 @@ namespace PL
                 if (ForTheName.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerName || ForTheAddress.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerEmail)
                     throw new Exception();
                     //passer à l'écran d'apres la validation
-                    DisplayBeforeValidation.Visibility = Visibility.Collapsed;
-                DisplayAfterValidation.Visibility = Visibility.Visible;
+               // DisplayBeforeValidation.Visibility = Visibility.Collapsed;
+               // DisplayAfterValidation.Visibility = Visibility.Visible;
 
                 //afficher le le tracking de l'order
                 ForOrderIdDisplay.Text = orderT.OrderID.ToString();

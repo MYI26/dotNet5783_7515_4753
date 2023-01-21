@@ -4,15 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        xmlns:local1="clr-namespace:Convert"
+        xmlns:SimpleConvert="clr-namespace:Convert"
         mc:Ignorable="d"
         Title="TrackingControlWindow" Height="450" Width="800">
 
 
     <Grid RenderTransformOrigin="0.499,0.561">
+        <Grid.Resources>
+            <SimpleConvert:VisibilityOrderForListConverter x:Key="converter"/>
+            <SimpleConvert:VisibilityTrackingtConverter x:Key="converter2"/>
+        </Grid.Resources>
 
-        <StackPanel  x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="Visible">
+        <StackPanel x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="{Binding ElementName=Valid, Path=IsFocused, Converter={StaticResource converter2}}">
             <Grid Margin="0,0,0,1" RenderTransformOrigin="0.361,0.53" Height="435">
 
+               
                 <Label x:Name="LabelName" Content="Name :" HorizontalAlignment="Left" Margin="106,13,0,381" Width="146" RenderTransformOrigin="0.493,0.473" FontSize="20" />
                 <Label x:Name="LabelMailAddress" Content="Mail Adress :" HorizontalAlignment="Left" Margin="106,54,0,340" Width="146" RenderTransformOrigin="0.508,0.455" FontSize="20" />
                 <Label x:Name="LabelOrderId" Content="Order Id :" HorizontalAlignment="Left" Margin="106,100,0,298" Width="146" RenderTransformOrigin="0.508,0.455" FontSize="20" />
@@ -23,13 +30,16 @@
                     <TextBox  x:Name="ForTheOrderId" TextWrapping="Wrap" Text="" Width="380"  Height="41" />
                 </StackPanel>
 
-                <Button Content="Valid" RenderTransformOrigin="-0.05,-0.299" Click="Button_Click" Margin="269,176,447,217" />
+                <Button x:Name="Valid"  Content="Valid"  RenderTransformOrigin="-0.05,-0.299" Click="Button_Click" Margin="269,176,447,217" />
 
             </Grid>
         </StackPanel>
 
-        <StackPanel x:Name="DisplayAfterValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="Collapsed" >
+       
+        
+        <StackPanel x:Name="DisplayAfterValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="{Binding ElementName=Valid, Path=IsFocused, Converter={StaticResource converter}}" >
             <Grid Height="434">
+
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="81*"/>
@@ -49,7 +59,7 @@
 
                 </Grid>
 
-                <ListView x:Name="ListOrderItemForClient"  Grid.Row="1">
+                <ListView x:Name="ListOrderItemForClient"  Grid.Row="1" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding Id}" />

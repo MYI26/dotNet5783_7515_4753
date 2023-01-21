@@ -65,4 +65,38 @@ namespace Convert
             return new object();
         }
     }
+
+    public class VisibilityTrackingtConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            //DroneStatuses statuses = (DroneStatuses)value;
+
+            bool IsMouseOver;
+            bool.TryParse(value.ToString(), out IsMouseOver);
+
+            //bool boolValue = (bool)value;
+            //if (boolValue)
+            //{
+            //    return Visibility.Collapsed;
+            //}
+            //else
+            //{
+            //    return Visibility.Visible;
+            //}
+            if (IsMouseOver)
+            {
+                return Visibility.Collapsed;
+            }
+
+            else return Visibility.Visible;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            //throw new NotImplementedException();
+            return new object();
+        }
+    }
 }
