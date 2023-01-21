@@ -23,32 +23,40 @@ namespace PL
         BlApi.IBl? bl = BlApi.Factory.Get();
 
         OrderTracking orderT = new OrderTracking();
+        
+
 
         public TrackingControlWindow()
         {
             InitializeComponent();
+            orderT = bl?.Order.Tracking(int.Parse(ForTheOrderId.Text))!;
+            d.DataContext = orderT;
           // DisplayAfterValidation.Visibility = Visibility.Collapsed;
           // DisplayBeforeValidation.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            
             try
             {
                 //appel de la fct Tracking pour initialiser orderT
                 orderT = bl?.Order.Tracking(int.Parse(ForTheOrderId.Text))!;
-
+               
                 //vérifier les informations entrées avant validation
                 if (ForTheName.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerName || ForTheAddress.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerEmail)
                     throw new Exception();
+                
+                DisplayAfterValidation.DataContext = orderT;
                     //passer à l'écran d'apres la validation
                // DisplayBeforeValidation.Visibility = Visibility.Collapsed;
                // DisplayAfterValidation.Visibility = Visibility.Visible;
 
                 //afficher le le tracking de l'order
-                ForOrderIdDisplay.Text = orderT.OrderID.ToString();
-                ForStatutDisplay.Text = orderT.Status.ToString();
-                ListOrderItemForClient.ItemsSource = orderT.Items;
+               // ForOrderIdDisplay.Text = orderT.OrderID.ToString();
+               //orStatutDisplay.Text = orderT.Status.ToString();
+               // ListOrderItemForClient.ItemsSource = orderT.Items;
             }
             catch { MessageBox.Show("Jonas ne rentre pas"); }
         }
