@@ -34,7 +34,7 @@ namespace PL
 
 
 
-        private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; }
+       private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; } //jais punaise de reussi!!!!!!!!! binding ola ola
 
         private void ___ShowNewOrderButton_Click__Click(object sender, RoutedEventArgs e) => new CartUser().Show();
 
@@ -45,13 +45,14 @@ namespace PL
             string pass = "eliaou";
             if (PasswordBox.Password == pass) {
 
-               // password.Visibility = Visibility.Collapsed; jais punaise de reussi!!!!!!!!! binding ola ola
+               password.Visibility = Visibility.Collapsed;
                 PasswordBox.Password = "";
                 new ProductListWindow().Show(); 
             }
             else MessageBox.Show("the password not valid");
         }
 
+        
     }
 
    

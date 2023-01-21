@@ -31,7 +31,7 @@
         </StackPanel>
 
         <Label x:Name="Titre"  Content="Login to your account" HorizontalAlignment="Left" Margin="184,0,0,0" VerticalAlignment="Center" Height="33" Width="215" FontSize="15" Grid.ColumnSpan="2"/>
-        <StackPanel x:Name="Imformation" Margin="284,4,6,97" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="2" DataContext="{Binding cartuser}">
+        <StackPanel x:Name="Imformation" Margin="284,4,6,97" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="2" >
             <TextBox x:Name="customername" Text="{Binding CustomerName}" TextWrapping="Wrap" Width="217" Height="30" IsReadOnly="{Binding ElementName=but1,Path=ClickMode}"/>
             <TextBox x:Name="customeremail" Text="{Binding CustomerEmail}" TextWrapping="Wrap" Width="217" Height="30"/>
             <TextBox x:Name="customeradress" Text="{Binding CustomerAddress}" TextWrapping="Wrap" Width="217" Height="30"/>
