@@ -95,15 +95,15 @@ namespace PL
         { 
             
             BO.Product p1 = new Product();
-            Enter.DataContext = p1;
+            //Enter.DataContext = p1;
 
-           // Category = (DO.Enums.Category)SelectProductWindow.SelectedItem;
-           
-            //p1.ProductID = int.Parse(TextBoxId.Text);
-           // p1.Name = TextBoxName.Text;
-            //p1.MyCategory = (Category?)Category;
-            //p1.Price = double.Parse(TextBoxPrice.Text);
-           // p1.InStock = int.Parse(TextBoxInStock.Text);
+            Category = (DO.Enums.Category)SelectProductWindow.SelectedItem;
+
+            p1.ProductID = int.Parse(TextBoxId.Text);
+            p1.Name = TextBoxName.Text;
+            p1.MyCategory = (Category?)Category;
+            p1.Price = double.Parse(TextBoxPrice.Text);
+            p1.InStock = int.Parse(TextBoxInStock.Text);
 
             if (ButtonAdd.Content == "Add")
             {
