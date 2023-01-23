@@ -87,7 +87,7 @@ namespace PL
             TextBoxId.Visibility = Visibility.Collapsed;
             SelectProductWindow.Visibility = Visibility.Collapsed;
 
-            listorderitem.ItemsSource = bl.Order.Get(ofl.OrderID).Items;
+            listorderitem.ItemsSource = order.Items;
  
         }
 

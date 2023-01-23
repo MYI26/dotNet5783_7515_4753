@@ -1,5 +1,4 @@
 ﻿using BlApi;
-
 namespace BlImplementation;
 
 internal class Cart : ICart
@@ -38,7 +37,7 @@ internal class Cart : ICart
 
         BO.OrderItem item = new() // creat new orderitem
             {
-                Id = 0,
+                Id = Dal.OrderItem.GetAll().Count()+1000,
                 NameProduct = product.Name,
                 Price = product.Price,
                 QuantityInCart = 1,

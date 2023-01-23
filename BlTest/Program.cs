@@ -266,7 +266,7 @@ f) exit ");
 
                         case "a":
 
-                            IEnumerable<BO.OrderForList?> enume = bl.Order.GetOrders();
+                            IEnumerable<BO.OrderForList?> enume = bl.Order.GetOrders(null);
 
                             foreach (OrderForList p in enume)
                                 Console.WriteLine(p);
