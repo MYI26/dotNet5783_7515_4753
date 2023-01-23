@@ -127,10 +127,13 @@ internal class DalOrder : IOrder
 
     public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
     {
-        IEnumerable<Order?> order = listOrder;
-        return order;
-    }
+        
+            IEnumerable<Order?> order = listOrder;  //sans creer une nouvelle list (permis)
 
+            return order;
+        
+
+    }
 
     public int GetAmoutOrderItem(int id)
     {

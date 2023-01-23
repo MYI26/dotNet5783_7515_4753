@@ -12,6 +12,6 @@ namespace BO
     {
         public enum Category { All_Product = 0 , guitar = 1, violin, flute, piano, musicBrochures }
 
-        public enum OrderStatus {ordered = 1, shipped, delivered }
+        public enum OrderStatus { All_Status = 0, ordered = 1, shipped, delivered }
     }
 }

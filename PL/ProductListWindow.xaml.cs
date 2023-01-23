@@ -36,14 +36,17 @@ public partial class ProductListWindow : Window
         InitializeComponent();
         ProductListView.ItemsSource = bl?.Product?.GetProductList(null); // sans filtrebl.Product.GetProductList(null)
         CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-        OrderListView.ItemsSource = bl?.Order?.GetOrders();
+        CatagorySelectorOrder.ItemsSource = Enum.GetValues(typeof(BO.Enums.OrderStatus));
+        OrderListView.ItemsSource = bl?.Order?.GetOrders(null); 
     }
 
 
     public DO.Enums.Category Category { get; set; }
+    public BO.Enums.OrderStatus status { get; set; }
+
     //public BO.Product p;
 
-    public bool fonctioncombox(DO.Product? p = null)
+    public bool fonctioncombox1(DO.Product? p = null)
     {
         if (p?.MyCategory == Category)
             return true;
@@ -53,12 +56,32 @@ public partial class ProductListWindow : Window
         else return false;
     }
 
+    public bool fonctioncombox2(BO.Enums.OrderStatus p )
+    {
+
+        if (p == status)
+            return true;
+        if (status == 0)
+            return true;
+
+        else return false;
+    }
+
+
     private void CatagorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
        
         Category = (DO.Enums.Category)CatagorySelector.SelectedItem;
         
-        ProductListView.ItemsSource = bl?.Product.GetProductList(fonctioncombox);
+        ProductListView.ItemsSource = bl?.Product.GetProductList(fonctioncombox1);
+    }
+
+    private void CatagorySelector_SelectionChangedOreder(object sender, SelectionChangedEventArgs e)
+    {
+
+        status = (BO.Enums.OrderStatus)CatagorySelectorOrder.SelectedItem;
+
+        OrderListView.ItemsSource = bl?.Order?.GetOrders(fonctioncombox2);
     }
 
     private void Button_Click(object sender, RoutedEventArgs e) { new ProductWindow().Show(); this.Close(); }

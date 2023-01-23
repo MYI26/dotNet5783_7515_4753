@@ -1,4 +1,6 @@
 ﻿using BlApi;
+using System.Security.Cryptography;
+
 namespace BlImplementation;
 
 internal class Order : IOrder
@@ -80,25 +82,63 @@ internal class Order : IOrder
     }
 
 
-    public IEnumerable<BO.OrderForList?>? GetOrders() =>
+    public IEnumerable<BO.OrderForList?>? GetOrders(Func<BO.Enums.OrderStatus, bool>? filter)
+    {
 
         //IEnumerable<DO.Order> listorder = Dal?.Order.GetAll();
 
         //  foreach (Order p in listOrder){
 
-        //    }
-        from order in Dal?.Order.GetAll(null) //from == a partir de, select new == new
-        orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
-        let  ord = (DO.Order)order
+        //    }        //orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
+        //
+        //from order in Dal?.Order.GetAll() //from == a partir de, select new == new
+
+        //let  ord = (DO.Order)order
+        //where (filter((BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID)) || filter == null) == true
+        //select new BO.OrderForList
+        //{
+        //    OrderID = ord.ID ,
+        //    CustomerName = ord.CustomerName,
+        //    Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID),
+        //    Amount = Dal?.Order.GetAmoutOrderItem(ord.ID) ?? throw new BO.MissingException("Quantity InCart missing"),
+        //    TotalPrice = Get(ord.ID)?.TotalPrice ?? 0.0
+        //};
+        if (filter == null)
+        {
+            
+           return from order in Dal?.Order.GetAll()
+            orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
+            let  ord = (DO.Order)order      
         select new BO.OrderForList
         {
             OrderID = ord.ID ,
             CustomerName = ord.CustomerName,
-            Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID),
-            Amount = Dal?.Order.GetAmoutOrderItem(ord.ID) ?? throw new BO.MissingException("Quantity InCart missing"),
+           Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID),
+           Amount = Dal?.Order.GetAmoutOrderItem(ord.ID) ?? throw new BO.MissingException("Quantity InCart missing"),
             TotalPrice = Get(ord.ID)?.TotalPrice ?? 0.0
         };
 
+        }
+
+        else//ici normalement on a pas le droit de creer une bouvelle liste seulement cree un enumerabele qui va trier le list
+        {
+            //-    List<Product?> newlistproduct = new List<Product?>();             
+
+            return from order in Dal?.Order.GetAll()
+                   orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
+                   let ord = (DO.Order)order
+                   where (filter((BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID)) == true)
+                   select new BO.OrderForList
+                   {
+                       OrderID = ord.ID,
+                       CustomerName = ord.CustomerName,
+                       Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID),
+                       Amount = Dal?.Order.GetAmoutOrderItem(ord.ID) ?? throw new BO.MissingException("Quantity InCart missing"),
+                       TotalPrice = Get(ord.ID)?.TotalPrice ?? 0.0
+                   };
+
+        }
+    }
 
 
     public BO.OrderTracking? Tracking(int id)
