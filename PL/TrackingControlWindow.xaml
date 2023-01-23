@@ -7,10 +7,14 @@
         mc:Ignorable="d"
         Title="TrackingControlWindow" Height="450" Width="800">
 
+    <Window.Resources>
+        <local:NotBooleanToVisibilityConverter
+         x:Key="NotBooleanToVisibilityConverter" />
+    </Window.Resources>
 
     <Grid RenderTransformOrigin="0.499,0.561">
 
-        <StackPanel  x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="Visible">
+        <StackPanel  x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="{Binding ElementName=Validation, Path=IsPressed, Converter={StaticResource NotBooleanToVisibilityConverter}}">
             <Grid Margin="0,0,0,1" RenderTransformOrigin="0.361,0.53" Height="435">
 
                 <Label x:Name="LabelName" Content="Name :" HorizontalAlignment="Left" Margin="106,13,0,381" Width="146" RenderTransformOrigin="0.493,0.473" FontSize="20" />
@@ -23,7 +27,7 @@
                     <TextBox  x:Name="ForTheOrderId" TextWrapping="Wrap" Text="" Width="380"  Height="41" />
                 </StackPanel>
 
-                <Button Content="Valid" RenderTransformOrigin="-0.05,-0.299" Click="Button_Click" Margin="269,176,447,217" />
+                <Button x:Name="Validation" Content="Valid" RenderTransformOrigin="-0.05,-0.299" Click="Button_Click" Margin="269,176,447,217" />
 
             </Grid>
         </StackPanel>
