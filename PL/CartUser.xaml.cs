@@ -42,14 +42,16 @@ namespace PL
             priceT.Visibility= Visibility.Collapsed;
 
 
+            Imformation.DataContext = cartuser;
+
         }
 
         private void Button_Valid(object sender, RoutedEventArgs e)
         {
 
-            cartuser.CustomerName = customername.Text;
-            cartuser.CustomerAddress = customeradress.Text;
-            cartuser.CustomerEmail = customeremail.Text;
+            //cartuser.CustomerName = customername.Text;
+            //cartuser.CustomerAddress = customeradress.Text;
+            //cartuser.CustomerEmail = customeremail.Text;
             clickValid.Visibility = Visibility.Collapsed;
             Imformation.Visibility = Visibility.Collapsed;
             Label.Visibility = Visibility.Collapsed;
@@ -66,9 +68,7 @@ namespace PL
 
             
 
-            //but1.Visibility = Visibility.Collapsed;
-           // but2.Visibility = Visibility.Collapsed;
-           //but3.Visibility = Visibility.Collapsed;
+          
             Titre.Content = "Details of your cart";
 
             price.Visibility = Visibility.Visible;
@@ -76,11 +76,9 @@ namespace PL
             Amountitem.Visibility = Visibility.Visible;
             priceT.Visibility = Visibility.Visible;
 
-            //customername.Text = cartuser.CustomerName;
-            //customeradress.Text = cartuser.CustomerAddress;
-           // customeremail.Text = cartuser.CustomerEmail;
+            
             price.Text = cartuser.TotalPrice.ToString();
-            // itemamount.Text = cartuser.Items.ToString();
+           
 
             Label.Visibility = Visibility.Visible;
             Imformation.Visibility = Visibility.Visible;
