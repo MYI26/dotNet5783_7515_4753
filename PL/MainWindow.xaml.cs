@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+
 
 
 namespace PL
@@ -29,12 +31,15 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            password.Visibility = Visibility.Collapsed;
+            //password.DataContext = ___ShowProductListViewsButton_Click_;
+
 
         }
 
 
 
-      // private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; } //jais punaise de reussi!!!!!!!!! binding ola ola
+        private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; } //jais punaise de reussi!!!!!!!!! binding ola ola
 
         private void ___ShowNewOrderButton_Click__Click(object sender, RoutedEventArgs e) => new CartUser().Show();
 
@@ -43,18 +48,17 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string pass = "eliaou";
-            if (PasswordBox.Password == pass) {
+            if (PasswordBox.Password == pass)
+            {
 
-               password.Visibility = Visibility.Collapsed;
+                password.Visibility = Visibility.Collapsed;
                 PasswordBox.Password = "";
-                new ProductListWindow().Show(); 
+                new ProductListWindow().Show();
             }
             else MessageBox.Show("the password not valid");
         }
 
-        
-    }
 
-   
+    }
 
 }

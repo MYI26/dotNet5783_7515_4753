@@ -13,10 +13,11 @@
     <Grid x:Name="d"  RenderTransformOrigin="0.499,0.561">
         <Grid.Resources>
             <SimpleConvert:VisibilityOrderForListConverter x:Key="converter"/>
-            <SimpleConvert:VisibilityTrackingtConverter x:Key="converter2"/>
+            <!---
+            <SimpleConvert:VisibilityTrackingtConverter x:Key="converter2"/> -->
         </Grid.Resources>
 
-        <StackPanel x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="{Binding ElementName=Valid, Path=IsFocused, Converter={StaticResource converter2}}">
+        <StackPanel x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="{Binding ElementName=Valid, Path=IsFocused, Converter={StaticResource converter}}">
             <Grid Margin="0,0,0,1" RenderTransformOrigin="0.361,0.53" Height="435">
 
                

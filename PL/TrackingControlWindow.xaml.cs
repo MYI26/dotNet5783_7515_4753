@@ -23,14 +23,10 @@ namespace PL
         BlApi.IBl? bl = BlApi.Factory.Get();
 
         OrderTracking orderT = new OrderTracking();
-        
-
 
         public TrackingControlWindow()
         {
             InitializeComponent();
-            orderT = bl?.Order.Tracking(int.Parse(ForTheOrderId.Text))!;
-            d.DataContext = orderT;
           // DisplayAfterValidation.Visibility = Visibility.Collapsed;
           // DisplayBeforeValidation.Visibility = Visibility.Visible;
         }
@@ -43,12 +39,10 @@ namespace PL
             {
                 //appel de la fct Tracking pour initialiser orderT
                 orderT = bl?.Order.Tracking(int.Parse(ForTheOrderId.Text))!;
-               
+                DisplayAfterValidation.DataContext = orderT;
                 //vérifier les informations entrées avant validation
                 if (ForTheName.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerName || ForTheAddress.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerEmail)
                     throw new Exception();
-                
-                DisplayAfterValidation.DataContext = orderT;
                     //passer à l'écran d'apres la validation
                // DisplayBeforeValidation.Visibility = Visibility.Collapsed;
                // DisplayAfterValidation.Visibility = Visibility.Visible;
@@ -56,7 +50,7 @@ namespace PL
                 //afficher le le tracking de l'order
                // ForOrderIdDisplay.Text = orderT.OrderID.ToString();
                //orStatutDisplay.Text = orderT.Status.ToString();
-               // ListOrderItemForClient.ItemsSource = orderT.Items;
+                ListOrderItemForClient.ItemsSource = orderT.Items;
             }
             catch { MessageBox.Show("Jonas ne rentre pas"); }
         }
