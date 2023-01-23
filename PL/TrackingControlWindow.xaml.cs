@@ -19,8 +19,6 @@ namespace PL
         public TrackingControlWindow()
         {
             InitializeComponent();
-          // DisplayAfterValidation.Visibility = Visibility.Collapsed;
-          // DisplayBeforeValidation.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,44 +33,16 @@ namespace PL
                 //vérifier les informations entrées avant validation
                 if (ForTheName.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerName || ForTheAddress.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerEmail)
                     throw new Exception();
-                    //passer à l'écran d'apres la validation
-               // DisplayBeforeValidation.Visibility = Visibility.Collapsed;
-               // DisplayAfterValidation.Visibility = Visibility.Visible;
+                //passer à l'écran d'apres la validation
+                DisplayBeforeValidation.Visibility = Visibility.Collapsed;
+                DisplayAfterValidation.Visibility = Visibility.Visible;
 
                 //afficher le le tracking de l'order
-               // ForOrderIdDisplay.Text = orderT.OrderID.ToString();
-               //orStatutDisplay.Text = orderT.Status.ToString();
+                ForOrderIdDisplay.Text = orderT.OrderID.ToString();
+                ForStatutDisplay.Text = orderT.Status.ToString();
                 ListOrderItemForClient.ItemsSource = orderT.Items;
             }
             catch { MessageBox.Show("Jonas ne rentre pas"); }
-        }
-    }
-}
-
-
-namespace ValueConverterDemo
-{
-    /// <summary>
-    /// converter help for the binding with visibility
-    /// </summary>
-    public class NotBooleanToVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            bool boolValue = (bool)value;
-            if (boolValue)
-            {
-                return Visibility.Collapsed;
-            }
-            else
-            {
-                return Visibility.Visible;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
         }
     }
 }

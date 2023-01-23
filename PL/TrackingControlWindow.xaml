@@ -4,24 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
-        xmlns:local1="clr-namespace:Convert"
-        xmlns:SimpleConvert="clr-namespace:Convert"
         mc:Ignorable="d"
         Title="TrackingControlWindow" Height="450" Width="800">
 
-    <Window.Resources>
-        <local:NotBooleanToVisibilityConverter
-         x:Key="NotBooleanToVisibilityConverter" />
-    </Window.Resources>
 
     <Grid x:Name="d"  RenderTransformOrigin="0.499,0.561">
-        <Grid.Resources>
-            <SimpleConvert:VisibilityOrderForListConverter x:Key="converter"/>
-            <!---
-            <SimpleConvert:VisibilityTrackingtConverter x:Key="converter2"/> -->
-        </Grid.Resources>
 
-        <StackPanel  x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="{Binding ElementName=Validation, Path=IsPressed, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+        <StackPanel  x:Name="DisplayBeforeValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="Visible">
             <Grid Margin="0,0,0,1" RenderTransformOrigin="0.361,0.53" Height="435">
 
                
@@ -42,7 +31,7 @@
 
        
         
-        <StackPanel x:Name="DisplayAfterValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="{Binding ElementName=Valid, Path=IsFocused, Converter={StaticResource converter}}" >
+        <StackPanel x:Name="DisplayAfterValidation" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="Collapsed" >
             <Grid Height="434">
 
 
