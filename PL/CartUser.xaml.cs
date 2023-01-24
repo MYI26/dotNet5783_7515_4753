@@ -65,10 +65,11 @@ namespace PL
         {
 
             affichelist.Visibility = Visibility.Visible;
+            if(cartuser.Items != null) itemamount.Text = cartuser.Items.Count().ToString();
 
-            
 
-          
+
+
             Titre.Content = "Details of your cart";
 
             price.Visibility = Visibility.Visible;
@@ -101,7 +102,9 @@ namespace PL
         {
             try
             {
-                bl?.Cart?.ConfirmationCard(cartuser);         
+              int? Orderid = bl?.Cart?.ConfirmationCard(cartuser);
+                MessageBox.Show($"Your order has been made, thank you for using our services {cartuser.CustomerName}");
+                MessageBox.Show($"Your order number is {Orderid} don't forget it for tracking");
             }
 
         

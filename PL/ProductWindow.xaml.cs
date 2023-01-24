@@ -134,7 +134,7 @@ namespace PL
         private void shippingupdate_Click(object sender, RoutedEventArgs e)
         {
             bl.Order.update(int.Parse(id.Text));
-
+            status.Text = "shipped";
             ship.Text = bl?.Order?.Get(int.Parse(id.Text)).ShipDate.ToString();
         }
 
@@ -143,7 +143,7 @@ namespace PL
         private void deliveryupdate_Click(object sender, RoutedEventArgs e)
         {
             bl.Order.updateDelivrery(int.Parse(id.Text));
-
+            status.Text = "delivered";
             delivery.Text = bl?.Order?.Get(int.Parse(id.Text)).DeliveryDate.ToString();
         }
     }

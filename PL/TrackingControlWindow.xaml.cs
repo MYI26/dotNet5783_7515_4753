@@ -32,7 +32,9 @@ namespace PL
                 DisplayAfterValidation.DataContext = orderT;
                 //vérifier les informations entrées avant validation
                 if (ForTheName.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerName || ForTheAddress.Text != bl?.Order?.Get(orderT.OrderID)!.CustomerEmail)
+                {
                     throw new Exception();
+                }
                 //passer à l'écran d'apres la validation
                 DisplayBeforeValidation.Visibility = Visibility.Collapsed;
                 DisplayAfterValidation.Visibility = Visibility.Visible;
@@ -42,7 +44,7 @@ namespace PL
                 ForStatutDisplay.Text = orderT.Status.ToString();
                 ListOrderItemForClient.ItemsSource = orderT.Items;
             }
-            catch { MessageBox.Show("Jonas ne rentre pas"); }
+            catch { MessageBox.Show($"{ForTheName.Text} does not exist in the database"); }
         }
     }
 }

@@ -1,4 +1,7 @@
 ﻿using BlApi;
+using System;
+using System.Diagnostics;
+
 namespace BlImplementation;
 
 internal class Cart : ICart
@@ -6,6 +9,7 @@ internal class Cart : ICart
 
     //private static DalList Dal = new DalList();
     DalApi.IDal? Dal = DalApi.Factory.Get();
+    static readonly Random random = new Random();
     public BO.Cart? AddProduct(BO.Cart cart, int productId) // place product with productid in the list orderitem of the cart
     {
         try
@@ -32,18 +36,29 @@ internal class Cart : ICart
             throw new BO.DontExist(/*"the Id dont valid",*/ ex); // the exeption if the id of productid dont ewist
         }
 
-        if (cart.Items == null) 
+        if (cart.Items == null)
             cart.Items = new();  // creat new List<OrderItem?>
 
         BO.OrderItem item = new() // creat new orderitem
-            {
-                Id = Dal.OrderItem.GetAll().Count()+1000,
+        {
+                Id = random.Next(100000, 1000000),//ce nest pas orderid don pas Dal.OrderItem.GetAll().Count()+1000
                 NameProduct = product.Name,
                 Price = product.Price,
                 QuantityInCart = 1,
                 PriceOfAll = product.Price * 1,
                 ProductID = productId
         };
+
+        //DO.OrderItem item1 = new() // creat new orderitem            on les met seumlment dans le cart.items pui lors de la validtion on les mettra dans la base de donner
+        //{
+        //    ID = item.Id,//ce nest pas orderid don pas Dal.OrderItem.GetAll().Count()+1000
+        //    OrderID = 0,           
+        //    Price = product.Price,
+        //    Amount = 1,            
+        //    ProductID = productId
+        //};
+
+        //Dal.OrderItem.Add(item1);
 
       cart.Items.Add(item);
       
@@ -89,7 +104,7 @@ internal class Cart : ICart
     }
  
 
-    public void ConfirmationCard(BO.Cart cart)
+    public int ConfirmationCard(BO.Cart cart)
     {
 
         try
@@ -126,22 +141,22 @@ internal class Cart : ICart
         orderdo.DeliveryDate = null;
         
 
-        int temp = Dal.Order.Add(orderdo);
+        int OrderId = Dal.Order.Add(orderdo);
 
 
         foreach (BO.OrderItem oi in cart.Items)
         {
-            DO.Product product = new DO.Product();
+            //DO.Product product = new DO.Product();
             //int index = 0;
             // BO.OrderItem o = new BO.OrderItem();
             DO.OrderItem orderitemdo = new DO.OrderItem();
             // oi = cart.Items[index++];
-            orderitemdo.OrderID = temp;
+            orderitemdo.OrderID = OrderId;
             orderitemdo.ID = (int)oi.Id;
             orderitemdo.ProductID = (int)oi.ProductID;
-            product = Dal.Product?.Get(orderitemdo.ProductID) ?? throw new BO.MissingException("product dont exist");
-            product.InStock--;
-            Dal.Product.Update(product);
+           // product = Dal.Product?.Get(orderitemdo.ProductID) ?? throw new BO.MissingException("product dont exist");
+            //product.InStock--;
+           // Dal.Product.Update(product);
             orderitemdo.Price = 0;
             orderitemdo.Amount = cart.Items.Count;
 
@@ -149,10 +164,9 @@ internal class Cart : ICart
             Dal.OrderItem.Add(orderitemdo);
             //enlever le produit en stock instock--
 
-
         }
 
-
+        return OrderId;
 
     }
 

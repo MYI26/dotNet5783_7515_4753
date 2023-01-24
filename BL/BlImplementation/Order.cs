@@ -57,16 +57,17 @@ internal class Order : IOrder
         }
     }
 
-    public List<BO.OrderItem?>? GetListOrderItem(int id)
+    public List<BO.OrderItem?>? GetListOrderItem(int id) // exemple id == 1020
     {
 
         List<BO.OrderItem?> ListOrderItemBo = new List<BO.OrderItem?>();
-        BO.OrderItem BoOrderItem = new BO.OrderItem();
+        
 
         foreach (DO.OrderItem oi in Dal?.OrderItem.GetAll()!)
         {
             if (oi.OrderID == id)
             {
+                BO.OrderItem BoOrderItem = new BO.OrderItem();
                 BoOrderItem.Id = oi.ID;
                 BoOrderItem.ProductID = oi.ProductID;
                 BoOrderItem.NameProduct = Dal?.Product.Get(oi.ProductID)?.Name;

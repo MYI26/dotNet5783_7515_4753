@@ -13,7 +13,7 @@ namespace BO
 
     public class OrderItem
     {
-        public int Id{ get; set; }
+        public int Id{ get; set; }  //ID de orderitem donc OrderItemId et non OrderId
         public int ProductID { get; set; }
         public string? NameProduct { get; set; }
         public double Price { get; set; }
@@ -21,7 +21,7 @@ namespace BO
         public double PriceOfAll { get; set; }
 
         public override string ToString() => $@"
-        Order Id: {Id}
+        Id: {Id}
         Product ID: {ProductID}
         Name of product: {NameProduct}
         Price: {Price}
