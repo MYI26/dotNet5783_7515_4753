@@ -23,7 +23,6 @@ internal class Product : IProduct
                 Price = product.Price,
                 MyCategory = (DO.Enums.Category)product.MyCategory!,
                 InStock = product.InStock,
-
             };
 
 
@@ -59,7 +58,6 @@ internal class Product : IProduct
                 Price = product?.Price ?? throw new BO.MissingException("Price missing"),
                 MyCategory = (BO.Enums.Category?)(product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing")),
                 InStock = product?.InStock ?? throw new BO.MissingException("quantity in stock missing"),
-
             };
 
         }
@@ -182,9 +180,7 @@ internal class Product : IProduct
                 Price = product.Price,
                 MyCategory = (DO.Enums.Category)product.MyCategory,
                 InStock = product.InStock,
-
             };
-
 
             Dal?.Product.Update(product1);
         }

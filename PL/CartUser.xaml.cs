@@ -1,18 +1,7 @@
 ﻿using BO;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 
 namespace PL
@@ -23,91 +12,80 @@ namespace PL
     public partial class CartUser : Window
     {
 
-       
-
         private static IEnumerable<ProductForList?>? ItmesSource;
 
         BlApi.IBl? bl = BlApi.Factory.Get();
 
-        Cart cartuser = new Cart();
+        Cart cartUser = new Cart();
+
         public CartUser()
         {
             InitializeComponent();
-            detailcardbutton.Visibility = Visibility.Collapsed;
-            comfirmationcardbutton.Visibility = Visibility.Collapsed;
-            addproductcartbutton.Visibility = Visibility.Collapsed;
-            price.Visibility = Visibility.Collapsed;
-            itemamount.Visibility= Visibility.Collapsed;
-            Amountitem.Visibility= Visibility.Collapsed;
-            priceT.Visibility= Visibility.Collapsed;
 
+            AddProductButton.Visibility = Visibility.Collapsed;
+            DetailsCartButton.Visibility = Visibility.Collapsed;
+            ConfirmationCartButton.Visibility = Visibility.Collapsed;
 
-            Imformation.DataContext = cartuser;
+            LabelAmountOfItem.Visibility = Visibility.Collapsed;
+            LabelTotalPrice.Visibility= Visibility.Collapsed;
 
+            AmountOfItem.Visibility= Visibility.Collapsed;
+            TotalPrice.Visibility= Visibility.Collapsed;
+
+            CartInformations.DataContext = cartUser;
         }
 
+        //when you validate your information before choosing your products
         private void Button_Valid(object sender, RoutedEventArgs e)
         {
+            Titre.Content = "Choose an action:";
+            AddProductButton.Visibility = Visibility.Visible;
+            DetailsCartButton.Visibility = Visibility.Visible;
+            ConfirmationCartButton.Visibility = Visibility.Visible;
 
-            //cartuser.CustomerName = customername.Text;
-            //cartuser.CustomerAddress = customeradress.Text;
-            //cartuser.CustomerEmail = customeremail.Text;
-            clickValid.Visibility = Visibility.Collapsed;
-            Imformation.Visibility = Visibility.Collapsed;
-            Label.Visibility = Visibility.Collapsed;
-            Titre.Content = "Chose an Action";
-            detailcardbutton.Visibility = Visibility.Visible;
-            comfirmationcardbutton.Visibility = Visibility.Visible;
-            addproductcartbutton.Visibility = Visibility.Visible;
+            CartInformations.Visibility = Visibility.Collapsed;
+            LabelForCartInformations.Visibility = Visibility.Collapsed;
+            ClickValid.Visibility = Visibility.Collapsed;
         }
 
         private void detailcardbutton_Click(object sender, RoutedEventArgs e)
         {
 
             affichelist.Visibility = Visibility.Visible;
-            if(cartuser.Items != null) itemamount.Text = cartuser.Items.Count().ToString();
+            if(cartUser.Items != null) AmountOfItem.Text = cartUser.Items.Count().ToString();
 
+            Titre.Content = "Details of your cart:";
+            LabelForCartInformations.Visibility = Visibility.Visible;
+            LabelAmountOfItem.Visibility = Visibility.Visible;
+            LabelTotalPrice.Visibility = Visibility.Visible;
 
+            CartInformations.Visibility = Visibility.Visible;
+            AmountOfItem.Visibility = Visibility.Visible;
+            TotalPrice.Visibility = Visibility.Visible;
 
+            TotalPrice.Text = cartUser.TotalPrice.ToString();
 
-            Titre.Content = "Details of your cart";
-
-            price.Visibility = Visibility.Visible;
-            itemamount.Visibility = Visibility.Visible;
-            Amountitem.Visibility = Visibility.Visible;
-            priceT.Visibility = Visibility.Visible;
-
-            
-            price.Text = cartuser.TotalPrice.ToString();
-           
-
-            Label.Visibility = Visibility.Visible;
-            Imformation.Visibility = Visibility.Visible;
-            
-           
-            price.IsReadOnly = true;
-            customername.IsReadOnly = true;
-            customeradress.IsReadOnly = true;
-            customeremail.IsReadOnly = true;
-            itemamount.IsReadOnly = true;
+            CustomerName.IsReadOnly = true;
+            CustomerEmail.IsReadOnly = true;
+            CustomerAdress.IsReadOnly = true;
+            AmountOfItem.IsReadOnly = true;
+            TotalPrice.IsReadOnly = true;
 
             listorderitem.ItemsSource = null;
-            listorderitem.ItemsSource = cartuser.Items;
-
+            listorderitem.ItemsSource = cartUser.Items;
         }
 
-        private void addproductcartbutton_Click(object sender, RoutedEventArgs e) => new NewOrderWindow(cartuser).Show();
+        private void addproductcartbutton_Click(object sender, RoutedEventArgs e) => new NewOrderWindow(cartUser).Show();
 
         private void comfirmationcardbutton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-              int? Orderid = bl?.Cart?.ConfirmationCard(cartuser);
-                MessageBox.Show($"Your order has been made, thank you for using our services {cartuser.CustomerName}");
+                int? Orderid = bl?.Cart?.ConfirmationCard(cartUser);
+                MessageBox.Show($"Your order has been made, thank you for using our services {cartUser.CustomerName}");
                 MessageBox.Show($"Your order number is {Orderid} don't forget it for tracking");
             }
 
-        
             catch(BO.ErrorDontExist ex) { MessageBox.Show(ex.Message);  }
 
             this.Close();

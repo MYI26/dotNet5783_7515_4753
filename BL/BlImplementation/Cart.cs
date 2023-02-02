@@ -6,10 +6,12 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
-
-    //private static DalList Dal = new DalList();
     DalApi.IDal? Dal = DalApi.Factory.Get();
+
+    //BlApi.IBl? bl = BlApi.Factory.Get();
+
     static readonly Random random = new Random();
+
     public BO.Cart? AddProduct(BO.Cart cart, int productId) // place product with productid in the list orderitem of the cart
     {
         try
@@ -81,93 +83,65 @@ internal class Cart : ICart
         //}
         //if (item.QuantityInCart > product.InStock) { throw new BO.NotEnought("ther is no enough product items in stock"); }// if the consomer want to take mor product that exist
 
-        //try
-        //{
-        //    if (newItem) cart.Items?.Add(item);
-        //}
-        //catch (DalApi.DO.AlreadyExistException)
-        //{
-
-        //    throw new BO.AlreadyExistException("the order item already exist");//the product already exist
-        //}
-
         return cart;
     }
- 
+
    
     public void UpdateTotalSum(BO.Cart cart)
     {
-        foreach (BO.OrderItem oi in cart.Items)
-            cart.TotalPrice = (double)(oi.Price * oi.QuantityInCart);
-
-        //cart.TotalPrice = cart.Items?.Sum(c => c?.Price * c?.QuantityInCart) ?? 0; // the same line that the top
+        cart.TotalPrice = 0;
+        foreach (BO.OrderItem? oi in cart.Items!)
+            cart.TotalPrice += (double)(oi?.Price * oi?.QuantityInCart)!;
     }
- 
+
 
     public int ConfirmationCard(BO.Cart cart)
     {
-
+        //we check what the user has enterred
         try
         {
-            DO.Product product;
-            if (cart == null) throw new BO.ErrorDontExist("your card dont exist");
+            if (cart == null) throw new BO.ErrorDontExist("your card don't exist");
             if (cart.CustomerName == null) throw new BO.ErrorDontExist("you must enter a name");
             if (cart.CustomerAddress == "") throw new BO.ErrorDontExist("you must enter an address");
-            if (cart.CustomerEmail == null) throw new BO.ErrorDontExist("you must enter Mail");
-            if (!cart.CustomerEmail.Contains("@gmail.com")) throw new BO.ErrorDontExist("Mail dont valid");
-
-
+            if (cart.CustomerEmail == null) throw new BO.ErrorDontExist("you must enter a mail");
+            if (!cart.CustomerEmail.Contains("@gmail.com")) throw new BO.ErrorDontExist("your mail don'tt valid");
             if (cart.Items != null)
-                foreach (BO.OrderItem oi in cart.Items)
+            foreach (BO.OrderItem? oi in cart.Items)
                 {
-                    if (oi.ProductID <= 0) throw new BO.ErrorDontExist("Id not valid");
+                    if (oi?.ProductID <= 0) throw new BO.ErrorDontExist("Id not valid");
+                    //il reste à vérifier ici si on a assez de produits en stock
+                    //if (oi?.QuantityInCart > bl?.Product?.Get(oi!.Id)?.InStock)
+                    //{ throw new BO.ErrorDontExist("We don't have enought in stock"); }
                 }
-            else throw new BO.ErrorDontExist("Il n'y a pas de produit dans votre pannier");
-            // if (cart.Items.QuantityInCart > product.InStock) { throw new BO.NotEnought("ther is no enough product items in stock"); }
-
+            else throw new BO.ErrorDontExist("you haven't products in your cart");
         }
 
-        //catch (BO.DontExist ex) { throw new BO.DontExist( ); }
         catch (BO.ErrorDontExist ex) { throw ex; }
 
 
+        //the cart becomes an order for the DO database
         DO.Order orderdo = new DO.Order();
-
         orderdo.CustomerName = cart.CustomerName;
         orderdo.CustomerEmail = cart.CustomerEmail;
         orderdo.CustomerAddress = cart.CustomerAddress;
         orderdo.OrderDate = DateTime.Now;
         orderdo.ShipDate = null;
         orderdo.DeliveryDate = null;
-        
+       
+        int OrderId = Dal!.Order.Add(orderdo);
 
-        int OrderId = Dal.Order.Add(orderdo);
-
-
-        foreach (BO.OrderItem oi in cart.Items)
+        foreach (BO.OrderItem? oI in cart.Items)
         {
-            //DO.Product product = new DO.Product();
-            //int index = 0;
-            // BO.OrderItem o = new BO.OrderItem();
-            DO.OrderItem orderitemdo = new DO.OrderItem();
-            // oi = cart.Items[index++];
-            orderitemdo.OrderID = OrderId;
-            orderitemdo.ID = (int)oi.Id;
-            orderitemdo.ProductID = (int)oi.ProductID;
-           // product = Dal.Product?.Get(orderitemdo.ProductID) ?? throw new BO.MissingException("product dont exist");
-            //product.InStock--;
-           // Dal.Product.Update(product);
-            orderitemdo.Price = 0;
-            orderitemdo.Amount = cart.Items.Count;
-
-
-            Dal.OrderItem.Add(orderitemdo);
-            //enlever le produit en stock instock--
-
+            DO.OrderItem orderItemDo = new DO.OrderItem();
+            orderItemDo.ID = (int)oI!.Id;
+            orderItemDo.ProductID = (int)oI.ProductID;
+            orderItemDo.OrderID = OrderId;
+            orderItemDo.Price = oI.Price;
+            orderItemDo.Amount = oI.QuantityInCart;
+            Dal.OrderItem.Add(orderItemDo);
+            //il reste à modifier la qté de prduit en stock apres la commande
+            //dans la base de donnée DO
         }
-
         return OrderId;
-
     }
-
 }
