@@ -1,6 +1,4 @@
 ﻿using BlApi;
-using System;
-using System.Diagnostics;
 
 namespace BlImplementation;
 
@@ -139,8 +137,13 @@ internal class Cart : ICart
             orderItemDo.Price = oI.Price;
             orderItemDo.Amount = oI.QuantityInCart;
             Dal.OrderItem.Add(orderItemDo);
-            //il reste à modifier la qté de prduit en stock apres la commande
+
+            //on modifie la qté de prduit en stock apres la commande
             //dans la base de donnée DO
+            
+            DO.Product? product = Dal.Product.Get(oI.ProductID);
+            product.InStock -= oI.QuantityInCart;
+            Dal.Product.Update(product);
         }
         return OrderId;
     }
