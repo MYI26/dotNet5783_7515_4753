@@ -109,13 +109,15 @@ internal class DalProduct : IProduct
         }
     }       
     
-    public void updateOnlyTheAmountInStock(int amount, int productID)
-    {
-        Product? product = new Product();
-        product = Get(productID);
-        product.InStock -= amount
-        listProduct?.Update(product);
-    }
+    //public void updateOnlyTheAmountInStock(int amount, int productID)
+    //{
+    //    //Product? product = new Product();
+    //    //product = Get(productID);
+    //    //product.InStock -= amount;
+    //    //listProduct?.Update(product);
+    //    Get(productID)?.InStock;
+
+    //}
 }
         
 

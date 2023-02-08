@@ -149,7 +149,7 @@ internal class Product : IProduct
                    Name = product?.Name ?? throw new BO.MissingException("Name missing"),
                    Price = product?.Price ?? throw new BO.MissingException("Price missing"),
                    Category = (BO.Enums.Category?)product?.MyCategory ?? throw new BO.MissingException("Category missing"),
-
+                   InStock = product?.InStock ?? throw new BO.MissingException("Name missing"),
                };
     }
     public IEnumerable<BO.ProductItem?>? GetProductCatalog() =>

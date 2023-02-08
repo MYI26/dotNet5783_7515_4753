@@ -18,7 +18,7 @@ internal class Cart : ICart
                 throw new BO.ErrorIdException("Produt ID is not a positive number");
 
             if (cart == null)
-                throw new BO.ErrorDontExist("Cart dont exist");
+                throw new BO.ErrorDontExist("Cart dont exist");        
         }
 
         catch (BO.ErrorIdException ex) // the Exeption that ask can return 
@@ -98,6 +98,7 @@ internal class Cart : ICart
         //we check what the user has enterred
         try
         {
+            int number_productselectione = 0;
             if (cart == null) throw new BO.ErrorDontExist("your card don't exist");
             if (cart.CustomerName == null) throw new BO.ErrorDontExist("you must enter a name");
             if (cart.CustomerAddress == "") throw new BO.ErrorDontExist("you must enter an address");
@@ -110,6 +111,20 @@ internal class Cart : ICart
                     //il reste à vérifier ici si on a assez de produits en stock
                     //if (oi?.QuantityInCart > bl?.Product?.Get(oi!.Id)?.InStock)
                     //{ throw new BO.ErrorDontExist("We don't have enought in stock"); }
+                    DO.Product product = (DO.Product)Dal.Product.Get(oi.ProductID);
+                    if (product.InStock == 0)
+                    {
+                        product.InStock = number_productselectione;
+                        Dal.Product.Update(product);//if the user have select mor that instock posible and their are un error we replace the number of product
+                        throw new BO.ErrorDontExist("Sorry one of the products is no longer available");
+                    }
+                    else
+                    {
+                        product.InStock -= oi.QuantityInCart;
+                        Dal.Product.Update(product);
+                        number_productselectione++;
+                    }
+
                 }
             else throw new BO.ErrorDontExist("you haven't products in your cart");
         }
@@ -139,11 +154,7 @@ internal class Cart : ICart
             Dal.OrderItem.Add(orderItemDo);
 
             //on modifie la qté de prduit en stock apres la commande
-            //dans la base de donnée DO
-            
-            DO.Product? product = Dal.Product.Get(oI.ProductID);
-            product.InStock -= oI.QuantityInCart;
-            Dal.Product.Update(product);
+            //dans la base de donnée DO          
         }
         return OrderId;
     }

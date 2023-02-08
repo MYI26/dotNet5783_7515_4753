@@ -164,6 +164,8 @@ internal class Order : IOrder
                 {
                     if (oi.OrderID == id)
                     {
+
+                        BoOrderItem = new BO.OrderItem();
                         BoOrderItem.Id = oi.ID;
                         BoOrderItem.ProductID = oi.ProductID;
                         BoOrderItem.NameProduct = Dal?.Product.Get(oi.ProductID)?.Name;
