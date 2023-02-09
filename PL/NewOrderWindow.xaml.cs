@@ -21,12 +21,12 @@ namespace PL
     public partial class NewOrderWindow : Window
     {
 
-        private static IEnumerable<ProductForList?>? ItmesSource;
+        public IEnumerable<ProductForList?>? ItmesSourcebinding;
 
         BlApi.IBl? bl = BlApi.Factory.Get();
         Cart cartuser = new Cart();
         public NewOrderWindow(Cart cart)
-        {
+        {    
             InitializeComponent();
             ProductItemView.ItemsSource = bl?.Product?.GetProductList(null);
             CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
@@ -61,9 +61,6 @@ namespace PL
                 MessageBox.Show("The product was add whith success");
             }
             catch(BO.DontExist ex) { MessageBox.Show(ex.Message);  }
-
-            
-
             this.Close();
         }
         

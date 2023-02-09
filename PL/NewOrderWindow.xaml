@@ -23,7 +23,7 @@
             <ComboBox x:Name="CatagorySelector" Grid.Column="1" Margin="0,-9,-2,0" SelectionChanged="CatagorySelector_SelectionChanged" />
             <Label Content="All our products available in the store: " Margin="1,-7,0,0" FontSize="20" Background="#FFD2D2D2"/>
         </Grid>
-        <ListView x:Name="ProductItemView" d:ItemsSource="{Binding}" Margin="0,1,0,0" Grid.Row="2" >
+        <ListView x:Name="ProductItemView"  d:ItemsSource="{Binding}" Margin="0,1,0,0" Grid.Row="2" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding ProductID}" />

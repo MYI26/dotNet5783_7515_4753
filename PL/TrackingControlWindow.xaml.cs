@@ -22,9 +22,7 @@ namespace PL
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            
+        {           
             try
             {
                 //appel de la fct Tracking pour initialiser orderT

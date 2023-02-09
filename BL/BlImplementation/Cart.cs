@@ -103,7 +103,7 @@ internal class Cart : ICart
             if (cart.CustomerName == null) throw new BO.ErrorDontExist("you must enter a name");
             if (cart.CustomerAddress == "") throw new BO.ErrorDontExist("you must enter an address");
             if (cart.CustomerEmail == null) throw new BO.ErrorDontExist("you must enter a mail");
-            if (!cart.CustomerEmail.Contains("@gmail.com")) throw new BO.ErrorDontExist("your mail don'tt valid");
+            if (!cart.CustomerEmail.Contains("@gmail.com")) throw new BO.ErrorDontExist("your mail don't valid");
             if (cart.Items != null)
             foreach (BO.OrderItem? oi in cart.Items)
                 {
