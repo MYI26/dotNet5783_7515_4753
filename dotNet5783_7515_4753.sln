@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{758F25C4-97F
 		xml\dal-config.xml = xml\dal-config.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary3", "ClassLibrary3\ClassLibrary3.csproj", "{86DBFF3F-9F63-4C43-892F-3E15509A7B79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,9 +69,16 @@ Global
 		{B0647A36-9A58-4C12-97C3-7027C111DCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0647A36-9A58-4C12-97C3-7027C111DCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0647A36-9A58-4C12-97C3-7027C111DCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86DBFF3F-9F63-4C43-892F-3E15509A7B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86DBFF3F-9F63-4C43-892F-3E15509A7B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86DBFF3F-9F63-4C43-892F-3E15509A7B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86DBFF3F-9F63-4C43-892F-3E15509A7B79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86DBFF3F-9F63-4C43-892F-3E15509A7B79} = {758F25C4-97F4-4FD2-83FA-AB7C862FC838}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {564C6481-6BDF-47F8-B674-5D4C9588C312}
