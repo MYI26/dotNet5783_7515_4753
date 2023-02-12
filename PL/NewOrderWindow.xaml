@@ -42,13 +42,13 @@
                                             <ColumnDefinition Width="27*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid>
-                                            <Button Content="+" VerticalAlignment="Center" Height="35" Width="33"  FontSize="24"  HorizontalAlignment="Center"  Background="{x:Null}"/>
+                                            <Button   Content="+" Click="ButtonPlus"  VerticalAlignment="Center" Height="35" Width="33"  FontSize="24"  HorizontalAlignment="Center"  Background="{x:Null}"/>
                                         </Grid>
                                         <Grid Grid.Column="1">
-                                            <TextBlock Text="1" VerticalAlignment="Center" Width="52" Height="17" TextAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                                            <TextBlock x:Name="TextBlockAmountcart"  Text="1" VerticalAlignment="Center" Width="52" Height="17" TextAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                                         </Grid>
                                         <Grid Grid.Column="2">
-                                            <Button Content="-" HorizontalAlignment="Center" Height="34" Width="35"  FontSize="24" VerticalAlignment="Center"  Background="{x:Null}" />
+                                            <Button Content="-" Click="ButtonMoins" HorizontalAlignment="Center" Height="34" Width="35"  FontSize="24" VerticalAlignment="Center"  Background="{x:Null}" />
                                         </Grid>
                                     </Grid>
                                 </StackPanel>
@@ -61,7 +61,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Button Content="Add to card" Height="25"  Background="{x:Null}" BorderBrush="{x:Null}" />
+                                    <Button Content="Add to card"  Height="25"  Background="{x:Null}" BorderBrush="{x:Null}" />
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
