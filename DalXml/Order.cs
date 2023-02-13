@@ -65,4 +65,67 @@ internal class Order : IOrder
         Delete(entity.ID);
         Add(entity);
     }
+
+    public int GetNumStatus(int id)
+    {
+        if (Get(id)?.DeliveryDate != null)
+        {
+            return 3;
+        }
+
+        else if (Get(id)?.ShipDate != null)
+        {
+            return 2;
+        }
+
+        else
+        {
+            return 1;
+        }
+    }
+
+    public int GetAmoutOrderItem(int id)
+    {
+        int temp = 0;
+
+        List<DO.OrderItem?> listOrder = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>("OrderItem");
+        IEnumerable<DO.OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+       from oI in listOrder
+       where oI?.OrderID == id
+       select oI;
+
+
+        if (listorderitem1 != null)
+        {
+            foreach (DO.OrderItem OI in listorderitem1)
+            {
+                temp += OI.Amount;
+            }
+        }
+        XMLTools.SaveListToXMLSerializer(listOrder, orderPath);
+        return temp;
+
+    }
+
+
+    public double GetTotalPrice(int id)
+    {
+
+        double temp = 0;
+        List<DO.OrderItem?> listOrder = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>("OrderItem");
+        IEnumerable<DO.OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+       from oI in listOrder
+       where oI?.OrderID == id
+       select oI;
+
+        if (listorderitem1 != null)
+        {
+            foreach (DO.OrderItem OI in listorderitem1)
+            {
+                temp += OI.Amount * OI.Price;
+            }
+        }
+        XMLTools.SaveListToXMLSerializer(listOrder, orderPath);
+        return temp;
+    }
 }

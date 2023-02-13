@@ -16,8 +16,9 @@ namespace DalApi;
 /// </summary>
 public interface IOrder : ICrud<Order>
 {
-    //public int GetAmoutOrderItem(int id);
-    //public double GetTotalPrice(int id);
-    //public int GetNumStatus(int id);
+    public int GetAmoutOrderItem(int id);
+    public double GetTotalPrice(int id);
+    public int GetNumStatus(int id);
+
 }
     

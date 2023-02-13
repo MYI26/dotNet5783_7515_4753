@@ -55,16 +55,12 @@ namespace Program
                             fonctionOrder();
                             break;
                         case 4:
-                            XMLTools.SaveListToXMLSerializer(dal.Product.GetAll().ToList(), "Product");
-                            XMLTools.SaveListToXMLSerializer(dal.Order.GetAll().ToList(), "Order");
-                            XMLTools.SaveListToXMLSerializer(dal.OrderItem.GetAll().ToList(), "OrderItem");
+                            XMLTools.SaveListToXMLSerializer(dal.Product.GetAll().ToList(), "Product"); // ca marche 
+                            XMLTools.SaveListToXMLSerializer(dal.Order.GetAll().ToList(), "Order"); // ca marche
+                            XMLTools.SaveListToXMLSerializer(dal.OrderItem.GetAll().ToList(), "OrderItem"); // ca marche
 
-                            int lastOrderItemID = dal.OrderItem.GetAll().Last()?.ID ?? 0;
-                            int lastOrderID = dal.Order.GetAll().Last()?.ID ?? 0;
-                            int lastProductID = dal.Product.GetAll().Last()?.ID ?? 0;
-                            XMLTools.SaveConfigXElement("OrderId", lastOrderID);
-                            XMLTools.SaveConfigXElement("OrderItemId", lastOrderItemID);
-                            XMLTools.SaveConfigXElement("ProductId", lastProductID);
+                            int lastOrderID = dal.Order.GetAll().Last()?.ID ?? 0; // le seul michtane Ratz automati qui est l'orderID du config 
+                            XMLTools.SaveConfigXElement("OrderId", lastOrderID); // ca ne marche pas 
                             break;
                     }
                 }

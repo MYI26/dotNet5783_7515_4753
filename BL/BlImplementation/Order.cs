@@ -28,7 +28,7 @@ internal class Order : IOrder
 
                     CustomerAddress = doOrder?.CustomerAddress ?? throw new BO.MissingException("Address missing"),
 
-                    Status = (BO.Enums.OrderStatus)Dal?.Order.GetNumStatus(id) !,
+                    Status = (BO.Enums.OrderStatus)Dal?.Order.GetNumStatus(id)!,
 
                     OrderDate = doOrder?.OrderDate ?? null,
 

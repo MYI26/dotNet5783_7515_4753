@@ -24,7 +24,7 @@ public interface IProduct
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Product? Get(int id); 
+    BO.Product? Get(int id); 
 
     /// <summary>
     /// For a buyer screen - from the catalog
@@ -32,14 +32,14 @@ public interface IProduct
     /// <param name="id"></param>
     /// <param name="cart1"></param>
     /// <returns></returns>
-    ProductItem? Get(int id,Cart cart1);
+    BO.ProductItem? Get(int id,BO.Cart cart1);
 
     // <summary>
     /// add product. specific for admin screen and for
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public void Add(Product product);
+    public void Add(BO.Product product);
 
     /// <summary>
     /// delete product. specific for admin screen and for
@@ -51,7 +51,7 @@ public interface IProduct
     /// Update product. specific for admin screen and for
     /// </summary>
     /// <param name="product"></param>
-    public void Update(Product product);
+    public void Update(BO.Product product);
 
 
 

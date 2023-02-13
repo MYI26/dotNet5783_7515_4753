@@ -1,9 +1,10 @@
 ﻿using BlApi;
 using BO;
+using DalApi;
 
 namespace BlImplementation;
 
-internal class Product : IProduct
+internal class Product : BlApi.IProduct
 {
 
     // private static readonly IDal? Dal = Factory.Get();
@@ -141,15 +142,15 @@ internal class Product : IProduct
 
     public IEnumerable<BO.ProductForList?>? GetProductList(Func<DO.Product?, bool>? filter)
     {
-
-        return from product in Dal?.Product.GetAll(filter) //from == a partir de, select new == new
+        return from product in Dal.Product.GetAll()  // for stage 5 using orderby and select new 
+               orderby product?.ID
                select new BO.ProductForList
                {
-                   ProductID = product?.ID ?? throw new BO.MissingException("ID missing"),
-                   Name = product?.Name ?? throw new BO.MissingException("Name missing"),
-                   Price = product?.Price ?? throw new BO.MissingException("Price missing"),
-                   Category = (BO.Enums.Category?)product?.MyCategory ?? throw new BO.MissingException("Category missing"),
-                   InStock = product?.InStock ?? throw new BO.MissingException("Name missing"),
+                    ProductID = product?.ID ?? throw new NullReferenceException("Missing ID"),
+                   Name = product?.Name ?? throw new NullReferenceException("Missing Name"),
+                   Category = (BO.Enums.Category?)product?.MyCategory ?? throw new NullReferenceException("Missing product category"),
+                   Price = product?.Price ?? 0d,
+                    InStock = product?.InStock ?? 0,
                };
     }
     public IEnumerable<BO.ProductItem?>? GetProductCatalog() =>
@@ -187,4 +188,6 @@ internal class Product : IProduct
 
         catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); }
     }
+
+    
 }

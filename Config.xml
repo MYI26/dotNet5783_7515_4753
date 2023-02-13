@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+	<OrderId>1020</OrderId>
+</Config>
+
+<!--on a ecrit a la main le Config.xml le Daltest case 4 ne fonctionnait pas -->
+<!--le deuxieme probleme c'est que ca ne load pas les netounim from xml vers le BL je crois : la fonction getAll()-->   
