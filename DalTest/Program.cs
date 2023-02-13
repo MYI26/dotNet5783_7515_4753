@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.ComponentModel;
 using static System.Collections.Specialized.BitVector32;
 using System.Xml.Linq;
+using DalTest;
 
 namespace Program
 {
@@ -52,6 +53,18 @@ namespace Program
                             break;
                         case 3:
                             fonctionOrder();
+                            break;
+                        case 4:
+                            XMLTools.SaveListToXMLSerializer(dal.Product.GetAll().ToList(), "Product");
+                            XMLTools.SaveListToXMLSerializer(dal.Order.GetAll().ToList(), "Order");
+                            XMLTools.SaveListToXMLSerializer(dal.OrderItem.GetAll().ToList(), "OrderItem");
+
+                            int lastOrderItemID = dal.OrderItem.GetAll().Last()?.ID ?? 0;
+                            int lastOrderID = dal.Order.GetAll().Last()?.ID ?? 0;
+                            int lastProductID = dal.Product.GetAll().Last()?.ID ?? 0;
+                            XMLTools.SaveConfigXElement("OrderId", lastOrderID);
+                            XMLTools.SaveConfigXElement("OrderItemId", lastOrderItemID);
+                            XMLTools.SaveConfigXElement("ProductId", lastProductID);
                             break;
                     }
                 }
