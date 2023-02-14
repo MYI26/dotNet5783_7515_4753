@@ -124,7 +124,7 @@ internal class Product : BlApi.IProduct
 
     public IEnumerable<BO.ProductForList?>? GetProductList(Func<DO.Product?, bool>? filter)
     {
-        return from product in Dal.Product.GetAll()  // for stage 5 using orderby and select new 
+        return from product in Dal.Product.GetAll(filter)  // for stage 5 using orderby and select new 
                orderby product?.ID
                select new BO.ProductForList
                {

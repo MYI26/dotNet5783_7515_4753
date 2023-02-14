@@ -33,6 +33,8 @@ namespace PL
             TotalPrice.Visibility= Visibility.Collapsed;
 
             CartInformations.DataContext = cartUser;
+
+       
         }
 
         //when you validate your information before choosing your products
@@ -46,6 +48,29 @@ namespace PL
             CartInformations.Visibility = Visibility.Collapsed;
             LabelForCartInformations.Visibility = Visibility.Collapsed;
             ClickValid.Visibility = Visibility.Collapsed;
+
+            affichelist.Visibility = Visibility.Visible;
+            if (cartUser.Items != null) AmountOfItem.Text = cartUser.Items.Count().ToString();
+
+            Titre.Content = "Details of your cart:";
+            LabelForCartInformations.Visibility = Visibility.Visible;
+            LabelAmountOfItem.Visibility = Visibility.Visible;
+            LabelTotalPrice.Visibility = Visibility.Visible;
+
+            CartInformations.Visibility = Visibility.Visible;
+            AmountOfItem.Visibility = Visibility.Visible;
+            TotalPrice.Visibility = Visibility.Visible;
+
+            TotalPrice.Text = cartUser.TotalPrice.ToString();
+
+            CustomerName.IsReadOnly = true;
+            CustomerEmail.IsReadOnly = true;
+            CustomerAdress.IsReadOnly = true;
+            AmountOfItem.IsReadOnly = true;
+            TotalPrice.IsReadOnly = true;
+
+            listorderitem.ItemsSource = null;
+            listorderitem.ItemsSource = cartUser.Items;
         }
 
         private void detailcardbutton_Click(object sender, RoutedEventArgs e)

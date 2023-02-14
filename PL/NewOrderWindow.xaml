@@ -10,8 +10,8 @@
 
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="36*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="54*"/>
             <RowDefinition Height="333*"/>
             <RowDefinition Height="44*"/>
         </Grid.RowDefinitions>
@@ -20,8 +20,8 @@
                 <ColumnDefinition Width="200*"/>
                 <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="CatagorySelector" Grid.Column="1" Margin="0,-9,-2,0" SelectionChanged="CatagorySelector_SelectionChanged" />
-            <Label Content="All our products available in the store: " Margin="1,-7,0,0" FontSize="20" Background="#FFD2D2D2"/>
+            <ComboBox x:Name="CatagorySelector" Grid.Column="1" Margin="0,-7,-1,-2" SelectionChanged="CatagorySelector_SelectionChanged" />
+            <Label Content="All our products available in the store: " Margin="1,-7,0,-2" FontSize="20" Background="#FFD2D2D2" VerticalContentAlignment="Center"/>
         </Grid>
         <ListView x:Name="ProductItemView"  d:ItemsSource="{Binding}" Margin="0,1,0,0" Grid.Row="2" >
             <ListView.View>
@@ -75,27 +75,20 @@
                 <ColumnDefinition Width="383*"/>
                 <ColumnDefinition Width="418*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Valid" Margin="56,-3,0,0" Click="ButtonValid_Click" Grid.Column="1"/>
+            <Button Content="Valid" Margin="56,-3,0,0" Click="ButtonValid_Click" Grid.Column="1">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF333333" Offset="1"/>
+                        <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                        <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
             <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Enter the Id of the product to add:" VerticalAlignment="Center" Height="34" Width="192"/>
             <TextBox x:Name="idofadd" HorizontalAlignment="Left" Margin="202,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="130" Height="36"/>
         </Grid>
-        <Grid/>
-        <StackPanel>
-            <Menu>
-                <MenuItem Header="File">
-                    <MenuItem Header="New" />
-                    <MenuItem Header="Open" />
-                    <MenuItem Header="Save" />
-                    <MenuItem Header="Save As">
-                        <MenuItem Header="Save as BMP" />
-                        <MenuItem Header="Save as JPG" />
-                        <MenuItem Header="Save as GIF" />
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem Header="Edit" />
-                <MenuItem Header="Format" />
-            </Menu>
-        </StackPanel>
+        <Grid Margin="0,0,0,1"/>
+
 
     </Grid>
 </Window>
