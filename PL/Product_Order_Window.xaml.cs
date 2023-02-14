@@ -108,17 +108,23 @@ namespace PL
                 bl?.Order?.update(int.Parse(id.Text));
                 status.Text = "shipped";
                 ship.Text = bl?.Order?.Get(int.Parse(id.Text))!.ShipDate.ToString();
+            }
         }
-    }
+        
+    
 
         private void deliveryupdate_Click(object sender, RoutedEventArgs e)
         {
-            if(bl?.Order?.Get(int.Parse(id.Text))!.Status != OrderStatus.delivered)
+            try
             {
-                bl?.Order?.updateDelivrery(int.Parse(id.Text));
-                status.Text = "delivered";
-                delivery.Text = bl?.Order?.Get(int.Parse(id.Text))!.DeliveryDate.ToString();
+                if (bl?.Order?.Get(int.Parse(id.Text))!.Status != OrderStatus.delivered)
+                {
+                    bl?.Order?.updateDelivrery(int.Parse(id.Text));
+                    status.Text = "delivered";
+                    delivery.Text = bl?.Order?.Get(int.Parse(id.Text))!.DeliveryDate.ToString();
+                }
             }
+            catch { MessageBox.Show("Cannot deliver before shipping"); }
         }
     }
 }

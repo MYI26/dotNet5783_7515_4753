@@ -41,12 +41,44 @@
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="155,156,4,27" Grid.RowSpan="2">
-            <Button x:Name="ClickValid" Content="Valid" HorizontalAlignment="Left" Margin="21,8,0,0" VerticalAlignment="Top" Width="71" Height="25" Click="Button_Valid"/>
+            <Button x:Name="ClickValid" Content="Valid" HorizontalAlignment="Left" Margin="21,8,0,0" VerticalAlignment="Top" Width="71" Height="25" Click="Button_Valid">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF333333" Offset="1"/>
+                        <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                        <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
         </Grid>
 
-        <Button x:Name="DetailsCartButton"  Content="Details cart" HorizontalAlignment="Left" Margin="251,138,0,0" VerticalAlignment="Top" Width="80" Height="23" Click="detailcardbutton_Click" Grid.ColumnSpan="2" />
-        <Button x:Name="ConfirmationCartButton" Content="Confirmation Card" HorizontalAlignment="Left" Margin="62,139,0,0" VerticalAlignment="Top" Width="110" Height="23" Grid.Column="1" Click="comfirmationcardbutton_Click" />
-        <Button x:Name="AddProductButton" Content="Add Product Cart" HorizontalAlignment="Left" Margin="122,139,0,0" VerticalAlignment="Top" Width="104" Height="23" Click="addproductcartbutton_Click" />
+        <Button x:Name="DetailsCartButton"  Content="Update Details cart" HorizontalAlignment="Left" Margin="251,138,0,0" VerticalAlignment="Top" Width="123" Height="23" Click="detailcardbutton_Click" Grid.ColumnSpan="2">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                    <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                    <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ConfirmationCartButton" Content="Confirmation Card" HorizontalAlignment="Left" Margin="111,138,0,0" VerticalAlignment="Top" Width="110" Height="23" Grid.Column="1" Click="comfirmationcardbutton_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                    <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                    <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="AddProductButton" Content="Add Product Cart" HorizontalAlignment="Left" Margin="122,139,0,0" VerticalAlignment="Top" Width="104" Height="23" Click="addproductcartbutton_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                    <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                    <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
         
         <StackPanel x:Name="affichelist" Grid.Column="2" Margin="0,0,0,1" Grid.RowSpan="3" Visibility="Collapsed">
             <Grid Height="432">

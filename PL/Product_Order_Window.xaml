@@ -63,8 +63,24 @@
                         <Label Content="Delivery Date:"/>
                         <Label Content="Total Price:"/>
                         <Grid Height="200">
-                            <Button x:Name="shippingupdate" Content="shipping update" HorizontalAlignment="Left" Margin="3,18,0,0" VerticalAlignment="Top" Height="26" Width="98" Click="shippingupdate_Click"/>
-                            <Button x:Name="deliveryupdate"  Content="delivery update" HorizontalAlignment="Left" Margin="4,52,0,0" VerticalAlignment="Top" Height="26" Width="98" Click="deliveryupdate_Click"/>
+                            <Button x:Name="shippingupdate" Content="shipping update" HorizontalAlignment="Left" Margin="3,18,0,0" VerticalAlignment="Top" Height="26" Width="98" Click="shippingupdate_Click">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF333333" Offset="1"/>
+                                        <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                                        <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                            <Button x:Name="deliveryupdate"  Content="delivery update" HorizontalAlignment="Left" Margin="4,52,0,0" VerticalAlignment="Top" Height="26" Width="98" Click="deliveryupdate_Click">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF333333" Offset="1"/>
+                                        <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                                        <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </StackPanel>
 
@@ -79,7 +95,15 @@
                         <TextBlock x:Name="delivery" TextWrapping="Wrap" Text="{Binding DeliveryDate}" Height="26"/>
                         <TextBlock x:Name="price" TextWrapping="Wrap" Text="{Binding TotalPrice}" Height="26"/>
                         <Grid Height="192">
-                            <Button Content="Exit" HorizontalAlignment="Left" Margin="115,135,0,0" VerticalAlignment="Top" Height="46" Width="83" FontSize="15" Click="Button_Click"/>
+                            <Button Content="Exit" HorizontalAlignment="Left" Margin="115,135,0,0" VerticalAlignment="Top" Height="46" Width="83" FontSize="15" Click="Button_Click">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF333333" Offset="1"/>
+                                        <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                                        <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </StackPanel>
                     
