@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using System.Security.Cryptography;
+using static BO.Enums;
 
 namespace BlImplementation;
 
@@ -37,8 +38,8 @@ internal class Order : IOrder
                 };
 
                 result.TotalPrice = (from item in Dal?.OrderItem.GetAll()
-                           where item?.OrderID == id
-                           select item?.Amount*item?.Price).Sum() ?? 0.0;
+                                     where item?.OrderID == id
+                                     select item?.Amount * item?.Price).Sum() ?? 0.0;
 
 
                 return result;
@@ -59,7 +60,7 @@ internal class Order : IOrder
     {
 
         List<BO.OrderItem?> ListOrderItemBo = new List<BO.OrderItem?>();
-        
+
 
         foreach (DO.OrderItem oi in Dal?.OrderItem.GetAll()!)
         {
@@ -85,23 +86,23 @@ internal class Order : IOrder
     {
         if (filter == null)
         {
-            
-           return from order in Dal?.Order.GetAll()
-            orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
-            let  ord = (DO.Order)order      
-        select new BO.OrderForList
-        {
-            OrderID = ord.ID ,
-            CustomerName = ord.CustomerName,
-           Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID),
-           Amount = Dal?.Order.GetAmoutOrderItem(ord.ID) ?? throw new BO.MissingException("Quantity InCart missing"),
-            TotalPrice = Get(ord.ID)?.TotalPrice ?? 0.0
-        };
+
+            return from order in Dal?.Order.GetAll()
+                   orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
+                   let ord = (DO.Order)order
+                   select new BO.OrderForList
+                   {
+                       OrderID = ord.ID,
+                       CustomerName = ord.CustomerName,
+                       Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID),
+                       Amount = Dal?.Order.GetAmoutOrderItem(ord.ID) ?? throw new BO.MissingException("Quantity InCart missing"),
+                       TotalPrice = Get(ord.ID)?.TotalPrice ?? 0.0
+                   };
 
         }
 
         else//ici normalement on a pas le droit de creer une bouvelle liste seulement cree un enumerabele qui va trier le list
-        {     
+        {
 
             return from order in Dal?.Order.GetAll()
                    orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
@@ -156,11 +157,11 @@ internal class Order : IOrder
                 }
 
                 return new BO.OrderTracking()
-                    {
-                        OrderID = id,
-                        Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(id),
-                        Items = ListOrderItemBo,
-                    };
+                {
+                    OrderID = id,
+                    Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(id),
+                    Items = ListOrderItemBo,
+                };
             }
             else throw new BO.DontExistException("the order dont exist");
         }
@@ -269,5 +270,32 @@ internal class Order : IOrder
         return Get(id);
     }
 
+    public BO.Order? ConvertOrder_DO_to_BO()
+    {
+        DO.Order do1 = this.Get();
+        return new BO.Order
+        {
+            OrderID = (int)(do1?.ID),
+            CustomerName = do1?.CustomerName,
+            CustomerEmail = do1?.CustomerEmail,
+            CustomerAddress = do1?.CustomerAddress,
+            Status = (OrderStatus?)(do1?.ID),
+            OrderDate = do1?.OrderDate,
+            ShipDate = do1?.ShipDate,
+            DeliveryDate = do1?.DeliveryDate,
+            Items = null,
+            TotalPrice = 0
+        };
 
+
+    BO.Order? BlApi.IOrder.nextOrder()
+    {
+        BO.Order? order = (from item in Dal.Order.GetAll()
+                           where item?.DeliveryDate == null
+                           orderby item?.ShipDate ?? item?.OrderDate
+                           select item).FirstOrDefault()?.ConvertOrder_DO_to_BO();
+        BO.OrderTracking orderTracking = Tracking(order.OrderID);
+        order.Status = Tracking.Status;
+        return order;
+    }
 }
