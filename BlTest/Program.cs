@@ -1,16 +1,10 @@
-﻿
-using BO;
+﻿using BO;
 
 namespace BlTest
 {
     class program
     {
-
-
         static BlApi.IBl bl = BlApi.Factory.Get();
-        //private static DalProduct DalProduct = new DalProduct();
-        //private static DalOrderItem DalOrderItemt = new DalOrderItem();
-        //private static DalOrder DalOrder = new DalOrder();
 
         static void Main(string[] args)
         {
@@ -57,9 +51,6 @@ namespace BlTest
             }
         }
 
-
-
-
         private static void fonctionProduct()
         {
             int chart = 1;
@@ -101,7 +92,6 @@ h) exit");
 
                             break;
 
-
                         case "c":
                             Console.WriteLine(
          @"Enter ID of the product:");
@@ -139,7 +129,6 @@ h) exit");
 
                             break;
 
-
                         case "g":
                             Console.WriteLine(
          @"Enter ID of the product:");
@@ -159,19 +148,14 @@ h) exit");
                         case "h": chart = 0; break;
                     }
                 }
-
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
 
                 Console.WriteLine("\n");
-
             }
-
         }
-
-
 
         private static void fonctionCart()
         {
@@ -230,14 +214,9 @@ d) exit"); // cart == chario
                 {
                     Console.WriteLine(e);
                 }
-
                 Console.WriteLine("\n");
             }
-
-
         }
-
-
 
         private static void fonctionOrder()
         {
@@ -317,7 +296,7 @@ f) exit ");
 
                             string idOfTheOrder3 = Console.ReadLine(); // il n'y a pas de delete dans bl
                             int id4 = int.Parse(idOfTheOrder3);
-                           Console.WriteLine(bl.Order.Tracking(id4));
+                            Console.WriteLine(bl.Order.Tracking(id4));
                             //bl.Order.Delete(id2);
 
                             break;
@@ -330,12 +309,9 @@ f) exit ");
                 {
                     Console.WriteLine(e);
                 }
-
                 Console.WriteLine("\n");
             }
         }
-
-
 
         private static Product fonctionDataProduct()
         {
@@ -381,8 +357,6 @@ f) exit ");
             return product1;
         }
 
-
-
         private static Cart fonctionDataCart()
         {
             string customerName;
@@ -390,19 +364,19 @@ f) exit ");
             string customerAdress;
 
             Console.WriteLine("\nCustomerName:");
-             customerName = Console.ReadLine();
-            
+            customerName = Console.ReadLine();
+
             Console.WriteLine("\nCustomerEmail:");
-             customerEmail = Console.ReadLine();
-            
+            customerEmail = Console.ReadLine();
+
             Console.WriteLine("\nCustomerAdress:");
             customerAdress = Console.ReadLine();
-            
+
             Cart cart1 = new Cart();
             cart1.CustomerName = customerName;
             cart1.CustomerEmail = customerEmail;
             cart1.CustomerAddress = customerAdress;
-            cart1.Items = new List<OrderItem?>();      
+            cart1.Items = new List<OrderItem?>();
 
             return cart1;
         }
@@ -444,7 +418,6 @@ f) exit ");
             order1.DeliveryDate = DeliveryDate;
 
             return order1;
-
         }
     }
 

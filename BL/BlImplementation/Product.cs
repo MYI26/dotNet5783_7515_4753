@@ -1,7 +1,6 @@
 ﻿using BlApi;
 using BO;
 using DalApi;
-
 namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
@@ -23,24 +22,18 @@ internal class Product : BlApi.IProduct
                 InStock = product.InStock,
             };
 
-
             Dal?.Product.Add(doProduct);
         }
-
         catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product Already exist"); }
-
     }
 
     public void Delete(int id)
     {
-       try
+        try
         {
             Dal?.Product.Delete(id);
-
         }
-
         catch (Exception e) { throw e; }
-
     }
 
     public BO.Product? Get(int id)
@@ -57,9 +50,7 @@ internal class Product : BlApi.IProduct
                 MyCategory = (BO.Enums.Category?)(product?.MyCategory ?? throw new BO.MissingException("MyCartegory missing")),
                 InStock = product?.InStock ?? throw new BO.MissingException("quantity in stock missing"),
             };
-
         }
-
         catch (BO.MissingException)
         {
             throw new BO.Missing("Entity missing");
@@ -70,8 +61,6 @@ internal class Product : BlApi.IProduct
             throw new BO.ErrorIdException("ERROR ID");
         }
     }
-
-
 
     public ProductItem? Get(int id, BO.Cart cart1)
     {
@@ -98,8 +87,8 @@ internal class Product : BlApi.IProduct
 
             foreach (BO.OrderItem? orderitem in listorderitem)
                 if (orderitem.ProductID == id) { flag = true; break; }
-            //we check that this product our cart
 
+            //we check that this product our cart
             if (flag == true)
             {
                 return new BO.ProductItem()
@@ -112,11 +101,8 @@ internal class Product : BlApi.IProduct
                     QuantityInCart = product?.InStock ?? throw new BO.MissingException("Quantity InCart missing"),
                 };
             }
-
             else { throw new BO.DontExistException("Product ID dont exist in the cart"); }
-
         }
-
         catch (BO.MissingException ex)
         {
 
@@ -134,7 +120,6 @@ internal class Product : BlApi.IProduct
 
             throw new BO.ErrorIdException("Product ID dont exist in the cart");
         }
-
     }
 
     public IEnumerable<BO.ProductForList?>? GetProductList(Func<DO.Product?, bool>? filter)
@@ -143,13 +128,14 @@ internal class Product : BlApi.IProduct
                orderby product?.ID
                select new BO.ProductForList
                {
-                    ProductID = product?.ID ?? throw new NullReferenceException("Missing ID"),
+                   ProductID = product?.ID ?? throw new NullReferenceException("Missing ID"),
                    Name = product?.Name ?? throw new NullReferenceException("Missing Name"),
                    Category = (BO.Enums.Category?)product?.MyCategory ?? throw new NullReferenceException("Missing product category"),
                    Price = product?.Price ?? 0d,
-                    InStock = product?.InStock ?? 0,
+                   InStock = product?.InStock ?? 0,
                };
     }
+
     public IEnumerable<BO.ProductItem?>? GetProductCatalog() =>
 
         from product in Dal?.Product.GetAll() //from == a partir de, select new == new
@@ -162,8 +148,6 @@ internal class Product : BlApi.IProduct
             Availability = true,
             QuantityInCart = product?.InStock ?? throw new BO.MissingException("Quantity InCart missing"),
         };
-
-
 
     public void Update(BO.Product product)
     {
@@ -182,9 +166,6 @@ internal class Product : BlApi.IProduct
 
             Dal?.Product.Update(product1);
         }
-
         catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product dont exist"); }
     }
-
-    
 }

@@ -11,7 +11,7 @@ namespace BO
     public class Enums
     {
         //when we need to print also all the products(for the combo-box)
-        public enum CategoryForCatalog { All_Product = 0 , guitar = 1, violin, flute, piano, musicBrochures }
+        public enum CategoryForCatalog { All_Product = 0, guitar = 1, violin, flute, piano, musicBrochures }
 
         //when we need only to print the categories of the store(in the combo-box)
         public enum Category { guitar = 1, violin, flute, piano, musicBrochures }

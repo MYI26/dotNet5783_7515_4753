@@ -2,7 +2,6 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
-
 using DalApi;
 using DO;
 namespace Dal;
@@ -42,7 +41,6 @@ public class Product : IProduct
         if (stud != null)
             throw new Exception("ID already exist");
 
-
         product_root.Add(new XElement("Product",
                                    new XElement("ID", product.ID),
                                    new XElement("Name", product.Name),
@@ -54,7 +52,6 @@ public class Product : IProduct
         XMLTools.SaveListToXMLElement(product_root, productPath);
 
         return product.ID; ;
-
     }
 
     [MethodImpl(MethodImplOptions.Synchronized)]
@@ -69,15 +66,12 @@ public class Product : IProduct
         prod.Remove(); //<==>   Remove stud from studentsRootElem
 
         XMLTools.SaveListToXMLElement(product_root, productPath);
-
-
     }
 
     [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? function = null)
     {
         XElement? product_root = XMLTools.LoadListFromXMLElement(productPath);
-
 
         if (function != null)
         {
@@ -100,7 +94,6 @@ public class Product : IProduct
         return ((from p in product_root.Elements()
                  where p.ConvertProduct_Xml_to_D0().ID==id
                  select p.ConvertProduct_Xml_to_D0()).FirstOrDefault());
-
     }
 
     [MethodImpl(MethodImplOptions.Synchronized)]
@@ -109,5 +102,4 @@ public class Product : IProduct
         Delete(product.ID);
         Add(product);
     }
-
 }

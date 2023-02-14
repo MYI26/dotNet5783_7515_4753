@@ -1,15 +1,12 @@
-﻿
-using static DO.Enums;
+﻿using static DO.Enums;
 
 namespace DO;
-
 
 /// <summary>
 /// Structure for Product on sale resource
 /// </summary>
 public struct Product
 {
-
     /// <summary>
     /// Unique ID of product
     /// </summary>
@@ -35,7 +32,6 @@ public struct Product
     /// </summary>
     public int InStock { get; set; }
 
-
     /// <summary>
     /// Product ToString
     /// we will use this function later in the DalTest to display all the characteristics of the product
@@ -46,5 +42,4 @@ public struct Product
     	Price: {Price}
     	Amount in stock: {InStock}
 ";
-
 }

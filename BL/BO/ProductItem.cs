@@ -8,6 +8,7 @@ using static BO.Enums;
 
 namespace BO
 {
+
     //ProductItem helper entity (representing a product for the catalog)
     //For the catalog screen -
     //with the list of products shown to the buyer, which will contain:

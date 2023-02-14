@@ -1,13 +1,10 @@
-﻿
-namespace DO;
-
+﻿namespace DO;
 
 /// <summary>
 /// Structure for Order
 /// </summary>
 public struct Order
 {
-
     /// <summary>
     /// ID of the Order
     /// </summary>
@@ -56,5 +53,4 @@ public struct Order
     	ShipDate: {ShipDate}
     	DeliveryDate: {DeliveryDate}
        ";
-
 }

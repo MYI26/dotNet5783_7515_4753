@@ -27,6 +27,4 @@ public interface ICart
     ///// <param name = "cart" ></ param >
     ///
     public int ConfirmationCard(Cart cart);
-
-
 }

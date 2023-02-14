@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 namespace Stage0
 {
     partial class Program
-
     {
-          static partial void Welcome4753()
+        static partial void Welcome4753()
         {
 
-            Console.WriteLine( "I am also here");
+            Console.WriteLine("I am also here");
 
         }
 

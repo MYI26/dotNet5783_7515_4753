@@ -9,12 +9,10 @@ namespace BO;
 
 //contains the exceptions that may occur during debugging
 
-
     public class ErrorIdException : Exception
     {
         public ErrorIdException(string? message) : base(message) { }
     }
-
 
     public class ErrorDontExist : Exception
     {
@@ -48,11 +46,9 @@ internal class Missing : Exception
     public Missing()
     {
     }
-
     public Missing(string? message) : base(message)
     {
     }
-
     public Missing(string? message, Exception? innerException) : base(message, innerException)
     {
     }
@@ -60,7 +56,6 @@ internal class Missing : Exception
     {
     }
 }
-
 
 public class DontExistException : Exception
 {

@@ -1,8 +1,6 @@
-﻿//
-using DO;
+﻿using DO;
 
 namespace DalApi;
-
 
 /// <summary>
 /// the interface adapted to the OrderItem entity
@@ -10,8 +8,5 @@ namespace DalApi;
 /// </summary>
 public interface IOrderItem : ICrud<OrderItem>
 { 
-
-   // List<OrderItem> GetByOrderId(int id);
-
 }
 

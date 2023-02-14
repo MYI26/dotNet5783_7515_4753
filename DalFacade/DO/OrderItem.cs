@@ -1,25 +1,20 @@
-﻿
-namespace DO;
-
+﻿namespace DO;
 
 /// <summary>
 /// Structure for Order Item
 /// </summary>
 public struct OrderItem
 {
-
     /// <summary>
     /// Order Item ID
     /// </summary>
     public int ID { get; set; }
-
 
     /// <summary>
     /// Product ID
     /// it corresponds to the ID of the Product structure
     /// </summary>
     public int ProductID { get; set; }
-
 
     /// <summary>
     /// ID of the Order
@@ -37,7 +32,6 @@ public struct OrderItem
     /// </summary>
     public int Amount { get; set; }
 
-
     /// <summary>
     /// OrderItem ToString
     /// </summary>
@@ -48,5 +42,4 @@ public struct OrderItem
     	Price: {Price}
     	Amount: {Amount}
 ";
-
 }

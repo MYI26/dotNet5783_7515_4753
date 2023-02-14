@@ -7,13 +7,13 @@ using static DO.Enums;
 
 namespace BO
 {
+
     //Auxiliary entity of an order item (represents a line in the order)
     //For a list of items on the shopping basket screen
     //and on the order details screen, which will contain:
-
     public class OrderItem
     {
-        public int Id{ get; set; }  //ID de orderitem donc OrderItemId et non OrderId
+        public int Id { get; set; }  
         public int ProductID { get; set; }
         public string? NameProduct { get; set; }
         public double Price { get; set; }

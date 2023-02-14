@@ -18,7 +18,6 @@ namespace BO
         public List<OrderItem?>? Items { get; set; }
         public double TotalPrice { get; set; }
 
-
         public override string ToString() => $@"
         Name of customer: {CustomerName}
         Adress of customer: {CustomerAddress}

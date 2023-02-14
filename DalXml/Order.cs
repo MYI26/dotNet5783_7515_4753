@@ -33,7 +33,7 @@ internal class Order : IOrder
         List<DO.Order?> listOrder = XMLTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
 
         if (listOrder.RemoveAll(lec => lec?.ID == id) == 0)
-            throw new Exception("missing id"); 
+            throw new Exception("missing id");
 
         XMLTools.SaveListToXMLSerializer(listOrder, orderPath);
     }
@@ -55,7 +55,7 @@ internal class Order : IOrder
         List<DO.Order?> listOrder = XMLTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
 
         return (from item in listOrder
-                where item?.ID ==id
+                where item?.ID == id
                 select item).FirstOrDefault();
     }
 
@@ -89,7 +89,7 @@ internal class Order : IOrder
         int temp = 0;
 
         List<DO.OrderItem?> listOrder = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>("OrderItem");
-        IEnumerable<DO.OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        IEnumerable<DO.OrderItem?> listorderitem1 = 
        from oI in listOrder
        where oI?.OrderID == id
        select oI;
@@ -113,7 +113,7 @@ internal class Order : IOrder
 
         double temp = 0;
         List<DO.OrderItem?> listOrder = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>("OrderItem");
-        IEnumerable<DO.OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        IEnumerable<DO.OrderItem?> listorderitem1 =       
        from oI in listOrder
        where oI?.OrderID == id
        select oI;

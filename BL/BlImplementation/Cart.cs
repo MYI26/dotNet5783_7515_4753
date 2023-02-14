@@ -1,5 +1,4 @@
 ﻿using BlApi;
-
 namespace BlImplementation;
 
 internal class Cart : ICart
@@ -16,7 +15,7 @@ internal class Cart : ICart
                 throw new BO.ErrorIdException("Produt ID is not a positive number");
 
             if (cart == null)
-                throw new BO.ErrorDontExist("Cart dont exist");        
+                throw new BO.ErrorDontExist("Cart dont exist");
         }
 
         catch (BO.ErrorIdException ex) // the Exeption that ask can return 
@@ -27,9 +26,9 @@ internal class Cart : ICart
         DO.Product product; // creation of new product Product in DO
 
         try { product = Dal.Product.Get(productId) ?? throw new BO.MissingException("product dont exist"); }
-              // place the product with id productId in the new product
+        // place the product with id productId in the new product
 
-       catch( BO.MissingException ex) // the Exeption that ask can return 
+        catch (BO.MissingException ex) // the Exeption that ask can return 
         {
             throw new BO.DontExist(/*"the Id dont valid",*/ ex); // the exeption if the id of productid dont ewist
         }
@@ -39,29 +38,27 @@ internal class Cart : ICart
 
         BO.OrderItem item = new() // creat new orderitem
         {
-                Id = random.Next(100000, 1000000),//ce nest pas orderid don pas Dal.OrderItem.GetAll().Count()+1000
-                NameProduct = product.Name,
-                Price = product.Price,
-                QuantityInCart = 1,
-                PriceOfAll = product.Price * 1,
-                ProductID = productId
+            Id = random.Next(100000, 1000000),//ce nest pas orderid don pas Dal.OrderItem.GetAll().Count()+1000
+            NameProduct = product.Name,
+            Price = product.Price,
+            QuantityInCart = 1,
+            PriceOfAll = product.Price * 1,
+            ProductID = productId
         };
 
-      cart.Items.Add(item);
-          
-      UpdateTotalSum(cart);
+        cart.Items.Add(item);
+
+        UpdateTotalSum(cart);
 
         return cart;
     }
 
-   
     public void UpdateTotalSum(BO.Cart cart)
     {
         cart.TotalPrice = 0;
         foreach (BO.OrderItem? oi in cart.Items!)
             cart.TotalPrice += (double)(oi?.Price * oi?.QuantityInCart)!;
     }
-
 
     public int ConfirmationCard(BO.Cart cart)
     {
@@ -75,10 +72,10 @@ internal class Cart : ICart
             if (cart.CustomerEmail == null) throw new BO.ErrorDontExist("you must enter a mail");
             if (!cart.CustomerEmail.Contains("@gmail.com")) throw new BO.ErrorDontExist("your mail don't valid");
             if (cart.Items != null)
-            foreach (BO.OrderItem? oi in cart.Items)
+                foreach (BO.OrderItem? oi in cart.Items)
                 {
                     if (oi?.ProductID <= 0) throw new BO.ErrorDontExist("Id not valid");
-                   
+
                     DO.Product product = (DO.Product)Dal.Product.Get(oi.ProductID);
                     if (product.InStock == 0)
                     {
@@ -96,9 +93,7 @@ internal class Cart : ICart
                 }
             else throw new BO.ErrorDontExist("you haven't products in your cart");
         }
-
         catch (BO.ErrorDontExist ex) { throw ex; }
-
 
         //the cart becomes an order for the DO database
         DO.Order orderdo = new DO.Order();
@@ -108,7 +103,7 @@ internal class Cart : ICart
         orderdo.OrderDate = DateTime.Now;
         orderdo.ShipDate = null;
         orderdo.DeliveryDate = null;
-       
+
         int OrderId = Dal!.Order.Add(orderdo);
 
         foreach (BO.OrderItem? oI in cart.Items)
@@ -119,10 +114,7 @@ internal class Cart : ICart
             orderItemDo.OrderID = OrderId;
             orderItemDo.Price = oI.Price;
             orderItemDo.Amount = oI.QuantityInCart;
-            Dal.OrderItem.Add(orderItemDo);
-
-            //on modifie la qté de prduit en stock apres la commande
-            //dans la base de donnée DO          
+            Dal.OrderItem.Add(orderItemDo);       
         }
         return OrderId;
     }

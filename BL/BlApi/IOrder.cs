@@ -59,6 +59,4 @@ public interface IOrder
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-
-    //BO.Order? nextOrder();
 }
