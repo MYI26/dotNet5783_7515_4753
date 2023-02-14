@@ -108,16 +108,6 @@ internal class DalProduct : IProduct
             return arr2;
         }
     }       
-    
-    //public void updateOnlyTheAmountInStock(int amount, int productID)
-    //{
-    //    //Product? product = new Product();
-    //    //product = Get(productID);
-    //    //product.InStock -= amount;
-    //    //listProduct?.Update(product);
-    //    Get(productID)?.InStock;
-
-    //}
 }
         
 

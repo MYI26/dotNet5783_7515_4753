@@ -388,8 +388,6 @@ f) exit ");
             string customerName;
             string customerEmail;
             string customerAdress;
-            //List<OrderItem?>? items;
-            //int totaleprice;
 
             Console.WriteLine("\nCustomerName:");
              customerName = Console.ReadLine();
@@ -399,21 +397,12 @@ f) exit ");
             
             Console.WriteLine("\nCustomerAdress:");
             customerAdress = Console.ReadLine();
-           
-
-            //Console.WriteLine("price:");
-            //string pri = Console.ReadLine();
-            //totaleprice = int.Parse(pri);
-
             
-
             Cart cart1 = new Cart();
             cart1.CustomerName = customerName;
             cart1.CustomerEmail = customerEmail;
             cart1.CustomerAddress = customerAdress;
-            cart1.Items = new List<OrderItem?>();
-            //cart1.TotalPrice = totaleprice;
-           
+            cart1.Items = new List<OrderItem?>();      
 
             return cart1;
         }

@@ -6,8 +6,6 @@ internal class Cart : ICart
 {
     DalApi.IDal? Dal = DalApi.Factory.Get();
 
-    //BlApi.IBl? bl = BlApi.Factory.Get();
-
     static readonly Random random = new Random();
 
     public BO.Cart? AddProduct(BO.Cart cart, int productId) // place product with productid in the list orderitem of the cart
@@ -49,37 +47,9 @@ internal class Cart : ICart
                 ProductID = productId
         };
 
-        //DO.OrderItem item1 = new() // creat new orderitem            on les met seumlment dans le cart.items pui lors de la validtion on les mettra dans la base de donner
-        //{
-        //    ID = item.Id,//ce nest pas orderid don pas Dal.OrderItem.GetAll().Count()+1000
-        //    OrderID = 0,           
-        //    Price = product.Price,
-        //    Amount = 1,            
-        //    ProductID = productId
-        //};
-
-        //Dal.OrderItem.Add(item1);
-
       cart.Items.Add(item);
-      
-                  
-        UpdateTotalSum(cart);
-        //BO.OrderItem item = cart.Items?.FirstOrDefault(item => item.ProductID == productId)!; // we place in item the fist orderitem of the list orderitem of the cart and place productId in the ProductId of orderitem of item
-        //bool newItem = item == null;  // newItem == true if item == null
-
-        //if (newItem)// if newItem == null 
-        //{
-        //    item = new() // creat new orderitem
-        //    {
-        //        Id = 0,
-        //        NameProduct = product.Name,
-        //        Price = product.Price,
-        //        QuantityInCart = 0,
-        //        PriceOfAll = product.Price,
-        //        ProductID = productId
-        //    };
-        //}
-        //if (item.QuantityInCart > product.InStock) { throw new BO.NotEnought("ther is no enough product items in stock"); }// if the consomer want to take mor product that exist
+          
+      UpdateTotalSum(cart);
 
         return cart;
     }
@@ -108,9 +78,7 @@ internal class Cart : ICart
             foreach (BO.OrderItem? oi in cart.Items)
                 {
                     if (oi?.ProductID <= 0) throw new BO.ErrorDontExist("Id not valid");
-                    //il reste à vérifier ici si on a assez de produits en stock
-                    //if (oi?.QuantityInCart > bl?.Product?.Get(oi!.Id)?.InStock)
-                    //{ throw new BO.ErrorDontExist("We don't have enought in stock"); }
+                   
                     DO.Product product = (DO.Product)Dal.Product.Get(oi.ProductID);
                     if (product.InStock == 0)
                     {

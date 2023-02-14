@@ -5,8 +5,6 @@ namespace BlImplementation;
 
 internal class Order : IOrder
 {
-
-    // private static DalList Dal = new DalList();
     DalApi.IDal Dal = DalApi.Factory.Get() ?? throw new BO.DontExistException("dal invalid");
 
     public BO.Order? Get(int id) // 
@@ -85,25 +83,6 @@ internal class Order : IOrder
 
     public IEnumerable<BO.OrderForList?>? GetOrders(Func<BO.Enums.OrderStatus, bool>? filter)
     {
-
-        //IEnumerable<DO.Order> listorder = Dal?.Order.GetAll();
-
-        //  foreach (Order p in listOrder){
-
-        //    }        //orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
-        //
-        //from order in Dal?.Order.GetAll() //from == a partir de, select new == new
-
-        //let  ord = (DO.Order)order
-        //where (filter((BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID)) || filter == null) == true
-        //select new BO.OrderForList
-        //{
-        //    OrderID = ord.ID ,
-        //    CustomerName = ord.CustomerName,
-        //    Status = (BO.Enums.OrderStatus)Dal.Order.GetNumStatus(ord.ID),
-        //    Amount = Dal?.Order.GetAmoutOrderItem(ord.ID) ?? throw new BO.MissingException("Quantity InCart missing"),
-        //    TotalPrice = Get(ord.ID)?.TotalPrice ?? 0.0
-        //};
         if (filter == null)
         {
             
@@ -122,8 +101,7 @@ internal class Order : IOrder
         }
 
         else//ici normalement on a pas le droit de creer une bouvelle liste seulement cree un enumerabele qui va trier le list
-        {
-            //-    List<Product?> newlistproduct = new List<Product?>();             
+        {     
 
             return from order in Dal?.Order.GetAll()
                    orderby order?.OrderDate!, order?.ShipDate, order?.DeliveryDate
@@ -231,8 +209,6 @@ internal class Order : IOrder
                 };
 
                 Dal.Order.Update((DO.Order)newOrder);
-                //}
-                //else throw new BO.ErrorDontExist("Id of Order no valid");
             }
 
 
@@ -262,8 +238,6 @@ internal class Order : IOrder
 
             if (flag)
             {
-                //if (order?.DeliveryDate == null)
-                //{
 
                 order = new() // creat new order
                 {

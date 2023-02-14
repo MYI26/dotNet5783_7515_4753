@@ -54,6 +54,8 @@ namespace Program
                         case 3:
                             fonctionOrder();
                             break;
+
+                            // à analyser
                         case 4:
                             XMLTools.SaveListToXMLSerializer(dal.Product.GetAll().ToList(), "Product"); // ca marche 
                             XMLTools.SaveListToXMLSerializer(dal.Order.GetAll().ToList(), "Order"); // ca marche

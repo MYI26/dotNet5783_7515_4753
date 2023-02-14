@@ -6,7 +6,7 @@ namespace Dal;
 
 internal class Order : IOrder
 {
-    const string orderPath = "Order";
+    const string orderPath = "Order.xml";
     static XElement config = XMLTools.LoadConfig();
 
     [MethodImpl(MethodImplOptions.Synchronized)]

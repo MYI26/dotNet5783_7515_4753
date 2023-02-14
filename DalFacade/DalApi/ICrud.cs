@@ -16,7 +16,6 @@ namespace DalApi;
 /// <typeparam name="T"></typeparam>
 public interface ICrud<T> where T : struct
 {
-
     public int Add(T t);
 
     public void Delete(int id);

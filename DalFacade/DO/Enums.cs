@@ -11,7 +11,6 @@ namespace DO;
     public struct Enums
     {
         public enum Category { guitar = 1, violin = 2, flute, piano, musicBrochures }
-       // public enum CategoryForCatalog { All_Product = 0, guitar, violin, flute, piano, musicBrochures }
         public enum Names       //changer les noms en des noms plus simples
         {
             YamahaF310, CordobaC3M, TanglewoodCrossroads,

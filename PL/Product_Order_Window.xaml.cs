@@ -22,10 +22,6 @@ namespace PL
         {
             InitializeComponent();
             SelectProductWindow.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-            //TextBoxId.SelectedText = "0";
-            // TextBoxName.SelectedText = "";
-            // TextBoxPrice.SelectedText = "₪";
-            // TextBoxInStock.SelectedText = "0";
             ButtonAdd.Content = "Add";
             grid1.Visibility = Visibility.Collapsed;
             deletebutton.Visibility = Visibility.Collapsed;
@@ -90,7 +86,6 @@ namespace PL
             }
 
             else { bl?.Product.Update(p1); MessageBox.Show("the product has been successfully update"); }
-            //  ProductListView.ItemsSource = bl?.Product?.GetProductList(null);
            
             this.Close();
             new ProductListWindow().Show();

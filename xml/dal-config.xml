@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <config>
-	<dal>list</dal> <!--si je change en xml ca ne marche plus donc faut verifier les fonction dans DalXml je pense--> 
+	<dal>xml</dal> <!--si je change en xml ca ne marche plus donc faut verifier les fonction dans DalXml je pense--> 
 	<dal-packages>
 		<list>DalList</list>
 		<xml>DalXml</xml>

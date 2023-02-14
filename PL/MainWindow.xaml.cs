@@ -27,18 +27,13 @@ namespace PL
     {
 
         BlApi.IBl? bl = BlApi.Factory.Get();
-        //private static IBL bl;
+
         public MainWindow()
         {
             InitializeComponent();
             password.Visibility = Visibility.Collapsed;
-            //password.DataContext = ___ShowProductListViewsButton_Click_;
-
-
         }
-
-
-
+        
         private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; } //jais punaise de reussi!!!!!!!!! binding ola ola
 
         private void ___ShowNewOrderButton_Click__Click(object sender, RoutedEventArgs e) => new CartUser().Show();

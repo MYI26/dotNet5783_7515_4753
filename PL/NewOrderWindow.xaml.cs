@@ -67,17 +67,12 @@ namespace PL
         }
         
         private void ButtonPlus(object sender, RoutedEventArgs e)
-        {
-         
-
+        {         
         }
 
         private void ButtonMoins(object sender, RoutedEventArgs e)
         {
-           
+          
         }
-
-
-
     }
 }

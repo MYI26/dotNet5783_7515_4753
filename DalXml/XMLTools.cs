@@ -1,13 +1,13 @@
 ﻿namespace Dal;
 
 using DO;
-using System.Xml;
+using System;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 static class XMLTools
 {
-    static string? s_dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.FullName + @"\xml\";
+    public static string s_dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.FullName + @"\xml\";
     static XMLTools()
     {
         if (!Directory.Exists(s_dir))
