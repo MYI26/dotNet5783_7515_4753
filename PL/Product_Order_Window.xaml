@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Product/Order Window" Height="450" Width="900">
-    
+
     <Grid>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="159*"/>
             <ColumnDefinition Width="241*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="113*"/>
             <RowDefinition Height="36*"/>
@@ -23,7 +23,7 @@
             <RowDefinition Height="36"/>
             <RowDefinition Height="168*"/>
         </Grid.RowDefinitions>
-        
+
         <Label x:Name="AffichageId" Content="Id:" Grid.Column="0" Margin="189,0,1,0" Grid.Row="1" VerticalAlignment="Center" Height="27" FontSize ="14"/>
         <Label x:Name="AffichageName" Content="Category:" Grid.Column="0" Margin="189,0,1,0" Grid.Row="2" VerticalAlignment="Center" Height="27" FontSize ="14"/>
         <Label x:Name="AffichageEmail" Content="Name:" Grid.Column="0" Margin="189,0,1,0" Grid.Row="3" VerticalAlignment="Center" Height="27" FontSize ="14"/>
@@ -32,7 +32,7 @@
 
         <Button x:Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="188,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="63" Height="26" Click="Button_ClickAddProduct"/>
 
-        <StackPanel x:Name="Enter" Margin="0,103,379,141" Grid.RowSpan="7" Grid.Column="1" Visibility="Visible">
+        <StackPanel x:Name="Enter" Margin="277,103,379,122" Grid.RowSpan="7" Visibility="Visible" Grid.ColumnSpan="2">
             <TextBox x:Name="TextBoxId" Text="{Binding ProductID}"  IsEnabled="True" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Width="141" Height="35" Grid.Column="1" />
             <ComboBox x:Name="SelectProductWindow" ItemsSource="{Binding BO.Enums.Category}" HorizontalAlignment="Left" Grid.Row="2" Width="141" Height="35" Grid.Column="1" />
             <TextBox x:Name="TextBoxName" Text="{Binding Name}" HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap"  VerticalAlignment="Center" Width="141" Height="35" Grid.Column="1"/>
@@ -41,11 +41,11 @@
         </StackPanel>
 
         <Button x:Name="deletebutton" Grid.Column="1" Content="Delete" HorizontalAlignment="Left" Margin="52,24,0,0" Grid.Row="6" VerticalAlignment="Top" Height="26" Width="71" Click="deletebutton_Click" />
-        
+
         <Grid x:Name="grid1" Grid.Column="1">
             <StackPanel x:Name="Details" Margin="-319,0,0,-326" DataContext="{Binding order}" Visibility="Visible">
                 <Grid Height="434">
-                    
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="402*"/>
                         <ColumnDefinition Width="187*"/>
@@ -106,14 +106,14 @@
                             </Button>
                         </Grid>
                     </StackPanel>
-                    
+
                     <Grid>
-                        
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="19*"/>
                             <RowDefinition Height="198*"/>
                         </Grid.RowDefinitions>
-                        
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="42*"/>
@@ -121,19 +121,19 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="Order Item of the user:" HorizontalAlignment="Stretch" Margin="2,0,0,0" VerticalAlignment="Stretch" Height="38" Width="245" FontSize="15"/>
                         </Grid>
-                        
-                        <ListView x:Name="listorderitem" Grid.Row="1" d:ItemsSource="{Binding OrderItem}"> 
-                            
+
+                        <ListView x:Name="listorderitem" Grid.Row="1"  d:ItemsSource="{Binding OrderItem}">
+
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn/>
                                 </GridView>
                             </ListView.View>
-                            
+
                         </ListView>
-                        
+
                     </Grid>
-                    
+
                 </Grid>
             </StackPanel>
         </Grid>

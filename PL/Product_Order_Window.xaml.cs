@@ -70,15 +70,19 @@ namespace PL
         {   
             BO.Product p1 = new Product();
             //Enter.DataContext = p1;
+            try
+            {
+                Category = (DO.Enums.Category)SelectProductWindow.SelectedItem;
 
-            Category = (DO.Enums.Category)SelectProductWindow.SelectedItem;
-
-            p1.ProductID = int.Parse(TextBoxId.Text);
-            p1.Name = TextBoxName.Text;
-            p1.MyCategory = (Category?)Category;
-            p1.Price = double.Parse(TextBoxPrice.Text);
-            p1.InStock = int.Parse(TextBoxInStock.Text);
-
+                p1.ProductID = int.Parse(TextBoxId.Text);
+                p1.Name = TextBoxName.Text;
+                p1.MyCategory = (Category?)Category;
+                p1.Price = double.Parse(TextBoxPrice.Text);
+                p1.InStock = int.Parse(TextBoxInStock.Text);
+            }
+            catch(BO.ErrorIdException ex){ MessageBox.Show(ex.Message); }
+            catch { MessageBox.Show("One or more information is missing to create the product"); }
+           
             if (ButtonAdd.Content == "Add")
             {
                 bl?.Product.Add(p1);

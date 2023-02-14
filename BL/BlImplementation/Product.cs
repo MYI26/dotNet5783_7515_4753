@@ -25,6 +25,7 @@ internal class Product : BlApi.IProduct
             Dal?.Product.Add(doProduct);
         }
         catch (DalApi.DO.AlreadyExistException) { throw new BO.AlreadyExistException("the product Already exist"); }
+        catch (BO.ErrorIdException) { throw new BO.ErrorIdException("Produt ID is not a positive number"); }
     }
 
     public void Delete(int id)

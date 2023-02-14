@@ -60,10 +60,11 @@ namespace PL
             try
             {
                 bl?.Cart?.AddProduct(cartuser, int.Parse(idofadd.Text));
-                MessageBox.Show("The product was add whith success");
+                MessageBox.Show("The product was add whith success"); this.Close();
             }
-            catch(BO.DontExist ex) { MessageBox.Show(ex.Message);  }
-            this.Close();
+            catch(BO.DontExist ex) { MessageBox.Show(ex.Message);this.Close();  }
+            catch { MessageBox.Show("Sorry yo must select correct product id"); }
+            
         }
         
         private void ButtonPlus(object sender, RoutedEventArgs e)
