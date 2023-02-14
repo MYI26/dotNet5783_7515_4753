@@ -9,6 +9,7 @@ internal class OrderItem : IOrderItem
     const string orderItemPath = "OrderItem";
     static XElement config = XMLTools.LoadConfig();
 
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public int Add(DO.OrderItem entity)
     {
