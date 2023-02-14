@@ -21,7 +21,7 @@ namespace DO;
         public enum CustomerName 
         {
             Eliaou, Yona, Ouriel, Netanel, ELie, Yossef, Salomon, David, Jeremy, Inoun, BarYohai,
-            Raphael, Haim_Hai, Daniel, Mickael, Avi, Ruben, Arie, Isaac, Jonas, Dorone
+            Raphael, Haim, Daniel, Mickael, Avi, Ruben, Arie, Isaac, Jonas, Dorone
         }
         public enum CustomerAdress      //mettre une adresse plus précise que la ville
         {

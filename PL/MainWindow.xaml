@@ -62,7 +62,15 @@
             <TextBlock Text="Enter your password:" Height="23" FontWeight="Bold" />
             <PasswordBox x:Name="PasswordBox"  Height="26"  />
             <Grid Height="50">
-                <Button x:Name="login" Content="login" HorizontalAlignment="Left" Margin="77,6,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+                <Button x:Name="login" Content="login" HorizontalAlignment="Left" Margin="77,6,0,0" VerticalAlignment="Top" Click="Button_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF333333" Offset="1"/>
+                            <GradientStop Color="#FFD1D1D1" Offset="0.891"/>
+                            <GradientStop Color="#FFABABAB" Offset="0.686"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
             </Grid>
         </StackPanel>
         <Label Content="MusicoWorld" HorizontalAlignment="Left" Margin="215,44,0,0" VerticalAlignment="Top" Height="95" Width="354" FontSize="25" FontFamily="Harlow Solid Italic" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
