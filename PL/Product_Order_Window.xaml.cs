@@ -21,6 +21,7 @@ namespace PL
         public Product_Order_Window()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             SelectProductWindow.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
             ButtonAdd.Content = "Add";
             grid1.Visibility = Visibility.Collapsed;
@@ -32,6 +33,7 @@ namespace PL
         public Product_Order_Window(BO.ProductForList pfl)
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Enter.DataContext = pfl;
 
             SelectProductWindow.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));            
@@ -49,6 +51,7 @@ namespace PL
         public Product_Order_Window(BO.OrderForList ofl)
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Order? order = bl?.Order?.Get(ofl.OrderID)!;
 
             InfoOrder.DataContext = order;

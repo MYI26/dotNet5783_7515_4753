@@ -23,7 +23,7 @@
             <ComboBox x:Name="CatagorySelector" Grid.Column="1" Margin="0,-7,-1,-2" SelectionChanged="CatagorySelector_SelectionChanged" />
             <Label Content="All our products available in the store: " Margin="1,-7,0,-2" FontSize="20" Background="#FFD2D2D2" VerticalContentAlignment="Center"/>
         </Grid>
-        <ListView x:Name="ProductItemView"  d:ItemsSource="{Binding}" Margin="0,1,0,0" Grid.Row="2" >
+        <ListView x:Name="ProductItemView"  d:ItemsSource="{Binding ProductForList}" Margin="0,1,0,0" Grid.Row="2" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding ProductID}" />
@@ -31,7 +31,7 @@
                     <GridViewColumn Header="Category" Width="120" DisplayMemberBinding="{Binding Category}" />
                     <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
                     <GridViewColumn Header="Amount" Width="100" DisplayMemberBinding="{Binding InStock}" />
-                    <GridViewColumn Header="" Width="110" >
+                    <!--<GridViewColumn Header="" Width="110" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel >
@@ -56,17 +56,17 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 
-                    </GridViewColumn>
-                    <GridViewColumn Header="" Width="80" >
+                    </GridViewColumn>-->
+                    <!--<GridViewColumn Header="" Width="80" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Button Content="Add to card"  Height="25"  Background="{x:Null}" BorderBrush="{x:Null}" />
+                                    <Button Content="Add to card" Click="ButtonValid_Click2"  Height="25"  Background="{x:Null}" BorderBrush="{x:Null}" />
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 
-                    </GridViewColumn>
+                    </GridViewColumn>-->
                 </GridView>
             </ListView.View>
         </ListView>
@@ -75,7 +75,7 @@
                 <ColumnDefinition Width="383*"/>
                 <ColumnDefinition Width="418*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Valid" Margin="56,-3,0,0" Click="ButtonValid_Click" Grid.Column="1">
+            <Button Content="Valid the selection" Margin="213,-3,0,0" Click="ButtonValid_Click" Grid.Column="1">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FF333333" Offset="1"/>
@@ -84,8 +84,8 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Enter the Id of the product to add:" VerticalAlignment="Center" Height="34" Width="192"/>
-            <TextBox x:Name="idofadd" HorizontalAlignment="Left" Margin="202,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="130" Height="36"/>
+            <!--<TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Enter the Id of the product to add:" VerticalAlignment="Center" Height="34" Width="192"/>
+            <TextBox x:Name="idofadd" HorizontalAlignment="Left" Margin="202,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="130" Height="36"/>-->
         </Grid>
         <Grid Margin="0,0,0,1"/>
 

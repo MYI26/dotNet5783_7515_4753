@@ -29,6 +29,7 @@ namespace PL
         public NewOrderWindow(Cart cart)
         {    
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             ProductItemView.ItemsSource = bl?.Product?.GetProductList(null);
             CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
             cartuser = cart;
@@ -55,18 +56,32 @@ namespace PL
             ProductItemView.ItemsSource = bl?.Product.GetProductList(fonctioncombox);
         }
 
+        //private void ButtonValid_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        bl?.Cart?.AddProduct(cartuser, int.Parse(idofadd.Text));
+        //        MessageBox.Show("The product was add whith success"); this.Close();
+        //    }
+        //    catch(BO.DontExist ex) { MessageBox.Show(ex.Message);this.Close();  }
+        //    catch { MessageBox.Show("Sorry yo must select correct product id"); }
+            
+        //}
         private void ButtonValid_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                bl?.Cart?.AddProduct(cartuser, int.Parse(idofadd.Text));
+                ProductForList f = (BO.ProductForList)ProductItemView.SelectedItem;
+                int x = f.ProductID;
+                bl?.Cart?.AddProduct(cartuser, x);
                 MessageBox.Show("The product was add whith success"); this.Close();
             }
-            catch(BO.DontExist ex) { MessageBox.Show(ex.Message);this.Close();  }
+            catch (BO.DontExist ex) { MessageBox.Show(ex.Message); this.Close(); }
             catch { MessageBox.Show("Sorry yo must select correct product id"); }
-            
+            RoutedEventArgs r;
+
         }
-        
+
         private void ButtonPlus(object sender, RoutedEventArgs e)
         {         
         }

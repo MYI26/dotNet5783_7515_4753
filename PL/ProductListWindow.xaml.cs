@@ -21,6 +21,7 @@ public partial class ProductListWindow : Window
     public ProductListWindow()
     {
         InitializeComponent();
+        this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         ProductListView.ItemsSource = bl?.Product?.GetProductList(null); // sans filtrebl.Product.GetProductList(null)
         CatagorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.CategoryForCatalog));
         CatagorySelectorOrder.ItemsSource = Enum.GetValues(typeof(BO.Enums.OrderStatus));

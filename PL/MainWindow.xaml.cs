@@ -31,7 +31,9 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            password.Visibility = Visibility.Collapsed;
+            password.Visibility = Visibility.Collapsed;           
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+           
         }
         
         private void ___ShowProductListViewButton_Click__Click(object sender, RoutedEventArgs e) { password.Visibility = Visibility.Visible; } //jais punaise de reussi!!!!!!!!! binding ola ola

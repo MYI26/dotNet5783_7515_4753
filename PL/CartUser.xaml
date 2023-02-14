@@ -89,7 +89,7 @@
                 </Grid.RowDefinitions>
                 <Label Content="Your product in the cart:" Margin="1,-1,0,0" FontSize="14"/>
 
-                <ListView x:Name="listorderitem" d:ItemsSource="{Binding}" Margin="0,30,0,-2" Grid.RowSpan="2" FontSize="10" >
+                <ListView x:Name="listorderitem" DataContext= "{Binding cartUser.Items}" d:ItemsSource="{Binding OrderItem}" Margin="0,30,0,-2" Grid.RowSpan="2" FontSize="10" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />

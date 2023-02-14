@@ -21,7 +21,7 @@ namespace PL
         public CartUser()
         {
             InitializeComponent();
-
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             AddProductButton.Visibility = Visibility.Collapsed;
             DetailsCartButton.Visibility = Visibility.Collapsed;
             ConfirmationCartButton.Visibility = Visibility.Collapsed;
@@ -33,8 +33,9 @@ namespace PL
             TotalPrice.Visibility= Visibility.Collapsed;
 
             CartInformations.DataContext = cartUser;
+            listorderitem.DataContext = cartUser.Items;
 
-       
+
         }
 
         //when you validate your information before choosing your products
@@ -73,7 +74,7 @@ namespace PL
             listorderitem.ItemsSource = cartUser.Items;
         }
 
-        private void detailcardbutton_Click(object sender, RoutedEventArgs e)
+        public void detailcardbutton_Click(object sender, RoutedEventArgs e)
         {
 
             affichelist.Visibility = Visibility.Visible;
@@ -111,9 +112,12 @@ namespace PL
                 MessageBox.Show($"Your order number is {Orderid} don't forget it for tracking");
             }
 
-            catch(BO.ErrorDontExist ex) { MessageBox.Show(ex.Message);  }
+            catch(BO.ErrorDontExist ex) { MessageBox.Show(ex.Message); 
+                new CartUser().Show();
+            }
 
             this.Close();
+            
         }
     }
 

@@ -8,11 +8,11 @@ internal class Product : BlApi.IProduct
     DalApi.IDal? Dal = DalApi.Factory.Get();
     public void Add(BO.Product product)
     {
-
+        try{
+      
         DO.Product doProduct;
         if (product.ProductID <= 0) throw new BO.ErrorIdException("Produt ID is not a positive number");
-        try
-        {
+        
             doProduct = new() // creat new product
             {
                 ID = product.ProductID,

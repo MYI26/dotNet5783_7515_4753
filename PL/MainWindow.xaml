@@ -9,6 +9,7 @@
         xmlns:SimpleConvert="clr-namespace:Convert"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <!-- xmlns:local1="clr-namespace:Convert"-->
 
     <!--<Window.Resources>
@@ -16,6 +17,11 @@
     </Window.Resources>-->
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="215*"/>
+            <ColumnDefinition Width="355*"/>
+            <ColumnDefinition Width="231*"/>
+        </Grid.ColumnDefinitions>
         <!--<Grid.Resources>
             <SimpleConvert:VisibilityOrderForListConverter x:Key="converter"/>
         </Grid.Resources>-->
@@ -23,12 +29,16 @@
             <ImageBrush ImageSource="/photo_2023-01-17_22-05-54.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="149*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="97*"/>
+            <RowDefinition Height="7*"/>
             <RowDefinition Height="42*"/>
-            <RowDefinition Height="76*"/>
-            <RowDefinition Height="167*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="52*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="___ShowProductListViewsButton_Click_"  Content="admin" Margin="167,42,0,28" BorderBrush="Black"  FontSize="16" Grid.Row="1" HorizontalAlignment="Left" Width="88" Click="___ShowProductListViewButton_Click__Click" Grid.RowSpan="2">
+        <Button x:Name="___ShowProductListViewsButton_Click_"  Content="admin" Margin="167,42,0,4" BorderBrush="Black"  FontSize="16" Grid.Row="3" Click="___ShowProductListViewButton_Click__Click" Grid.RowSpan="2" HorizontalAlignment="Left" Width="88" Grid.ColumnSpan="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF333333" Offset="1"/>
@@ -38,7 +48,7 @@
             </Button.Background>
         </Button>
 
-        <Button x:Name="Neworder" Content="New Order" Margin="0,42,358,28" BorderBrush="Black" Click="___ShowNewOrderButton_Click__Click" FontSize="16" Grid.Row="1" HorizontalAlignment="Right" Width="88" Grid.RowSpan="2">
+        <Button x:Name="Neworder" Content="New Order" Margin="139,42,0,4" BorderBrush="Black" Click="___ShowNewOrderButton_Click__Click" FontSize="16" Grid.Row="3" Grid.RowSpan="2" HorizontalAlignment="Left" Width="88" Grid.Column="1">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF333333" Offset="1"/>
@@ -48,7 +58,7 @@
             </Button.Background>
         </Button>
 
-        <Button x:Name="TrackingControl" Content="Tracking Control" Margin="0,42,139,28" BorderBrush="Black" Click="___ShowTRackingControlButton_Click__Click" FontSize="16" Grid.Row="1" HorizontalAlignment="Right" Width="133" Grid.RowSpan="2">
+        <Button x:Name="TrackingControl" Content="Tracking Control" Margin="0,42,139,4" BorderBrush="Black" Click="___ShowTRackingControlButton_Click__Click" FontSize="16" Grid.Row="3" Grid.RowSpan="2" HorizontalAlignment="Right" Width="133" Grid.Column="1" Grid.ColumnSpan="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF333333" Offset="1"/>
@@ -58,7 +68,7 @@
             </Button.Background>
         </Button>
 
-        <StackPanel x:Name="password" Margin="297,76,301,54" Grid.RowSpan="2"  Grid.Row="2" >
+        <StackPanel x:Name="password" Margin="82,24,70,2" Grid.RowSpan="2"  Grid.Row="5" Grid.Column="1" >
             <!--Visibility="{Binding ElementName=___ShowProductListViewsButton_Click_, Path=IsFocused, Converter={StaticResource converter}}"-->
             <TextBlock Text="Enter your password:" Height="23" FontWeight="Bold" />
             <PasswordBox x:Name="PasswordBox"  Height="26"  />
@@ -74,7 +84,10 @@
                 </Button>
             </Grid>
         </StackPanel>
-        <Label Content="MusicoWorld" HorizontalAlignment="Left" Margin="215,44,0,0" VerticalAlignment="Top" Height="95" Width="354" FontSize="25" FontFamily="Harlow Solid Italic" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <StackPanel Grid.Column="1" Margin="0,45,0,0" Grid.RowSpan="2">
+            <Label Content="MusicoWorld" FontSize="25" FontFamily="Harlow Solid Italic" Height="96" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </StackPanel>
+        <!--<Label Content="MusicoWorld" FontSize="25" FontFamily="Harlow Solid Italic" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,1,0,1"/>-->
 
 
     </Grid>
