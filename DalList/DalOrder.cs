@@ -1,5 +1,4 @@
-﻿//
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using DalApi.DO;
@@ -10,13 +9,11 @@ using System.Collections.Generic;
 
 namespace Dal;
 
-
 /// <summary>
 ///the implementation of functions for the Order entity
 /// </summary>
 internal class DalOrder : IOrder
 {
-
     public int Add(Order o1)
     {
         o1.ID = Config.NextSerialNumber;
@@ -27,7 +24,7 @@ internal class DalOrder : IOrder
 
     public void Delete(int id)
     {
-        IEnumerable<Order?> listorder1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        IEnumerable<Order?> listorder1 =
         from o in listOrder
         where o?.ID == id
         select o;
@@ -54,13 +51,13 @@ internal class DalOrder : IOrder
                 return;
             }
         }
-     throw new DontExistException("the order dont exist");
+        throw new DontExistException("the order dont exist");
 
     }
 
     public Order? Get(int id)
     {
-        IEnumerable<Order?> listorder1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        IEnumerable<Order?> listorder1 =    
        from o in listOrder
        where o?.ID == id
        select o;
@@ -73,28 +70,25 @@ internal class DalOrder : IOrder
             }
         }
 
-         throw new DontExistException("the order dont exist");
+        throw new DontExistException("the order dont exist");
     }
 
     public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
     {
-        
-            IEnumerable<Order?> order = listOrder;  //sans creer une nouvelle list (permis)
 
-            return order;
-        
+        IEnumerable<Order?> order = listOrder; 
 
+        return order;
     }
 
     public int GetAmoutOrderItem(int id)
     {
         int temp = 0;
 
-        IEnumerable<OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        IEnumerable<OrderItem?> listorderitem1 =     
        from oI in listOrderItem
        where oI?.OrderID == id
        select oI;
-
 
         if (listorderitem1 != null)
         {
@@ -107,13 +101,11 @@ internal class DalOrder : IOrder
         return temp;
     }
 
-
     public double GetTotalPrice(int id)
     {
-
         double temp = 0;
 
-        IEnumerable<OrderItem?> listorderitem1 =       // il select oi si il a le meme id  : on a donc cree une liste toute petite qui contien au max un menbre
+        IEnumerable<OrderItem?> listorderitem1 =     
        from oI in listOrderItem
        where oI?.OrderID == id
        select oI;
@@ -142,9 +134,8 @@ internal class DalOrder : IOrder
         }
 
         else
-        { 
-            return 1; 
+        {
+            return 1;
         }
     }
-
 }

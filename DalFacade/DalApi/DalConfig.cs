@@ -2,11 +2,20 @@
 using DO;
 using System.Xml.Linq;
 
+/// <summary>
+/// Class for processing config.xml file and getting from there
+/// information which is relevant for initialization of DalApi
+/// </summary
 static class DalConfig
 {
     internal static string? s_dalName;
     internal static Dictionary<string, string> s_dalPackages;
 
+    /// <summary>
+    /// Static constructor extracts Dal packages list and Dal type from
+    /// Dal configuration file config.xml
+    /// And represents errors during DalApi initialization
+    /// </summary>
     static DalConfig()
     {
         XElement dalConfig = XElement.Load(@"..\xml\dal-config.xml")

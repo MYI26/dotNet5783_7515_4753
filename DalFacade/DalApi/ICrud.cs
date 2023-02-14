@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,6 @@ using DO;
 using System.Reflection.Metadata.Ecma335;
 
 namespace DalApi;
-
 
 /// <summary>
 /// Generic interface which contains all functions that are common for all entities with one generic parameter T

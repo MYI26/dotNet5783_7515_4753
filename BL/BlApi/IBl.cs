@@ -22,6 +22,5 @@ public interface IBl
     ///  ICart Cart
     /// </summary>
     public ICart Cart { get; }
-
 }
 

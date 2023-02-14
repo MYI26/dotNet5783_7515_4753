@@ -1,9 +1,7 @@
-﻿//
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Xml.Linq;
 
 namespace DO;
-
 
     /// <summary>
     /// Structure for all the enumerations that we coould need
@@ -11,7 +9,7 @@ namespace DO;
     public struct Enums
     {
         public enum Category { guitar = 1, violin = 2, flute, piano, musicBrochures }
-        public enum Names       //changer les noms en des noms plus simples
+        public enum Names
         {
             YamahaF310, CordobaC3M, TanglewoodCrossroads,
             VilacAcousitic, IbanezICLS6NT, GrandSonata,
@@ -23,7 +21,7 @@ namespace DO;
             Eliaou, Yona, Ouriel, Netanel, ELie, Yossef, Salomon, David, Jeremy, Inoun, BarYohai,
             Raphael, Haim, Daniel, Mickael, Avi, Ruben, Arie, Isaac, Jonas, Dorone
         }
-        public enum CustomerAdress      //mettre une adresse plus précise que la ville
+        public enum CustomerAdress   
         {
             Jerusalem, Efrat, Raanana, KarneiShomron, Hertslia, BatYam, Ashdod, BneBrak, Haifa, GuivatZeev, Rishonle_Zion, Lod, NeveIlan, RamatGan, Tel_Aviv, Givataim,
             Holon, Ariel, Ashkelon

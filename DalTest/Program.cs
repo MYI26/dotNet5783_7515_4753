@@ -14,17 +14,12 @@ namespace Program
 {
     class program
     {
+        static DalApi.IDal dal = DalApi.Factory.Get()!;
 
+        static void Main(string[] args)
+        {
 
-        // private static DalList Dallist = new DalList();
-         static DalApi.IDal dal = DalApi.Factory.Get()!;
-        //private static DalProduct DalProduct = new DalProduct();
-        //private static DalOrderItem DalOrderItemt = new DalOrderItem();
-        //private static DalOrder DalOrder = new DalOrder();
-
-        static void Main(string[] args) { 
-        
-        int choice = 5;
+            int choice = 5;
 
             while (choice != 0)
             {
@@ -55,14 +50,14 @@ namespace Program
                             fonctionOrder();
                             break;
 
-                            // à analyser
+                        // à analyser
                         case 4:
-                            XMLTools.SaveListToXMLSerializer(dal.Product.GetAll().ToList(), "Product"); // ca marche 
-                            XMLTools.SaveListToXMLSerializer(dal.Order.GetAll().ToList(), "Order"); // ca marche
-                            XMLTools.SaveListToXMLSerializer(dal.OrderItem.GetAll().ToList(), "OrderItem"); // ca marche
+                            XMLTools.SaveListToXMLSerializer(dal.Product.GetAll().ToList(), "Product"); 
+                            XMLTools.SaveListToXMLSerializer(dal.Order.GetAll().ToList(), "Order");
+                            XMLTools.SaveListToXMLSerializer(dal.OrderItem.GetAll().ToList(), "OrderItem");
 
-                            int lastOrderID = dal.Order.GetAll().Last()?.ID ?? 0; // le seul michtane Ratz automati qui est l'orderID du config 
-                            XMLTools.SaveConfigXElement("OrderId", lastOrderID); // ca ne marche pas 
+                            int lastOrderID = dal.Order.GetAll().Last()?.ID ?? 0; 
+                            XMLTools.SaveConfigXElement("OrderId", lastOrderID);
                             break;
                     }
                 }
@@ -75,7 +70,7 @@ namespace Program
                 Console.WriteLine("\n");
             }
         }
-       private static void fonctionProduct()
+        private static void fonctionProduct()
         {
             Console.WriteLine(
 
@@ -133,17 +128,12 @@ e) Delete Product");
 
                     string idOfTheProduct2 = Console.ReadLine();
                     int id2 = int.Parse(idOfTheProduct2);
-;
+                    ;
                     dal.Product.Delete(id2);
 
                     break;
-
             }
-
         }
-
-
-
 
         private static void fonctionOrderItem()
         {
@@ -273,11 +263,10 @@ e) Delete Order");
                     dal.Order.Delete(id2);
 
                     break;
-
             }
         }
 
-        private static Product fonctionDataProduct() 
+        private static Product fonctionDataProduct()
         {
             int ID;
             string Name;
@@ -321,8 +310,6 @@ e) Delete Order");
             return product1;
         }
 
-
-
         private static OrderItem fonctionDataOrderItem()
         {
             int orderitemid;
@@ -338,7 +325,6 @@ e) Delete Order");
             Console.WriteLine("add Product ID:");
             string prodid = Console.ReadLine();
             productid = int.Parse(prodid);
-
 
             Console.WriteLine("Order ID:");
             string odrd = Console.ReadLine();
@@ -364,15 +350,12 @@ e) Delete Order");
 
         private static Order fonctionDataOrder()
         {
-            
             string CustomerName;
             string CustomerEmail;
             string CustomerAdress;
             DateTime OrderDate;
             DateTime ShipDate;
             DateTime DeliveryDate;
-
-            
 
             Console.WriteLine("\nadd CustomerName:");
             CustomerName = Console.ReadLine();
@@ -388,7 +371,7 @@ e) Delete Order");
             DeliveryDate = ShipDate.AddDays(1);
 
             Order order1 = new Order();
-            
+
             order1.CustomerName = CustomerName;
             order1.CustomerEmail = CustomerEmail;
             order1.CustomerAddress = CustomerAdress;
@@ -397,7 +380,6 @@ e) Delete Order");
             order1.DeliveryDate = DeliveryDate;
 
             return order1;
-
         }
-    }   
+    }
 }

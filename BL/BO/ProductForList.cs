@@ -7,6 +7,7 @@ using static BO.Enums;
 
 namespace BO
 {
+
     //A product reference entity in the list
     //For the product list screen and catalog screen, which will contain:
     public class ProductForList

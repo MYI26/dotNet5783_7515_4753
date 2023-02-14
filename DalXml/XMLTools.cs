@@ -1,5 +1,4 @@
 ﻿namespace Dal;
-
 using DO;
 using System;
 using System.Xml.Linq;

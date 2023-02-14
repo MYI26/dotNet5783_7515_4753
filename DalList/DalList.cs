@@ -9,23 +9,21 @@ using System.Threading.Tasks;
 
 namespace Dal;
 
-
-//que ft IDal pr la premiere ligne
 /// <summary>
-/// 
 /// inherits of IDal and therefore of the interfaces of the three entities
 /// sealed, disallow inheriting from class
 /// </summary>
 sealed internal class DalList : IDal
 {
-
     private DalList() { }
+
     static DalList()
     {
         instance = new DalList();
     }
 
     private static IDal instance;
+
     public static IDal Instance { get => instance; }
 
     public IProduct Product => new DalProduct();
@@ -33,5 +31,4 @@ sealed internal class DalList : IDal
     public IOrder Order => new DalOrder();
 
     public IOrderItem OrderItem => new DalOrderItem();
-
 }

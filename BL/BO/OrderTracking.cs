@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using static BO.Enums;
 using static DO.Enums;
-
 namespace BO
 {
     //Order tracking utility
