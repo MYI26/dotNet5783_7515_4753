@@ -270,32 +270,32 @@ internal class Order : IOrder
         return Get(id);
     }
 
-    public BO.Order? ConvertOrder_DO_to_BO()
-    {
-        DO.Order do1 = this.Get();
-        return new BO.Order
-        {
-            OrderID = (int)(do1?.ID),
-            CustomerName = do1?.CustomerName,
-            CustomerEmail = do1?.CustomerEmail,
-            CustomerAddress = do1?.CustomerAddress,
-            Status = (OrderStatus?)(do1?.ID),
-            OrderDate = do1?.OrderDate,
-            ShipDate = do1?.ShipDate,
-            DeliveryDate = do1?.DeliveryDate,
-            Items = null,
-            TotalPrice = 0
-        };
+    //public BO.Order? ConvertOrder_DO_to_BO()
+    //{
+    //    DO.Order do1 = this.Get();
+    //    return new BO.Order
+    //    {
+    //        OrderID = (int)(do1?.ID),
+    //        CustomerName = do1?.CustomerName,
+    //        CustomerEmail = do1?.CustomerEmail,
+    //        CustomerAddress = do1?.CustomerAddress,
+    //        Status = (OrderStatus?)(do1?.ID),
+    //        OrderDate = do1?.OrderDate,
+    //        ShipDate = do1?.ShipDate,
+    //        DeliveryDate = do1?.DeliveryDate,
+    //        Items = null,
+    //        TotalPrice = 0
+    //    };
 
 
-    BO.Order? BlApi.IOrder.nextOrder()
-    {
-        BO.Order? order = (from item in Dal.Order.GetAll()
-                           where item?.DeliveryDate == null
-                           orderby item?.ShipDate ?? item?.OrderDate
-                           select item).FirstOrDefault()?.ConvertOrder_DO_to_BO();
-        BO.OrderTracking orderTracking = Tracking(order.OrderID);
-        order.Status = Tracking.Status;
-        return order;
-    }
+    //BO.Order? BlApi.IOrder.nextOrder()
+    //{
+    //    BO.Order? order = (from item in Dal.Order.GetAll()
+    //                       where item?.DeliveryDate == null
+    //                       orderby item?.ShipDate ?? item?.OrderDate
+    //                       select item).FirstOrDefault()?.ConvertOrder_DO_to_BO();
+    //    BO.OrderTracking orderTracking = Tracking(order.OrderID);
+    //    order.Status = Tracking.Status;
+    //    return order;
+    //}
 }

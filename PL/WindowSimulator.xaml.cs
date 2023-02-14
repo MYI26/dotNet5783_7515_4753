@@ -21,7 +21,7 @@ namespace PL
     {
         public Window1()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
